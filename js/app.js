@@ -84,7 +84,7 @@ function iniciarSalidaPagina(destino, direccion) {
 		intro.remove();
 		document.body.classList.remove('IntroPortada-activa');
 		continuar();
-	}, 1650);
+	}, 2250);
 }
 
 function renderizarMenu(categoriaActiva) {
@@ -532,8 +532,8 @@ function iniciarIntroPortada() {
 	if (!document.querySelector('.SEC_Titulo--home')) return;
 	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 	try {
-		if (sessionStorage.getItem('introPortadaVista') === '3') return;
-		sessionStorage.setItem('introPortadaVista', '3');
+		if (sessionStorage.getItem('introPortadaVista') === '4') return;
+		sessionStorage.setItem('introPortadaVista', '4');
 	} catch {}
 	const intro = document.createElement('div');
 	intro.className = 'IntroPortada';
@@ -541,7 +541,7 @@ function iniciarIntroPortada() {
 	intro.innerHTML = '<div class="IntroPortada_Malla"></div><div class="IntroPortada_Fondo"><img class="IntroPortada_Logo" src="./images/Logo_Recipes.svg" alt=""></div>';
 	document.body.append(intro);
 	document.body.classList.add('IntroPortada-activa');
-	window.setTimeout(() => intro.classList.add('is-revealing'), 1600);
+	window.setTimeout(() => intro.classList.add('is-revealing'), 1500);
 	window.setTimeout(() => {
 		intro.remove();
 		document.body.classList.remove('IntroPortada-activa');
