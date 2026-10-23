@@ -39,9 +39,13 @@ function admiteTransicionesEntrePaginas() {
 	return location.protocol !== 'file:' && location.origin !== 'null' && typeof CSS !== 'undefined' && CSS.supports('selector(::view-transition-new(root))');
 }
 
+function esRutaInicio(url) {
+	return url.pathname.endsWith('/') || /(?:^|\/)index\.html$/.test(url.pathname);
+}
+
 function direccionDeTransicion(destino) {
 	const url = new URL(destino, location.href);
-	if (/(?:^|\/)index\.html$/.test(url.pathname) || url.pathname.endsWith('/')) return 'izquierda';
+	if (esRutaInicio(url)) return 'izquierda';
 	const idDestino = url.searchParams.get('c');
 	const idActual = new URLSearchParams(location.search).get('c');
 	const indiceDestino = CATEGORIAS.findIndex(categoria => categoria.id === idDestino);
@@ -58,16 +62,17 @@ function guardarDestinoTransicion(direccion) {
 
 function iniciarSalidaPagina(destino, direccion) {
 	if (document.documentElement.classList.contains('transicion-activa')) return;
-	document.documentElement.classList.add('transicion-activa');
+	document.documentElement.classList.add('transicion-activa', `transicion-${direccion}`);
 	guardarDestinoTransicion(direccion);
 	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 		window.location.href = destino;
 		return;
 	}
 	const continuar = () => {
+		document.documentElement.classList.add('transicion-salida');
 		const cortina = crearCortinaTransicion();
 		requestAnimationFrame(() => cortina.classList.add('is-visible'));
-		window.setTimeout(() => { window.location.href = destino; }, 320);
+		window.setTimeout(() => { window.location.href = destino; }, 480);
 	};
 	const intro = document.querySelector('.IntroPortada');
 	if (!intro) {
@@ -79,7 +84,7 @@ function iniciarSalidaPagina(destino, direccion) {
 		intro.remove();
 		document.body.classList.remove('IntroPortada-activa');
 		continuar();
-	}, 1400);
+	}, 1650);
 }
 
 function renderizarMenu(categoriaActiva) {
@@ -166,10 +171,10 @@ function iniciarTransicionPaginas() {
 	if (transicionEntrada && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 		if (admiteTransicionesEntrePaginas() && !document.querySelector('.IntroPortada')) {
 			document.documentElement.classList.add(`transicion-${direccion}`);
-			window.setTimeout(() => document.documentElement.classList.remove(`transicion-${direccion}`), 1100);
+			window.setTimeout(() => document.documentElement.classList.remove(`transicion-${direccion}`), 1200);
 		} else {
 			document.documentElement.classList.add('transicion-entrada');
-			window.setTimeout(() => document.documentElement.classList.remove('transicion-entrada'), 950);
+			window.setTimeout(() => document.documentElement.classList.remove('transicion-entrada', `transicion-${direccion}`), 1200);
 		}
 	} else {
 		document.documentElement.classList.remove('transicion-entrada');
@@ -179,7 +184,12 @@ function iniciarTransicionPaginas() {
 		const enlace = evento.target.closest('a[href]');
 		if (!enlace || evento.defaultPrevented || document.documentElement.classList.contains('transicion-activa') || evento.button !== 0 || evento.metaKey || evento.ctrlKey || evento.shiftKey || evento.altKey || enlace.target === '_blank' || enlace.hasAttribute('download')) return;
 		const destino = new URL(enlace.href, location.href);
-		if (destino.origin !== location.origin || destino.href === location.href || !/(?:^|\/)categoria\.html$|(?:^|\/)index\.html$/.test(destino.pathname)) return;
+		if (destino.origin !== location.origin || !/(?:^|\/)categoria\.html$|(?:^|\/)index\.html$/.test(destino.pathname)) return;
+		if (enlace.hasAttribute('data-home-logo') && esRutaInicio(new URL(location.href)) && esRutaInicio(destino)) {
+			evento.preventDefault();
+			return;
+		}
+		if (destino.href === location.href) return;
 		const direccion = direccionDeTransicion(destino.href);
 		if (admiteTransicionesEntrePaginas() && !document.querySelector('.IntroPortada')) {
 			guardarDestinoTransicion(direccion);
@@ -522,21 +532,20 @@ function iniciarIntroPortada() {
 	if (!document.querySelector('.SEC_Titulo--home')) return;
 	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 	try {
-		if (sessionStorage.getItem('introPortadaVista') === '2') return;
-		sessionStorage.setItem('introPortadaVista', '2');
+		if (sessionStorage.getItem('introPortadaVista') === '3') return;
+		sessionStorage.setItem('introPortadaVista', '3');
 	} catch {}
 	const intro = document.createElement('div');
 	intro.className = 'IntroPortada';
 	intro.setAttribute('aria-hidden', 'true');
-	intro.innerHTML = '<div class="IntroPortada_Malla"></div><img class="IntroPortada_Logo" src="./images/Logo_Recipes.svg" alt="">';
+	intro.innerHTML = '<div class="IntroPortada_Malla"></div><div class="IntroPortada_Fondo"><img class="IntroPortada_Logo" src="./images/Logo_Recipes.svg" alt=""></div>';
 	document.body.append(intro);
 	document.body.classList.add('IntroPortada-activa');
-	window.setTimeout(() => intro.classList.add('is-revealing'), 850);
-	window.setTimeout(() => intro.classList.add('is-dismissing'), 2250);
+	window.setTimeout(() => intro.classList.add('is-revealing'), 1600);
 	window.setTimeout(() => {
 		intro.remove();
 		document.body.classList.remove('IntroPortada-activa');
-	}, 2750);
+	}, 4250);
 }
 
 renderizarCategorias();
