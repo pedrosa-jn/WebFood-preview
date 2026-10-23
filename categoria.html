@@ -17,8 +17,8 @@
 	<title>Cuaderno de recetas</title>
 	<link rel="icon" type="image/svg" sizes="32x32" href="./images/Logo_Recipes.svg">
 	<link rel="stylesheet" href="./css/fonts.css">
-	<link rel="stylesheet" type="text/css" href="./css/styles_CATEGORIA.css?v=modal-columns-20261023">
-	
+	<link rel="stylesheet" type="text/css" href="./css/styles_CATEGORIA.css?v=modal-attached-20261023">
+
 </head>
 
 <body>
@@ -31,7 +31,7 @@
 			<a href="./index.html">
 				<img src="./images/Logo_Recipes.svg" alt="Cuaderno de recetas">
 			</a>
-		
+
 		<!-- Menu Desktop -->
 
 			<nav class="MenuDesktop" aria-label="Navegación principal"></nav>
@@ -94,7 +94,7 @@
 	<div class="ModalReceta" id="ModalReceta" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="ModalTitulo" tabindex="-1">
 
 		<div class="ModalReceta_Contenedor">
-	
+
 	<!-- CABECERA -->
 
 			<header class="ModalReceta_Header">
@@ -106,34 +106,57 @@
 					×
 				</button>
 			</header>
-		
+
 	<!-- CONTENIDO -->
-					
+
 			<div class="ModalReceta_Contenido">
-				<div class="ModalReceta_Lateral">
-					<div class="ModalReceta_Imagen">
-						<img id="ModalImg" src="./images/tor-placeholder.jpg" alt="">
-					</div>
+
+		<!-- FOTO -->
+
+				<div class="ModalReceta_Imagen">
+					<img id="ModalImg" src="./images/tor-placeholder.jpg" alt="">
+				</div>
+
+		<!-- ARTICULO -->
+
+				<article class="ModalReceta_Info">
+
+				<!-- TITULO Y META -->
+
 					<header class="ModalReceta_Titulo">
 						<h2 id="ModalTitulo"></h2>
-						<div class="ModalReceta_Datos" id="ModalDatos"></div>
+						<div class="ModalReceta_Datos" id="ModalDatos">
+
+						</div>
 					</header>
-				</div>
-				<article class="ModalReceta_Info">
+
+
+
 					<div class="ModalReceta_Cuerpo">
+
+					<!-- INGREDIENTES -->
+
 						<section class="ModalReceta_Seccion">
 							<h3>Ingredientes</h3>
 							<ul id="ModalIng"></ul>
 						</section>
+
+					<!-- PASOS -->
+
 						<section class="ModalReceta_Seccion ModalReceta_Pasos">
 							<h3>Pasos</h3>
 							<ol id="ModalPasos"></ol>
 						</section>
 					</div>
+					<!-- Volver Button -->
+					<div>
+						<button
+							class="ModalReceta_Volver"
+							type="button">
+							VOLVER
+						</button>
+					</div>
 				</article>
-				<div class="ModalReceta_Footer">
-					<button class="ModalReceta_Volver" type="button">VOLVER</button>
-				</div>
 			</div>
 		</div>
 	</div>
