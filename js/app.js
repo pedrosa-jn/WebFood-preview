@@ -538,7 +538,7 @@ function iniciarIntroPortada() {
 	const intro = document.createElement('div');
 	intro.className = 'IntroPortada';
 	intro.setAttribute('aria-hidden', 'true');
-	intro.innerHTML = '<div class="IntroPortada_Malla"></div><div class="IntroPortada_Fondo"><img class="IntroPortada_Logo" src="./images/Logo_Recipes.svg" alt=""></div>';
+	intro.innerHTML = '<div class="IntroPortada_Fondo"><img class="IntroPortada_Logo" src="./images/Logo_Recipes.svg" alt=""></div>';
 	document.body.append(intro);
 	document.body.classList.add('IntroPortada-activa');
 	window.setTimeout(() => intro.classList.add('is-revealing'), 1500);
