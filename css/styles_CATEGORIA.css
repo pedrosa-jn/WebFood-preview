@@ -477,7 +477,7 @@ button{
 		border-radius:50%;
 		object-fit:cover;
 		object-position:center;
-		background:#000;
+		background:transparent;
 		}
 	footer div{
 		font-family: Barlow Condensed,sans-serif;
