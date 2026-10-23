@@ -8,8 +8,8 @@
 			if (sessionStorage.getItem('transicionPagina') === '1') {
 				const direccion = sessionStorage.getItem('transicionDireccion') === 'izquierda' ? 'izquierda' : 'derecha';
 				document.documentElement.classList.add(`transicion-${direccion}`);
-				const admiteVista = location.protocol !== 'file:' && location.origin !== 'null' && CSS.supports('selector(::view-transition-new(root))');
-				if (!admiteVista && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('transicion-entrada');
+				const admiteVista = location.protocol !== 'file:' && location.origin !== 'null' && CSS.supports('selector(::view-transition-new(root))') && 'onpageswap' in window && 'onpagereveal' in window;
+				if (!admiteVista && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('transicion-pendiente');
 			}
 		} catch {}
 	</script>
@@ -17,7 +17,7 @@
 	<title>Cuaderno de recetas</title>
 	<link rel="icon" type="image/svg" sizes="32x32" href="./images/Logo_Recipes.svg">
 	<link rel="stylesheet" href="./css/fonts.css">
-	<link rel="stylesheet" type="text/css" href="./css/styles_CATEGORIA.css?v=footer-gif-20261023">
+	<link rel="stylesheet" type="text/css" href="./css/styles_CATEGORIA.css?v=footer-gif-slidefix-20261023">
 
 </head>
 
@@ -165,7 +165,7 @@
 <!-- JS SCRIPT -->
 
 	<script src="./data/recetas.js"></script>
-	<script src="./js/app.js?v=footer-gif-20261023"></script>
+	<script src="./js/app.js?v=footer-gif-slidefix-20261023"></script>
 
 
 

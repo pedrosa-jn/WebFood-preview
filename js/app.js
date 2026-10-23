@@ -36,7 +36,7 @@ function crearCortinaTransicion() {
 }
 
 function admiteTransicionesEntrePaginas() {
-	return location.protocol !== 'file:' && location.origin !== 'null' && typeof CSS !== 'undefined' && CSS.supports('selector(::view-transition-new(root))');
+	return location.protocol !== 'file:' && location.origin !== 'null' && typeof CSS !== 'undefined' && CSS.supports('selector(::view-transition-new(root))') && 'onpageswap' in window && 'onpagereveal' in window;
 }
 
 function esRutaInicio(url) {
@@ -71,8 +71,8 @@ function iniciarSalidaPagina(destino, direccion) {
 	const continuar = () => {
 		document.documentElement.classList.add('transicion-salida');
 		const cortina = crearCortinaTransicion();
-		requestAnimationFrame(() => cortina.classList.add('is-visible'));
-		window.setTimeout(() => { window.location.href = destino; }, 480);
+		requestAnimationFrame(() => requestAnimationFrame(() => cortina.classList.add('is-visible')));
+		window.setTimeout(() => { window.location.href = destino; }, 340);
 	};
 	const intro = document.querySelector('.IntroPortada');
 	if (!intro) {
@@ -168,16 +168,22 @@ function iniciarTransicionPaginas() {
 		sessionStorage.removeItem('transicionPagina');
 		sessionStorage.removeItem('transicionDireccion');
 	} catch {}
-	if (transicionEntrada && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	if (transicionEntrada && !reduceMotion) {
 		if (admiteTransicionesEntrePaginas() && !document.querySelector('.IntroPortada')) {
 			document.documentElement.classList.add(`transicion-${direccion}`);
 			window.setTimeout(() => document.documentElement.classList.remove(`transicion-${direccion}`), 1200);
 		} else {
-			document.documentElement.classList.add('transicion-entrada');
-			window.setTimeout(() => document.documentElement.classList.remove('transicion-entrada', `transicion-${direccion}`), 1200);
+			const revelarPagina = () => {
+				document.documentElement.classList.remove('transicion-pendiente');
+				document.documentElement.classList.add('transicion-entrada');
+				window.setTimeout(() => document.documentElement.classList.remove('transicion-entrada', `transicion-${direccion}`), 420);
+			};
+			const fuentesListas = document.fonts?.ready || Promise.resolve();
+			Promise.race([fuentesListas, new Promise(resolve => window.setTimeout(resolve, 1200))]).then(revelarPagina);
 		}
 	} else {
-		document.documentElement.classList.remove('transicion-entrada');
+		document.documentElement.classList.remove('transicion-entrada', 'transicion-pendiente', `transicion-${direccion}`);
 	}
 
 	document.addEventListener('click', evento => {
