@@ -1016,6 +1016,13 @@ button:focus-visible{
 	border-radius:12px;
 	overflow:hidden;
 }
+.ModalReceta_Imagen{
+	width:calc(100% - 36px);
+	aspect-ratio:4 / 3;
+	align-self:center;
+	justify-self:center;
+	border-radius:12px;
+}
 
 @media (hover:hover) and (pointer:fine){
 	html.has-morph-cursor,html.has-morph-cursor body,html.has-morph-cursor a,html.has-morph-cursor button{ cursor:none!important; }
