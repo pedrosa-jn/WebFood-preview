@@ -333,9 +333,13 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 			autor.textContent = ` · ${receta.autor}`;
 			titulo.append(autor);
 		}
-		const metadatos = [receta.tiempo, receta.dificultad].filter(Boolean).join(' | ');
-		datos.textContent = metadatos ? metadatos.toLocaleUpperCase('es') : '';
-		datos.hidden = !metadatos;
+		const metadatos = [receta.tiempo, receta.dificultad].filter(Boolean);
+		datos.replaceChildren(...metadatos.map(valor => {
+			const etiqueta = document.createElement('span');
+			etiqueta.textContent = valor.toLocaleUpperCase('es');
+			return etiqueta;
+		}));
+		datos.hidden = metadatos.length === 0;
 		crearElementoLista(listaIngredientes, receta.ingredientes || [], 'Información pendiente.');
 		crearElementoLista(listaPasos, receta.pasos || [], 'Información pendiente.');
 		const seccionPasos = listaPasos.closest('.ModalReceta_Pasos');

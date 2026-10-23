@@ -349,8 +349,8 @@ a {
 .Buscador input::placeholder{ color:#5e5f68; opacity:1; }
 .Buscador_Borrar:not([hidden]){ display:block; }
 .BuscadorResultados.is-visible{ display:block; }
-.BuscadorResultado{ display:flex; text-decoration:none; }
-.BuscadorResultado_Categoria{ color:#555661; }
+.BuscadorResultado{ display:flex; text-decoration:none; color:rgb(139,0,0); }
+.BuscadorResultado_Nombre,.BuscadorResultado_Categoria{ color:rgb(139,0,0); }
 .BuscadorSinResultados{ padding:14px 18px; color:#30313a; font:500 1rem/1.4 "Barlow Condensed",sans-serif; }
 .CAT_Index,.CAT_Description{ color:#555661; }
 .CAT_Arrow{ flex:none; margin:10px; color:#555661; transition:color .2s ease, transform .2s ease; }
