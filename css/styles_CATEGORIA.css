@@ -1046,6 +1046,7 @@ button:focus-visible{
 	background:#f5f5f0;
 }
 .ModalReceta_Imagen{
+	display:block;
 	width:calc(100% - 40px);
 	aspect-ratio:4 / 3;
 	align-self:center;
@@ -1108,6 +1109,7 @@ button:focus-visible{
 	line-height:1.5;
 	column-gap:24px;
 }
+.ModalReceta_Pasos ol{ column-count:1; }
 .ModalReceta_Seccion ul{ color:#34323a; }
 .ModalReceta_Seccion li::marker{ color:rgb(139,0,0); }
 .ModalReceta_Pasos li{ color:#34323a; }
