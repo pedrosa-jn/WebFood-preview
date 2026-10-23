@@ -333,13 +333,9 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 			autor.textContent = ` · ${receta.autor}`;
 			titulo.append(autor);
 		}
-		const metadatos = [receta.tiempo, receta.dificultad].filter(Boolean);
-		datos.replaceChildren(...metadatos.map(valor => {
-			const etiqueta = document.createElement('span');
-			etiqueta.textContent = valor.toLocaleUpperCase('es');
-			return etiqueta;
-		}));
-		datos.hidden = metadatos.length === 0;
+		const metadatos = [receta.tiempo, receta.dificultad].filter(Boolean).join(' | ');
+		datos.textContent = metadatos ? metadatos.toLocaleUpperCase('es') : '';
+		datos.hidden = !metadatos;
 		crearElementoLista(listaIngredientes, receta.ingredientes || [], 'Información pendiente.');
 		crearElementoLista(listaPasos, receta.pasos || [], 'Información pendiente.');
 		const seccionPasos = listaPasos.closest('.ModalReceta_Pasos');
@@ -534,22 +530,48 @@ function iniciarAnimacionPortada() {
 
 function iniciarIntroPortada() {
 	if (!document.querySelector('.SEC_Titulo--home')) return;
-	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+	const intro = document.querySelector('.IntroPortada');
+	const limpiarIntro = () => {
+		intro?.remove();
+		document.body.classList.remove('IntroPortada-activa');
+		document.documentElement.classList.remove('intro-pending', 'intro-fonts-ready');
+	};
+	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { limpiarIntro(); return; }
 	try {
-		if (sessionStorage.getItem('introPortadaVista') === '4') return;
+		if (sessionStorage.getItem('introPortadaVista') === '4') { limpiarIntro(); return; }
 		sessionStorage.setItem('introPortadaVista', '4');
 	} catch {}
-	const intro = document.createElement('div');
-	intro.className = 'IntroPortada';
-	intro.setAttribute('aria-hidden', 'true');
-	intro.innerHTML = '<div class="IntroPortada_Fondo"><img class="IntroPortada_Logo" src="./images/Logo_Recipes.svg" alt=""></div>';
-	document.body.append(intro);
+	if (!intro) return;
 	document.body.classList.add('IntroPortada-activa');
-	window.setTimeout(() => intro.classList.add('is-revealing'), 1500);
-	window.setTimeout(() => {
-		intro.remove();
-		document.body.classList.remove('IntroPortada-activa');
-	}, 4250);
+	Promise.resolve(document.fonts?.ready).then(() => {
+		if (!intro.isConnected) return;
+		document.documentElement.classList.remove('intro-pending');
+		document.documentElement.classList.add('intro-fonts-ready');
+		window.setTimeout(() => intro.classList.add('is-revealing'), 1500);
+		window.setTimeout(() => {
+			intro.remove();
+			document.body.classList.remove('IntroPortada-activa');
+			document.documentElement.classList.remove('intro-fonts-ready');
+		}, 4250);
+	});
+}
+
+function iniciarCursorMorph() {
+	if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+	const cursor = document.createElement('div');
+	cursor.className = 'CursorMorph';
+	cursor.setAttribute('aria-hidden', 'true');
+	cursor.innerHTML = '<img class="CursorMorph_Flecha" src="./images/cursor-arrow.svg" alt=""><img class="CursorMorph_Mano" src="./images/cursor-hand.svg" alt="">';
+	document.body.append(cursor);
+	document.documentElement.classList.add('has-morph-cursor');
+	window.addEventListener('pointermove', evento => {
+		if (evento.pointerType === 'touch') return;
+		cursor.style.transform = `translate3d(${evento.clientX}px,${evento.clientY}px,0)`;
+		cursor.classList.add('is-visible');
+		cursor.classList.toggle('is-hidden', Boolean(evento.target.closest('input,textarea,[contenteditable="true"]')));
+		cursor.classList.toggle('is-interactive', Boolean(evento.target.closest('a,button,[role="button"]')));
+	}, { passive: true });
+	document.documentElement.addEventListener('pointerleave', () => cursor.classList.remove('is-visible'));
 }
 
 renderizarCategorias();
@@ -559,3 +581,4 @@ iniciarBuscador();
 iniciarAnimacionPortada();
 iniciarIntroPortada();
 iniciarTransicionPaginas();
+iniciarCursorMorph();

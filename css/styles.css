@@ -363,12 +363,16 @@ footer div{ color:#5e5f68; border-color:#c6c5be; }
 /* Intro del cuaderno */
 .IntroPortada-activa{ overflow:hidden; }
 .IntroPortada{
+	display:none;
 	position:fixed;
 	inset:0;
 	z-index:1000;
 	overflow:hidden;
 	background:transparent;
 }
+html.intro-pending body > :not(.IntroPortada){ visibility:hidden; }
+html.intro-pending .IntroPortada,
+body.IntroPortada-activa > .IntroPortada{ display:block; }
 .IntroPortada_Fondo{
 	position:absolute;
 	inset:0;
@@ -393,6 +397,13 @@ footer div{ color:#5e5f68; border-color:#c6c5be; }
 .IntroPortada-activa > #Categorias,
 .IntroPortada-activa > footer{
 	opacity:0;
+	visibility:hidden;
+}
+html.intro-fonts-ready .IntroPortada-activa > header,
+html.intro-fonts-ready .IntroPortada-activa > .SEC_Titulo--home,
+html.intro-fonts-ready .IntroPortada-activa > #Categorias,
+html.intro-fonts-ready .IntroPortada-activa > footer{
+	visibility:visible;
 	animation:paginaIntroAparece 1.4s cubic-bezier(.16,1,.3,1) 1.5s both;
 }
 .IntroPortada.is-revealing{
@@ -462,5 +473,18 @@ input:focus-visible{
 @media (prefers-reduced-motion:reduce){
 	*,*::before,*::after{ scroll-behavior:auto!important; animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; }
 	.GIF_Home{ display:none!important; }
+}
+
+@media (hover:hover) and (pointer:fine){
+	html.has-morph-cursor,html.has-morph-cursor body,html.has-morph-cursor a,html.has-morph-cursor button{ cursor:none!important; }
+	html.has-morph-cursor input,html.has-morph-cursor textarea,html.has-morph-cursor [contenteditable="true"]{ cursor:text!important; }
+	.CursorMorph{ position:fixed;left:0;top:0;width:32px;height:34px;z-index:30000;pointer-events:none;opacity:0;will-change:transform,opacity;transition:opacity .14s ease; }
+	.CursorMorph.is-visible{ opacity:1; }
+	.CursorMorph.is-hidden{ opacity:0; }
+	.CursorMorph img{ position:absolute;display:block;object-fit:contain;transition:opacity .19s cubic-bezier(.2,.8,.2,1),transform .24s cubic-bezier(.2,.8,.2,1); }
+	.CursorMorph_Flecha{ left:0;top:0;width:26px;height:26px;transform:scale(1) rotate(0);transform-origin:0 0; }
+	.CursorMorph_Mano{ left:-5px;top:-2px;width:32px;height:34px;opacity:0;transform:scale(.72) rotate(-10deg);transform-origin:5px 2px; }
+	.CursorMorph.is-interactive .CursorMorph_Flecha{ opacity:0;transform:scale(.72) rotate(10deg); }
+	.CursorMorph.is-interactive .CursorMorph_Mano{ opacity:1;transform:scale(1) rotate(0); }
 }
 
