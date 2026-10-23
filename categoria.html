@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script>
+		try {
+			if (sessionStorage.getItem('transicionPagina') === '1') {
+				const direccion = sessionStorage.getItem('transicionDireccion') === 'izquierda' ? 'izquierda' : 'derecha';
+				document.documentElement.classList.add(`transicion-${direccion}`);
+				const admiteVista = location.protocol !== 'file:' && location.origin !== 'null' && CSS.supports('selector(::view-transition-new(root))');
+				if (!admiteVista && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('transicion-entrada');
+			}
+		} catch {}
+	</script>
+
+	<title>Cuaderno de recetas</title>
+	<link rel="icon" type="image/svg" sizes="32x32" href="./images/Logo_Recipes.svg">
+	<link rel="stylesheet" href="./css/fonts.css">
+	<link rel="stylesheet" type="text/css" href="./css/styles_CATEGORIA.css">
+	
+</head>
+
+<body>
+
+<!-- CABECERA -->
+
+	<header class="SiteHeader">
+
+		<!-- Logo -->
+			<a href="./index.html">
+				<img src="./images/Logo_Recipes.svg" alt="Cuaderno de recetas">
+			</a>
+		
+		<!-- Menu Desktop -->
+
+			<nav class="MenuDesktop" aria-label="Navegación principal"></nav>
+
+		<!-- Menu Tactil -->
+
+			<button class="MenuToggle" type="button" aria-label="Abrir menú"
+				aria-expanded="false" aria-controls="MenuMobile">
+				<svg viewBox="0 0 32 32" aria-hidden="true">
+					<path class="ml ml-a" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"/>
+					<path class="ml" d="M7 16 27 16"/>
+				</svg>
+			</button>
+
+			<nav class="MenuMobile" id="MenuMobile" aria-hidden="true" inert>
+
+			<!-- Menu del dia -->
+				<div class="MenuMobile_Titulo">
+
+					<div class="MenuMobile_Ovalo MenuMobile_Ovalo--vertical"></div>
+					<div class="MenuMobile_Ovalo MenuMobile_Ovalo--horizontal"></div>
+					<div class="MenuMobile_TituloTexto">
+						<span>el</span>
+						<strong>MENÚ</strong>
+						<small>del</small>
+						<em>día</em>
+					</div>
+				</div>
+
+			<!-- Categorias Mobile -->
+
+					<div class="MenuMobile_Categorias">
+					</div>
+			</nav>
+
+	</header>
+
+<!-- TITULO SECCION -->
+
+	<section class="SEC_Titulo">
+		<a href="./index.html" class="back_page" style="position: absolute; top:10px;left:30px;"><svg id="Sign" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="scale: -1;">
+			<path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
+			</svg> Inicio</a>
+		<h1 class="Title" id="CatTitulo"></h1>
+	</section>
+
+<!-- GRID RECETAs -->
+
+	<section class="Recetas" id="Recetas" aria-label="Recetas de la categoría" tabindex="-1"></section>
+
+<!-- FOOTER -->
+
+	<footer>
+		<img src="./images/Logo_Recipes.svg" alt="">
+		<div>© 2026 Recetario — Todos los derechos reservados.</div>
+	</footer>
+
+<!-- MODAL RECETA -->
+
+	<div class="ModalReceta" id="ModalReceta" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="ModalTitulo" tabindex="-1">
+
+		<div class="ModalReceta_Contenedor">
+	
+	<!-- CABECERA -->
+
+			<header class="ModalReceta_Header">
+				<img src="./images/Logo_Recipes.svg" alt="">
+				<button
+					class="ModalReceta_Cerrar"
+					type="button"
+					aria-label="Cerrar receta">
+					×
+				</button>
+			</header>
+		
+	<!-- CONTENIDO -->
+					
+			<div class="ModalReceta_Contenido">
+				
+		<!-- FOTO -->
+
+				<div class="ModalReceta_Imagen">
+					<img id="ModalImg" src="./images/tor-placeholder.jpg" alt="">
+				</div>
+		
+		<!-- ARTICULO -->
+
+				<article class="ModalReceta_Info">
+
+				<!-- TITULO Y META -->
+
+					<header class="ModalReceta_Titulo">
+						<h2 id="ModalTitulo"></h2>
+						<div class="ModalReceta_Datos" id="ModalDatos">
+							
+						</div>
+					</header>
+
+
+
+					<div class="ModalReceta_Cuerpo">
+
+					<!-- INGREDIENTES -->
+
+						<section class="ModalReceta_Seccion">
+							<h3>Ingredientes</h3>
+							<ul id="ModalIng"></ul>
+						</section>
+
+					<!-- PASOS -->
+
+						<section class="ModalReceta_Seccion ModalReceta_Pasos">
+							<h3>Pasos</h3>
+							<ol id="ModalPasos"></ol>
+						</section>
+					</div>
+					<!-- Volver Button -->
+					<div>
+						<button
+							class="ModalReceta_Volver"
+							type="button">
+							VOLVER
+						</button>
+					</div>
+				</article>
+			</div>
+		</div>
+	</div>
+
+
+<!-- JS SCRIPT -->
+
+	<script src="./data/recetas.js"></script>
+	<script src="./js/app.js"></script>
+
+
+
+</body>
+</html>

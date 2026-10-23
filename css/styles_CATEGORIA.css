@@ -1,0 +1,996 @@
+*{
+	box-sizing: border-box;
+	margin: 0;
+}
+
+body{
+	background-color: rgb(245, 245, 240);
+	cursor: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIyNiIgaGVpZ2h0PSIyNiIgdmlld0JveD0iMCAwIDUwIDUwIj4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLnN0MCB7CiAgICAgICAgZmlsbDogIzc0MTgwZDsKICAgICAgfQoKICAgICAgLnN0MSB7CiAgICAgICAgZmlsbDogbm9uZTsKICAgICAgICBzdHJva2U6ICNmM2YzZWU7CiAgICAgICAgc3Ryb2tlLW1pdGVybGltaXQ6IDEwOwogICAgICB9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICA8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMjkuMywzMi42aC0xMy41Yy0uNSwwLS45LjEtMS4yLjRsLTguOCw5Yy0xLjksMS45LTUuMi42LTUuMi0yLjFWMy41Qy41LjksMy44LS41LDUuNiwxLjRsMjUuOCwyNmMxLjksMS45LjUsNS4yLTIuMiw1LjJaIi8+CiAgPHBhdGggY2xhc3M9InN0MSIgZD0iTTI5LjMsMzIuNmgtMTMuNWMtLjUsMC0uOS4xLTEuMi40bC04LjgsOWMtMS45LDEuOS01LjIuNi01LjItMi4xVjMuNUMuNS45LDMuOC0uNSw1LjYsMS40bDI1LjgsMjZjMS45LDEuOS41LDUuMi0yLjIsNS4yWiIvPgo8L3N2Zz4=") 0 0, auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+ 	cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39.65 43.4" width="32" height="32"><path fill="%23f3f3ee" d="M39,29.6s-2.6-6.4-4.4-14.7c-1.2-3.6-3.6-9.3-9.8-8.2l-1.6.5s-4-.2-6.1,1.7c-.3-2.9-1.6-9.2-4.4-8.5-1.4.5-2.1,1.3-1.9,6.4.6,3.7,2.1,12.2,1.8,14.9s-3.1,6.9-5.6,5.4c-.7-.7-.7-1.3.9-2.9s4.1-3.2,4.2-5.5-1.6-2.7-4.1-2.1S.6,20.2.6,25.2s1.1,10.7,3.3,16c.5,1.4.6,1.9,2.1,1.3s32.6-12.4,32.6-12.4l.4-.6v.1Z"/><path fill="%2374180d" d="M4.5,43.4h0c-1.1-.4-4.4-13.5-4.5-15.9,0-3.3.3-6,2.6-8.3,2.2-2.1,5.6-3.4,7.6-3.2.6,0,1.1.1,1.4.4-.2-1.2-.3-2.5-.5-3.7-.7-5.2-1.3-9.3-.2-11.2.6-1,1.4-1.5,2.3-1.5s2.1.9,2.7,2.3c.9,2,1.3,4.5,1.5,5.8.8-.5,2.3-1.2,4.7-1.3h.1c.5,0,1.2,0,1.9-.3,1.9-.5,4.4-1.2,7,1.4,3.2,3.2,3.8,5.8,4.9,10.6.3,1.2.6,2.6,1,4.1,1,3.9,2.4,6.8,2.5,6.9.2.3.2.5,0,.6-.2.2-33.3,13.3-34.9,13.3h-.1ZM4.6,42.5h0ZM9.9,17c-1.8,0-4.8,1.1-6.7,3s-2.4,4.4-2.3,7.5c0,3,3.1,13.3,3.9,14.9,3-.9,29.7-11.2,33.6-12.9-.4-1-1.5-3.4-2.3-6.6-.4-1.6-.7-2.9-1-4.1-1.1-4.7-1.7-7.1-4.6-10.1-2.1-2.1-4.2-1.6-6-1.1-.9.2-1.6.4-2.3.3-3.3.1-4.7,1.5-4.7,1.5-.1.1-.3.2-.5.1-.2,0-.3-.2-.3-.4,0,0-.5-3.8-1.6-6.4-.4-1-1.1-1.7-1.8-1.7s-1.1.5-1.4,1c-1,1.6-.4,5.8.3,10.6.2,1.6.5,3.2.6,4.9.6,4.8,0,7.4-2.2,9.3-2.4,2.1-3.8.9-4.1.5-.2-.3-.3-.6-.3-1,0-1,1.1-2.2,3.2-3.9,1.2-1,2.1-2.5,2.2-3.7,0-.4,0-1-.3-1.3s-.4-.3-.9-.4h-.6.1ZM11.9,20.8c-.5.9-1.1,1.7-1.9,2.4-2.5,2-2.8,2.9-2.9,3.2v.2c.6.7,1.6.4,2.7-.6,1.3-1.2,2-2.8,2-5.2h.1Z"/><path fill="%2374180d" d="M28.9,14.6c-.3,0-.5-.2-.5-.5,0,0,0-1.7-1.8-3.5-1-1-2.8-2.3-4.6-2.8-.3,0-.4-.3-.3-.6,0-.3.3-.4.6-.3,2,.5,3.9,1.9,5,3,2,2.1,2.1,4.1,2.1,4.2,0,.3-.2.5-.5.5h0Z"/><path fill="%2374180d" d="M23.8,15.8c-.2,0-.3,0-.4-.3,0,0-.5-1.9-2.1-3.5s-2.2-1.7-3.6-2c-.3,0-.4-.3-.4-.6s.3-.4.6-.4c1.5.4,2.9,1.1,4,2.3,1.8,1.8,2.4,3.8,2.4,3.9,0,.3,0,.5-.4.6,0,0-.1,0-.1,0Z"/><path fill="%2374180d" d="M18.2,18h0c-.3,0-.5-.3-.5-.5,0,0,.4-2.9-1-8.2,0-.3-.2-.7.2-.7.3,0,.5,0,.6.4,1.4,5.4,1.2,8.5,1.2,8.6,0,.3-.2.4-.5.4h0Z"/><path fill="%2374180d" d="M22.5,23.7h-.2c-.2-.1-.3-.4-.2-.7,1-2,0-4.1,0-4.1-.1-.2,0-.5.2-.7.2-.1.5,0,.7.2,0,.1,1.2,2.5,0,5,0,.2-.3.3-.4.3,0,0-.1,0-.1,0Z"/><path fill="%2374180d" d="M28.8,22.4h-.2c-.3-.1-.4-.4-.3-.7,1-2.3,0-4,0-4.1,0-.2,0-.5.2-.7.2-.1.5,0,.7.2,0,0,1.2,2.2,0,5,0,.2-.3.3-.5.3h.1Z"/></svg>') 5 2, auto;
+}
+
+button{
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 39.65 43.4" width="32" height="32"><path fill="%23f3f3ee" d="M39,29.6s-2.6-6.4-4.4-14.7c-1.2-3.6-3.6-9.3-9.8-8.2l-1.6.5s-4-.2-6.1,1.7c-.3-2.9-1.6-9.2-4.4-8.5-1.4.5-2.1,1.3-1.9,6.4.6,3.7,2.1,12.2,1.8,14.9s-3.1,6.9-5.6,5.4c-.7-.7-.7-1.3.9-2.9s4.1-3.2,4.2-5.5-1.6-2.7-4.1-2.1S.6,20.2.6,25.2s1.1,10.7,3.3,16c.5,1.4.6,1.9,2.1,1.3s32.6-12.4,32.6-12.4l.4-.6v.1Z"/><path fill="%2374180d" d="M4.5,43.4h0c-1.1-.4-4.4-13.5-4.5-15.9,0-3.3.3-6,2.6-8.3,2.2-2.1,5.6-3.4,7.6-3.2.6,0,1.1.1,1.4.4-.2-1.2-.3-2.5-.5-3.7-.7-5.2-1.3-9.3-.2-11.2.6-1,1.4-1.5,2.3-1.5s2.1.9,2.7,2.3c.9,2,1.3,4.5,1.5,5.8.8-.5,2.3-1.2,4.7-1.3h.1c.5,0,1.2,0,1.9-.3,1.9-.5,4.4-1.2,7,1.4,3.2,3.2,3.8,5.8,4.9,10.6.3,1.2.6,2.6,1,4.1,1,3.9,2.4,6.8,2.5,6.9.2.3.2.5,0,.6-.2.2-33.3,13.3-34.9,13.3h-.1ZM4.6,42.5h0ZM9.9,17c-1.8,0-4.8,1.1-6.7,3s-2.4,4.4-2.3,7.5c0,3,3.1,13.3,3.9,14.9,3-.9,29.7-11.2,33.6-12.9-.4-1-1.5-3.4-2.3-6.6-.4-1.6-.7-2.9-1-4.1-1.1-4.7-1.7-7.1-4.6-10.1-2.1-2.1-4.2-1.6-6-1.1-.9.2-1.6.4-2.3.3-3.3.1-4.7,1.5-4.7,1.5-.1.1-.3.2-.5.1-.2,0-.3-.2-.3-.4,0,0-.5-3.8-1.6-6.4-.4-1-1.1-1.7-1.8-1.7s-1.1.5-1.4,1c-1,1.6-.4,5.8.3,10.6.2,1.6.5,3.2.6,4.9.6,4.8,0,7.4-2.2,9.3-2.4,2.1-3.8.9-4.1.5-.2-.3-.3-.6-.3-1,0-1,1.1-2.2,3.2-3.9,1.2-1,2.1-2.5,2.2-3.7,0-.4,0-1-.3-1.3s-.4-.3-.9-.4h-.6.1ZM11.9,20.8c-.5.9-1.1,1.7-1.9,2.4-2.5,2-2.8,2.9-2.9,3.2v.2c.6.7,1.6.4,2.7-.6,1.3-1.2,2-2.8,2-5.2h.1Z"/><path fill="%2374180d" d="M28.9,14.6c-.3,0-.5-.2-.5-.5,0,0,0-1.7-1.8-3.5-1-1-2.8-2.3-4.6-2.8-.3,0-.4-.3-.3-.6,0-.3.3-.4.6-.3,2,.5,3.9,1.9,5,3,2,2.1,2.1,4.1,2.1,4.2,0,.3-.2.5-.5.5h0Z"/><path fill="%2374180d" d="M23.8,15.8c-.2,0-.3,0-.4-.3,0,0-.5-1.9-2.1-3.5s-2.2-1.7-3.6-2c-.3,0-.4-.3-.4-.6s.3-.4.6-.4c1.5.4,2.9,1.1,4,2.3,1.8,1.8,2.4,3.8,2.4,3.9,0,.3,0,.5-.4.6,0,0-.1,0-.1,0Z"/><path fill="%2374180d" d="M18.2,18h0c-.3,0-.5-.3-.5-.5,0,0,.4-2.9-1-8.2,0-.3-.2-.7.2-.7.3,0,.5,0,.6.4,1.4,5.4,1.2,8.5,1.2,8.6,0,.3-.2.4-.5.4h0Z"/><path fill="%2374180d" d="M22.5,23.7h-.2c-.2-.1-.3-.4-.2-.7,1-2,0-4.1,0-4.1-.1-.2,0-.5.2-.7.2-.1.5,0,.7.2,0,.1,1.2,2.5,0,5,0,.2-.3.3-.4.3,0,0-.1,0-.1,0Z"/><path fill="%2374180d" d="M28.8,22.4h-.2c-.3-.1-.4-.4-.3-.7,1-2.3,0-4,0-4.1,0-.2,0-.5.2-.7.2-.1.5,0,.7.2,0,0,1.2,2.2,0,5,0,.2-.3.3-.5.3h.1Z"/></svg>') 5 2, auto;
+}
+
+/* CABECERA */
+
+	header{
+		height: 63px;
+		position: sticky;
+	    top: 0;
+	    display: flex;
+	    flex-direction: row;
+	    justify-content: flex-start;
+	    align-items: center;
+	    background: rgb(245, 245, 240);
+	    opacity: 1;
+	    border-bottom-style: solid;
+		border-color: rgb(10 12 36);
+		border-width: 1px;
+		z-index: 10;
+		}
+
+		header img{
+			height: 48px;
+		    margin-left: 2.3rem;
+			transition: transform 0.25s ease;
+			}
+			header img:hover{
+				opacity: 80%;
+				transform: translateY(-3px);
+			}
+
+	/* MENU DESKTOP */
+
+		.MenuDesktop{
+			display: none;
+		}
+
+		@media (hover: hover) and (pointer: fine){
+
+			.MenuToggle{
+				display: none;
+			}
+
+			.MenuMobile{
+				display: none;
+			}
+
+			.MenuDesktop{
+				margin-left: auto;
+				margin-right: 2.3rem;
+				position: relative;
+				height: 100%;
+				display: flex;
+				align-items: center;
+				gap: clamp(.8rem, 1.3vw, 1.5rem);
+			}
+
+			.MenuDesktop a{
+				font-family: "Barlow Condensed", sans-serif;
+				font-size: 1rem;
+				font-weight: 500;
+				letter-spacing: .03em;
+				color: rgba(10, 12, 36, .45);
+				white-space: nowrap;
+				transition: color .2s ease, transform .2s ease, font-weight .2s ease;
+			}
+
+			.MenuDesktop a:hover{
+				color: rgb(200, 0, 0);
+				transform: translateY(-2px);
+			}
+
+			.MenuDesktop a.activo{
+				font-weight: 600;
+				color: rgb(200, 0, 0);
+				text-decoration: none;
+			}
+
+			.MenuDesktop_Indicador{
+				position: absolute;
+				left: 0;
+				height: 2px;
+				background: rgb(139, 0, 0);
+				pointer-events: none;
+			}
+			.MenuDesktop_Indicador.is-moving{
+				transition: transform .42s cubic-bezier(.22,1,.36,1), width .42s cubic-bezier(.22,1,.36,1), top .42s cubic-bezier(.22,1,.36,1);
+			}
+
+		}
+
+	/* MENÚ TACTIL */
+
+		/* Botón hamburguesa -> X */
+			.MenuToggle{
+				margin-left: auto;
+				margin-right: 2.3rem;
+				width: 32px;
+				height: 32px;
+				padding: 0;
+				border: 0;
+				background: none;
+				position: relative;
+				z-index: 20;
+				flex-shrink: 0;
+			}
+			.MenuToggle svg{
+				width: 100%;
+				height: 100%;
+				transition: transform 600ms cubic-bezier(.4,0,.2,1);
+			}
+			.MenuToggle .ml{
+				fill: none;
+				stroke: #8b0000;
+				stroke-width: 3;
+				stroke-linecap: round;
+				stroke-linejoin: round;
+			}
+			.MenuToggle .ml-a{
+				stroke-dasharray: 12 63;
+				stroke-dashoffset: 0;
+				transition: stroke-dasharray 600ms cubic-bezier(.4,0,.2,1), stroke-dashoffset 600ms cubic-bezier(.4,0,.2,1);
+			}
+			.MenuToggle[aria-expanded="true"] svg{ transform: rotate(-45deg); }
+			.MenuToggle[aria-expanded="true"] .ml-a{
+				stroke-dasharray: 20 300;
+				stroke-dashoffset: -32.42;
+			}
+		/* Panel overlay: capa superpuesta, NO empuja el contenido */
+			.MenuMobile{
+				position: fixed;
+				top: 63px;
+				left: 0;
+				right: 0;
+				height: 0;
+				overflow: hidden;
+				-webkit-overflow-scrolling: touch;
+				background: rgb(245, 245, 240);
+				z-index: 15;
+				transition: height .8s cubic-bezier(.65,0,.35,1);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				
+			}
+			.MenuMobile.is-open,
+			.MenuMobile.is-closing{
+				border-bottom: solid .5px rgb(139, 0, 0);
+			}
+			.MenuMobile.is-open{
+				height: calc(100vh - 63px);
+			}
+		/* Título "el MENÚ del día" + elipses */
+			.MenuMobile_Titulo{
+				position: relative;
+				display: flex;
+				flex-shrink: 0;
+				justify-content: center;
+				align-items: center;
+				width: 100%;
+				margin: clamp(95px, 10vh, 95px) 0;
+				}
+				.MenuMobile_Ovalo{
+				position: absolute;
+				border: .75px solid rgb(139, 0, 0);
+				border-radius: 50%;
+			}
+			.MenuMobile_Ovalo--horizontal{ width: 405px; height: 145px; }
+			.MenuMobile_Ovalo--vertical{ width: 325px; height: 220px; }
+
+			.MenuMobile_TituloTexto{
+				position: absolute;
+    		bottom: -15px;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				align-items: baseline;
+				gap: 0.4rem;
+				text-align: center;
+		    color: rgb(139, 0, 0);
+			}
+			.MenuMobile_TituloTexto span{
+				font-family: "Playfair Display", serif;
+				font-style: italic;
+				font-weight: 400;
+				font-size: 2rem;
+				position: absolute;
+				top: -10px;
+				left: -25px;
+			}
+			.MenuMobile_TituloTexto strong{
+				font-family: "Barlow Condensed", sans-serif;
+				font-weight: 800;
+				font-size: 3.4rem;
+				letter-spacing: -0.02em;
+				line-height: 1;
+			}
+			.MenuMobile_TituloTexto small{
+				font-family: "Playfair Display", serif;
+				font-style: italic;
+				font-weight: 400;
+				font-size: .85rem;
+				position: absolute;
+				bottom: -12px;
+				right: 22px;
+			}
+			.MenuMobile_TituloTexto em{
+				font-family: "Playfair Display", serif;
+				font-style: italic;
+				font-weight: 400;
+				font-size: 2rem;
+				position: absolute;
+		    top: 40px;
+		    left: 80px;
+			}
+		/* Categorías */
+			.MenuMobile_Categorias{
+				width: 100%;
+				max-width: 100%;
+				min-height: 0;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-evenly;
+				flex: 1;
+				overflow-y: auto;
+				overflow-x: hidden;
+				-webkit-overflow-scrolling: touch;
+			}
+			.MenuMobile_Categorias a{
+				position: relative;
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+				padding: 0.55rem 1.5rem;
+				font-family: "Barlow Condensed", sans-serif;
+				text-transform: uppercase;
+				text-decoration: none;
+			}
+			/* línea separadora: entra desde la izquierda (FASE 2) */
+				.MenuMobile_Categorias a::before{
+					content: "";
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					border-top: .5px solid rgb(139, 0, 0);
+					transform: scaleX(0);
+					transform-origin: left;
+					transition: transform .35s ease;
+				}
+				.MenuMobile.is-open .MenuMobile_Categorias a::before{
+					transform: scaleX(1);
+					transition-delay: calc(.4s + var(--i) * 55ms);
+				}
+				.MenuMobile_Numero{
+					font-weight: 800;
+					font-size: 2.5rem;
+					color: #0a0c2426;
+					opacity: 0;
+					transform: translateX(24px);
+					transition: transform .3s ease, opacity .3s ease;
+				}
+				.MenuMobile_Nombre{
+					font-weight: 800;
+					font-size: 2.5rem;
+					letter-spacing: 0.02em;
+					color: rgb(139, 0, 0);
+					opacity: 0;
+					transform: translateX(24px);
+					transition: transform .3s ease, opacity .3s ease;
+				}
+			/* números y nombres: entran desde la derecha (FASE 3), después de las líneas */
+				.MenuMobile.is-open .MenuMobile_Numero,
+				.MenuMobile.is-open .MenuMobile_Nombre{
+					opacity: 1;
+					transform: translateX(0);
+					transition-delay: calc(.55s + var(--i) * 55ms);
+				}
+		/* bloqueo de scroll de fondo mientras el menú está abierto */
+			body.MenuMobile-open{
+				overflow: hidden;
+			}
+
+			/* IPAD/TABLET: mismo comportamiento táctil, sin cambios extra necesarios */
+			@media (max-width:1023px){
+			.MenuMobile_Ovalo--horizontal{ width: 300px; height: 115px; }
+			.MenuMobile_Ovalo--vertical{ width: 245px; height: 150px; }
+			}
+
+/* TITULO SECCION */
+
+	.back_page{
+		font-size: 0.7em;
+	    letter-spacing: 0.15em;
+	    color: #0a0c2475;
+	    text-transform: uppercase;
+	    font-family: Barlow Condensed, sans-serif;
+	    
+	    display: flex;
+	    align-items: center;
+	    gap: 0;
+	}
+
+	.SEC_Titulo{
+		height: 45vh;
+		position: relative;
+		
+		display: flex;
+	    flex-direction: column;
+	    justify-content: center;
+	    align-items: center;
+		border-bottom-style: solid;
+		border-color: rgb(10 12 36);
+		border-width: 0px;
+		overflow: hidden;
+
+
+		background-image: linear-gradient(rgba(245, 245, 240, 0) 40%, rgb(245, 245, 240) 85%), linear-gradient(to right, rgba(209, 47, 47, 0.28) 1px, transparent 1px), linear-gradient(rgba(209, 47, 47, 0.28) 1px, transparent 1px);
+	    background-size: auto, 22px 22px, 22px 22px;
+	    background-position: center center, 0px 0px;
+		}
+		.SEC_Titulo div{
+			color: rgb(139, 0, 0);
+			scale: 1.2;
+			}
+		
+			.Title{
+				width: 20%;
+				text-align: center;
+				font-family: Barlow Condensed,sans-serif;
+				font-weight: 900;
+		    	font-size: 8rem;
+		    	line-height: 0.75;
+		    	letter-spacing: -0.03em;
+
+		    	display: flex;
+		    	flex-direction: column;
+		    	justify-content: center;
+		    	align-items: center;
+		    	}
+		    	.Title span{
+		    		font-family: "Playfair Display", serif;
+					font-style: italic; 
+					font-weight: 400; 
+					font-size: 3rem; 
+					letter-spacing: -0.01em; 
+					line-height: .7;
+					align-self: flex-start;
+		    		}
+		    		.Title span + span{
+		    			opacity: .4; 
+		    			align-self: flex-end;
+		    		}
+
+/* RECETAS */
+
+	.Recetas{
+		width: 100%;
+		margin: 0;
+		padding: 0;
+
+		display: grid;
+	    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 0;
+	}
+	.Recetas--compactas{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+	}
+	.Recetas--compactas > a{
+		flex: 0 0 200px;
+		width: 200px;
+	}
+	.Recetas--compactas .Recetas_Vacio{ flex: 0 0 100%; width:100%; }
+	.Tarjeta{
+		aspect-ratio: 3 / 4;
+		min-width: 0;
+		font-family: Barlow Condensed, sans-serif;
+		text-transform: uppercase;
+		border: rgb(10, 12, 36) 1px solid;
+		margin-right: -1px;
+	    margin-bottom: -1px;
+	    overflow: hidden;
+	    position: relative;
+
+		}
+		.Tarjeta_TXT{
+			position: absolute;
+			inset: 0;
+			padding: 10px 15px;
+
+			background-color: rgb(245, 245, 240);
+
+			transition: transform 0.5s ease-in-out;
+
+			}
+			.TarjetaTitle{
+			    letter-spacing: 0.02em;
+			    font-weight: 800;
+		    	font-size: 1.05rem;
+		    	word-break: break-word;
+		    	text-transform: uppercase;
+
+			    /*Estado Inicial*/
+			    opacity: 0.25;
+			    transform: translateY(10px);
+
+			    /* Animacion de Carga */
+			    animation: aparecer .55s cubic-bezier(.22,1,.36,1) forwards;
+			    animation-delay: calc(var(--i) * 40ms);
+			}
+			.TarjetaDescripcion{
+				position: absolute;
+				left: 15px;
+				bottom: 10px;
+				font-size: 0.62rem;
+			    letter-spacing: 0.08em;
+			    color: #0a0c2480;
+			    float: auto;
+			}
+			.bck-image{
+				position: absolute;
+				inset: 0;
+				background-image: url("../images/tor-placeholder.jpg");
+				background-position: top;
+				background-size: 100%;
+				background-repeat: no-repeat;
+				transition: transform 0.5s ease-in-out;
+				}
+
+
+	@keyframes aparecer{
+		    from{
+		        opacity: 0.25;
+		        transform: translateY(10px);
+		    }
+
+		    to{
+		        opacity: 1;
+		        transform: translateY(0);
+		    }
+	}
+
+	#Sign{
+		margin: 10px;
+		color: #0a0c246b;
+		}
+		#Sign:hover{
+			color: rgb(209, 47, 47);
+		}
+
+/* FOOTER */
+
+	footer img{
+		margin: 60px;
+		height: 80px;
+		display: flex;
+		flex-direction: row;
+		justify-content: right;
+		}
+	footer div{
+		font-family: Barlow Condensed,sans-serif;
+		font-weight: 300;
+		color: rgb(135 135 135 / 45%);
+		border-top-style: solid;
+		border-color: rgb(135 135 135 / 45%);
+		border-width: .5px;
+		padding: 15px;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+
+/* MODAL RECETA */
+
+	.ModalReceta{
+		position: fixed;
+		inset: 0;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		padding: 20px;
+		background-color: rgba(10, 12, 36, 0.3);
+		backdrop-filter: blur(6px);
+		-webkit-backdrop-filter: blur(6px);
+		z-index: 100;
+
+		visibility: hidden;
+		opacity: 0;
+		pointer-events: none;
+
+		transition: opacity 0.25s ease, visibility 0.25 ease;
+		}
+		.ModalReceta.activo{
+			visibility: visible;
+			opacity: 1;
+			pointer-events: auto;
+		}
+		.ModalReceta_Contenedor{
+			width: min(900px, 100%);
+			max-height: calc(100vh - 40px);
+
+			background-color: rgb(245, 245, 240);
+
+			border: 1px solid rgb(139, 0, 0);
+
+			display: flex;
+			flex-direction: column;
+
+			overflow: hidden;
+			}
+
+			/* CABECERA */
+
+				.ModalReceta_Header{
+					height: 60px;
+					flex-shrink: 0;
+
+					position: relative;
+
+					display: flex;
+					justify-content: center;
+					align-items: center;
+
+					border-bottom: 1px solid rgb(139, 0, 0);
+
+					background-image:
+						linear-gradient(
+							to right,
+							rgba(209, 47, 47, 0.15) 1px,
+							transparent 1px
+						),
+						linear-gradient(
+							rgba(209, 47, 47, 0.15) 1px,
+							transparent 1px
+						);
+
+					background-size: 20px 20px;
+					}
+
+					.ModalReceta_Header img{
+						height: 50px;
+						width: auto;
+						}
+					.ModalReceta_Cerrar{
+						position: absolute;
+						right: 15px;
+						top: 50%;
+						transform: translateY(-50%);
+
+						border: 0;
+						background: none;
+
+						font-family: Barlow Condensed, sans-serif;
+						font-weight: 900;
+   					font-size: 2rem;
+
+						color: rgb(139, 0, 0);
+
+					}
+
+			/* CONTENIDO */
+
+				.ModalReceta_Contenido{
+					display: grid;
+					grid-template-columns: 38% 62%;
+					min-height: 0;
+				}
+
+				/* TITULO */
+
+					.ModalReceta_Titulo{
+						padding: 13px 17px;
+						background-color: rgb(139, 0, 0);
+						color: rgb(245, 245, 240);
+
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+						align-items: flex-start;
+						border-bottom-style: none;
+						flex-shrink: 0;
+					}
+					.ModalReceta_Titulo h2{
+						margin: 0;
+						font-size: 1.75rem;
+						font-weight: 800;
+						line-height: 1;
+					}
+					.ModalReceta_Datos{
+						margin-top: 5px;
+						font-size: 0.6rem;
+						letter-spacing: 0.08em;
+						opacity: 0.75;
+					}
+
+				/* IMAGEN */
+
+					.ModalReceta_Imagen{
+						min-height: 0;
+						overflow: hidden;
+					}
+					.ModalReceta_Imagen img{
+						width: 100%;
+						height: 100%;
+						display: block;
+						object-fit: cover;
+
+						transition: transform .5s cubic-bezier(.22,1,.36,1);
+						}
+						.ModalReceta_Imagen:hover img{
+							transform: scale(1.06);
+						}
+
+				/* INFORMACIÓN */
+
+					.ModalReceta_Info{
+						min-width: 0;
+						min-height: 0;
+						display: flex;
+						flex-direction: column;
+						overflow-y: auto;
+						font-family: Barlow Condensed, sans-serif;
+						text-transform: uppercase;
+						border-left: solid 1px rgb(245, 245, 240);;
+					}
+					.ModalReceta_Pasos{
+						background-color: rgb(139, 0, 0);
+					}
+					@media (min-width: 1024px){
+						.ModalReceta_Pasos.tiene-scroll{
+							max-height: min(36vh, 320px);
+							overflow-y: auto;
+							overscroll-behavior: contain;
+						}
+						.ModalReceta_Pasos.tiene-scroll h3{
+							position: sticky;
+							top: 0;
+							z-index: 1;
+							background-color: rgb(139, 0, 0);
+						}
+						.ModalReceta_Pasos.tiene-scroll ol{ column-count: 1; }
+					}
+
+			/* CUERPO SCROLL */
+				.ModalReceta_Cuerpo{
+					flex: 1;
+					min-height: 0;
+					overflow-y: auto;
+					overflow-x: hidden;
+				}
+
+			/* SECCIONES */
+
+				.ModalReceta_Seccion{
+					border-bottom: 1px solid rgba(139, 0, 0, 0.5);
+					}
+				.ModalReceta_Seccion h3{
+					margin: 0;
+					padding: 9px 17px;
+					font-size: 1.35rem;
+					font-weight: 800;
+					color: rgb(139, 0, 0);
+					border-bottom: 1px solid rgb(139, 0, 0);
+					}
+				.ModalReceta_Pasos h3{
+					color: rgb(245, 245, 240);
+					border-bottom: 1px solid rgb(245, 245, 240);
+				}
+
+				/* LISTAS */
+
+				.ModalReceta_Seccion ul, .ModalReceta_Seccion ol{
+					margin: 0;
+					padding: 10px 17px 10px 32px;
+					font-size: 1rem;
+					line-height: 1.45;
+					column-count: 2;
+					column-gap: 35;
+					break-inside: avoid;
+					margin bottom: 6px;
+					}
+					.ModalReceta_Seccion ul{
+						color: rgb(139, 0, 0);
+						list-style-type: circle;
+						}
+						.ModalReceta_Pasos li{
+						margin-bottom: 5px;
+						color: rgb(245, 245, 240);
+				    padding-left: 10px;
+    				padding-right: 10px;
+						}
+						.ModalReceta_Pasos ol li::marker{
+							font-weight: 200;
+  						font-size: .75rem;
+						}
+
+
+				/* BOTÓN VOLVER */
+
+					div:has(>.ModalReceta_Volver){
+						background-color: rgb(139, 0, 0);
+					}
+					.ModalReceta_Volver{
+						flex-shrink: 0;
+						display: block;
+						margin: 12px auto;
+						padding: 0.25rem 2.5rem;
+						border: 1px solid rgb(245, 245, 240);
+						border-radius: 20px;
+						background-color: transparent;
+						color: rgb(245, 245, 240);
+						font-family: Barlow Condensed, sans-serif;
+						font-size: 0.9rem;
+						font-weight: 700;
+
+					}
+
+
+					.ModalReceta_Volver:hover{
+						background-color: rgb(245, 245, 240);
+						color: rgb(139, 0, 0);
+					}
+
+
+/* MEDIA QUERIES */
+
+	/* DESKTOP */
+
+		@media (min-width: 1024px){
+				.Tarjeta:hover .Tarjeta_TXT{
+				transform: translateY(65%);
+				}
+
+				.Tarjeta:hover .bck-image{
+				transform: scale(1.5);
+				}
+		}
+
+	/* IPAD */
+
+		@media (max-width:1023px){
+			.TarjetaTitle{
+				opacity: 1;
+				transform: none;
+				animation: none;
+				}
+			.Tarjeta_TXT{
+				inset: auto 0 0 0;
+				height: 28%;
+				}
+			.SEC_Titulo{
+				position: sticky;
+				top: 63px;
+				z-index: 1;
+				}
+			.Recetas{
+				position: relative;
+				z-index: 2;
+				background-color: rgb(245, 245, 240);
+				}
+			.Title{
+			    width: 40%;
+				}
+			.bck-image{
+				transform: none;
+				}
+			footer{
+				position: relative;
+				z-index: 1;
+				background-color: rgb(245, 245, 240);
+				display: flow-root;
+				}
+				.back_page{
+					visibility: hidden;
+				}
+		}
+
+	/* MOBILE */
+		@media (max-width:700px){
+			.SEC_Titulo{
+				min-height: 95vh;
+				align-items: center;
+				}
+			    .Title{
+			    	font-size: 6rem;
+			    	width: 70%;
+			    }
+			.Recetas--compactas{ justify-content: flex-end; }
+			.Recetas--compactas > a{ flex: 0 0 50%; width: 50%; }
+		}
+		@media (hover: none) and (pointer: coarse){
+			.ModalReceta_Contenedor{
+				width: 100%;
+				height: auto;
+				max-height: calc(100vh - 40px);
+			}
+
+			.ModalReceta_Contenido{
+				display: flex;
+				flex-direction: column;
+				height: calc(100% - 60px);
+				overflow: hidden;
+				background-color: rgb(139, 0, 0);
+			}
+			.ModalReceta_Seccion:not(.ModalReceta_Pasos){
+				background-color: rgb(245, 245, 240);
+			}
+			.ModalReceta_Info{
+				display: contents;
+				overflow: visible;
+			}
+
+			.ModalReceta_Titulo{
+				order: 1;
+				flex-shrink: 0;
+			}
+
+			.ModalReceta_Imagen{
+				display: none;
+			}
+
+			.ModalReceta_Cuerpo{
+				order: 2;
+				flex: 1;
+				min-height: 0;
+				overflow-y: auto;
+				-webkit-overflow-scrolling: touch;
+			}
+
+			.ModalReceta_Seccion ul,
+			.ModalReceta_Seccion ol{
+				column-count: 1;
+			}
+
+			.ModalReceta_Seccion{
+				break-inside: auto;
+			}
+
+			.ModalReceta_Pasos{
+				background-color: inherit;
+			}
+
+			.ModalReceta_Contenido > .ModalReceta_Info > div:has(>.ModalReceta_Volver){
+				order: 4;
+				flex-shrink: 0;
+				background-color: rgb(139, 0, 0);
+			}
+			.ModalReceta.activo{
+				opacity: 1;
+				transition: opacity .25s ease .12s;
+			}
+			.ModalReceta.activo .ModalReceta_Contenedor{
+				animation: ModalRecetaEntrada .6s cubic-bezier(.22, 1, .36, 1);
+			}
+			.ModalReceta.activo.is-closing{
+				opacity: 0;
+				transition: opacity .25s ease .12s;
+			}
+			.ModalReceta.activo.is-closing .ModalReceta_Contenedor{
+				animation: ModalRecetaSalida .4s cubic-bezier(.55, 0, .8, .25);
+			}
+			@keyframes ModalRecetaEntrada{
+				from{
+					transform: translateY(100%);
+				}
+				to{
+					transform: translateY(0);
+				}
+			}
+			@keyframes ModalRecetaSalida{
+				from{
+					transform: translateY(0);
+				}
+				to{
+					transform: translateY(100%);
+				}
+			}
+		}
+
+
+/* Autoría de la receta (Abuela Carmen, Mamá...): trazo de rotulador rojo por detrás */
+.TarjetaAutor{
+	--marca: 210, 35, 35;
+	padding: 0 .28em 0 .22em;
+	margin: 0 -.05em;
+	background-image: linear-gradient(101deg,
+		rgba(var(--marca), 0) 0%,
+		rgba(var(--marca), .55) 2.5%,
+		rgba(var(--marca), .38) 9%,
+		rgba(var(--marca), .45) 90%,
+		rgba(var(--marca), .6) 97.5%,
+		rgba(var(--marca), 0) 100%);
+	background-repeat: no-repeat;
+	background-position: 0 72%;
+		background-size: 100% .95em;
+	border-radius: .55em .2em .6em .25em / .3em .45em .3em .5em;
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+	animation: marcar .7s cubic-bezier(.65,0,.35,1) .45s both;
+}
+@keyframes marcar{
+	from{ background-size: 0% .95em; }
+	to{ background-size: 100% .95em; }
+}
+@media (prefers-reduced-motion: reduce){
+	.TarjetaAutor{ animation: none; }
+	.MenuDesktop_Indicador.is-moving{ transition: none; }
+}
+
+.CortinaTransicion{
+	position:fixed;
+	inset:0;
+	z-index:20000;
+	background:rgb(245,245,240);
+	opacity:0;
+	pointer-events:none;
+	transition:opacity .32s cubic-bezier(.87,0,.13,1);
+}
+.CortinaTransicion.is-visible{ opacity:1; }
+@view-transition{ navigation:auto; }
+::view-transition-group(root),
+::view-transition-old(root){ animation:none; }
+::view-transition-new(root){ animation:paginaDesdeDerecha .78s cubic-bezier(.87,0,.13,1) both; }
+html.transicion-izquierda::view-transition-new(root){ animation-name:paginaDesdeIzquierda; }
+@keyframes paginaDesdeIzquierda{ from{transform:translateX(-100vw)} to{transform:translateX(0)} }
+@keyframes paginaDesdeDerecha{ from{transform:translateX(100vw)} to{transform:translateX(0)} }
+html.transicion-entrada::after{
+	content:"";
+	position:fixed;
+	inset:0;
+	z-index:20000;
+	background:rgb(245,245,240);
+	pointer-events:none;
+	animation:revelarPagina .36s cubic-bezier(.87,0,.13,1) both;
+}
+@keyframes revelarPagina{ from{opacity:1} to{opacity:0} }
+
+/* Mejoras de contraste, teclado y contenido variable */
+.MenuDesktop a{ color:#555661; }
+.MenuDesktop a.activo,.MenuDesktop a:hover{ color:rgb(139,0,0); }
+.MenuMobile_Numero{ color:#555661; }
+.back_page{ color:#555661; }
+.SEC_Titulo .Title{ color:rgb(139,0,0); scale:1.2; }
+.TarjetaDescripcion{ color:#555661; }
+.CAT_Arrow,#Sign{ color:#555661; }
+.TarjetaAutor{ color:inherit; }
+.ModalReceta_Datos{ opacity:1; }
+.ModalReceta_Pendiente{ color:#5e5f68!important; font-style:italic; }
+.ModalReceta_Pasos .ModalReceta_Pendiente{ color:#f5f5f0!important; opacity:.86; }
+.Recetas_Vacio{ grid-column:1/-1; padding:clamp(2rem,8vw,7rem) 1.5rem; color:#555661; text-align:center; font:500 1.25rem/1.5 "Barlow Condensed",sans-serif; }
+.Recetas_Vacio a{ color:rgb(139,0,0); text-decoration:underline; text-underline-offset:.2em; }
+footer div{ color:#5e5f68; border-color:#c6c5be; }
+body.ModalReceta-open{ overflow:hidden; }
+
+@media (prefers-reduced-motion: reduce){
+	.CortinaTransicion{ transition:none; }
+	::view-transition-group(root),::view-transition-old(root),::view-transition-new(root){ animation:none!important; }
+	html.transicion-entrada::after{ display:none; animation:none; }
+}
+
+a:focus-visible,
+button:focus-visible{
+	outline:2px solid rgb(139,0,0);
+	outline-offset:3px;
+}
+.MenuToggle:focus-visible,.ModalReceta_Cerrar:focus-visible,.ModalReceta_Volver:focus-visible{ outline-color:#f5f5f0; }
+
+.ModalReceta{ transition:opacity .25s ease,visibility 0s linear .25s; }
+.ModalReceta.activo{ transition:opacity .25s ease,visibility 0s; }
+.ModalReceta.activo.is-closing{ opacity:0; transition:opacity .25s ease .12s; }
+
+@media (prefers-reduced-motion:reduce){
+	*,*::before,*::after{ scroll-behavior:auto!important; animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; }
+}

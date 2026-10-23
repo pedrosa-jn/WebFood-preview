@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script>
+		try {
+			if (sessionStorage.getItem('transicionPagina') === '1') {
+				const direccion = sessionStorage.getItem('transicionDireccion') === 'izquierda' ? 'izquierda' : 'derecha';
+				document.documentElement.classList.add(`transicion-${direccion}`);
+				const admiteVista = location.protocol !== 'file:' && location.origin !== 'null' && CSS.supports('selector(::view-transition-new(root))');
+				if (!admiteVista && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('transicion-entrada');
+			}
+		} catch {}
+	</script>
+	<title>Cuaderno de recetas</title>
+	<link rel="icon" type="image/svg" sizes="32x32" href="./images/Logo_Recipes.svg">
+	<link rel="stylesheet" href="./css/fonts.css">
+	<link rel="stylesheet" type="text/css" href="./css/styles.css">
+	
+</head>
+
+<body>
+
+
+<!-- CABECERA -->
+
+		<header>
+			<a href="./index.html" aria-label="Cuaderno de recetas, inicio">
+				<img src="./images/Logo_Recipes.svg" alt="Cuaderno de recetas">
+			</a>
+	</header>
+
+<!-- TITULO -->
+	<section class="SEC_Titulo SEC_Titulo--home">
+		<div class="TXT_Buscador">
+			<h1 class="Title">
+				<span >Nuestro</span>CUADERNO<br>
+				<span>de</span>RECETAS
+			</h1>
+
+<!-- BUSCADOR -->
+			<div class="Buscador">
+				<svg class="search-icon" xmlns="http://www.w3.org/2000/svg"
+		         width="16" height="16" viewBox="0 0 24 24"
+		         fill="none" stroke="currentColor"
+		         stroke-width="1.5"
+		         stroke-linecap="round"
+		         stroke-linejoin="round">
+		        <circle cx="11" cy="11" r="8"></circle>
+		        <path d="m21 21-4.3-4.3"></path>
+		   		</svg>
+		   		<label class="visually-hidden" for="BuscadorInput">Buscar una receta</label>
+		   		<input id="BuscadorInput" type="search" placeholder="Buscar una receta..." autocomplete="off" aria-controls="BuscadorResultados" aria-expanded="false">
+		   		<button class="Buscador_Borrar" type="button" aria-label="Borrar búsqueda" hidden>×</button>
+		   		<div class="BuscadorResultados" id="BuscadorResultados" aria-live="polite"></div>
+			</div>
+
+		</div>
+	<!-- GIF -->
+	</section>
+
+<!-- CATEGORIAS -->
+
+	<nav id="Categorias" aria-label="Categorías de recetas"></nav>
+
+<!-- FOOTER -->
+
+	<footer>
+		<img src="./images/Logo_Recipes.svg" alt="">
+		<div>© 2026 Recetario — Todos los derechos reservados.</div>
+	</footer>
+
+
+<!-- JS SCRIPT -->
+
+	<script src="./data/recetas.js"></script>
+	<script src="./js/app.js"></script>
+
+</body>
+</html>
