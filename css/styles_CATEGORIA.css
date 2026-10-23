@@ -469,12 +469,15 @@ button{
 
 /* FOOTER */
 
-	footer img{
-		margin: 60px;
-		height: 80px;
-		display: flex;
-		flex-direction: row;
-		justify-content: right;
+	footer .FooterLogo{
+		display:block;
+		width:112px;
+		height:112px;
+		margin:32px auto 24px;
+		border-radius:50%;
+		object-fit:cover;
+		object-position:center;
+		background:#000;
 		}
 	footer div{
 		font-family: Barlow Condensed,sans-serif;
@@ -519,6 +522,7 @@ button{
 		}
 		.ModalReceta_Contenedor{
 			width: min(900px, 100%);
+			border-radius:18px;
 			max-height: calc(100vh - 40px);
 
 			background-color: rgb(245, 245, 240);

@@ -516,22 +516,6 @@ function iniciarBuscador() {
 	});
 }
 
-function iniciarAnimacionPortada() {
-	const portada = document.querySelector('.SEC_Titulo--home');
-	const reducirMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-	const escritorio = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-	if (!portada || !escritorio || reducirMovimiento) return;
-
-	const gif = document.createElement('img');
-	gif.className = 'GIF_Home';
-	gif.src = './video/GIF_Home_1.gif';
-	gif.alt = '';
-	gif.setAttribute('aria-hidden', 'true');
-	gif.fetchPriority = 'low';
-	portada.append(gif);
-	window.setTimeout(() => gif.classList.add('is-visible'), 1500);
-}
-
 function iniciarIntroPortada() {
 	if (!document.querySelector('.SEC_Titulo--home')) return;
 	const intro = document.querySelector('.IntroPortada');
@@ -582,7 +566,6 @@ renderizarCategorias();
 renderizarRecetas();
 iniciarMenuMovil();
 iniciarBuscador();
-iniciarAnimacionPortada();
 iniciarIntroPortada();
 iniciarTransicionPaginas();
 iniciarCursorMorph();

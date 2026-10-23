@@ -251,12 +251,15 @@ a {
 
 /* FOOTER */
 
-	footer img{
-		margin: 60px;
-		height: 80px;
-		display: flex;
-		flex-direction: row;
-		justify-content: right;
+	footer .FooterLogo{
+		display:block;
+		width:112px;
+		height:112px;
+		margin:32px auto 24px;
+		border-radius:50%;
+		object-fit:cover;
+		object-position:center;
+		background:#000;
 		}
 	footer div{
 		font-family: Barlow Condensed,sans-serif;
@@ -276,20 +279,6 @@ a {
 
 	/* DESKTOP */
 
-		@media (hover: hover) and (pointer: fine){
-			.GIF_Home{
-				margin: 0 auto;
-				align-self: flex-end;
-				width: auto;
-				height: min(800px, 45vw);
-				display: none;
-				pointer-events: none;
-			}
-			.GIF_Home.is-visible{
-				display: block;
-			}
-		}
-	
 	@media (max-width:1200px){
 	    .TXT_Buscador{
 	        transform:scale(.85);
@@ -461,7 +450,6 @@ html.transicion-entrada::after{
 	html.transicion-entrada::after{ display:none; animation:none; }
 }
 #Categorias{ position:relative; z-index:1; }
-.GIF_Home{ max-height:100%; }
 
 a:focus-visible,
 button:focus-visible,
@@ -472,7 +460,6 @@ input:focus-visible{
 
 @media (prefers-reduced-motion:reduce){
 	*,*::before,*::after{ scroll-behavior:auto!important; animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; }
-	.GIF_Home{ display:none!important; }
 }
 
 @media (hover:hover) and (pointer:fine){
