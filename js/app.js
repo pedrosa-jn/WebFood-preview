@@ -452,8 +452,8 @@ function iniciarIntroPortada() {
 	};
 	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { limpiarIntro(); return; }
 	try {
-		if (sessionStorage.getItem('introPortadaVista') === '5') { limpiarIntro(); return; }
-		sessionStorage.setItem('introPortadaVista', '5');
+		if (sessionStorage.getItem('introPortadaVista') === '6') { limpiarIntro(); return; }
+		sessionStorage.setItem('introPortadaVista', '6');
 	} catch {}
 	if (!intro) return;
 	document.body.classList.add('IntroPortada-activa');
