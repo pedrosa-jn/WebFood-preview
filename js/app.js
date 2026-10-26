@@ -252,7 +252,7 @@ function iniciarMenuMovil() {
 	});
 
 	menu.addEventListener('transitionend', evento => {
-		if (evento.propertyName !== 'transform' || !menu.classList.contains('is-closing')) return;
+		if (evento.target !== menu || evento.propertyName !== 'transform' || !menu.classList.contains('is-closing')) return;
 		menu.classList.remove('is-closing');
 		cabecera?.style.removeProperty('border-bottom-color');
 	});
