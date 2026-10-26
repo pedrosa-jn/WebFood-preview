@@ -110,14 +110,17 @@ function renderizarMenu(categoriaActiva) {
 			indicador.setAttribute('aria-hidden', 'true');
 			menuDesktop.append(indicador);
 
-			const posicionar = enlace => {
-				indicador.style.width = `${enlace.offsetWidth}px`;
-				indicador.style.transform = `translateX(${enlace.offsetLeft}px)`;
-				indicador.style.top = `${enlace.offsetTop + enlace.offsetHeight + 5}px`;
+			const posicionar = (enlace, opciones = {}) => {
+				const ancho = opciones.ancho ?? enlace.offsetWidth;
+				const escala = opciones.escala ?? 1;
+				const arriba = enlace.offsetTop + enlace.offsetHeight + 5;
+				indicador.style.width = `${ancho}px`;
+				indicador.style.transform = `translate(${enlace.offsetLeft}px, ${arriba}px) scaleX(${escala})`;
 			};
 			document.fonts.ready.then(() => {
 				if (!indicador.isConnected) return;
-				posicionar(anterior);
+				const anchoActivo = activo.offsetWidth || 1;
+				posicionar(anterior, { ancho: anchoActivo, escala: anterior.offsetWidth / anchoActivo });
 				indicador.getBoundingClientRect();
 				requestAnimationFrame(() => requestAnimationFrame(() => {
 					indicador.classList.add('is-moving');
@@ -243,7 +246,7 @@ function iniciarMenuMovil() {
 	});
 
 	menu.addEventListener('transitionend', evento => {
-		if (evento.propertyName !== 'height' || !menu.classList.contains('is-closing')) return;
+		if (evento.propertyName !== 'transform' || !menu.classList.contains('is-closing')) return;
 		menu.classList.remove('is-closing');
 		cabecera?.style.removeProperty('border-bottom-color');
 	});
