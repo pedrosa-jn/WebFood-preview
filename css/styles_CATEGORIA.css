@@ -565,7 +565,7 @@ button{
 		}
 		.ModalReceta_Lateral{
 			min-width: 0; min-height: 0; display: flex; flex-direction: column;
-			background: rgb(245, 245, 240); border-right: 1px solid rgb(139, 0, 0);
+			background: rgb(139, 0, 0); border-right: 1px solid rgb(139, 0, 0);
 			overflow-y: auto; overscroll-behavior: contain;
 		}
 		.ModalReceta_Imagen{
@@ -619,7 +619,7 @@ button{
 			font-size: clamp(1rem, 1.15vw, 1.2rem); line-height: 1.5; column-count: 2; column-gap: 28px;
 		}
 		.ModalReceta_Seccion ul{ color: rgb(139, 0, 0); list-style-type: circle; }
-		.ModalReceta_Pasos ol{ column-count: 1; }
+		.ModalReceta_Seccion ol{ column-count: auto; column-width: auto; }
 		.ModalReceta_Seccion li{ break-inside: avoid; margin-bottom: 7px; }
 		.ModalReceta_Pasos li{ color: rgb(245, 245, 240); padding: 0 6px; }
 		.ModalReceta_Pasos ol li::marker{ font-size: .8rem; }
@@ -705,7 +705,9 @@ button{
 			.ModalReceta_Cuerpo{ order: 1; flex: 1 1 auto; min-height: 0; overflow: hidden; }
 			.ModalReceta_Seccion{ min-height: 0; }
 			.ModalReceta_Seccion ul,
-			.ModalReceta_Seccion ol{ column-count: 1; padding: 12px 18px 16px 32px; }
+			.ModalReceta_Seccion ol{ padding: 12px 18px 16px 32px; }
+			.ModalReceta_Seccion ul{ column-count: 1; }
+			.ModalReceta_Seccion ol{ column-count: auto; column-width: auto; }
 			.ModalReceta_Acordeon{ min-height: 48px; padding-inline: 17px; }
 			.ModalReceta_Footer{ padding: 8px 12px calc(8px + env(safe-area-inset-bottom)); }
 			.ModalReceta.activo{
