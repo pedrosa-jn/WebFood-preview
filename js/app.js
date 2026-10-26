@@ -110,24 +110,30 @@ function renderizarMenu(categoriaActiva) {
 			indicador.setAttribute('aria-hidden', 'true');
 			menuDesktop.append(indicador);
 
-			const posicionar = (enlace, opciones = {}) => {
-				const ancho = opciones.ancho ?? enlace.offsetWidth;
-				const escala = opciones.escala ?? 1;
+			let anchoIndicador = 1;
+			const medirIndicador = () => {
+				anchoIndicador = Math.max(1, ...[...menuDesktop.querySelectorAll('a[data-categoria]')].map(enlace => enlace.offsetWidth));
+				indicador.style.width = `${anchoIndicador}px`;
+			};
+			const posicionar = enlace => {
+				const escala = enlace.offsetWidth / anchoIndicador;
 				const arriba = enlace.offsetTop + enlace.offsetHeight + 5;
-				indicador.style.width = `${ancho}px`;
 				indicador.style.transform = `translate(${enlace.offsetLeft}px, ${arriba}px) scaleX(${escala})`;
 			};
 			document.fonts.ready.then(() => {
 				if (!indicador.isConnected) return;
-				const anchoActivo = activo.offsetWidth || 1;
-				posicionar(anterior, { ancho: anchoActivo, escala: anterior.offsetWidth / anchoActivo });
+				medirIndicador();
+				posicionar(anterior);
 				indicador.getBoundingClientRect();
 				requestAnimationFrame(() => requestAnimationFrame(() => {
 					indicador.classList.add('is-moving');
 					posicionar(activo);
 				}));
 			});
-			window.addEventListener('resize', () => posicionar(activo), { passive: true });
+			window.addEventListener('resize', () => {
+				medirIndicador();
+				posicionar(activo);
+			}, { passive: true });
 
 			menuDesktop.addEventListener('click', evento => {
 				const enlace = evento.target.closest('a[data-categoria]');
