@@ -5,14 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script>
 		try {
-			if (sessionStorage.getItem('introPortadaVista') !== '4' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			if (sessionStorage.getItem('introPortadaVista') !== '5' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
 				document.documentElement.classList.add('intro-pending');
-			}
-			if (sessionStorage.getItem('transicionPagina') === '1') {
-				const direccion = sessionStorage.getItem('transicionDireccion') === 'izquierda' ? 'izquierda' : 'derecha';
-				document.documentElement.classList.add(`transicion-${direccion}`);
-				const admiteVista = location.protocol !== 'file:' && location.origin !== 'null' && CSS.supports('selector(::view-transition-new(root))') && 'onpageswap' in window && 'onpagereveal' in window;
-				if (!admiteVista && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('transicion-pendiente');
 			}
 		} catch {}
 	</script>
@@ -22,13 +16,20 @@
 	<link rel="preload" href="./fonts/BarlowCondensed-Regular-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="./fonts/BarlowCondensed-Black-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="./fonts/PlayfairDisplay-Italic-latin.woff2" as="font" type="font/woff2" crossorigin>
-	<link rel="stylesheet" type="text/css" href="./css/styles.css?v=search-result-colors-20261026">
+	<link rel="stylesheet" type="text/css" href="./css/styles.css?v=intro-ring-20261026">
 	
 </head>
 
 <body>
 	<div class="IntroPortada" aria-hidden="true">
-		<div class="IntroPortada_Fondo"><img class="IntroPortada_Logo" src="./images/Logo_Recipes.svg" alt=""></div>
+		<div class="IntroPortada_Fondo">
+			<div class="IntroPortada_Marca">
+				<img class="IntroPortada_Logo" src="./images/Logo_Recipes.svg" alt="">
+				<svg class="IntroPortada_Trazo" viewBox="0 0 220 180" aria-hidden="true">
+					<path pathLength="1" d="M 113 12 C 159 6, 204 32, 210 75 C 217 119, 183 160, 141 166 C 97 173, 48 160, 21 130 C -2 104, 9 58, 37 32 C 57 14, 84 10, 111 13 C 151 16, 191 36, 202 67" />
+				</svg>
+			</div>
+		</div>
 	</div>
 
 
@@ -83,7 +84,7 @@
 <!-- JS SCRIPT -->
 
 	<script src="./data/recetas.js"></script>
-	<script src="./js/app.js?v=footer-gif-slidefix-20261023"></script>
+	<script src="./js/app.js?v=accordion-motion-20261026"></script>
 
 </body>
 </html>
