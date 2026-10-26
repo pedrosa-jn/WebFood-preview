@@ -27,64 +27,8 @@ function renderizarCategorias() {
 		</a>`).join('');
 }
 
-function crearCortinaTransicion() {
-	const cortina = document.createElement('div');
-	cortina.className = 'CortinaTransicion';
-	cortina.setAttribute('aria-hidden', 'true');
-	document.body.append(cortina);
-	return cortina;
-}
-
-function admiteTransicionesEntrePaginas() {
-	return location.protocol !== 'file:' && location.origin !== 'null' && typeof CSS !== 'undefined' && CSS.supports('selector(::view-transition-new(root))') && 'onpageswap' in window && 'onpagereveal' in window;
-}
-
 function esRutaInicio(url) {
 	return url.pathname.endsWith('/') || /(?:^|\/)index\.html$/.test(url.pathname);
-}
-
-function direccionDeTransicion(destino) {
-	const url = new URL(destino, location.href);
-	if (esRutaInicio(url)) return 'izquierda';
-	const idDestino = url.searchParams.get('c');
-	const idActual = new URLSearchParams(location.search).get('c');
-	const indiceDestino = CATEGORIAS.findIndex(categoria => categoria.id === idDestino);
-	const indiceActual = CATEGORIAS.findIndex(categoria => categoria.id === idActual);
-	return indiceDestino >= 0 && indiceActual >= 0 && indiceDestino < indiceActual ? 'izquierda' : 'derecha';
-}
-
-function guardarDestinoTransicion(direccion) {
-	try {
-		sessionStorage.setItem('transicionPagina', '1');
-		sessionStorage.setItem('transicionDireccion', direccion);
-	} catch {}
-}
-
-function iniciarSalidaPagina(destino, direccion) {
-	if (document.documentElement.classList.contains('transicion-activa')) return;
-	document.documentElement.classList.add('transicion-activa', `transicion-${direccion}`);
-	guardarDestinoTransicion(direccion);
-	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-		window.location.href = destino;
-		return;
-	}
-	const continuar = () => {
-		document.documentElement.classList.add('transicion-salida');
-		const cortina = crearCortinaTransicion();
-		requestAnimationFrame(() => requestAnimationFrame(() => cortina.classList.add('is-visible')));
-		window.setTimeout(() => { window.location.href = destino; }, 340);
-	};
-	const intro = document.querySelector('.IntroPortada');
-	if (!intro) {
-		continuar();
-		return;
-	}
-	intro.classList.add('is-revealing');
-	window.setTimeout(() => {
-		intro.remove();
-		document.body.classList.remove('IntroPortada-activa');
-		continuar();
-	}, 2250);
 }
 
 function renderizarMenu(categoriaActiva) {
@@ -137,24 +81,13 @@ function renderizarMenu(categoriaActiva) {
 
 			menuDesktop.addEventListener('click', evento => {
 				const enlace = evento.target.closest('a[data-categoria]');
-				if (!enlace) return;
-				if (
-					document.documentElement.classList.contains('transicion-activa') ||
-					enlace.dataset.categoria === categoriaActiva || evento.button !== 0 ||
+				if (!enlace || enlace.dataset.categoria === categoriaActiva || evento.button !== 0 ||
 					evento.metaKey || evento.ctrlKey || evento.shiftKey || evento.altKey ||
 					enlace.target === '_blank'
 				) return;
 
 				posicionar(enlace);
-				const direccion = direccionDeTransicion(enlace.href);
-				try { sessionStorage.setItem('categoriaAnterior', enlace.dataset.categoria); } catch {}
-				if (admiteTransicionesEntrePaginas() && !document.querySelector('.IntroPortada')) {
-					guardarDestinoTransicion(direccion);
-					document.documentElement.classList.add('transicion-activa');
-					return;
-				}
-				evento.preventDefault();
-				iniciarSalidaPagina(enlace.href, direccion);
+				try { sessionStorage.setItem('categoriaAnterior', categoriaActiva); } catch {}
 			});
 		}
 	}
@@ -169,50 +102,12 @@ function renderizarMenu(categoriaActiva) {
 }
 
 function iniciarTransicionPaginas() {
-	let transicionEntrada = false;
-	let direccion = 'derecha';
-	try {
-		transicionEntrada = sessionStorage.getItem('transicionPagina') === '1';
-		direccion = sessionStorage.getItem('transicionDireccion') || direccion;
-		sessionStorage.removeItem('transicionPagina');
-		sessionStorage.removeItem('transicionDireccion');
-	} catch {}
-	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-	if (transicionEntrada && !reduceMotion) {
-		if (admiteTransicionesEntrePaginas() && !document.querySelector('.IntroPortada')) {
-			document.documentElement.classList.add(`transicion-${direccion}`);
-			window.setTimeout(() => document.documentElement.classList.remove(`transicion-${direccion}`), 1200);
-		} else {
-			const revelarPagina = () => {
-				document.documentElement.classList.remove('transicion-pendiente');
-				document.documentElement.classList.add('transicion-entrada');
-				window.setTimeout(() => document.documentElement.classList.remove('transicion-entrada', `transicion-${direccion}`), 420);
-			};
-			const fuentesListas = document.fonts?.ready || Promise.resolve();
-			Promise.race([fuentesListas, new Promise(resolve => window.setTimeout(resolve, 1200))]).then(revelarPagina);
-		}
-	} else {
-		document.documentElement.classList.remove('transicion-entrada', 'transicion-pendiente', `transicion-${direccion}`);
-	}
-
+	// The home brand mark is already the current page: keep it from reloading itself.
 	document.addEventListener('click', evento => {
-		const enlace = evento.target.closest('a[href]');
-		if (!enlace || evento.defaultPrevented || document.documentElement.classList.contains('transicion-activa') || evento.button !== 0 || evento.metaKey || evento.ctrlKey || evento.shiftKey || evento.altKey || enlace.target === '_blank' || enlace.hasAttribute('download')) return;
+		const enlace = evento.target.closest('a[data-home-logo]');
+		if (!enlace || evento.defaultPrevented || evento.button !== 0 || evento.metaKey || evento.ctrlKey || evento.shiftKey || evento.altKey || enlace.target === '_blank') return;
 		const destino = new URL(enlace.href, location.href);
-		if (destino.origin !== location.origin || !/(?:^|\/)categoria\.html$|(?:^|\/)index\.html$/.test(destino.pathname)) return;
-		if (enlace.hasAttribute('data-home-logo') && esRutaInicio(new URL(location.href)) && esRutaInicio(destino)) {
-			evento.preventDefault();
-			return;
-		}
-		if (destino.href === location.href) return;
-		const direccion = direccionDeTransicion(destino.href);
-		if (admiteTransicionesEntrePaginas() && !document.querySelector('.IntroPortada')) {
-			guardarDestinoTransicion(direccion);
-			document.documentElement.classList.add('transicion-activa');
-			return;
-		}
-		evento.preventDefault();
-		iniciarSalidaPagina(destino.href, direccion);
+		if (esRutaInicio(new URL(location.href)) && esRutaInicio(destino)) evento.preventDefault();
 	});
 }
 
@@ -348,17 +243,22 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 			autor.textContent = ` · ${receta.autor}`;
 			titulo.append(autor);
 		}
-		const metadatos = [receta.tiempo, receta.dificultad].filter(Boolean);
+		// Datos de muestra hasta que la fuente editable incluya tiempo y dificultad.
+		const metadatos = [receta.tiempo || '25 min', receta.dificultad || 'Fácil'];
 		datos.replaceChildren(...metadatos.map(valor => {
 			const etiqueta = document.createElement('span');
 			etiqueta.textContent = valor.toLocaleUpperCase('es');
 			return etiqueta;
 		}));
-		datos.hidden = metadatos.length === 0;
 		crearElementoLista(listaIngredientes, receta.ingredientes || [], 'Información pendiente.');
 		crearElementoLista(listaPasos, receta.pasos || [], 'Información pendiente.');
-		const seccionPasos = listaPasos.closest('.ModalReceta_Pasos');
-		seccionPasos?.classList.toggle('tiene-scroll', listaPasos.querySelectorAll('li:not(.ModalReceta_Pendiente)').length > 5);
+		modal.querySelectorAll('.ModalReceta_Seccion').forEach(seccion => {
+			seccion.classList.remove('is-collapsed');
+			const boton = seccion.querySelector('.ModalReceta_Acordeon');
+			const lista = boton && document.getElementById(boton.getAttribute('aria-controls'));
+			boton?.setAttribute('aria-expanded', 'true');
+			if (lista) lista.hidden = false;
+		});
 		modal.classList.remove('is-closing');
 		modal.classList.add('activo');
 		modal.setAttribute('aria-hidden', 'false');
@@ -386,6 +286,17 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 		evento.preventDefault();
 		history.replaceState(null, '', `${urlCategoria(categoriaId)}#${encodeURIComponent(enlace.dataset.id)}`);
 		abrir(enlace.dataset.id, enlace);
+	});
+
+	modal.querySelectorAll('.ModalReceta_Acordeon').forEach(boton => {
+		boton.addEventListener('click', () => {
+			const lista = document.getElementById(boton.getAttribute('aria-controls'));
+			if (!lista) return;
+			const expandir = boton.getAttribute('aria-expanded') !== 'true';
+			boton.setAttribute('aria-expanded', String(expandir));
+			lista.hidden = !expandir;
+			boton.closest('.ModalReceta_Seccion')?.classList.toggle('is-collapsed', !expandir);
+		});
 	});
 
 	botonCerrar.addEventListener('click', cerrar);
@@ -541,8 +452,8 @@ function iniciarIntroPortada() {
 	};
 	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { limpiarIntro(); return; }
 	try {
-		if (sessionStorage.getItem('introPortadaVista') === '4') { limpiarIntro(); return; }
-		sessionStorage.setItem('introPortadaVista', '4');
+		if (sessionStorage.getItem('introPortadaVista') === '5') { limpiarIntro(); return; }
+		sessionStorage.setItem('introPortadaVista', '5');
 	} catch {}
 	if (!intro) return;
 	document.body.classList.add('IntroPortada-activa');
@@ -550,12 +461,12 @@ function iniciarIntroPortada() {
 		if (!intro.isConnected) return;
 		document.documentElement.classList.remove('intro-pending');
 		document.documentElement.classList.add('intro-fonts-ready');
-		window.setTimeout(() => intro.classList.add('is-revealing'), 1500);
+		window.setTimeout(() => intro.classList.add('is-revealing'), 1750);
 		window.setTimeout(() => {
 			intro.remove();
 			document.body.classList.remove('IntroPortada-activa');
 			document.documentElement.classList.remove('intro-fonts-ready');
-		}, 4250);
+		}, 4100);
 	});
 }
 
