@@ -99,9 +99,10 @@ button{
 				height: 2px;
 				background: rgb(139, 0, 0);
 				pointer-events: none;
+				transform-origin: left center;
 			}
 			.MenuDesktop_Indicador.is-moving{
-				transition: transform .42s cubic-bezier(.22,1,.36,1), width .42s cubic-bezier(.22,1,.36,1), top .42s cubic-bezier(.22,1,.36,1);
+				transition: transform .42s cubic-bezier(.22,1,.36,1);
 			}
 
 		}
@@ -149,12 +150,16 @@ button{
 				top: 63px;
 				left: 0;
 				right: 0;
-				height: 0;
+				height: calc(100vh - 63px);
+				height: calc(100dvh - 63px);
 				overflow: hidden;
 				-webkit-overflow-scrolling: touch;
 				background: rgb(245, 245, 240);
 				z-index: 15;
-				transition: height .8s cubic-bezier(.65,0,.35,1);
+				transform: translateY(-100%);
+				opacity: 0;
+				pointer-events: none;
+				transition: transform .8s cubic-bezier(.65,0,.35,1), opacity .22s ease;
 				display: flex;
 				flex-direction: column;
 				align-items: center;
@@ -165,8 +170,11 @@ button{
 				border-bottom: solid .5px rgb(139, 0, 0);
 			}
 			.MenuMobile.is-open{
-				height: calc(100vh - 63px);
+				transform: translateY(0);
+				opacity: 1;
+				pointer-events: auto;
 			}
+			.MenuMobile.is-closing{ pointer-events: none; }
 		/* Título "el MENÚ del día" + elipses */
 			.MenuMobile_Titulo{
 				position: relative;
