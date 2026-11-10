@@ -1011,3 +1011,16 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	.ModalReceta_Seccion ol{ column-count:1; }
 	.ModalReceta_Footer{ order:2; flex:0 0 auto; }
 }
+
+/* Recipe lists always flow downward; long lists scroll within their own section. */
+.ModalReceta_Seccion ul#ModalIng,
+.ModalReceta_Seccion ol#ModalPasos{
+	display:block;
+	flex:1 1 auto;
+	min-height:0;
+	column-count:1;
+	column-width:auto;
+	column-fill:auto;
+	overflow-x:hidden;
+	overflow-y:auto;
+}
