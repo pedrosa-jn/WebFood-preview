@@ -899,3 +899,6 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 }
 .Tarjeta_TXT{ transition:transform 380ms var(--motion-ease-ui); }
 .FooterMotionToggle{ min-height:44px; }
+.ModalReceta_Header{ height:68px; flex-basis:68px; padding-inline:12px; }
+.ModalReceta_Datos span{ padding:.4rem .65rem; }
+.ModalReceta_Volver{ padding:.5rem 2.7rem; }
