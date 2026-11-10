@@ -9,7 +9,7 @@
 	<link rel="preload" href="./fonts/BarlowCondensed-Regular-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="./fonts/BarlowCondensed-Black-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="./fonts/PlayfairDisplay-Italic-latin.woff2" as="font" type="font/woff2" crossorigin>
-	<link rel="stylesheet" type="text/css" href="./css/styles_CATEGORIA.css?v=motion-polish-20261110">
+	<link rel="stylesheet" type="text/css" href="./css/styles_CATEGORIA.css?v=modal-restored-preai-20261110">
 
 </head>
 
@@ -105,16 +105,14 @@
 	<!-- CONTENIDO -->
 
 			<div class="ModalReceta_Contenido">
-				<div class="ModalReceta_Lateral">
-					<div class="ModalReceta_Imagen">
-						<img id="ModalImg" src="./images/tor-placeholder.jpg" alt="">
-					</div>
+				<div class="ModalReceta_Imagen">
+					<img id="ModalImg" src="./images/tor-placeholder.jpg" alt="">
+				</div>
+				<article class="ModalReceta_Info">
 					<header class="ModalReceta_Titulo">
 						<h2 id="ModalTitulo"></h2>
 						<div class="ModalReceta_Datos" id="ModalDatos"></div>
 					</header>
-				</div>
-				<article class="ModalReceta_Info">
 					<div class="ModalReceta_Cuerpo">
 						<section class="ModalReceta_Seccion">
 							<h3><button class="ModalReceta_Acordeon" type="button" aria-expanded="true" aria-controls="ModalIng">Ingredientes<span aria-hidden="true"></span></button></h3>
@@ -125,11 +123,11 @@
 							<ol id="ModalPasos"></ol>
 						</section>
 					</div>
+					<footer class="ModalReceta_Footer">
+						<button class="ModalReceta_Volver" type="button">VOLVER</button>
+					</footer>
 				</article>
 			</div>
-			<footer class="ModalReceta_Footer">
-				<button class="ModalReceta_Volver" type="button">VOLVER</button>
-			</footer>
 		</div>
 	</div>
 
