@@ -2,9 +2,15 @@
 const FLECHA = '<svg class="CAT_Arrow" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>';
 const dosDigitos = numero => String(numero).padStart(2, '0');
 const urlCategoria = id => `./categoria.html?c=${encodeURIComponent(id)}`;
+const IMAGENES_RECETA = {
+	'espaguetis-carbonara': 'Recetas_IMG/Pasta_Carbonara.svg',
+	'espaguetis-con-cebolla-y-jamon': 'Recetas_IMG/Pasta_JamonCebolla.svg',
+	'macarrones-con-tomate-y-chorizo': 'Recetas_IMG/Pasta_MacarronesChorizo.svg',
+	'espaguetis-con-ajo-y-aceite': 'Recetas_IMG/Pasta_AjoAceite.svg'
+};
 const rutaImagen = valor => {
 	const ruta = String(valor ?? '').trim();
-	return /^(?:\.\/)?images\/[\w.-]+\.(?:avif|gif|jpe?g|png|webp)$/i.test(ruta) ? ruta : '';
+	return /^(?:\.\/)?(?:images|Recetas_IMG)\/[\w.-]+\.(?:avif|gif|jpe?g|png|svg|webp)$/i.test(ruta) ? ruta : '';
 };
 const textoSeguro = valor => String(valor ?? '').replace(/[&<>"']/g, caracter => ({
 	'&': '&amp;',
@@ -201,7 +207,7 @@ function renderizarRecetas() {
 	}
 
 	rejilla.innerHTML = recetas.map((receta, indice) => {
-		const foto = rutaImagen(receta.imagen);
+		const foto = rutaImagen(receta.imagen || IMAGENES_RECETA[receta.id]);
 		return `
 		<a href="#${encodeURIComponent(receta.id)}" data-id="${textoSeguro(receta.id)}" aria-label="Ver receta: ${textoSeguro(receta.titulo)}">
 			<div class="Tarjeta">
@@ -233,7 +239,7 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 		if (!receta) return;
 		window.clearTimeout(temporizadorCierre);
 		elementoDisparador = disparador;
-		const imagenReceta = rutaImagen(receta.imagen);
+		const imagenReceta = rutaImagen(receta.imagen || IMAGENES_RECETA[receta.id]);
 		const marcoImagen = imagen.closest('.ModalReceta_Imagen');
 		marcoImagen?.classList.toggle('is-placeholder', !imagenReceta);
 		if (imagenReceta) imagen.src = imagenReceta;
