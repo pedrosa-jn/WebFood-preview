@@ -200,14 +200,17 @@ function renderizarRecetas() {
 		return;
 	}
 
-	rejilla.innerHTML = recetas.map((receta, indice) => `
+	rejilla.innerHTML = recetas.map((receta, indice) => {
+		const foto = rutaImagen(receta.imagen);
+		return `
 		<a href="#${encodeURIComponent(receta.id)}" data-id="${textoSeguro(receta.id)}" aria-label="Ver receta: ${textoSeguro(receta.titulo)}">
 			<div class="Tarjeta">
-				<div class="bck-image"${rutaImagen(receta.imagen) ? ` style="background-image:url('${rutaImagen(receta.imagen)}')"` : ''} aria-hidden="true"></div>
+				<div class="bck-image${foto ? '' : ' bck-image--placeholder'}"${foto ? ` style="background-image:url('${foto}')"` : ''} aria-hidden="true"></div>
 				<div class="Tarjeta_TXT"><div class="TarjetaTitle" style="--i:${(indice % 12) + 1}"><span class="TarjetaNombre">${textoSeguro(receta.titulo)}</span>${receta.autor ? ` <span class="TarjetaAutor">${textoSeguro(receta.autor)}</span>` : ''}</div></div>
 				<div class="TarjetaDescripcion">${textoSeguro([receta.tiempo, receta.dificultad].filter(Boolean).join(' | '))}</div>
 			</div>
-		</a>`).join('');
+		</a>`;
+	}).join('');
 
 	iniciarModal(recetas, categoria.id, rejilla);
 }
@@ -231,7 +234,10 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 		window.clearTimeout(temporizadorCierre);
 		elementoDisparador = disparador;
 		const imagenReceta = rutaImagen(receta.imagen);
-		imagen.src = imagenReceta || './images/tor-placeholder.jpg';
+		const marcoImagen = imagen.closest('.ModalReceta_Imagen');
+		marcoImagen?.classList.toggle('is-placeholder', !imagenReceta);
+		if (imagenReceta) imagen.src = imagenReceta;
+		else imagen.removeAttribute('src');
 		imagen.alt = imagenReceta ? `Imagen de ${receta.titulo}` : '';
 		titulo.replaceChildren();
 		const nombre = document.createElement('span');
@@ -445,7 +451,9 @@ function iniciarBuscador() {
 function iniciarIntroPortada() {
 	if (!document.querySelector('.SEC_Titulo--home')) return;
 	const intro = document.querySelector('.IntroPortada');
+	const temporizadores = [];
 	const limpiarIntro = () => {
+		temporizadores.forEach(window.clearTimeout);
 		intro?.remove();
 		document.body.classList.remove('IntroPortada-activa');
 		document.documentElement.classList.remove('intro-pending', 'intro-fonts-ready');
@@ -456,17 +464,39 @@ function iniciarIntroPortada() {
 		sessionStorage.setItem('introPortadaVista', '6');
 	} catch {}
 	if (!intro) return;
+	intro.querySelector('.IntroPortada_Saltar')?.addEventListener('click', limpiarIntro);
 	document.body.classList.add('IntroPortada-activa');
 	Promise.resolve(document.fonts?.ready).then(() => {
 		if (!intro.isConnected) return;
 		document.documentElement.classList.remove('intro-pending');
 		document.documentElement.classList.add('intro-fonts-ready');
-		window.setTimeout(() => intro.classList.add('is-revealing'), 1750);
-		window.setTimeout(() => {
+		temporizadores.push(window.setTimeout(() => {
+			if (intro.isConnected) intro.classList.add('is-revealing');
+		}, 1750));
+		temporizadores.push(window.setTimeout(() => {
 			intro.remove();
 			document.body.classList.remove('IntroPortada-activa');
 			document.documentElement.classList.remove('intro-fonts-ready');
-		}, 4100);
+		}, 4100));
+	});
+}
+
+function iniciarLogoAnimado() {
+	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+	document.querySelectorAll('.FooterBrand').forEach(marca => {
+		const imagen = marca.querySelector('[data-animated-src]');
+		const boton = marca.querySelector('.FooterMotionToggle');
+		if (!imagen || !boton) return;
+		const animada = imagen.dataset.animatedSrc;
+		const fija = imagen.dataset.staticSrc;
+		let pausada = reduceMotion.matches;
+		const actualizar = () => {
+			imagen.src = pausada ? fija : animada;
+			boton.textContent = pausada ? 'Activar animación' : 'Pausar animación';
+			boton.setAttribute('aria-pressed', String(pausada));
+		};
+		actualizar();
+		boton.addEventListener('click', () => { pausada = !pausada; actualizar(); });
 	});
 }
 
@@ -494,4 +524,5 @@ iniciarMenuMovil();
 iniciarBuscador();
 iniciarIntroPortada();
 iniciarTransicionPaginas();
+iniciarLogoAnimado();
 iniciarCursorMorph();
