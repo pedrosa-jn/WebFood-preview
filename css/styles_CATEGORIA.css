@@ -895,13 +895,24 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 @media (prefers-reduced-motion:reduce){
 	::view-transition-group(root),::view-transition-old(root),::view-transition-new(root){ animation:none!important; }
 	.MenuMobile{ transition:none; }
-	.IntroPortada_Saltar{ display:none; }
 }
 .Tarjeta_TXT{ transition:transform 380ms var(--motion-ease-ui); }
 .FooterMotionToggle{ min-height:44px; }
 .ModalReceta_Header{ height:68px; flex-basis:68px; padding-inline:12px; }
 .ModalReceta_Datos span{ padding:.4rem .65rem; }
 .ModalReceta_Volver{ padding:.5rem 2.7rem; }
+
+/* Keep the full dish visible in its frame, including touch layouts. */
+.bck-image{
+	background-position:center center;
+	background-size:contain;
+	background-repeat:no-repeat;
+	background-color:rgb(139,0,0);
+}
+@media (min-width:701px){
+	.Recetas > a:hover .bck-image,
+	.Recetas > a:focus-visible .bck-image{ transform:none; }
+}
 
 /* Modal layout restored from the pre-AI reference: photo left, recipe on the right. */
 @media (min-width:701px){
@@ -970,8 +981,9 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 		padding:10px 17px 10px 32px;
 		font-size:1rem;
 		line-height:1.45;
-		column-count:2;
-		column-gap:24px;
+		column-count:1;
+		column-width:auto;
+		column-gap:normal;
 	}
 	.ModalReceta_Seccion li{ margin-bottom:6px; }
 	.ModalReceta_Pasos{ background:rgb(139,0,0); }
