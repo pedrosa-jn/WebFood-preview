@@ -6,7 +6,10 @@
 	<title>Cuaderno de recetas</title>
 	<link rel="icon" type="image/svg" sizes="32x32" href="./images/Logo_Recipes.svg">
 	<link rel="stylesheet" href="./css/fonts.css">
-	<link rel="stylesheet" type="text/css" href="./css/styles_CATEGORIA.css?v=modal-type-navbar-20261110">
+	<link rel="preload" href="./fonts/BarlowCondensed-Regular-latin.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="./fonts/BarlowCondensed-Black-latin.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="./fonts/PlayfairDisplay-Italic-latin.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="stylesheet" type="text/css" href="./css/styles_CATEGORIA.css?v=motion-polish-20261110">
 
 </head>
 
@@ -74,7 +77,10 @@
 <!-- FOOTER -->
 
 	<footer>
-		<img class="FooterLogo" src="./video/Logo_Circle_GIF.gif?v=transparent-20261023" alt="Cuaderno de recetas animado" width="112" height="112" loading="lazy" decoding="async">
+		<div class="FooterBrand">
+			<img class="FooterLogo" src="./video/Logo_Circle_GIF.gif?v=transparent-20261023" data-animated-src="./video/Logo_Circle_GIF.gif?v=transparent-20261023" data-static-src="./images/Logo_Recipes.svg" alt="Cuaderno de recetas" width="112" height="112" loading="lazy" decoding="async">
+			<button class="FooterMotionToggle" type="button" aria-pressed="false">Pausar animación</button>
+		</div>
 		<div>© 2026 Recetario — Todos los derechos reservados.</div>
 	</footer>
 
@@ -131,7 +137,7 @@
 <!-- JS SCRIPT -->
 
 	<script src="./data/recetas.js"></script>
-	<script src="./js/app.js?v=accordion-motion-2-20261026"></script>
+	<script src="./js/app.js?v=motion-polish-20261110"></script>
 
 
 
