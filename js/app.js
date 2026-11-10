@@ -470,7 +470,6 @@ function iniciarIntroPortada() {
 		sessionStorage.setItem('introPortadaVista', '6');
 	} catch {}
 	if (!intro) return;
-	intro.querySelector('.IntroPortada_Saltar')?.addEventListener('click', limpiarIntro);
 	document.body.classList.add('IntroPortada-activa');
 	Promise.resolve(document.fonts?.ready).then(() => {
 		if (!intro.isConnected) return;
