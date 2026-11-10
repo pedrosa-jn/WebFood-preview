@@ -95,6 +95,7 @@ button{
 
 			.MenuDesktop_Indicador{
 				position: absolute;
+				top: 0;
 				left: 0;
 				height: 2px;
 				background: rgb(139, 0, 0);
@@ -391,7 +392,7 @@ button{
 	.Recetas--compactas{
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: flex-start;
+		justify-content: flex-end;
 	}
 	.Recetas--compactas > a{
 		flex: 0 0 200px;
@@ -574,10 +575,13 @@ button{
 		.ModalReceta_Imagen img{ width: 100%; height: 100%; display: block; object-fit: cover; }
 		.ModalReceta_Titulo{
 			position: static; top: auto; height: auto;
-			flex: 0 0 auto; padding: 18px 20px 20px; background: rgb(139, 0, 0); color: rgb(245, 245, 240);
+			flex: 0 0 auto; margin-top: auto; padding: 18px 20px 20px; background: rgb(139, 0, 0); color: rgb(245, 245, 240);
 			display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
 		}
-		.ModalReceta_Titulo h2{ font-size: clamp(1.7rem, 3vw, 2.25rem); font-weight: 800; line-height: .98; }
+		.ModalReceta_Titulo h2{
+			font-family: "Barlow Condensed", sans-serif; font-size: clamp(2rem, 3.3vw, 2.8rem);
+			font-weight: 900; line-height: .92; letter-spacing: -.02em; text-transform: uppercase;
+		}
 		.ModalReceta_Datos{
 			display: flex; flex-wrap: wrap; gap: 7px; font-size: .76rem; font-weight: 700; letter-spacing: .08em;
 		}
@@ -700,7 +704,7 @@ button{
 			.ModalReceta_Contenido{ display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; background: rgb(245, 245, 240); }
 			.ModalReceta_Lateral{ display: contents; }
 			.ModalReceta_Imagen{ display: none; }
-			.ModalReceta_Titulo{ order: 0; padding: 16px 18px; gap: 8px; }
+			.ModalReceta_Titulo{ order: 0; margin-top: 0; padding: 16px 18px; gap: 8px; }
 			.ModalReceta_Info{ display: contents; }
 			.ModalReceta_Cuerpo{ order: 1; flex: 1 1 auto; min-height: 0; overflow: hidden; }
 			.ModalReceta_Seccion{ min-height: 0; }
