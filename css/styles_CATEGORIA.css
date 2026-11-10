@@ -833,3 +833,69 @@ button:focus-visible{
 	.CursorMorph.is-interactive .CursorMorph_Flecha{ opacity:0;transform:scale(.72) rotate(10deg); }
 	.CursorMorph.is-interactive .CursorMorph_Mano{ opacity:1;transform:scale(1) rotate(0); }
 }
+
+:root{
+	--motion-ease-ui:cubic-bezier(.2,.8,.2,1);
+	--motion-ease-enter:cubic-bezier(.22,1,.36,1);
+	--motion-fast:180ms;
+	--motion-panel:320ms;
+	--motion-view:420ms;
+}
+.MenuDesktop_Indicador.is-moving{ transition:transform var(--motion-panel) var(--motion-ease-enter); }
+.MenuMobile{ transition:transform 480ms cubic-bezier(.65,0,.35,1),opacity 220ms ease; }
+.bck-image{ background-image:none; background-position:center; background-size:cover; transition:transform 620ms var(--motion-ease-ui); }
+.bck-image--placeholder,
+.ModalReceta_Imagen.is-placeholder{
+	background-color:rgb(245,245,240);
+	background-image:url("../images/Logo_Recipes.svg"),
+		linear-gradient(to right,rgba(139,0,0,.12) 1px,transparent 1px),
+		linear-gradient(rgba(139,0,0,.12) 1px,transparent 1px);
+	background-size:88px auto,24px 24px,24px 24px;
+	background-position:center,0 0,0 0;
+	background-repeat:no-repeat,repeat,repeat;
+}
+.ModalReceta_Imagen.is-placeholder img{ display:none; }
+@media (min-width:1024px){
+	.Recetas > a .Tarjeta{ transition:transform 220ms var(--motion-ease-ui); }
+	.Recetas > a:hover .Tarjeta,
+	.Recetas > a:focus-visible .Tarjeta{ transform:translateY(-2px); }
+	.Tarjeta:hover .Tarjeta_TXT,
+	.Recetas > a:focus-visible .Tarjeta_TXT{ transform:translateY(52%); }
+	.Tarjeta:hover .bck-image,
+	.Recetas > a:focus-visible .bck-image{ transform:scale(1.045); }
+}
+@media (min-width:701px){
+	.ModalReceta_Contenedor{
+		opacity:0; transform:translateY(10px) scale(.985);
+		transition:opacity 220ms ease,transform 320ms var(--motion-ease-enter);
+	}
+	.ModalReceta.activo .ModalReceta_Contenedor{ opacity:1; transform:translateY(0) scale(1); }
+	.ModalReceta.activo.is-closing .ModalReceta_Contenedor{
+		opacity:0; transform:translateY(4px) scale(.99); transition-duration:160ms;
+	}
+}
+@view-transition{ navigation:auto; }
+::view-transition-group(root){ animation-duration:var(--motion-view); animation-timing-function:var(--motion-ease-enter); }
+::view-transition-old(root){ animation:pageSettle 200ms ease-in both; }
+::view-transition-new(root){ animation:pagePaperReveal var(--motion-view) var(--motion-ease-enter) both; }
+@keyframes pageSettle{ to{ opacity:.94; } }
+@keyframes pagePaperReveal{ from{ opacity:.6; clip-path:inset(0 0 100% 0); } to{ opacity:1; clip-path:inset(0 0 0 0); } }
+footer .FooterBrand{
+	width:max-content; margin:32px 0 24px clamp(24px,5vw,60px); padding:0;
+	display:flex; flex-direction:column; align-items:flex-start; gap:8px;
+	border:0; background:transparent;
+}
+footer .FooterBrand .FooterLogo{ margin:0; }
+.FooterMotionToggle{
+	min-height:36px; padding:6px 10px; border:1px solid #c6c5be; border-radius:999px;
+	background:transparent; color:#555661; font:500 .85rem/1 "Barlow Condensed",sans-serif;
+	transition:color var(--motion-fast) var(--motion-ease-ui),border-color var(--motion-fast) var(--motion-ease-ui),background-color var(--motion-fast) var(--motion-ease-ui);
+}
+.FooterMotionToggle:hover{ color:rgb(139,0,0); border-color:rgb(139,0,0); background:rgba(139,0,0,.04); }
+@media (prefers-reduced-motion:reduce){
+	::view-transition-group(root),::view-transition-old(root),::view-transition-new(root){ animation:none!important; }
+	.MenuMobile{ transition:none; }
+	.IntroPortada_Saltar{ display:none; }
+}
+.Tarjeta_TXT{ transition:transform 380ms var(--motion-ease-ui); }
+.FooterMotionToggle{ min-height:44px; }
