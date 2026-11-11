@@ -273,7 +273,7 @@ function renderizarRecetas() {
 			<div class="Tarjeta">
 				<div class="bck-image${foto ? '' : ' bck-image--placeholder'}"${foto ? ` style="background-image:url('${foto}')"` : ''} aria-hidden="true"></div>
 				<div class="Tarjeta_TXT"><div class="TarjetaTitle" style="--i:${(indice % 12) + 1}"><span class="TarjetaNombre">${textoSeguro(receta.titulo)}</span>${receta.autor ? ` <span class="TarjetaAutor">${textoSeguro(receta.autor)}</span>` : ''}</div></div>
-				<div class="TarjetaDescripcion">${textoSeguro([receta.tiempo, receta.dificultad].filter(Boolean).join(' | '))}</div>
+				<div class="TarjetaDescripcion">${textoSeguro([receta.tiempo || '25 min', receta.dificultad || 'Fácil'].join(' · '))}</div>
 			</div>
 		</a>`;
 	}).join('');
@@ -323,6 +323,7 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 		const receta = recetas.find(item => item.id === id);
 		if (!receta) return;
 		window.clearTimeout(temporizadorCierre);
+		modal.querySelector('.ModalReceta_Contenedor').scrollTop = 0;
 		elementoDisparador = disparador;
 		const imagenReceta = rutaImagen(receta.imagen || IMAGENES_RECETA[receta.id]);
 		const marcoImagen = imagen.closest('.ModalReceta_Imagen');
