@@ -1140,6 +1140,9 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 		font-size:clamp(1.15rem,5.5vw,1.4rem);
 		line-height:1;
 	}
+	.bck-image:not(.bck-image--placeholder){
+		background-position:center calc(50% - 18vw);
+	}
 	.TarjetaDescripcion{
 		left:13px;
 		bottom:12px;
