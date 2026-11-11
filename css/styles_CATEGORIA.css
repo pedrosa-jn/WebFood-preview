@@ -904,19 +904,21 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 
 /* Keep the full dish visible in its frame, including touch layouts. */
 .bck-image{
-	background-position:center center;
-	background-size:contain;
+	background-position:center top;
+	background-size:100% auto;
 	background-repeat:no-repeat;
 	background-color:rgb(139,0,0);
 }
 @media (min-width:701px){
 	.Recetas > a:hover .bck-image,
-	.Recetas > a:focus-visible .bck-image{ transform:none; }
+	.Recetas > a:focus-visible .bck-image{ transform:scale(1.5); }
+	.Recetas > a:hover .Tarjeta_TXT,
+	.Recetas > a:focus-visible .Tarjeta_TXT{ transform:translateY(65%); }
 }
 
 /* Modal layout restored from the pre-AI reference: photo left, recipe on the right. */
 @media (min-width:701px){
-	.ModalReceta_Contenedor{ width:min(900px,100%); }
+	.ModalReceta_Contenedor{ width:min(900px,100%); height:auto; max-height:calc(100vh - 40px); }
 	.ModalReceta_Contenido{
 		grid-template-columns:minmax(0,38%) minmax(0,62%);
 		flex:1 1 auto;
@@ -929,10 +931,13 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 		align-self:stretch;
 		background-color:#e5e2d9;
 	}
-	.ModalReceta_Imagen img{ object-fit:cover; }
+	.ModalReceta_Imagen img{ object-fit:cover; transition:transform .5s cubic-bezier(.22,1,.36,1); }
+	.ModalReceta_Imagen:hover img{ transform:scale(1.06); }
 	.ModalReceta_Info{
 		min-height:0;
-		overflow:hidden;
+		overflow-y:auto;
+		overflow-x:hidden;
+		overscroll-behavior:contain;
 		background:rgb(245,245,240);
 		border-left:1px solid rgb(245,245,240);
 	}
@@ -959,25 +964,23 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 		min-height:0;
 		display:flex;
 		flex-direction:column;
-		overflow:hidden;
+		overflow-y:auto;
+		overflow-x:hidden;
+		overscroll-behavior:contain;
 		text-transform:uppercase;
 	}
 	.ModalReceta_Seccion{
-		flex:1 1 0;
-		min-height:0;
-		overflow:hidden;
+		flex:0 0 auto;
 		border-bottom:1px solid rgba(139,0,0,.5);
 	}
-	.ModalReceta_Seccion.is-collapsed{ flex:0 0 auto; }
 	.ModalReceta_Seccion h3{
 		font-size:1.35rem;
 		font-weight:800;
+		padding:9px 17px;
+		border-bottom:1px solid currentColor;
 	}
-	.ModalReceta_Acordeon{ min-height:46px; padding:8px 17px; }
 	.ModalReceta_Seccion ul,
 	.ModalReceta_Seccion ol{
-		flex:1 1 auto;
-		min-height:0;
 		padding:10px 17px 10px 32px;
 		font-size:1rem;
 		line-height:1.45;
@@ -1012,12 +1015,10 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	.ModalReceta_Footer{ order:2; flex:0 0 auto; }
 }
 
-/* Recipe lists always flow downward; long lists scroll within their own section. */
+/* Long recipe lists scroll vertically instead of flowing off to the side. */
 .ModalReceta_Seccion ul#ModalIng,
 .ModalReceta_Seccion ol#ModalPasos{
 	display:block;
-	flex:1 1 auto;
-	min-height:0;
 	column-count:1;
 	column-width:auto;
 	column-fill:auto;
