@@ -1039,3 +1039,24 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 		overflow-y:auto; overflow-x:hidden;
 	}
 }
+
+/* Recipe lists carry their own scroll; title and return control stay anchored. */
+.ModalReceta_Seccion ul,
+.ModalReceta_Seccion ol{ font-weight:500; }
+@media (min-width:701px){
+	.ModalReceta_Info{ min-height:0; overflow:hidden; }
+	.ModalReceta_Titulo,
+	.ModalReceta_Footer{ flex:0 0 auto; }
+	.ModalReceta_Cuerpo{ flex:1 1 auto; min-height:0; overflow:hidden; }
+	.ModalReceta_Cuerpo > .ModalReceta_Seccion:not(.ModalReceta_Pasos){
+		flex:0 1 auto; min-height:0; overflow:hidden;
+	}
+	.ModalReceta_Cuerpo > .ModalReceta_Pasos{
+		flex:1 1 auto; min-height:0; overflow:hidden;
+	}
+	.ModalReceta_Cuerpo > .ModalReceta_Seccion:not(.ModalReceta_Pasos) ul#ModalIng,
+	.ModalReceta_Pasos ol#ModalPasos{
+		flex:1 1 auto; min-height:0; max-height:none;
+		overscroll-behavior:contain; -webkit-overflow-scrolling:touch;
+	}
+}
