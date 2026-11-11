@@ -1105,3 +1105,14 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	.ModalReceta_Cuerpo > .ModalReceta_Seccion:not(.ModalReceta_Pasos) ul#ModalIng,
 	.ModalReceta_Pasos ol#ModalPasos{display:block;flex:1 1 0;min-height:0;height:0;max-height:none;overflow-y:auto;overflow-x:hidden;}
 }
+
+/* Make the independent recipe-list scroll areas discoverable. */
+@media (min-width:701px){
+	.ModalReceta_Cuerpo > .ModalReceta_Seccion:not(.ModalReceta_Pasos) ul#ModalIng,
+	.ModalReceta_Pasos ol#ModalPasos{scrollbar-width:thin;scrollbar-color:rgba(139,0,0,.55) transparent;}
+	.ModalReceta_Pasos ol#ModalPasos{scrollbar-color:rgba(245,245,240,.8) rgba(245,245,240,.12);}
+	.ModalReceta_Cuerpo > .ModalReceta_Seccion:not(.ModalReceta_Pasos) ul#ModalIng::-webkit-scrollbar,
+	.ModalReceta_Pasos ol#ModalPasos::-webkit-scrollbar{width:7px;}
+	.ModalReceta_Cuerpo > .ModalReceta_Seccion:not(.ModalReceta_Pasos) ul#ModalIng::-webkit-scrollbar-thumb{background:rgba(139,0,0,.55);border-radius:8px;}
+	.ModalReceta_Pasos ol#ModalPasos::-webkit-scrollbar-thumb{background:rgba(245,245,240,.8);border-radius:8px;}
+}
