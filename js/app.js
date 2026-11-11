@@ -186,6 +186,27 @@ function crearElementoLista(elemento, textos, mensajeVacio) {
 	});
 }
 
+function iniciarReveladoFilas(rejilla) {
+	if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+	const tarjetas = [...rejilla.querySelectorAll(':scope > a')];
+	if (!tarjetas.length) return;
+	rejilla.classList.add('Recetas--revelado-listo');
+	const observer = new IntersectionObserver(entradas => {
+		entradas.forEach(entrada => {
+			if (!entrada.isIntersecting) return;
+			const tarjeta = entrada.target;
+			const arriba = tarjeta.getBoundingClientRect().top;
+			const fila = tarjetas
+				.filter(item => Math.abs(item.getBoundingClientRect().top - arriba) < 3)
+				.sort((a, b) => a.getBoundingClientRect().left - b.getBoundingClientRect().left);
+			tarjeta.style.setProperty('--reveal-delay', `${fila.indexOf(tarjeta) * 64}ms`);
+			tarjeta.classList.add('is-revealed');
+			observer.unobserve(tarjeta);
+		});
+	}, { threshold: 0.14, rootMargin: '0px 0px -24px 0px' });
+	tarjetas.forEach(tarjeta => observer.observe(tarjeta));
+}
+
 function renderizarRecetas() {
 	const rejilla = document.getElementById('Recetas');
 	if (!rejilla) return;
@@ -226,6 +247,7 @@ function renderizarRecetas() {
 		</a>`;
 	}).join('');
 
+	iniciarReveladoFilas(rejilla);
 	iniciarModal(recetas, categoria.id, rejilla);
 }
 
@@ -346,11 +368,48 @@ function iniciarBuscador() {
 		categoria: CATEGORIAS.find(item => item.id === receta.categoria)?.nombre || 'OTROS'
 	}));
 	const normalizar = valor => String(valor ?? '').toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+	const buscador = input.closest('.Buscador');
+	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 	let coincidencias = [];
+	let animacionResultados = null;
+
+	const mostrarResultados = () => {
+		const yaVisible = resultados.classList.contains('is-visible') && input.getAttribute('aria-expanded') === 'true';
+		if (yaVisible) return;
+		animacionResultados?.cancel();
+		resultados.classList.add('is-visible');
+		buscador?.classList.add('Buscador--resultados-abiertos');
+		input.setAttribute('aria-expanded', 'true');
+		if (reduceMotion.matches || typeof resultados.animate !== 'function') return;
+		animacionResultados = resultados.animate([
+			{ opacity: 0, clipPath: 'inset(0 0 100% 0 round 0 0 18px 18px)', transform: 'translateY(-5px)' },
+			{ opacity: 1, clipPath: 'inset(0 0 0 0 round 0 0 18px 18px)', transform: 'translateY(0)' }
+		], { duration: 380, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'both' });
+	};
 
 	const ocultarResultados = () => {
-		resultados.classList.remove('is-visible');
 		input.setAttribute('aria-expanded', 'false');
+		if (!resultados.classList.contains('is-visible')) {
+			buscador?.classList.remove('Buscador--resultados-abiertos');
+			return;
+		}
+		animacionResultados?.cancel();
+		if (reduceMotion.matches || typeof resultados.animate !== 'function') {
+			resultados.classList.remove('is-visible');
+			buscador?.classList.remove('Buscador--resultados-abiertos');
+			return;
+		}
+		animacionResultados = resultados.animate([
+			{ opacity: 1, clipPath: 'inset(0 0 0 0 round 0 0 18px 18px)', transform: 'translateY(0)' },
+			{ opacity: 0, clipPath: 'inset(0 0 100% 0 round 0 0 18px 18px)', transform: 'translateY(-5px)' }
+		], { duration: 180, easing: 'cubic-bezier(.4,0,1,1)', fill: 'both' });
+		animacionResultados.onfinish = () => {
+			if (input.getAttribute('aria-expanded') !== 'true') {
+				resultados.classList.remove('is-visible');
+				buscador?.classList.remove('Buscador--resultados-abiertos');
+				animacionResultados = null;
+			}
+		};
 	};
 
 	const actualizar = () => {
@@ -391,8 +450,7 @@ function iniciarBuscador() {
 			resultados.append(lista);
 		}
 
-		resultados.classList.add('is-visible');
-		input.setAttribute('aria-expanded', 'true');
+		mostrarResultados();
 	};
 
 	input.addEventListener('input', actualizar);
@@ -482,6 +540,7 @@ function iniciarLogoAnimado() {
 		imagen.src = reduceMotion.matches ? imagen.dataset.staticSrc : imagen.dataset.animatedSrc;
 	});
 }
+
 function iniciarCursorMorph() {
 	if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 	const cursor = document.createElement('div');
