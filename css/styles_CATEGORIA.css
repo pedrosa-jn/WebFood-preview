@@ -925,7 +925,8 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 /* Pre-AI recipe modal layout, retaining the current rounded outer frame. */
 .ModalReceta_Contenedor{
 	width:min(900px,100%);
-	height:auto;
+	height:min(78vh,720px);
+	min-height:min(520px,calc(100vh - 40px));
 	max-height:calc(100vh - 40px);
 	border-radius:18px;
 }
@@ -989,7 +990,7 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	.ModalReceta{ padding:20px; }
 	.ModalReceta_Contenedor{
 		width:100%; height:min(88vh,780px); height:min(88dvh,780px);
-		max-height:calc(100vh - 40px); max-height:calc(100dvh - 40px);
+		min-height:0; max-height:calc(100vh - 40px); max-height:calc(100dvh - 40px);
 	}
 	.ModalReceta_Contenido{
 		display:flex; flex-direction:column; flex:1 1 auto; min-height:0;
