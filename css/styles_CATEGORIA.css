@@ -1129,3 +1129,16 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	.ModalReceta_Cuerpo > .ModalReceta_Seccion:not(.ModalReceta_Pasos) ul#ModalIng,
 	.ModalReceta_Pasos ol#ModalPasos{min-height:0;height:auto;max-height:none;overflow-y:auto;overflow-x:hidden;}
 }
+
+/* Keep ingredients in a true two-column scroll grid; prevent multicolumn overflow from hiding items. */
+@media (min-width:701px){
+	.ModalReceta_Cuerpo > .ModalReceta_Seccion:not(.ModalReceta_Pasos) ul#ModalIng{
+		display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:min-content;align-content:start;
+		column-count:initial;column-width:initial;min-height:0;height:auto;max-height:none;overflow-y:auto;overflow-x:hidden;
+	}
+	.ModalReceta_Pasos ol#ModalPasos{
+		display:block;column-count:1;column-width:auto;white-space:normal;
+		min-height:0;height:auto;max-height:none;overflow-y:auto;overflow-x:hidden;
+	}
+	.ModalReceta_Seccion li{white-space:normal;overflow-wrap:anywhere;}
+}
