@@ -1005,10 +1005,10 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 
 @media (min-width:701px){
 	.ModalReceta_Contenido{
-		align-items:stretch; grid-template-rows:minmax(0,1fr);
+		align-items:stretch; grid-template-rows:minmax(0,1fr); height:100%;
 	}
 	.ModalReceta_Imagen{
-		width:100%; min-height:0; aspect-ratio:auto; flex:none;
+		width:100%; height:100%; min-height:0; aspect-ratio:auto; flex:none;
 		align-self:stretch; display:flex; align-items:center; justify-content:center;
 		background:rgb(139,0,0);
 	}
