@@ -369,7 +369,7 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 		modal.setAttribute('aria-hidden', 'true');
 		history.replaceState(null, '', `${location.pathname}${location.search}`);
 		const duracion = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0
-			: window.matchMedia('(max-width:700px)').matches ? 360 : 400;
+			: window.matchMedia('(max-width:700px)').matches ? 640 : 400;
 		temporizadorCierre = window.setTimeout(() => {
 			modal.classList.remove('activo', 'is-closing');
 			document.body.classList.remove('ModalReceta-open');
