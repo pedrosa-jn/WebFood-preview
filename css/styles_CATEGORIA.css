@@ -1178,3 +1178,4 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 @media (min-width:701px){
 	.ModalReceta_Contenedor{height:auto;min-height:min(520px,calc(100dvh - 40px));max-height:calc(100dvh - 40px);}
 }
+@media (min-width:701px){.ModalReceta_Cuerpo{grid-template-rows:minmax(0,.6fr) minmax(0,.4fr);}}
