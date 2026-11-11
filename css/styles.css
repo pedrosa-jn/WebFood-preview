@@ -358,16 +358,15 @@ html.intro-pending .IntroPortada,
 body.IntroPortada-activa > .IntroPortada{ display:block; }
 .IntroPortada_Fondo{
 	position:absolute; inset:0; z-index:2; background:rgb(245,245,240); transform:translate3d(0,0,0);
-	transition:transform 2.25s cubic-bezier(.87,0,.13,1);
+	transition:transform .9s cubic-bezier(.7,0,.2,1);
 }
 .IntroPortada_Marca{
-	position:absolute; left:50%; top:50%; width:min(24vw,100px); min-width:76px; aspect-ratio:1;
+	position:absolute; left:50%; top:50%; width:min(26vw,120px); min-width:82px; aspect-ratio:1;
 	transform:translate(-50%,-50%); display:grid; place-items:center;
 }
-.IntroPortada_Logo{
-	width:min(24vw,100px); min-width:76px; height:auto; opacity:0;
-	animation:logoIntroAparece .72s ease .12s both;
-}
+.IntroPortada_Logo{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; }
+.IntroPortada_Logo--base{ opacity:.13; }
+.IntroPortada_Logo--fill{ clip-path:inset(100% 0 0); animation:logoLlena 1.35s cubic-bezier(.22,.9,.3,1) .12s forwards; }
 .IntroPortada-activa > header,
 .IntroPortada-activa > .SEC_Titulo--home,
 .IntroPortada-activa > #Categorias,
@@ -376,11 +375,11 @@ html.intro-fonts-ready .IntroPortada-activa > header,
 html.intro-fonts-ready .IntroPortada-activa > .SEC_Titulo--home,
 html.intro-fonts-ready .IntroPortada-activa > #Categorias,
 html.intro-fonts-ready .IntroPortada-activa > footer{
-	visibility:visible; animation:paginaIntroAparece 1.4s cubic-bezier(.16,1,.3,1) 1.5s both;
+	visibility:visible; animation:paginaIntroAparece .9s cubic-bezier(.16,1,.3,1) 1.55s both;
 }
 .IntroPortada.is-revealing{ pointer-events:none; }
 .IntroPortada.is-revealing .IntroPortada_Fondo{ transform:translate3d(0,-100%,0); }
-@keyframes logoIntroAparece{ from{opacity:0} to{opacity:1} }
+@keyframes logoLlena{ to{ clip-path:inset(0); } }
 @keyframes paginaIntroAparece{ from{opacity:0} to{opacity:1} }
 
 /* Cross-document transitions reveal the new page like a clean sheet of paper. */
@@ -436,11 +435,3 @@ footer .FooterBrand{
 	border:0; background:transparent;
 }
 footer .FooterBrand .FooterLogo{ margin:0; }
-.FooterMotionToggle{
-	min-height:36px; padding:6px 10px; border:1px solid #c6c5be; border-radius:999px;
-	background:transparent; color:#555661; font:500 .85rem/1 "Barlow Condensed",sans-serif;
-	transition:color var(--motion-fast) var(--motion-ease-ui), border-color var(--motion-fast) var(--motion-ease-ui), background-color var(--motion-fast) var(--motion-ease-ui);
-}
-.FooterMotionToggle:hover{ color:rgb(139,0,0); border-color:rgb(139,0,0); background:rgba(139,0,0,.04); }
-.FooterMotionToggle:focus-visible{ outline:2px solid rgb(139,0,0); outline-offset:3px; }
-.FooterMotionToggle{ min-height:44px; }
