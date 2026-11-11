@@ -264,13 +264,6 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 		}));
 		crearElementoLista(listaIngredientes, receta.ingredientes || [], 'Información pendiente.');
 		crearElementoLista(listaPasos, receta.pasos || [], 'Información pendiente.');
-		modal.querySelectorAll('.ModalReceta_Seccion').forEach(seccion => {
-			seccion.classList.remove('is-collapsed');
-			const boton = seccion.querySelector('.ModalReceta_Acordeon');
-			const lista = boton && document.getElementById(boton.getAttribute('aria-controls'));
-			boton?.setAttribute('aria-expanded', 'true');
-			if (lista) lista.hidden = false;
-		});
 		modal.classList.remove('is-closing');
 		modal.classList.add('activo');
 		modal.setAttribute('aria-hidden', 'false');
@@ -298,17 +291,6 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 		evento.preventDefault();
 		history.replaceState(null, '', `${urlCategoria(categoriaId)}#${encodeURIComponent(enlace.dataset.id)}`);
 		abrir(enlace.dataset.id, enlace);
-	});
-
-	modal.querySelectorAll('.ModalReceta_Acordeon').forEach(boton => {
-		boton.addEventListener('click', () => {
-			const lista = document.getElementById(boton.getAttribute('aria-controls'));
-			if (!lista) return;
-			const expandir = boton.getAttribute('aria-expanded') !== 'true';
-			boton.setAttribute('aria-expanded', String(expandir));
-			lista.hidden = !expandir;
-			boton.closest('.ModalReceta_Seccion')?.classList.toggle('is-collapsed', !expandir);
-		});
 	});
 
 	botonCerrar.addEventListener('click', cerrar);
