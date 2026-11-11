@@ -294,6 +294,30 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 	const botonCerrar = modal.querySelector('.ModalReceta_Cerrar');
 	let elementoDisparador = null;
 	let temporizadorCierre;
+	let scrollFondoGuardado = null;
+	let estilosBloqueoFondo = null;
+	const propiedadesBloqueo = ['position', 'top', 'left', 'right', 'width'];
+	const bloquearScrollFondo = () => {
+		if (!window.matchMedia('(max-width:700px)').matches || scrollFondoGuardado !== null) return;
+		scrollFondoGuardado = window.scrollY;
+		estilosBloqueoFondo = Object.fromEntries(propiedadesBloqueo.map(propiedad => [propiedad, document.body.style[propiedad]]));
+		document.body.style.position = 'fixed';
+		document.body.style.top = `-${scrollFondoGuardado}px`;
+		document.body.style.left = '0';
+		document.body.style.right = '0';
+		document.body.style.width = '100%';
+	};
+	const restaurarScrollFondo = () => {
+		if (scrollFondoGuardado === null) return;
+		const posicion = scrollFondoGuardado;
+		propiedadesBloqueo.forEach(propiedad => { document.body.style[propiedad] = estilosBloqueoFondo[propiedad]; });
+		const scrollBehavior = document.documentElement.style.scrollBehavior;
+		document.documentElement.style.scrollBehavior = 'auto';
+		window.scrollTo(0, posicion);
+		document.documentElement.style.scrollBehavior = scrollBehavior;
+		scrollFondoGuardado = null;
+		estilosBloqueoFondo = null;
+	};
 
 	const abrir = (id, disparador = null) => {
 		const receta = recetas.find(item => item.id === id);
@@ -333,6 +357,7 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 		modal.classList.remove('is-closing');
 		modal.classList.add('activo');
 		modal.setAttribute('aria-hidden', 'false');
+		bloquearScrollFondo();
 		document.body.classList.add('ModalReceta-open');
 		modal.focus();
 	};
@@ -342,10 +367,12 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 		modal.classList.add('is-closing');
 		modal.setAttribute('aria-hidden', 'true');
 		history.replaceState(null, '', `${location.pathname}${location.search}`);
-		const duracion = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 400;
+		const duracion = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0
+			: window.matchMedia('(max-width:700px)').matches ? 360 : 400;
 		temporizadorCierre = window.setTimeout(() => {
 			modal.classList.remove('activo', 'is-closing');
 			document.body.classList.remove('ModalReceta-open');
+			restaurarScrollFondo();
 			if (elementoDisparador?.isConnected) elementoDisparador.focus();
 			else rejilla.focus();
 		}, duracion);

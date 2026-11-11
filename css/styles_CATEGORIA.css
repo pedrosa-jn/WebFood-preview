@@ -1106,3 +1106,130 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 @media (prefers-reduced-motion:reduce){
 	.Recetas--revelado-listo > a{opacity:1;transform:none;transition:none;}
 }
+
+
+/* Mobile recipe sheet: edge-to-edge, scroll-contained, and distinct from desktop. */
+@media (max-width:700px){
+	.Tarjeta_TXT{
+		height:36%;
+		padding:11px 13px;
+	}
+	.TarjetaTitle{
+		font-size:clamp(1.12rem,4.7vw,1.25rem);
+		line-height:1.05;
+	}
+	.ModalReceta{
+		align-items:flex-end;
+		padding:0;
+		background-color:rgba(10,12,36,.62);
+		backdrop-filter:blur(4px);
+		-webkit-backdrop-filter:blur(4px);
+		overscroll-behavior:none;
+		transition:opacity 260ms ease,visibility 0s;
+	}
+	.ModalReceta.activo{
+		transition:opacity 260ms ease,visibility 0s;
+	}
+	.ModalReceta.activo.is-closing{
+		opacity:0;
+		transition:opacity 220ms ease,visibility 0s;
+	}
+	.ModalReceta_Contenedor{
+		width:100%;
+		height:min(92dvh,860px);
+		max-height:calc(100dvh - env(safe-area-inset-top,0px) - 8px);
+		min-height:0;
+		border-radius:22px 22px 0 0;
+		transform:translate3d(0,100%,0);
+		transition:transform 480ms cubic-bezier(.22,1,.36,1);
+	}
+	.ModalReceta.activo .ModalReceta_Contenedor{
+		transform:translate3d(0,0,0);
+		animation:none;
+		will-change:transform;
+	}
+	.ModalReceta.activo.is-closing .ModalReceta_Contenedor{
+		transform:translate3d(0,100%,0);
+		transition:transform 340ms cubic-bezier(.4,0,1,1);
+		animation:none;
+	}
+	.ModalReceta_Header{
+		flex-basis:68px;
+		min-height:68px;
+	}
+	.ModalReceta_Cerrar{
+		width:44px;
+		height:44px;
+		right:max(10px,env(safe-area-inset-right,0px));
+		display:grid;
+		place-items:center;
+	}
+	.ModalReceta_Titulo{
+		padding:19px max(20px,env(safe-area-inset-right,0px)) 17px max(20px,env(safe-area-inset-left,0px));
+		gap:10px;
+	}
+	.ModalReceta_Titulo h2{
+		font-size:clamp(2rem,7.2vw,2.3rem);
+		line-height:.98;
+	}
+	.ModalReceta_Datos{
+		gap:8px;
+		font-size:.78rem;
+	}
+	.ModalReceta_Datos span{
+		min-height:36px;
+		padding:.38rem .72rem;
+		display:inline-flex;
+		align-items:center;
+	}
+	.ModalReceta_Cuerpo{
+		order:2;
+		flex:1 1 auto;
+		min-height:0;
+		overflow-y:auto;
+		overflow-x:hidden;
+		overscroll-behavior:contain;
+		-webkit-overflow-scrolling:touch;
+		scroll-padding-block:16px;
+	}
+	.ModalReceta_Seccion h3{
+		font-size:1.5rem;
+		line-height:1.1;
+		padding:12px max(20px,env(safe-area-inset-right,0px)) 12px max(20px,env(safe-area-inset-left,0px));
+	}
+	.ModalReceta_Seccion ul,
+	.ModalReceta_Seccion ol{
+		padding:16px max(22px,env(safe-area-inset-right,0px)) 20px max(40px,calc(env(safe-area-inset-left,0px) + 22px));
+		font-size:1.1rem;
+		line-height:1.42;
+	}
+	.ModalReceta_Seccion li{
+		margin-bottom:10px;
+	}
+	.ModalReceta_Pasos li{
+		padding-inline:5px;
+	}
+	.ModalReceta_Footer{
+		padding:10px 16px calc(12px + env(safe-area-inset-bottom,0px));
+	}
+	.ModalReceta_Volver{
+		min-width:180px;
+		min-height:44px;
+		font-size:1.05rem;
+	}
+}
+
+@media (max-width:700px) and (prefers-reduced-motion:reduce){
+	.ModalReceta,
+	.ModalReceta.activo,
+	.ModalReceta.activo.is-closing{
+		transition:none!important;
+	}
+	.ModalReceta_Contenedor,
+	.ModalReceta.activo .ModalReceta_Contenedor,
+	.ModalReceta.activo.is-closing .ModalReceta_Contenedor{
+		transform:none!important;
+		transition:none!important;
+		animation:none!important;
+	}
+}
