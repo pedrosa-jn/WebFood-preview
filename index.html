@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script>
 		try {
-			if (sessionStorage.getItem('introPortadaVista') !== '6' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			if (sessionStorage.getItem('introPortadaVista') !== '7' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
 				document.documentElement.classList.add('intro-pending');
 			}
 		} catch {}
@@ -16,7 +16,7 @@
 	<link rel="preload" href="./fonts/BarlowCondensed-Regular-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="./fonts/BarlowCondensed-Black-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="./fonts/PlayfairDisplay-Italic-latin.woff2" as="font" type="font/woff2" crossorigin>
-	<link rel="stylesheet" type="text/css" href="./css/styles.css?v=intro-clean-20261110">
+	<link rel="stylesheet" type="text/css" href="./css/styles.css?v=logo-fill-intro-20261111a">
 	
 </head>
 
@@ -24,7 +24,8 @@
 	<div class="IntroPortada">
 		<div class="IntroPortada_Fondo">
 			<div class="IntroPortada_Marca">
-				<img class="IntroPortada_Logo" src="./images/Logo_Recipes.svg" alt="">
+				<img class="IntroPortada_Logo IntroPortada_Logo--base" src="./images/Logo_Recipes.svg" alt="">
+				<img class="IntroPortada_Logo IntroPortada_Logo--fill" src="./images/Logo_Recipes.svg" alt="">
 			</div>
 		</div>
 	</div>
@@ -75,7 +76,6 @@
 	<footer>
 		<div class="FooterBrand">
 			<img class="FooterLogo" src="./video/Logo_Circle_GIF.gif?v=transparent-20261023" data-animated-src="./video/Logo_Circle_GIF.gif?v=transparent-20261023" data-static-src="./images/Logo_Recipes.svg" alt="Cuaderno de recetas" width="112" height="112" loading="lazy" decoding="async">
-			<button class="FooterMotionToggle" type="button" aria-pressed="false">Pausar animación</button>
 		</div>
 		<div>© 2026 Recetario — Todos los derechos reservados.</div>
 	</footer>
@@ -84,7 +84,7 @@
 <!-- JS SCRIPT -->
 
 	<script src="./data/recetas.js?v=recipe-images-20261110"></script>
-	<script src="./js/app.js?v=intro-clean-20261110"></script>
+	<script src="./js/app.js?v=logo-fill-intro-20261111a"></script>
 
 </body>
 </html>
