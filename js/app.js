@@ -3,10 +3,18 @@ const FLECHA = '<svg class="CAT_Arrow" aria-hidden="true" width="18" height="18"
 const dosDigitos = numero => String(numero).padStart(2, '0');
 const urlCategoria = id => `./categoria.html?c=${encodeURIComponent(id)}`;
 const IMAGENES_RECETA = {
-	'espaguetis-carbonara': 'Recetas_IMG/Pasta_Carbonara.svg',
-	'espaguetis-con-cebolla-y-jamon': 'Recetas_IMG/Pasta_JamonCebolla.svg',
-	'macarrones-con-tomate-y-chorizo': 'Recetas_IMG/Pasta_MacarronesChorizo.svg',
-	'espaguetis-con-ajo-y-aceite': 'Recetas_IMG/Pasta_AjoAceite.svg'
+	'espaguetis-carbonara': 'Recetas_IMG/pasta-carbonara.svg',
+	'espaguetis-con-cebolla-y-jamon': 'Recetas_IMG/pasta-jamon-cebolla.svg',
+	'macarrones-con-tomate-y-chorizo': 'Recetas_IMG/pasta-macarrones-chorizo.svg',
+	'espaguetis-con-ajo-y-aceite': 'Recetas_IMG/pasta-ajo-aceite.svg',
+	'espaguetis-bolognesa': 'Recetas_IMG/pasta-bolognesa.svg',
+	'espaguetis-con-gambas-y-ajo': 'Recetas_IMG/pasta-gambas-ajo.svg',
+	'ensalada-de-pasta': 'Recetas_IMG/pasta-ensalada.svg',
+	'ensalada-de-pasta-con-gambas': 'Recetas_IMG/pasta-ensalada-gambas.svg',
+	'fideos-amarillos': 'Recetas_IMG/pasta-fideos-amarillos.svg',
+	'lasagna': 'Recetas_IMG/pasta-lasagna.svg',
+	'canelones-abuela-carmen': 'Recetas_IMG/pasta-canelones-carne.svg',
+	'canelones-abuela-cheli': 'Recetas_IMG/pasta-canelones-pate.svg'
 };
 const rutaImagen = valor => {
 	const ruta = String(valor ?? '').trim();
