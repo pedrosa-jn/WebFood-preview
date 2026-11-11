@@ -18,7 +18,7 @@ const IMAGENES_RECETA = {
 };
 const rutaImagen = valor => {
 	const ruta = String(valor ?? '').trim();
-	return /^(?:\\.\\/)?(?:images|Recetas_IMG)\\/[\\w.-]+\\.(?:avif|gif|jpe?g|png|svg|webp)(?:\\?[\\w=.-]+)?$/i.test(ruta) ? ruta : '';
+	return /^(?:\.\/)?(?:images|Recetas_IMG)\/[\w.-]+\.(?:avif|gif|jpe?g|png|svg|webp)(?:\?[\w=.-]+)?$/i.test(ruta) ? ruta : '';
 };
 const textoSeguro = valor => String(valor ?? '').replace(/[&<>"']/g, caracter => ({
 	'&': '&amp;',
