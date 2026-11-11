@@ -1137,8 +1137,8 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 		padding:12px 13px 38px;
 	}
 	.TarjetaTitle{
-		font-size:clamp(1.42rem,6.9vw,1.65rem);
-		line-height:.98;
+		font-size:clamp(1.15rem,5.5vw,1.4rem);
+		line-height:1;
 	}
 	.TarjetaDescripcion{
 		left:13px;
@@ -1156,20 +1156,20 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 		backdrop-filter:blur(4px);
 		-webkit-backdrop-filter:blur(4px);
 		touch-action:pan-y;
-		transition:opacity 260ms ease,visibility 0s;
+		transition:opacity 420ms cubic-bezier(.2,.8,.2,1),visibility 0s;
 	}
 	.ModalReceta.activo{
-		transition:opacity 260ms ease,visibility 0s;
+		transition:opacity 420ms cubic-bezier(.2,.8,.2,1),visibility 0s;
 	}
 	.ModalReceta.activo.is-closing{
 		opacity:0;
-		transition:opacity 220ms ease,visibility 0s;
+		transition:opacity 600ms cubic-bezier(.4,0,.2,1),visibility 0s;
 	}
 	.ModalReceta_Contenedor{
 		width:100%;
 		height:auto;
 		min-height:min(56dvh,520px);
-		max-height:calc(100dvh - env(safe-area-inset-top,0px) - 8px);
+		max-height:calc(100dvh - env(safe-area-inset-top,0px) - max(44px,6dvh));
 		border-radius:22px 22px 0 0;
 		overflow-x:hidden;
 		overflow-y:auto;
@@ -1178,7 +1178,7 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 		-webkit-overflow-scrolling:touch;
 		scroll-padding-block:18px;
 		transform:translate3d(0,100%,0);
-		transition:transform 480ms cubic-bezier(.22,1,.36,1);
+		transition:transform 700ms cubic-bezier(.2,.72,.25,1);
 	}
 	.ModalReceta.activo .ModalReceta_Contenedor{
 		transform:translate3d(0,0,0);
@@ -1187,7 +1187,7 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	}
 	.ModalReceta.activo.is-closing .ModalReceta_Contenedor{
 		transform:translate3d(0,100%,0);
-		transition:transform 340ms cubic-bezier(.4,0,1,1);
+		transition:transform 600ms cubic-bezier(.4,0,.2,1);
 		animation:none;
 	}
 	.ModalReceta_Header{
