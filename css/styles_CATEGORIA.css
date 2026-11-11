@@ -1004,6 +1004,7 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	}
 	.ModalReceta_Seccion ul,
 	.ModalReceta_Seccion ol{ column-count:1; column-width:auto; }
+	.ModalReceta_Pasos ol#ModalPasos{ columns:1; column-fill:auto; }
 	.ModalReceta_Pasos{ background:inherit; }
 	.ModalReceta_Footer{ order:4; flex-shrink:0; }
 }
