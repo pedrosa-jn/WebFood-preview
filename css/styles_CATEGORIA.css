@@ -1089,3 +1089,19 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	.ModalReceta_Cuerpo > .ModalReceta_Seccion:not(.ModalReceta_Pasos) ul#ModalIng,
 	.ModalReceta_Pasos ol#ModalPasos{flex:0 1 auto;min-height:0;height:auto;max-height:none;overflow-y:auto;overflow-x:hidden;}
 }
+
+/* Keep the carbonara-sized desktop frame; content lists scroll within it. */
+@media (min-width:701px){
+	.ModalReceta_Contenedor{
+		height:min(520px,calc(100dvh - 40px));
+		min-height:0;
+		max-height:calc(100dvh - 40px);
+	}
+	.ModalReceta_Info{min-height:0;overflow:hidden;}
+	.ModalReceta_Titulo,.ModalReceta_Footer{flex:0 0 auto;}
+	.ModalReceta_Cuerpo{display:flex;flex:1 1 auto;flex-direction:column;min-height:0;overflow:hidden;}
+	.ModalReceta_Cuerpo > .ModalReceta_Seccion:not(.ModalReceta_Pasos),
+	.ModalReceta_Cuerpo > .ModalReceta_Pasos{display:flex;flex:1 1 0;flex-direction:column;min-height:0;overflow:hidden;}
+	.ModalReceta_Cuerpo > .ModalReceta_Seccion:not(.ModalReceta_Pasos) ul#ModalIng,
+	.ModalReceta_Pasos ol#ModalPasos{display:block;flex:1 1 0;min-height:0;height:0;max-height:none;overflow-y:auto;overflow-x:hidden;}
+}
