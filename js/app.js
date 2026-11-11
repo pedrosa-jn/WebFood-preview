@@ -3,22 +3,22 @@ const FLECHA = '<svg class="CAT_Arrow" aria-hidden="true" width="18" height="18"
 const dosDigitos = numero => String(numero).padStart(2, '0');
 const urlCategoria = id => `./categoria.html?c=${encodeURIComponent(id)}`;
 const IMAGENES_RECETA = {
-	'espaguetis-carbonara': 'Recetas_IMG/pasta-carbonara.svg',
-	'espaguetis-con-cebolla-y-jamon': 'Recetas_IMG/pasta-jamon-cebolla.svg',
-	'macarrones-con-tomate-y-chorizo': 'Recetas_IMG/pasta-macarrones-chorizo.svg',
-	'espaguetis-con-ajo-y-aceite': 'Recetas_IMG/pasta-ajo-aceite.svg',
-	'espaguetis-bolognesa': 'Recetas_IMG/pasta-bolognesa.svg',
-	'espaguetis-con-gambas-y-ajo': 'Recetas_IMG/pasta-gambas-ajo.svg',
-	'ensalada-de-pasta': 'Recetas_IMG/pasta-ensalada.svg',
-	'ensalada-de-pasta-con-gambas': 'Recetas_IMG/pasta-ensalada-gambas.svg',
-	'fideos-amarillos': 'Recetas_IMG/pasta-fideos-amarillos.svg',
-	'lasagna': 'Recetas_IMG/pasta-lasagna.svg',
-	'canelones-abuela-carmen': 'Recetas_IMG/pasta-canelones-carne.svg',
-	'canelones-abuela-cheli': 'Recetas_IMG/pasta-canelones-pate.svg'
+	'espaguetis-carbonara': 'Recetas_IMG/pasta-carbonara.svg?rev=20261111d',
+	'espaguetis-con-cebolla-y-jamon': 'Recetas_IMG/pasta-jamon-cebolla.svg?rev=20261111d',
+	'macarrones-con-tomate-y-chorizo': 'Recetas_IMG/pasta-macarrones-chorizo.svg?rev=20261111d',
+	'espaguetis-con-ajo-y-aceite': 'Recetas_IMG/pasta-ajo-aceite.svg?rev=20261111d',
+	'espaguetis-bolognesa': 'Recetas_IMG/pasta-bolognesa.svg?rev=20261111d',
+	'espaguetis-con-gambas-y-ajo': 'Recetas_IMG/pasta-gambas-ajo.svg?rev=20261111d',
+	'ensalada-de-pasta': 'Recetas_IMG/pasta-ensalada.svg?rev=20261111d',
+	'ensalada-de-pasta-con-gambas': 'Recetas_IMG/pasta-ensalada-gambas.svg?rev=20261111d',
+	'fideos-amarillos': 'Recetas_IMG/pasta-fideos-amarillos.svg?rev=20261111d',
+	'lasagna': 'Recetas_IMG/pasta-lasagna.svg?rev=20261111d',
+	'canelones-abuela-carmen': 'Recetas_IMG/pasta-canelones-carne.svg?rev=20261111d',
+	'canelones-abuela-cheli': 'Recetas_IMG/pasta-canelones-pate.svg?rev=20261111d'
 };
 const rutaImagen = valor => {
 	const ruta = String(valor ?? '').trim();
-	return /^(?:\.\/)?(?:images|Recetas_IMG)\/[\w.-]+\.(?:avif|gif|jpe?g|png|svg|webp)$/i.test(ruta) ? ruta : '';
+	return /^(?:\\.\\/)?(?:images|Recetas_IMG)\\/[\\w.-]+\\.(?:avif|gif|jpe?g|png|svg|webp)(?:\\?[\\w=.-]+)?$/i.test(ruta) ? ruta : '';
 };
 const textoSeguro = valor => String(valor ?? '').replace(/[&<>"']/g, caracter => ({
 	'&': '&amp;',
