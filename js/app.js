@@ -293,6 +293,7 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 			return etiqueta;
 		}));
 		crearElementoLista(listaIngredientes, receta.ingredientes || [], 'Información pendiente.');
+		listaIngredientes.classList.toggle('ModalReceta_Ingredientes--compactos', (receta.ingredientes || []).length >= 11);
 		crearElementoLista(listaPasos, receta.pasos || [], 'Información pendiente.');
 		modal.classList.remove('is-closing');
 		modal.classList.add('activo');
