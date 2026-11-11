@@ -1087,6 +1087,14 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	}
 }
 
+/* A little extra vertical room for recipes whose full text exceeds the standard layout. */
+@media (min-width:701px){
+	#ModalReceta.ModalReceta--larga .ModalReceta_Contenedor{
+		height:min(680px,calc(100dvh - 40px));
+		max-height:calc(100dvh - 40px);
+	}
+}
+
 /* Recipe rows enter as a quiet, staggered reading sequence. */
 .Recetas--revelado-listo > a{
 	opacity:0;
