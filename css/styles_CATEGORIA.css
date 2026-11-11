@@ -1150,3 +1150,17 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	.ModalReceta_Seccion ol#ModalPasos{font-size:.95rem;line-height:1.25;padding-block:8px;}
 	.ModalReceta_Seccion li{margin-bottom:4px;}
 }
+
+/* Keep the two list panels visibly scrollable when a recipe exceeds the carbonara frame. */
+@media (min-width:701px){
+	.ModalReceta_Cuerpo > .ModalReceta_Seccion:not(.ModalReceta_Pasos) ul#ModalIng,
+	.ModalReceta_Pasos ol#ModalPasos{
+		overflow-y:scroll;overflow-x:hidden;scrollbar-gutter:stable;scrollbar-width:thin;
+	}
+	.ModalReceta_Cuerpo > .ModalReceta_Seccion:not(.ModalReceta_Pasos) ul#ModalIng::-webkit-scrollbar,
+	.ModalReceta_Pasos ol#ModalPasos::-webkit-scrollbar{width:8px;display:block;}
+	.ModalReceta_Cuerpo > .ModalReceta_Seccion:not(.ModalReceta_Pasos) ul#ModalIng::-webkit-scrollbar-track{background:rgba(139,0,0,.08);}
+	.ModalReceta_Cuerpo > .ModalReceta_Seccion:not(.ModalReceta_Pasos) ul#ModalIng::-webkit-scrollbar-thumb{background:rgba(139,0,0,.6);border-radius:6px;}
+	.ModalReceta_Pasos ol#ModalPasos::-webkit-scrollbar-track{background:rgba(245,245,240,.16);}
+	.ModalReceta_Pasos ol#ModalPasos::-webkit-scrollbar-thumb{background:rgba(245,245,240,.82);border-radius:6px;}
+}
