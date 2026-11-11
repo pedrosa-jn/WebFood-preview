@@ -1052,7 +1052,7 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 
 /* Stable desktop modal: fixed header/footer, fixed section headings, independent list scrollers. */
 @media (min-width:701px){
-	.ModalReceta_Contenedor{height:min(520px,calc(100dvh - 40px));min-height:0;max-height:calc(100dvh - 40px);}
+	.ModalReceta_Contenedor{height:min(544px,calc(100dvh - 40px));min-height:0;max-height:calc(100dvh - 40px);}
 	.ModalReceta_Contenido{flex:1 1 auto;min-height:0;overflow:hidden;}
 	.ModalReceta_Info{display:grid;grid-template-rows:auto minmax(0,1fr) auto;min-height:0;overflow:hidden;}
 	.ModalReceta_Titulo,.ModalReceta_Footer{min-height:0;}
@@ -1090,7 +1090,7 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 /* A little extra vertical room for recipes whose full text exceeds the standard layout. */
 @media (min-width:701px){
 	#ModalReceta.ModalReceta--larga .ModalReceta_Contenedor{
-		height:min(680px,calc(100dvh - 40px));
+		height:min(704px,calc(100dvh - 40px));
 		max-height:calc(100dvh - 40px);
 	}
 }
