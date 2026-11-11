@@ -1004,6 +1004,7 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 
 
 @media (min-width:701px){
+	.ModalReceta_Contenedor{height:auto;min-height:0;max-height:min(520px,calc(100dvh - 40px));}
 	.ModalReceta_Contenido{
 		position:relative; align-items:stretch; grid-template-rows:auto; height:auto;
 	}
@@ -1013,6 +1014,7 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 		background:rgb(139,0,0);
 	}
 	.ModalReceta_Info{ grid-column:2; grid-row:1; }
+	.ModalReceta_Titulo{ border-color:rgb(139,0,0); border-bottom:1px solid rgb(139,0,0); }
 	.ModalReceta_Imagen img{
 		width:100%; height:100%; object-fit:cover; object-position:center;
 	}
