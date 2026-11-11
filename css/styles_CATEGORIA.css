@@ -1078,7 +1078,7 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	}
 	.ModalReceta_Pasos ol#ModalPasos{height:auto;min-height:0;max-height:none;overflow-y:auto;overflow-x:hidden;}
 }
-@media (min-width:900px){
+@media (min-width:701px){
 	#ModalReceta .ModalReceta_Cuerpo > .ModalReceta_Seccion:not(.ModalReceta_Pasos) ul#ModalIng.ModalReceta_Ingredientes--compactos{
 		grid-template-columns:repeat(3,minmax(0,1fr));
 		column-gap:10px;
