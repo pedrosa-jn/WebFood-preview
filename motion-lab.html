@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pruebas de movimiento · Cuaderno de recetas</title>
+<link rel="stylesheet" href="./css/fonts.css">
+<style>
+:root{color-scheme:light;--paper:#f5f5f0;--red:#8b0000;--ink:#24242a;--line:#d4d1c8;--ease:cubic-bezier(.22,1,.36,1)}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Barlow Condensed",sans-serif}
+header{height:72px;padding:0 clamp(20px,5vw,72px);border-bottom:1px solid var(--ink);display:flex;align-items:center;justify-content:space-between}
+header img{width:64px;height:52px;object-fit:contain}header a{color:var(--red);font-size:1rem;font-weight:700;text-decoration:none}
+main{max-width:1240px;margin:auto;padding:clamp(22px,5vw,62px)}
+.kicker{margin:0 0 8px;color:var(--red);font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+h1{margin:0;color:var(--red);font-size:clamp(2.8rem,7vw,6rem);line-height:.9;letter-spacing:-.03em;text-transform:uppercase}
+.intro{max-width:62ch;margin:18px 0 34px;font-size:1.15rem;line-height:1.45;color:#45454a}
+.tabs{display:flex;gap:24px;border-bottom:1px solid var(--ink);margin-bottom:22px}
+.tabs button{position:relative;padding:12px 0;border:0;background:none;color:#555;font:700 1.05rem "Barlow Condensed",sans-serif;letter-spacing:.04em;cursor:pointer}
+.tabs button[aria-selected="true"]{color:var(--red)}.tabs button[aria-selected="true"]::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--red)}
+.test{display:none}.test.is-active{display:block}.test h2{font-size:1.45rem;color:var(--red);margin:0 0 6px;text-transform:uppercase}.test p{margin:0 0 18px;color:#555;font-size:1rem}
+.stage{min-height:440px;position:relative;overflow:hidden;border:1px solid var(--line);background:var(--paper);padding:clamp(20px,4vw,42px)}
+.category-nav{display:flex;gap:22px;justify-content:flex-end;border-bottom:1px solid var(--line);padding-bottom:12px}
+.category-nav button{border:0;background:none;color:#555;font:700 1rem "Barlow Condensed",sans-serif;letter-spacing:.04em;cursor:pointer}
+.category-nav button[aria-current="page"]{color:var(--red)}
+.category-view{padding-top:34px;view-transition-name:category-view}
+.category-title{margin:0 0 24px;text-align:center;color:var(--red);font-size:clamp(3rem,8vw,6rem);line-height:.85;text-transform:uppercase;view-transition-name:category-title}
+.category-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--ink);border:1px solid var(--ink);view-transition-name:category-cards}
+.recipe-card{min-width:0;background:var(--paper);padding:0;text-align:left;color:var(--ink);font:inherit;cursor:pointer}
+.recipe-card img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;view-transition-name:none}
+.recipe-card strong{display:block;padding:12px 14px;font-size:1.1rem;text-transform:uppercase}
+.recipe-card small{display:block;padding:0 14px 14px;color:#555}
+.note{position:absolute;left:20px;bottom:16px;font-size:.9rem;color:#666}
+::view-transition-group(*){animation-duration:440ms;animation-timing-function:var(--ease)}
+::view-transition-old(category-view){animation:category-out 180ms ease both}
+::view-transition-new(category-view){animation:category-in 360ms var(--ease) both}
+@keyframes category-out{to{opacity:0;filter:blur(3px);transform:translateY(-8px)}}
+@keyframes category-in{from{opacity:0;filter:blur(3px);transform:translateY(12px)}to{opacity:1;filter:blur(0);transform:translateY(0)}}
+.modal{position:fixed;inset:0;z-index:5;display:none;place-items:center;padding:20px;background:rgba(20,18,18,.42);backdrop-filter:blur(5px)}
+.modal.is-open{display:grid}.modal-card{position:relative;width:min(900px,100%);height:min(520px,calc(100dvh - 40px));display:grid;grid-template-columns:40% 60%;overflow:hidden;border:1px solid var(--red);border-radius:18px;background:var(--red);color:var(--paper)}
+.modal-photo{width:100%;height:100%;object-fit:cover;view-transition-name:none}
+.modal-info{display:grid;grid-template-rows:auto minmax(0,1fr) auto;min-width:0}
+.modal-head{padding:24px 26px;border-bottom:1px solid rgba(245,245,240,.7)}.modal-head h3{margin:0;font-size:clamp(1.6rem,3vw,2.3rem);line-height:.95;text-transform:uppercase}.modal-head p{margin:10px 0 0;opacity:.85}
+.modal-copy{padding:20px 26px;font-size:1.05rem;line-height:1.4}.modal-copy h4{margin:0 0 8px;font-size:1.15rem}.modal-copy p{margin:0}
+.modal-close{justify-self:center;align-self:center;margin:12px;padding:8px 36px;border:1px solid var(--paper);border-radius:999px;background:none;color:var(--paper);font:700 1rem "Barlow Condensed",sans-serif;cursor:pointer}
+.modal[hidden]{display:none}
+::view-transition-old(dish-image),::view-transition-new(dish-image){animation-duration:520ms;animation-timing-function:var(--ease)}
+::view-transition-old(modal-card){animation:modal-exit 240ms ease both}
+::view-transition-new(modal-card){animation:modal-enter 360ms var(--ease) both}
+@keyframes modal-enter{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes modal-exit{to{opacity:0;transform:translateY(8px) scale(.99)}}
+@media(max-width:700px){.category-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.stage{padding:16px;min-height:400px}.category-nav{justify-content:center}.modal{padding:12px}.modal-card{height:min(82dvh,640px);grid-template-columns:1fr;grid-template-rows:36% 1fr}.modal-photo{width:100%;height:100%}.modal-head{padding:16px 18px}.modal-copy{padding:14px 18px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header><img src="./images/Logo_Recipes.svg" alt="Cuaderno de recetas"><a href="./index.html">← Volver a la web</a></header>
+<main>
+<p class="kicker">Prototipos · sin cambios en la web</p>
+<h1>Movimiento<br>con intención</h1>
+<p class="intro">Prueba dos transiciones para conectar la navegación y la receta. La estructura, los colores y la tipografía siguen siendo los del cuaderno; esta página es solo una muestra.</p>
+<div class="tabs" role="tablist"><button id="tab-category" role="tab" aria-selected="true" aria-controls="test-category">01 · CAMBIAR DE CATEGORÍA</button><button id="tab-recipe" role="tab" aria-selected="false" aria-controls="test-recipe">02 · ABRIR RECETA</button></div>
+<section class="test is-active" id="test-category" role="tabpanel" aria-labelledby="tab-category"><h2>La categoría cambia como una página</h2><p>El menú permanece quieto mientras el nombre y las recetas entran juntos, con un breve desenfoque que se limpia al asentarse.</p><div class="stage"><nav class="category-nav" aria-label="Categorías de prueba"><button data-category="PASTA" aria-current="page">PASTA</button><button data-category="POSTRES">POSTRES</button><button data-category="SALSAS">SALSAS</button></nav><div class="category-view"><h3 class="category-title">PASTA</h3><div class="category-cards"></div></div><span class="note">Pulsa otra categoría para probar el cambio.</span></div></section>
+<section class="test" id="test-recipe" role="tabpanel" aria-labelledby="tab-recipe"><h2>La foto viaja hasta la receta</h2><p>Al abrir, la foto pasa desde la tarjeta al modal. Al cerrar, vuelve a su lugar. Pulsa la tarjeta para probarlo.</p><div class="stage"><div class="category-cards"><button class="recipe-card open-recipe"><img class="source-photo" src="./Recetas_IMG/Pasta_Carbonara_web.jpg" alt="Espaguetis carbonara"><strong>Espaguetis carbonara</strong><small>25 min · Fácil</small></button><div class="recipe-card"><img src="./Recetas_IMG/Pasta_Carbonara_web.jpg" alt=""><strong>Una receta más</strong><small>Otra opción</small></div><div class="recipe-card"><img src="./Recetas_IMG/Pasta_Carbonara_web.jpg" alt=""><strong>La mesa de hoy</strong><small>Recetas de casa</small></div></div><span class="note">Solo la primera tarjeta abre el modal.</span></div></section>
+</main>
+<div class="modal" id="recipe-modal" hidden aria-hidden="true"><article class="modal-card"><img class="modal-photo" src="./Recetas_IMG/Pasta_Carbonara_web.jpg" alt="Espaguetis carbonara"><div class="modal-info"><header class="modal-head"><h3>Espaguetis carbonara</h3><p>25 min · Fácil</p></header><div class="modal-copy"><h4>Una receta para compartir</h4><p>La imagen conserva su proporción y ocupa el panel izquierdo. El título, la información y la acción quedan anclados a la derecha.</p></div><button class="modal-close">Volver</button></div></article></div>
+<script>
+const data={PASTA:[['Espaguetis carbonara','25 min · Fácil'],['Macarrones con tomate','30 min · Fácil'],['Ensalada de pasta','20 min · Fácil']],POSTRES:[['Flan de huevo','45 min · Fácil'],['Tarta de manzana','55 min · Media'],['Natillas caseras','25 min · Fácil']],SALSAS:[['Mayonesa','10 min · Fácil'],['Tomate frito','40 min · Fácil'],['Bechamel','15 min · Fácil']]};
+const cards=document.querySelector('.category-cards'), title=document.querySelector('.category-title'), links=[...document.querySelectorAll('[data-category]')];
+function renderCategory(name){title.textContent=name;cards.innerHTML=data[name].map(([n,d])=>`<article class="recipe-card"><img src="./Recetas_IMG/Pasta_Carbonara_web.jpg" alt=""><strong>${n}</strong><small>${d}</small></article>`).join('');links.forEach(b=>b.setAttribute('aria-current',b.dataset.category===name?'page':'false'))}
+links.forEach(button=>button.addEventListener('click',()=>{const update=()=>renderCategory(button.dataset.category);if(document.startViewTransition)document.startViewTransition(update);else update()}));renderCategory('PASTA');
+document.querySelectorAll('[role=tab]').forEach(tab=>tab.addEventListener('click',()=>{document.querySelectorAll('[role=tab]').forEach(t=>t.setAttribute('aria-selected',t===tab));document.querySelectorAll('.test').forEach(s=>s.classList.toggle('is-active',s.id===tab.getAttribute('aria-controls')))}));
+const modal=document.querySelector('#recipe-modal'), source=document.querySelector('.source-photo'), target=document.querySelector('.modal-photo'), open=document.querySelector('.open-recipe'), close=document.querySelector('.modal-close');
+function transition(update){if(document.startViewTransition)document.startViewTransition(update);else update()}
+open.addEventListener('click',()=>transition(()=>{source.style.viewTransitionName='none';target.style.viewTransitionName='dish-image';modal.hidden=false;modal.classList.add('is-open');modal.setAttribute('aria-hidden','false')}));
+function closeModal(){transition(()=>{target.style.viewTransitionName='none';source.style.viewTransitionName='dish-image';modal.classList.remove('is-open');modal.hidden=true;modal.setAttribute('aria-hidden','true')})}
+close.addEventListener('click',closeModal);modal.addEventListener('click',event=>{if(event.target===modal)closeModal()});document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!modal.hidden)closeModal()});
+</script>
+</body>
+</html>
