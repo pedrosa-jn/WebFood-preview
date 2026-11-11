@@ -1076,7 +1076,7 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	.ModalReceta_Cuerpo > .ModalReceta_Seccion:not(.ModalReceta_Pasos) ul#ModalIng{
 		height:auto;max-height:none;overflow:visible;overflow-y:visible;scrollbar-width:none;scrollbar-gutter:auto;
 	}
-	.ModalReceta_Pasos ol#ModalPasos{height:100%;min-height:0;overflow-y:auto;overflow-x:hidden;}
+	.ModalReceta_Pasos ol#ModalPasos{height:auto;min-height:0;max-height:none;overflow-y:auto;overflow-x:hidden;}
 }
 
 /* Recipe rows enter as a quiet, staggered reading sequence. */
