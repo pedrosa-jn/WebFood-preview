@@ -292,9 +292,13 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 			etiqueta.textContent = valor.toLocaleUpperCase('es');
 			return etiqueta;
 		}));
-		crearElementoLista(listaIngredientes, receta.ingredientes || [], 'Información pendiente.');
-		listaIngredientes.classList.toggle('ModalReceta_Ingredientes--compactos', (receta.ingredientes || []).length >= 11);
-		crearElementoLista(listaPasos, receta.pasos || [], 'Información pendiente.');
+		const ingredientesReceta = receta.ingredientes || [];
+		const pasosReceta = receta.pasos || [];
+		const volumenReceta = [...ingredientesReceta, ...pasosReceta].reduce((total, texto) => total + String(texto).length, 0);
+		modal.classList.toggle('ModalReceta--larga', pasosReceta.length >= 10 || volumenReceta >= 900);
+		crearElementoLista(listaIngredientes, ingredientesReceta, 'Información pendiente.');
+		listaIngredientes.classList.toggle('ModalReceta_Ingredientes--compactos', ingredientesReceta.length >= 11);
+		crearElementoLista(listaPasos, pasosReceta, 'Información pendiente.');
 		modal.classList.remove('is-closing');
 		modal.classList.add('activo');
 		modal.setAttribute('aria-hidden', 'false');
