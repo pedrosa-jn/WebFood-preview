@@ -1080,3 +1080,12 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	.Recetas--compactas > a{flex:0 0 auto;width:auto;min-width:0;}
 	.Recetas--compactas .Recetas_Vacio{grid-column:1/-1;width:auto;}
 }
+
+/* Prefer natural recipe-list height; scroll only when the modal reaches its cap. */
+@media (min-width:701px){
+	.ModalReceta_Cuerpo{flex:1 1 auto;min-height:0;overflow:hidden;}
+	.ModalReceta_Cuerpo > .ModalReceta_Seccion:not(.ModalReceta_Pasos),
+	.ModalReceta_Cuerpo > .ModalReceta_Pasos{flex:0 1 auto;min-height:0;overflow:hidden;}
+	.ModalReceta_Cuerpo > .ModalReceta_Seccion:not(.ModalReceta_Pasos) ul#ModalIng,
+	.ModalReceta_Pasos ol#ModalPasos{flex:0 1 auto;min-height:0;height:auto;max-height:none;overflow-y:auto;overflow-x:hidden;}
+}
