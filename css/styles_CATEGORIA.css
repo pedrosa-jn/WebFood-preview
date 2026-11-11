@@ -1078,6 +1078,14 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	}
 	.ModalReceta_Pasos ol#ModalPasos{height:auto;min-height:0;max-height:none;overflow-y:auto;overflow-x:hidden;}
 }
+@media (min-width:900px){
+	.ModalReceta_Seccion ul#ModalIng.ModalReceta_Ingredientes--compactos{
+		grid-template-columns:repeat(3,minmax(0,1fr));
+		column-gap:12px;
+		font-size:.9rem;
+		line-height:1.18;
+	}
+}
 
 /* Recipe rows enter as a quiet, staggered reading sequence. */
 .Recetas--revelado-listo > a{
