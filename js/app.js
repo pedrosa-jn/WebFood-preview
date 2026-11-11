@@ -250,7 +250,6 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 		const imagenReceta = rutaImagen(receta.imagen || IMAGENES_RECETA[receta.id]);
 		const marcoImagen = imagen.closest('.ModalReceta_Imagen');
 		marcoImagen?.classList.toggle('is-placeholder', !imagenReceta);
-		marcoImagen?.style.setProperty('--modal-image', imagenReceta ? `url("${imagenReceta}")` : 'none');
 		if (imagenReceta) imagen.src = imagenReceta;
 		else imagen.removeAttribute('src');
 		imagen.alt = imagenReceta ? `Imagen de ${receta.titulo}` : '';
@@ -457,8 +456,8 @@ function iniciarIntroPortada() {
 	};
 	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { limpiarIntro(); return; }
 	try {
-		if (sessionStorage.getItem('introPortadaVista') === '6') { limpiarIntro(); return; }
-		sessionStorage.setItem('introPortadaVista', '6');
+		if (sessionStorage.getItem('introPortadaVista') === '7') { limpiarIntro(); return; }
+		sessionStorage.setItem('introPortadaVista', '7');
 	} catch {}
 	if (!intro) return;
 	document.body.classList.add('IntroPortada-activa');
@@ -468,34 +467,21 @@ function iniciarIntroPortada() {
 		document.documentElement.classList.add('intro-fonts-ready');
 		temporizadores.push(window.setTimeout(() => {
 			if (intro.isConnected) intro.classList.add('is-revealing');
-		}, 1750));
+		}, 1550));
 		temporizadores.push(window.setTimeout(() => {
 			intro.remove();
 			document.body.classList.remove('IntroPortada-activa');
 			document.documentElement.classList.remove('intro-fonts-ready');
-		}, 4100));
+		}, 2700));
 	});
 }
 
 function iniciarLogoAnimado() {
 	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-	document.querySelectorAll('.FooterBrand').forEach(marca => {
-		const imagen = marca.querySelector('[data-animated-src]');
-		const boton = marca.querySelector('.FooterMotionToggle');
-		if (!imagen || !boton) return;
-		const animada = imagen.dataset.animatedSrc;
-		const fija = imagen.dataset.staticSrc;
-		let pausada = reduceMotion.matches;
-		const actualizar = () => {
-			imagen.src = pausada ? fija : animada;
-			boton.textContent = pausada ? 'Activar animación' : 'Pausar animación';
-			boton.setAttribute('aria-pressed', String(pausada));
-		};
-		actualizar();
-		boton.addEventListener('click', () => { pausada = !pausada; actualizar(); });
+	document.querySelectorAll('[data-animated-src]').forEach(imagen => {
+		imagen.src = reduceMotion.matches ? imagen.dataset.staticSrc : imagen.dataset.animatedSrc;
 	});
 }
-
 function iniciarCursorMorph() {
 	if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 	const cursor = document.createElement('div');
