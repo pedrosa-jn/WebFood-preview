@@ -1174,3 +1174,7 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	}
 	.ModalReceta_Pasos ol#ModalPasos{height:100%;min-height:0;overflow-y:auto;overflow-x:hidden;}
 }
+
+@media (min-width:701px){
+	.ModalReceta_Contenedor{height:auto;min-height:min(520px,calc(100dvh - 40px));max-height:calc(100dvh - 40px);}
+}
