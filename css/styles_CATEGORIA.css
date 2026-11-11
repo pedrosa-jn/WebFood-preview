@@ -1164,3 +1164,13 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	.ModalReceta_Pasos ol#ModalPasos::-webkit-scrollbar-track{background:rgba(245,245,240,.16);}
 	.ModalReceta_Pasos ol#ModalPasos::-webkit-scrollbar-thumb{background:rgba(245,245,240,.82);border-radius:6px;}
 }
+
+/* Ingredients stay fully visible; only steps become scrollable when they exceed the remaining space. */
+@media (min-width:701px){
+	.ModalReceta_Cuerpo{grid-template-rows:max-content minmax(0,1fr);}
+	.ModalReceta_Cuerpo > .ModalReceta_Seccion:not(.ModalReceta_Pasos){overflow:visible;}
+	.ModalReceta_Cuerpo > .ModalReceta_Seccion:not(.ModalReceta_Pasos) ul#ModalIng{
+		height:auto;max-height:none;overflow:visible;overflow-y:visible;scrollbar-width:none;scrollbar-gutter:auto;
+	}
+	.ModalReceta_Pasos ol#ModalPasos{height:100%;min-height:0;overflow-y:auto;overflow-x:hidden;}
+}
