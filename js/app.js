@@ -250,6 +250,7 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 		const imagenReceta = rutaImagen(receta.imagen || IMAGENES_RECETA[receta.id]);
 		const marcoImagen = imagen.closest('.ModalReceta_Imagen');
 		marcoImagen?.classList.toggle('is-placeholder', !imagenReceta);
+		marcoImagen?.style.setProperty('--modal-image', imagenReceta ? `url("${imagenReceta}")` : 'none');
 		if (imagenReceta) imagen.src = imagenReceta;
 		else imagen.removeAttribute('src');
 		imagen.alt = imagenReceta ? `Imagen de ${receta.titulo}` : '';
