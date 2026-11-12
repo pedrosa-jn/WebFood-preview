@@ -570,32 +570,34 @@ function iniciarIntroPortada() {
 	if (!document.querySelector('.SEC_Titulo--home')) return;
 	const intro = document.querySelector('.IntroPortada');
 	const temporizadores = [];
+	const versionIntro = '8';
 	const limpiarIntro = () => {
 		temporizadores.forEach(window.clearTimeout);
 		intro?.remove();
-		document.body.classList.remove('IntroPortada-activa');
-		document.documentElement.classList.remove('intro-pending', 'intro-fonts-ready');
+		document.body.classList.remove('IntroPortada-activa', 'IntroPortada-saliente');
+		document.documentElement.classList.remove('intro-pending');
 	};
 	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { limpiarIntro(); return; }
 	try {
-		if (sessionStorage.getItem('introPortadaVista') === '7') { limpiarIntro(); return; }
-		sessionStorage.setItem('introPortadaVista', '7');
+		if (sessionStorage.getItem('introPortadaVista') === versionIntro) { limpiarIntro(); return; }
+		sessionStorage.setItem('introPortadaVista', versionIntro);
 	} catch {}
-	if (!intro) return;
+	if (!intro) { document.documentElement.classList.remove('intro-pending'); return; }
 	document.body.classList.add('IntroPortada-activa');
-	Promise.resolve(document.fonts?.ready).then(() => {
-		if (!intro.isConnected) return;
-		document.documentElement.classList.remove('intro-pending');
-		document.documentElement.classList.add('intro-fonts-ready');
-		temporizadores.push(window.setTimeout(() => {
-			if (intro.isConnected) intro.classList.add('is-revealing');
-		}, 1550));
-		temporizadores.push(window.setTimeout(() => {
-			intro.remove();
-			document.body.classList.remove('IntroPortada-activa');
-			document.documentElement.classList.remove('intro-fonts-ready');
-		}, 2700));
-	});
+	document.documentElement.classList.remove('intro-pending');
+	const esperaInicial = 520;
+	const duracionRelleno = 1450;
+	const entradaSenal = 440;
+	const pausaTrasSenal = 500;
+	const salida = 900;
+	temporizadores.push(window.setTimeout(() => intro.classList.add('is-filling'), esperaInicial));
+	temporizadores.push(window.setTimeout(() => intro.classList.add('is-cued'), esperaInicial + duracionRelleno));
+	const inicioSalida = esperaInicial + duracionRelleno + entradaSenal + pausaTrasSenal;
+	temporizadores.push(window.setTimeout(() => {
+		intro.classList.add('is-revealing');
+		document.body.classList.add('IntroPortada-saliente');
+	}, inicioSalida));
+	temporizadores.push(window.setTimeout(limpiarIntro, inicioSalida + salida + 40));
 }
 
 function iniciarLogoAnimado() {
