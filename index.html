@@ -5,47 +5,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script>
 		try {
-			if (sessionStorage.getItem('introPortadaVista') !== '27' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			if (sessionStorage.getItem('introPortadaVista') !== '8' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
 				document.documentElement.classList.add('intro-pending');
 			}
 		} catch {}
 	</script>
 	<title>Cuaderno de recetas</title>
 	<link rel="icon" type="image/svg" sizes="32x32" href="./images/Logo_Recipes.svg">
-	<link rel="preload" href="./fonts/BarlowCondensed-Bold-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="stylesheet" href="./css/fonts.css">
 	<link rel="preload" href="./fonts/BarlowCondensed-Regular-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="./fonts/BarlowCondensed-Black-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="./fonts/PlayfairDisplay-Italic-latin.woff2" as="font" type="font/woff2" crossorigin>
-	<link rel="stylesheet" type="text/css" href="./css/styles.css?v=intro-bar-20261112d">
-	<style>
-		/* Critical intro styles prevent an unstyled first frame while the rest of the page loads. */
-		@font-face{
-			font-family:"Barlow Condensed"; font-style:normal; font-weight:700; font-display:block;
-			src:url("./fonts/BarlowCondensed-Bold-latin.woff2") format("woff2");
-			unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-		}
-		.IntroPortada-activa{overflow:hidden}
-		.IntroPortada{--intro-fill-ease:cubic-bezier(.65,0,.35,1);display:none;position:fixed;inset:0;z-index:1000;overflow:hidden;background:transparent}
-		html.intro-pending body>:not(.IntroPortada){visibility:hidden}
-		html.intro-pending .IntroPortada,body.IntroPortada-activa>.IntroPortada{display:block}
-		.IntroPortada_Fondo{position:absolute;inset:0;z-index:2;background:rgb(245,245,240);transform:translate3d(0,0,0);transition:transform 900ms cubic-bezier(.76,0,.18,1);will-change:transform}
-		.IntroPortada_Escena{position:absolute;left:50%;top:49%;transform:translate(-50%,-50%);display:grid;justify-items:center;gap:clamp(24px,3vw,34px)}
-		.IntroPortada_Marca{position:relative;width:clamp(94px,calc(14vw - 10px),150px);aspect-ratio:814.95/496.1;display:grid;place-items:center}
-		.IntroPortada_Logo{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
-		.IntroPortada_Logo--base{opacity:.5}
-		.IntroPortada_Logo--fill{clip-path:ellipse(150% 0% at 50% 100%);transition:clip-path 2050ms var(--intro-fill-ease)}
-		.IntroPortada.is-filling .IntroPortada_Logo--fill{clip-path:ellipse(150% 150% at 50% 100%)}
-		.IntroPortada_Indicador{display:grid;justify-items:center;gap:8px}
-		.IntroPortada_Progreso{display:block;width:clamp(160px,21.5vw,258px);height:8px;min-height:8px;overflow:hidden;border:1px solid rgba(139,0,0,.9);border-radius:999px;background:rgba(139,0,0,.14)}
-		.IntroPortada_Progreso span{display:block;width:100%;height:100%;border-radius:inherit;background:rgb(139,0,0);clip-path:inset(0 100% 0 0);transition:clip-path 2050ms var(--intro-fill-ease)}
-		.IntroPortada.is-filling .IntroPortada_Progreso span{clip-path:inset(0 0 0 0)}
-		.IntroPortada_Contador{color:rgb(139,0,0);font-family:"Barlow Condensed",sans-serif;font-size:clamp(18px,2.04vw,20px);font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
-		.IntroPortada.is-revealing{pointer-events:none}
-		.IntroPortada.is-revealing .IntroPortada_Fondo{transform:translate3d(0,-100%,0)}
-		@media(max-width:600px){.IntroPortada_Escena{top:48%;gap:32px}.IntroPortada_Marca{width:clamp(100px,28vw,126px)}.IntroPortada_Progreso{width:min(50vw,188px)}}
-		@media(max-height:520px){.IntroPortada_Escena{top:45%;gap:18px}.IntroPortada_Marca{width:min(21vh,132px)}.IntroPortada_Progreso{width:min(31vw,205px)}}
-	</style>
+	<link rel="stylesheet" type="text/css" href="./css/styles.css?v=intro-fill-scroll-20261112a">
 	
 </head>
 
@@ -57,10 +28,15 @@
 					<img class="IntroPortada_Logo IntroPortada_Logo--base" src="./images/Logo_Recipes.svg" alt="">
 					<img class="IntroPortada_Logo IntroPortada_Logo--fill" src="./images/Logo_Recipes.svg" alt="">
 				</div>
-				<div class="IntroPortada_Indicador" role="progressbar" aria-label="Carga de la página de inicio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-					<div class="IntroPortada_Progreso" style="display:block;width:clamp(160px,21.5vw,258px);height:8px;min-height:8px;overflow:hidden;border:1px solid rgba(139,0,0,.9);border-radius:999px;background:rgba(139,0,0,.14);flex:none"><span></span></div>
-					<span class="IntroPortada_Contador" aria-hidden="true">0%</span>
-				</div>
+				<div class="IntroPortada_Progreso"><span></span></div>
+			</div>
+			<div class="IntroPortada_Indicacion">
+				<svg class="IntroPortada_ScrollIcon" viewBox="0 0 32 38" fill="none" aria-hidden="true">
+					<path class="IntroPortada_ScrollLinea" d="M16 3v23" />
+					<path class="IntroPortada_ScrollFlecha" d="m8 19 8 8 8-8" />
+					<circle class="IntroPortada_ScrollPunto" cx="16" cy="7" r="2" />
+				</svg>
+				<span>Continúa</span>
 			</div>
 		</div>
 	</div>
@@ -119,7 +95,7 @@
 <!-- JS SCRIPT -->
 
 	<script src="./data/recetas.js?v=recipe-images-20261110"></script>
-	<script src="./js/app.js?v=intro-counter-20261112a"></script>
+	<script src="./js/app.js?v=intro-fill-scroll-20261112a"></script>
 
 </body>
 </html>
