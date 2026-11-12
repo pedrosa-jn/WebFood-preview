@@ -279,6 +279,7 @@ function renderizarRecetas() {
 	document.title = `${categoria.nombre} · Cuaderno de recetas`;
 	titulo.innerHTML = `<span>${textoSeguro(categoria.nombre.toLocaleLowerCase('es'))}</span>${textoSeguro(categoria.nombre)}<span>${textoSeguro(categoria.nombre.toLocaleLowerCase('es'))}</span>`;
 	const recetas = RECETAS.filter(receta => receta.categoria === categoria.id);
+	rejilla.dataset.categoria = categoria.id;
 	rejilla.classList.toggle('Recetas--compactas', recetas.length < 8);
 	if (!recetas.length) {
 		rejilla.innerHTML = '<p class="Recetas_Vacio">Todavía no hay recetas en esta categoría.</p>';

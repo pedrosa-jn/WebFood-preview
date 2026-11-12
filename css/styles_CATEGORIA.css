@@ -915,6 +915,19 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	.Recetas > a:focus-visible .bck-image{ transform:scale(1.5); }
 }
 
+/* Meat photos fit the card width inside the area uncovered by the text panel. */
+@media (min-width:1024px) and (hover:hover) and (pointer:fine){
+	.Recetas[data-categoria="carnes"] .bck-image:not(.bck-image--placeholder){
+		bottom:35%;
+		background-size:100% auto;
+		background-position:center;
+	}
+	.Recetas[data-categoria="carnes"] > a:hover .bck-image,
+	.Recetas[data-categoria="carnes"] > a:focus-visible .bck-image{
+		transform:none;
+	}
+}
+
 /* Pre-AI recipe modal layout, retaining the current rounded outer frame. */
 .ModalReceta_Contenedor{
 	width:min(900px,100%);
