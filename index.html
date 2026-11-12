@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script>
 		try {
-			if (sessionStorage.getItem('introPortadaVista') !== '26' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			if (sessionStorage.getItem('introPortadaVista') !== '27' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
 				document.documentElement.classList.add('intro-pending');
 			}
 		} catch {}
@@ -17,7 +17,7 @@
 	<link rel="preload" href="./fonts/BarlowCondensed-Regular-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="./fonts/BarlowCondensed-Black-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="./fonts/PlayfairDisplay-Italic-latin.woff2" as="font" type="font/woff2" crossorigin>
-	<link rel="stylesheet" type="text/css" href="./css/styles.css?v=intro-bar-20261112c">
+	<link rel="stylesheet" type="text/css" href="./css/styles.css?v=intro-bar-20261112d">
 	<style>
 		/* Critical intro styles prevent an unstyled first frame while the rest of the page loads. */
 		@font-face{
@@ -58,7 +58,7 @@
 					<img class="IntroPortada_Logo IntroPortada_Logo--fill" src="./images/Logo_Recipes.svg" alt="">
 				</div>
 				<div class="IntroPortada_Indicador" role="progressbar" aria-label="Carga de la página de inicio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-					<div class="IntroPortada_Progreso"><span></span></div>
+					<div class="IntroPortada_Progreso" style="display:block;width:clamp(160px,21.5vw,258px);height:8px;min-height:8px;overflow:hidden;border:1px solid rgba(139,0,0,.9);border-radius:999px;background:rgba(139,0,0,.14);flex:none"><span></span></div>
 					<span class="IntroPortada_Contador" aria-hidden="true">0%</span>
 				</div>
 			</div>
