@@ -385,30 +385,6 @@ body.IntroPortada-activa > .IntroPortada{ display:block; }
 	transition:transform 1450ms cubic-bezier(.2,.75,.25,1) 45ms;
 }
 .IntroPortada.is-filling .IntroPortada_Progreso span{ transform:scaleX(1); }
-.IntroPortada_Indicacion{
-	position:absolute; left:50%; bottom:calc(30px + env(safe-area-inset-bottom,0px));
-	display:grid; justify-items:center; gap:5px; color:rgb(139,0,0);
-	opacity:0; transform:translate3d(-50%,10px,0) scale(.94);
-	transition:opacity 360ms ease,transform 440ms cubic-bezier(.22,1,.36,1);
-}
-.IntroPortada.is-cued .IntroPortada_Indicacion{ opacity:1; transform:translate3d(-50%,0,0) scale(1); }
-.IntroPortada_ScrollIcon{ width:24px; height:30px; overflow:visible; }
-.IntroPortada_ScrollIcon path{
-	stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round;
-	stroke-dasharray:32; stroke-dashoffset:32;
-	transition:stroke-dashoffset 440ms cubic-bezier(.22,1,.36,1);
-}
-.IntroPortada.is-cued .IntroPortada_ScrollIcon path{ stroke-dashoffset:0; }
-.IntroPortada_ScrollIcon .IntroPortada_ScrollPunto{
-	fill:currentColor; opacity:1; transform:translateY(0);
-	transition:opacity 260ms ease,transform 360ms cubic-bezier(.22,1,.36,1);
-}
-.IntroPortada.is-cued .IntroPortada_ScrollIcon .IntroPortada_ScrollPunto{ opacity:0; transform:translateY(12px); }
-.IntroPortada_Indicacion span{
-	font:600 .64rem/1 "Barlow Condensed",sans-serif; letter-spacing:.13em; text-transform:uppercase;
-	opacity:0; transform:translateY(-3px); transition:opacity 300ms ease 120ms,transform 360ms ease 120ms;
-}
-.IntroPortada.is-cued .IntroPortada_Indicacion span{ opacity:.78; transform:translateY(0); }
 .IntroPortada.is-revealing{ pointer-events:none; }
 .IntroPortada.is-revealing .IntroPortada_Fondo{ transform:translate3d(0,-100%,0); }
 body.IntroPortada-activa > header{ visibility:hidden; opacity:0; transform:translate3d(0,-110%,0); }
@@ -425,13 +401,11 @@ body.IntroPortada-saliente > header{
 	.IntroPortada_Escena{top:48%;gap:28px}
 	.IntroPortada_Marca{width:clamp(100px,28vw,126px)}
 	.IntroPortada_Progreso{width:min(50vw,188px)}
-	.IntroPortada_Indicacion{bottom:calc(26px + env(safe-area-inset-bottom,0px))}
 }
 @media (max-height:520px){
 	.IntroPortada_Escena{top:45%;gap:18px}
 	.IntroPortada_Marca{width:min(21vh,132px)}
 	.IntroPortada_Progreso{width:min(31vw,205px)}
-	.IntroPortada_Indicacion{bottom:14px}
 }
 
 /* Cross-document transitions reveal the new page like a clean sheet of paper. */
