@@ -5,13 +5,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script>
 		try {
-			if (sessionStorage.getItem('introPortadaVista') !== '22' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			if (sessionStorage.getItem('introPortadaVista') !== '23' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
 				document.documentElement.classList.add('intro-pending');
 			}
 		} catch {}
 	</script>
 	<title>Cuaderno de recetas</title>
 	<link rel="icon" type="image/svg" sizes="32x32" href="./images/Logo_Recipes.svg">
+	<link rel="preload" href="./fonts/BarlowCondensed-Bold-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="stylesheet" href="./css/fonts.css">
 	<link rel="preload" href="./fonts/BarlowCondensed-Regular-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="./fonts/BarlowCondensed-Black-latin.woff2" as="font" type="font/woff2" crossorigin>
