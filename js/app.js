@@ -569,7 +569,7 @@ function iniciarBuscador() {
 function iniciarIntroPortada() {
 	if (!document.querySelector('.SEC_Titulo--home')) return;
 	const intro = document.querySelector('.IntroPortada');
-	const versionIntro = '21';
+	const versionIntro = '22';
 	const limpiarIntro = () => {
 		intro?.remove();
 		document.body.classList.remove('IntroPortada-activa', 'IntroPortada-saliente', 'IntroPortada-esperando-logo', 'IntroPortada-logo-entrando', 'IntroPortada-home-cargada');
