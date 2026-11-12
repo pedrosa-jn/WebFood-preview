@@ -324,6 +324,8 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 		if (!receta) return;
 		window.clearTimeout(temporizadorCierre);
 		modal.querySelector('.ModalReceta_Contenedor').scrollTop = 0;
+		const zonaDesplazable = modal.querySelector('.ModalReceta_Desplazable');
+		if (zonaDesplazable) zonaDesplazable.scrollTop = 0;
 		elementoDisparador = disparador;
 		const imagenReceta = rutaImagen(receta.imagen || IMAGENES_RECETA[receta.id]);
 		const marcoImagen = imagen.closest('.ModalReceta_Imagen');
@@ -350,8 +352,6 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 		}));
 		const ingredientesReceta = receta.ingredientes || [];
 		const pasosReceta = receta.pasos || [];
-		const volumenReceta = [...ingredientesReceta, ...pasosReceta].reduce((total, texto) => total + String(texto).length, 0);
-		modal.classList.toggle('ModalReceta--larga', pasosReceta.length >= 10 || volumenReceta >= 900);
 		crearElementoLista(listaIngredientes, ingredientesReceta, 'Información pendiente.');
 		listaIngredientes.classList.toggle('ModalReceta_Ingredientes--compactos', ingredientesReceta.length >= 11);
 		crearElementoLista(listaPasos, pasosReceta, 'Información pendiente.');
@@ -569,12 +569,10 @@ function iniciarBuscador() {
 function iniciarIntroPortada() {
 	if (!document.querySelector('.SEC_Titulo--home')) return;
 	const intro = document.querySelector('.IntroPortada');
-	const temporizadores = [];
-	const versionIntro = '9';
+	const versionIntro = '28';
 	const limpiarIntro = () => {
-		temporizadores.forEach(window.clearTimeout);
 		intro?.remove();
-		document.body.classList.remove('IntroPortada-activa', 'IntroPortada-saliente');
+		document.body.classList.remove('IntroPortada-activa', 'IntroPortada-saliente', 'IntroPortada-esperando-logo', 'IntroPortada-logo-entrando', 'IntroPortada-home-cargada');
 		document.documentElement.classList.remove('intro-pending');
 	};
 	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { limpiarIntro(); return; }
@@ -585,17 +583,60 @@ function iniciarIntroPortada() {
 	if (!intro) { document.documentElement.classList.remove('intro-pending'); return; }
 	document.body.classList.add('IntroPortada-activa');
 	document.documentElement.classList.remove('intro-pending');
-	const esperaInicial = 520;
-	const duracionRelleno = 1450;
-	const pausaTrasRelleno = 500;
-	const salida = 900;
-	temporizadores.push(window.setTimeout(() => intro.classList.add('is-filling'), esperaInicial));
-	const inicioSalida = esperaInicial + duracionRelleno + pausaTrasRelleno;
-	temporizadores.push(window.setTimeout(() => {
-		intro.classList.add('is-revealing');
-		document.body.classList.add('IntroPortada-saliente');
-	}, inicioSalida));
-	temporizadores.push(window.setTimeout(limpiarIntro, inicioSalida + salida + 40));
+	const duracionRelleno = 2050;
+	const pausaTrasRelleno = 200;
+	const pausaLogo = 0;
+	const esperar = ms => new Promise(resolve => window.setTimeout(resolve, ms));
+	const esperarTransicion = (elemento, propiedad, limite) => new Promise(resolve => {
+		let resuelta = false;
+		const terminar = evento => {
+			if (evento && (evento.target !== elemento || evento.propertyName !== propiedad)) return;
+			if (resuelta) return;
+			resuelta = true;
+			elemento.removeEventListener('transitionend', terminar);
+			elemento.removeEventListener('transitioncancel', terminar);
+			window.clearTimeout(respaldo);
+			resolve();
+		};
+		elemento.addEventListener('transitionend', terminar);
+		elemento.addEventListener('transitioncancel', terminar);
+		const respaldo = window.setTimeout(() => terminar(), limite);
+	});
+	const ejecutarIntro = async () => {
+		try {
+			await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+			if (!intro.isConnected) { limpiarIntro(); return; }
+			const logoRelleno = intro.querySelector('.IntroPortada_Logo--fill');
+			const barraRelleno = intro.querySelector('.IntroPortada_Progreso span');
+			const finLogo = esperarTransicion(logoRelleno, 'clip-path', duracionRelleno + 500);
+			const finBarra = esperarTransicion(barraRelleno, 'clip-path', duracionRelleno + 500);
+			intro.classList.add('is-filling');
+			await Promise.all([finLogo, finBarra]);
+			await esperar(pausaTrasRelleno);
+			if (!intro.isConnected) { limpiarIntro(); return; }
+			const fondo = intro.querySelector('.IntroPortada_Fondo');
+			const finSalida = esperarTransicion(fondo, 'transform', 1400);
+			intro.classList.add('is-revealing');
+			document.body.classList.add('IntroPortada-saliente');
+			await finSalida;
+			if (!intro.isConnected) { limpiarIntro(); return; }
+			document.body.classList.add('IntroPortada-esperando-logo');
+			intro.remove();
+			document.body.classList.remove('IntroPortada-activa', 'IntroPortada-saliente');
+			document.documentElement.classList.remove('intro-pending');
+			await esperar(pausaLogo);
+			const logoCabecera = document.querySelector('header [data-home-logo] img');
+			const finEntradaLogo = logoCabecera && esperarTransicion(logoCabecera, 'transform', 1200);
+			document.body.classList.add('IntroPortada-logo-entrando');
+			document.body.classList.remove('IntroPortada-esperando-logo');
+			if (finEntradaLogo) await finEntradaLogo;
+			document.body.classList.remove('IntroPortada-logo-entrando');
+			document.body.classList.add('IntroPortada-home-cargada');
+		} catch {
+			limpiarIntro();
+		}
+	};
+	void ejecutarIntro();
 }
 
 function iniciarLogoAnimado() {

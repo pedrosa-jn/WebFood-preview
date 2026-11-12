@@ -208,25 +208,16 @@ a {
 	    align-items: center;
 	    text-decoration: none;
 
+	    opacity:.5;
+	    transform:translateY(24px);
+	    animation:aparecer .55s cubic-bezier(.22,1,.36,1) forwards;
+	    animation-delay:calc(var(--i) * 80ms);
 	    transition: transform 0.45s ease;
-
-	    opacity: 0.5;
-	    transform: translateY(24px);
-
-	    animation: aparecer .55s cubic-bezier(.22,1,.36,1) forwards;
-	    animation-delay: calc(var(--i) * 80ms);
 		}
 
 		@keyframes aparecer{
-			    from{
-			        opacity: 0.5;
-			        transform: translateY(24px);
-			    }
-
-			    to{
-			        opacity: 1;
-			        transform: translateY(0);
-			    }
+			from{opacity:.5;transform:translateY(24px)}
+			to{opacity:1;transform:translateY(0)}
 		}
 
 			.CAT_Box:hover{
@@ -352,7 +343,7 @@ footer div{ color:#5e5f68; border-color:#c6c5be; }
 
 /* Intro: the red mark fills, then the cream sheet lifts to reveal the home. */
 .IntroPortada-activa{ overflow:hidden; }
-.IntroPortada{ display:none; position:fixed; inset:0; z-index:1000; overflow:hidden; background:rgb(245,245,240); }
+.IntroPortada{ --intro-fill-ease:cubic-bezier(.65,0,.35,1); display:none; position:fixed; inset:0; z-index:1000; overflow:hidden; background:transparent; }
 html.intro-pending body > :not(.IntroPortada){ visibility:hidden; }
 html.intro-pending .IntroPortada,
 body.IntroPortada-activa > .IntroPortada{ display:block; }
@@ -362,7 +353,7 @@ body.IntroPortada-activa > .IntroPortada{ display:block; }
 }
 .IntroPortada_Escena{
 	position:absolute; left:50%; top:49%; transform:translate(-50%,-50%);
-	display:grid; justify-items:center; gap:clamp(26px,3.4vw,40px);
+	display:grid; justify-items:center; gap:clamp(24px,3vw,34px);
 }
 .IntroPortada_Marca{
 	position:relative; width:clamp(94px,calc(14vw - 10px),150px); aspect-ratio:814.95/496.1;
@@ -371,8 +362,8 @@ body.IntroPortada-activa > .IntroPortada{ display:block; }
 .IntroPortada_Logo{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; }
 .IntroPortada_Logo--base{ opacity:.5; }
 .IntroPortada_Logo--fill{
-	clip-path:ellipse(0% 0% at 50% 100%);
-	transition:clip-path 1450ms cubic-bezier(.2,.75,.25,1);
+	clip-path:ellipse(150% 0% at 50% 100%);
+	transition:clip-path 2050ms var(--intro-fill-ease);
 }
 .IntroPortada.is-filling .IntroPortada_Logo--fill{ clip-path:ellipse(150% 150% at 50% 100%); }
 .IntroPortada_Progreso{
@@ -381,24 +372,56 @@ body.IntroPortada-activa > .IntroPortada{ display:block; }
 }
 .IntroPortada_Progreso span{
 	display:block; width:100%; height:100%; border-radius:inherit; background:rgb(139,0,0);
-	transform:scaleX(0); transform-origin:left center;
-	transition:transform 1450ms cubic-bezier(.2,.75,.25,1) 45ms;
+	clip-path:inset(0 100% 0 0);
+	transition:clip-path 2050ms var(--intro-fill-ease);
 }
-.IntroPortada.is-filling .IntroPortada_Progreso span{ transform:scaleX(1); }
+.IntroPortada.is-filling .IntroPortada_Progreso span{ clip-path:inset(0 0 0 0); }
 .IntroPortada.is-revealing{ pointer-events:none; }
 .IntroPortada.is-revealing .IntroPortada_Fondo{ transform:translate3d(0,-100%,0); }
-body.IntroPortada-activa > header{ visibility:hidden; opacity:0; transform:translate3d(0,-110%,0); }
-body.IntroPortada-saliente > header{
-	visibility:visible; z-index:1001; animation:introNavRebote 780ms cubic-bezier(.2,.8,.2,1) 240ms both;
+header [data-home-logo] img{ opacity:1; transform:none; transition:transform 250ms ease,opacity 250ms ease; }
+header [data-home-logo] img:hover{ opacity:.8; transform:translateY(-3px); }
+body.IntroPortada-activa > header [data-home-logo] img,
+body.IntroPortada-saliente > header [data-home-logo] img,
+body.IntroPortada-esperando-logo > header [data-home-logo] img{
+	opacity:1; transform:translate3d(0,calc(-100vh - 100%),0)!important;
 }
-@keyframes introNavRebote{
-	0%{opacity:0;transform:translate3d(0,-110%,0)}
-	68%{opacity:1;transform:translate3d(0,7px,0)}
-	84%{transform:translate3d(0,-2px,0)}
-	100%{opacity:1;transform:translate3d(0,0,0)}
+body.IntroPortada-logo-entrando > header [data-home-logo] img{
+	opacity:1; transform:none!important; transition:transform 780ms cubic-bezier(.22,1,.36,1);
+}
+body.IntroPortada-activa .SEC_Titulo--home .TXT_Buscador{
+	opacity:0; transform:translate3d(0,18px,0); animation:none;
+}
+body.IntroPortada-saliente .SEC_Titulo--home .TXT_Buscador{
+	animation:introHomeReveal 680ms cubic-bezier(.22,1,.36,1) 90ms both;
+}
+@keyframes introHomeReveal{
+	from{opacity:0;transform:translate3d(0,18px,0)}
+	to{opacity:1;transform:translate3d(0,0,0)}
+}
+html.intro-pending #Categorias .CAT_Box,
+body.IntroPortada-activa #Categorias .CAT_Box{
+	animation:none;
+	opacity:.5;
+	transform:translateY(24px);
+}
+body.IntroPortada-saliente #Categorias .CAT_Box{
+	animation:aparecer .55s cubic-bezier(.22,1,.36,1) both;
+	animation-delay:calc(var(--i) * 35ms);
+}
+body.IntroPortada-home-cargada #Categorias .CAT_Box{
+	animation:none;
+	opacity:1;
+	transform:none;
+}
+body.IntroPortada-home-cargada #Categorias .CAT_Box:hover{transform:translateX(-3px);}
+@media (prefers-reduced-motion:reduce){
+	header [data-home-logo] img{ transition:none; }
+	body.IntroPortada-activa > header [data-home-logo] img,
+	body.IntroPortada-saliente > header [data-home-logo] img,
+	body.IntroPortada-esperando-logo > header [data-home-logo] img{ transform:none!important; }
 }
 @media (max-width:600px){
-	.IntroPortada_Escena{top:48%;gap:28px}
+	.IntroPortada_Escena{top:48%;gap:32px}
 	.IntroPortada_Marca{width:clamp(100px,28vw,126px)}
 	.IntroPortada_Progreso{width:min(50vw,188px)}
 }
@@ -417,7 +440,8 @@ body.IntroPortada-saliente > header{
 @keyframes pagePaperReveal{ from{ opacity:.6; clip-path:inset(0 0 100% 0); } to{ opacity:1; clip-path:inset(0 0 0 0); } }
 @media (prefers-reduced-motion:reduce){
 	.IntroPortada{ display:none; }
-	body.IntroPortada-activa > header{visibility:visible;opacity:1;transform:none;animation:none;}
+	body.IntroPortada-activa > header [data-home-logo] img,
+	body.IntroPortada-saliente > header [data-home-logo] img{opacity:1;transform:none!important;}
 	::view-transition-group(root),::view-transition-old(root),::view-transition-new(root){ animation:none!important; }
 }
 #Categorias{ position:relative; z-index:1; }
