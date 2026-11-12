@@ -217,11 +217,11 @@ function crearElementoLista(elemento, textos, mensajeVacio) {
 	});
 }
 
-function iniciarReveladoFilas(rejilla) {
+function iniciarReveladoFilas(rejilla, claseRevelado = 'Recetas--revelado-listo') {
 	if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 	const tarjetas = [...rejilla.querySelectorAll(':scope > a')];
 	if (!tarjetas.length) return;
-	rejilla.classList.add('Recetas--revelado-listo');
+	rejilla.classList.add(claseRevelado);
 	const observer = new IntersectionObserver(entradas => {
 		entradas.forEach(entrada => {
 			if (!entrada.isIntersecting) return;
@@ -236,6 +236,25 @@ function iniciarReveladoFilas(rejilla) {
 		});
 	}, { threshold: 0.14, rootMargin: '0px 0px -24px 0px' });
 	tarjetas.forEach(tarjeta => observer.observe(tarjeta));
+}
+
+
+function iniciarReveladoCategorias() {
+	const lista = document.getElementById('Categorias');
+	if (!lista || !('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+	lista.classList.add('Categorias--revelado-listo');
+	const iniciar = () => iniciarReveladoFilas(lista, 'Categorias--revelado-listo');
+	if (document.body.classList.contains('IntroPortada-activa')) {
+		document.addEventListener('intro:home-reveal', iniciar, { once: true });
+	} else {
+		iniciar();
+	}
+	lista.addEventListener('focusin', evento => {
+		const categoria = evento.target.closest('.CAT_Box');
+		if (!categoria) return;
+		categoria.style.setProperty('--reveal-delay', '0ms');
+		categoria.classList.add('is-revealed');
+	});
 }
 
 function renderizarRecetas() {
@@ -574,6 +593,7 @@ function iniciarIntroPortada() {
 		intro?.remove();
 		document.body.classList.remove('IntroPortada-activa', 'IntroPortada-saliente', 'IntroPortada-esperando-logo', 'IntroPortada-logo-entrando', 'IntroPortada-home-cargada');
 		document.documentElement.classList.remove('intro-pending');
+		document.dispatchEvent(new Event('intro:home-reveal'));
 	};
 	if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { limpiarIntro(); return; }
 	try {
@@ -618,6 +638,7 @@ function iniciarIntroPortada() {
 			const finSalida = esperarTransicion(fondo, 'transform', 1400);
 			intro.classList.add('is-revealing');
 			document.body.classList.add('IntroPortada-saliente');
+			document.dispatchEvent(new Event('intro:home-reveal'));
 			await finSalida;
 			if (!intro.isConnected) { limpiarIntro(); return; }
 			document.body.classList.add('IntroPortada-esperando-logo');
@@ -669,6 +690,7 @@ renderizarRecetas();
 iniciarMenuMovil();
 iniciarBuscador();
 iniciarIntroPortada();
+iniciarReveladoCategorias();
 iniciarTransicionPaginas();
 iniciarLogoAnimado();
 iniciarCursorMorph();

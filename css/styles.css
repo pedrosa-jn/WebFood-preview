@@ -208,17 +208,9 @@ a {
 	    align-items: center;
 	    text-decoration: none;
 
-	    opacity:.5;
-	    transform:translateY(24px);
-	    animation:aparecer .55s cubic-bezier(.22,1,.36,1) forwards;
-	    animation-delay:calc(var(--i) * 80ms);
 	    transition: transform 0.45s ease;
 		}
 
-		@keyframes aparecer{
-			from{opacity:.5;transform:translateY(24px)}
-			to{opacity:1;transform:translateY(0)}
-		}
 
 			.CAT_Box:hover{
 				background-color: rgb(235, 235, 228);
@@ -398,22 +390,18 @@ body.IntroPortada-saliente .SEC_Titulo--home .TXT_Buscador{
 	from{opacity:0;transform:translate3d(0,18px,0)}
 	to{opacity:1;transform:translate3d(0,0,0)}
 }
-html.intro-pending #Categorias .CAT_Box,
-body.IntroPortada-activa #Categorias .CAT_Box{
-	animation:none;
-	opacity:.5;
-	transform:translateY(24px);
+/* Same viewport-triggered entrance as recipe rows; translate keeps hover independent. */
+.Categorias--revelado-listo > a{
+	opacity:0;
+	translate:0 14px;
+	transition:opacity 520ms cubic-bezier(.22,1,.36,1) var(--reveal-delay,0ms),
+		translate 520ms cubic-bezier(.22,1,.36,1) var(--reveal-delay,0ms),
+		transform 450ms ease;
 }
-body.IntroPortada-saliente #Categorias .CAT_Box{
-	animation:aparecer .55s cubic-bezier(.22,1,.36,1) both;
-	animation-delay:calc(var(--i) * 35ms);
+.Categorias--revelado-listo > a.is-revealed{opacity:1;translate:0 0;}
+@media (prefers-reduced-motion:reduce){
+	.Categorias--revelado-listo > a{opacity:1;translate:none;transition:none;}
 }
-body.IntroPortada-home-cargada #Categorias .CAT_Box{
-	animation:none;
-	opacity:1;
-	transform:none;
-}
-body.IntroPortada-home-cargada #Categorias .CAT_Box:hover{transform:translateX(-3px);}
 @media (prefers-reduced-motion:reduce){
 	header [data-home-logo] img{ transition:none; }
 	body.IntroPortada-activa > header [data-home-logo] img,
