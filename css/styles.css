@@ -414,7 +414,7 @@ input:focus-visible{
 	.CursorMorph{ position:fixed;left:0;top:0;width:32px;height:34px;z-index:30000;pointer-events:none;opacity:0;will-change:transform,opacity;transition:opacity .14s ease; }
 	.CursorMorph.is-visible{ opacity:1; }
 	.CursorMorph.is-hidden{ opacity:0; }
-	.CursorMorph img{ position:absolute;display:block;object-fit:contain;transition:opacity .32s cubic-bezier(.2,.8,.2,1),transform .38s cubic-bezier(.2,.8,.2,1); }
+	.CursorMorph img{ position:absolute;display:block;object-fit:contain;transition:opacity .19s cubic-bezier(.2,.8,.2,1),transform .24s cubic-bezier(.2,.8,.2,1); }
 	.CursorMorph_Flecha{ left:0;top:0;width:26px;height:26px;transform:scale(1) rotate(0);transform-origin:0 0; }
 	.CursorMorph_Mano{ left:-5px;top:-2px;width:32px;height:34px;opacity:0;transform:scale(.72) rotate(-10deg);transform-origin:5px 2px; }
 	.CursorMorph.is-interactive .CursorMorph_Flecha{ opacity:0;transform:scale(.72) rotate(10deg); }
