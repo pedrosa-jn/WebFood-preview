@@ -367,8 +367,8 @@ body.IntroPortada-activa > .IntroPortada{ display:block; }
 }
 .IntroPortada.is-filling .IntroPortada_Logo--fill{ clip-path:ellipse(150% 150% at 50% 100%); }
 .IntroPortada_Progreso{
-	width:clamp(160px,21.5vw,258px); height:8px; overflow:hidden; border:1px solid rgba(139,0,0,.72);
-	border-radius:999px; background:rgba(139,0,0,.08);
+	display:block; width:clamp(160px,21.5vw,258px); height:8px; min-height:8px; overflow:hidden; border:1px solid rgba(139,0,0,.9);
+	border-radius:999px; background:rgba(139,0,0,.14);
 }
 .IntroPortada_Indicador{ display:grid; justify-items:center; gap:8px; }
 .IntroPortada_Contador{

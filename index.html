@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script>
 		try {
-			if (sessionStorage.getItem('introPortadaVista') !== '25' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			if (sessionStorage.getItem('introPortadaVista') !== '26' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
 				document.documentElement.classList.add('intro-pending');
 			}
 		} catch {}
@@ -17,7 +17,7 @@
 	<link rel="preload" href="./fonts/BarlowCondensed-Regular-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="./fonts/BarlowCondensed-Black-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="./fonts/PlayfairDisplay-Italic-latin.woff2" as="font" type="font/woff2" crossorigin>
-	<link rel="stylesheet" type="text/css" href="./css/styles.css?v=intro-counter-20261112b">
+	<link rel="stylesheet" type="text/css" href="./css/styles.css?v=intro-bar-20261112c">
 	<style>
 		/* Critical intro styles prevent an unstyled first frame while the rest of the page loads. */
 		@font-face{
@@ -37,7 +37,7 @@
 		.IntroPortada_Logo--fill{clip-path:ellipse(150% 0% at 50% 100%);transition:clip-path 2050ms var(--intro-fill-ease)}
 		.IntroPortada.is-filling .IntroPortada_Logo--fill{clip-path:ellipse(150% 150% at 50% 100%)}
 		.IntroPortada_Indicador{display:grid;justify-items:center;gap:8px}
-		.IntroPortada_Progreso{width:clamp(160px,21.5vw,258px);height:8px;overflow:hidden;border:1px solid rgba(139,0,0,.72);border-radius:999px;background:rgba(139,0,0,.08)}
+		.IntroPortada_Progreso{display:block;width:clamp(160px,21.5vw,258px);height:8px;min-height:8px;overflow:hidden;border:1px solid rgba(139,0,0,.9);border-radius:999px;background:rgba(139,0,0,.14)}
 		.IntroPortada_Progreso span{display:block;width:100%;height:100%;border-radius:inherit;background:rgb(139,0,0);clip-path:inset(0 100% 0 0);transition:clip-path 2050ms var(--intro-fill-ease)}
 		.IntroPortada.is-filling .IntroPortada_Progreso span{clip-path:inset(0 0 0 0)}
 		.IntroPortada_Contador{color:rgb(139,0,0);font-family:"Barlow Condensed",sans-serif;font-size:clamp(18px,2.04vw,20px);font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
