@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script>
 		try {
-			if (sessionStorage.getItem('introPortadaVista') !== '8' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			if (sessionStorage.getItem('introPortadaVista') !== '21' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
 				document.documentElement.classList.add('intro-pending');
 			}
 		} catch {}
@@ -16,7 +16,7 @@
 	<link rel="preload" href="./fonts/BarlowCondensed-Regular-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="./fonts/BarlowCondensed-Black-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="./fonts/PlayfairDisplay-Italic-latin.woff2" as="font" type="font/woff2" crossorigin>
-	<link rel="stylesheet" type="text/css" href="./css/styles.css?v=intro-fill-scroll-20261112a">
+	<link rel="stylesheet" type="text/css" href="./css/styles.css?v=intro-counter-20261112a">
 	
 </head>
 
@@ -28,15 +28,10 @@
 					<img class="IntroPortada_Logo IntroPortada_Logo--base" src="./images/Logo_Recipes.svg" alt="">
 					<img class="IntroPortada_Logo IntroPortada_Logo--fill" src="./images/Logo_Recipes.svg" alt="">
 				</div>
-				<div class="IntroPortada_Progreso"><span></span></div>
-			</div>
-			<div class="IntroPortada_Indicacion">
-				<svg class="IntroPortada_ScrollIcon" viewBox="0 0 32 38" fill="none" aria-hidden="true">
-					<path class="IntroPortada_ScrollLinea" d="M16 3v23" />
-					<path class="IntroPortada_ScrollFlecha" d="m8 19 8 8 8-8" />
-					<circle class="IntroPortada_ScrollPunto" cx="16" cy="7" r="2" />
-				</svg>
-				<span>Continúa</span>
+				<div class="IntroPortada_Indicador" role="progressbar" aria-label="Carga de la página de inicio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+					<div class="IntroPortada_Progreso"><span></span></div>
+					<span class="IntroPortada_Contador" aria-hidden="true">0%</span>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -95,7 +90,7 @@
 <!-- JS SCRIPT -->
 
 	<script src="./data/recetas.js?v=recipe-images-20261110"></script>
-	<script src="./js/app.js?v=intro-fill-scroll-20261112a"></script>
+	<script src="./js/app.js?v=intro-counter-20261112a"></script>
 
 </body>
 </html>

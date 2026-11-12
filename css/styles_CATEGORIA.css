@@ -1087,14 +1087,6 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	}
 }
 
-/* A little extra vertical room for recipes whose full text exceeds the standard layout. */
-@media (min-width:701px){
-	#ModalReceta.ModalReceta--larga .ModalReceta_Contenedor{
-		height:min(704px,calc(100dvh - 40px));
-		max-height:calc(100dvh - 40px);
-	}
-}
-
 /* Recipe rows enter as a quiet, staggered reading sequence. */
 .Recetas--revelado-listo > a{
 	opacity:0;
@@ -1295,4 +1287,51 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 		transition:none!important;
 		animation:none!important;
 	}
+}
+
+/* Desktop recipe details share one right-column scroller; return stays pinned. */
+@media (min-width:701px){
+	.ModalReceta_Contenido{grid-template-rows:minmax(0,1fr);}
+	.ModalReceta_Info{
+		display:flex;
+		flex-direction:column;
+		min-height:0;
+		overflow:hidden;
+	}
+	.ModalReceta_Desplazable{
+		flex:1 1 0;
+		min-height:0;
+		display:flex;
+		flex-direction:column;
+		overflow-x:hidden;
+		overflow-y:auto;
+		overscroll-behavior:contain;
+		-webkit-overflow-scrolling:touch;
+		scrollbar-gutter:stable;
+	}
+	.ModalReceta_Titulo{flex:0 0 auto;}
+	.ModalReceta_Cuerpo{
+		flex:0 0 auto;
+		min-height:auto;
+		display:flex;
+		flex-direction:column;
+		overflow:visible;
+	}
+	.ModalReceta_Cuerpo > .ModalReceta_Seccion:not(.ModalReceta_Pasos),
+	.ModalReceta_Cuerpo > .ModalReceta_Pasos{
+		flex:0 0 auto;
+		min-height:0;
+		display:flex;
+		flex-direction:column;
+		overflow:visible;
+	}
+	.ModalReceta_Cuerpo > .ModalReceta_Seccion:not(.ModalReceta_Pasos) ul#ModalIng,
+	.ModalReceta_Pasos ol#ModalPasos{
+		flex:0 0 auto;
+		height:auto;
+		min-height:0;
+		max-height:none;
+		overflow:visible;
+	}
+	.ModalReceta_Footer{flex:0 0 auto;}
 }
