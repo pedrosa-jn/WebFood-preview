@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script>
 		try {
-			if (sessionStorage.getItem('introPortadaVista') !== '23' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			if (sessionStorage.getItem('introPortadaVista') !== '24' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
 				document.documentElement.classList.add('intro-pending');
 			}
 		} catch {}
@@ -31,7 +31,7 @@
 				</div>
 				<div class="IntroPortada_Indicador" role="progressbar" aria-label="Carga de la página de inicio" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
 					<div class="IntroPortada_Progreso"><span></span></div>
-					<span class="IntroPortada_Contador" aria-hidden="true">0%</span>
+					<span class="IntroPortada_Contador" style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(18px,2.04vw,20px);font-weight:700;font-style:normal;line-height:1;color:#8b0000;font-variant-numeric:tabular-nums" aria-hidden="true">0%</span>
 				</div>
 			</div>
 		</div>
