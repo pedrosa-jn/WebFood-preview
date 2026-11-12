@@ -570,7 +570,7 @@ function iniciarIntroPortada() {
 	if (!document.querySelector('.SEC_Titulo--home')) return;
 	const intro = document.querySelector('.IntroPortada');
 	const temporizadores = [];
-	const versionIntro = '8';
+	const versionIntro = '9';
 	const limpiarIntro = () => {
 		temporizadores.forEach(window.clearTimeout);
 		intro?.remove();
@@ -587,12 +587,10 @@ function iniciarIntroPortada() {
 	document.documentElement.classList.remove('intro-pending');
 	const esperaInicial = 520;
 	const duracionRelleno = 1450;
-	const entradaSenal = 440;
-	const pausaTrasSenal = 500;
+	const pausaTrasRelleno = 500;
 	const salida = 900;
 	temporizadores.push(window.setTimeout(() => intro.classList.add('is-filling'), esperaInicial));
-	temporizadores.push(window.setTimeout(() => intro.classList.add('is-cued'), esperaInicial + duracionRelleno));
-	const inicioSalida = esperaInicial + duracionRelleno + entradaSenal + pausaTrasSenal;
+	const inicioSalida = esperaInicial + duracionRelleno + pausaTrasRelleno;
 	temporizadores.push(window.setTimeout(() => {
 		intro.classList.add('is-revealing');
 		document.body.classList.add('IntroPortada-saliente');
