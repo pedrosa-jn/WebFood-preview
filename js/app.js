@@ -266,12 +266,19 @@ function iniciarReveladoFilas(rejilla, claseRevelado = 'Recetas--revelado-listo'
 			const fila = tarjetas
 				.filter(item => Math.abs(item.getBoundingClientRect().top - arriba) < 3)
 				.sort((a, b) => a.getBoundingClientRect().left - b.getBoundingClientRect().left);
-			tarjeta.style.setProperty('--reveal-delay', `${fila.indexOf(tarjeta) * 64}ms`);
+			tarjeta.style.setProperty('--reveal-delay', `${fila.indexOf(tarjeta) * 45}ms`);
 			tarjeta.classList.add('is-revealed');
 			observer.unobserve(tarjeta);
 		});
 	}, { threshold: 0.14, rootMargin: '0px 0px -24px 0px' });
 	tarjetas.forEach(tarjeta => observer.observe(tarjeta));
+	rejilla.addEventListener('focusin', evento => {
+		const tarjeta = evento.target.closest('a[data-id]');
+		if (!tarjeta) return;
+		tarjeta.style.setProperty('--reveal-delay','0ms');
+		tarjeta.classList.add('is-revealed');
+		observer.unobserve(tarjeta);
+	});
 }
 
 

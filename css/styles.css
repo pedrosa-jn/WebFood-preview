@@ -504,9 +504,9 @@ html{scrollbar-gutter:stable;}
 @media(max-width:700px){
  body > header > a > img{view-transition-name:site-brand;}
  .SiteHeader > .MenuToggle{view-transition-name:site-menu;}
- ::view-transition-group(site-brand){animation-duration:480ms;animation-timing-function:cubic-bezier(.22,1,.36,1);}
+ ::view-transition-group(site-brand){animation-duration:820ms;animation-timing-function:cubic-bezier(.45,0,.2,1);}
  ::view-transition-old(site-brand),::view-transition-new(site-brand){animation:none;mix-blend-mode:normal;height:100%;}
- html:active-view-transition-type(home-category)::view-transition-new(site-menu){animation:menuArrival 240ms cubic-bezier(.22,1,.36,1) 180ms backwards;}
+ html:active-view-transition-type(home-category)::view-transition-new(site-menu){animation:menuArrival 260ms cubic-bezier(.22,1,.36,1) 320ms backwards;}
  @keyframes menuArrival{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
 }
 @media(prefers-reduced-motion:reduce){

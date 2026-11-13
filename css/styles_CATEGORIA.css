@@ -1100,18 +1100,13 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	}
 }
 
-/* Recipe rows enter as a quiet, staggered reading sequence. */
-.Recetas--revelado-listo > a{
-	opacity:0;
-	transform:translate3d(0,14px,0);
-	transition:opacity 520ms var(--motion-ease-enter) var(--reveal-delay,0ms),
-		transform 520ms var(--motion-ease-enter) var(--reveal-delay,0ms);
-}
-.Recetas--revelado-listo > a.is-revealed{opacity:1;transform:translate3d(0,0,0);}
-@media (prefers-reduced-motion:reduce){
-	.Recetas--revelado-listo > a{opacity:1;transform:none;transition:none;}
-}
-
+/* Editorial reveal belongs to the outer card, preserving its existing hover. */
+.Recetas--revelado-listo > a{opacity:.65;clip-path:inset(0 0 18% 0);transform:none;transition:none;}
+.Recetas--revelado-listo > a.is-revealed{opacity:1;clip-path:none;animation:recipeEditorialReveal 620ms var(--motion-ease-enter) var(--reveal-delay,0ms) backwards;}
+@keyframes recipeEditorialReveal{from{opacity:.65;clip-path:inset(0 0 18% 0);}to{opacity:1;clip-path:inset(0);}}
+.Recetas--revelado-listo > a:focus-visible{opacity:1;clip-path:none;animation:none;}
+.Recetas.is-switching-grid > a{opacity:1;clip-path:none;animation:none;}
+@media(prefers-reduced-motion:reduce){.Recetas--revelado-listo > a{opacity:1;clip-path:none;transform:none;transition:none;animation:none!important;}}
 
 /* Mobile cards and recipe sheet: two columns, larger labels, one contained scroll surface. */
 @media (max-width:700px){
@@ -1386,9 +1381,9 @@ html{scrollbar-gutter:stable;}
 @media(max-width:700px){
  body > header > a > img{view-transition-name:site-brand;}
  .SiteHeader > .MenuToggle{view-transition-name:site-menu;}
- ::view-transition-group(site-brand){animation-duration:480ms;animation-timing-function:cubic-bezier(.22,1,.36,1);}
+ ::view-transition-group(site-brand){animation-duration:820ms;animation-timing-function:cubic-bezier(.45,0,.2,1);}
  ::view-transition-old(site-brand),::view-transition-new(site-brand){animation:none;mix-blend-mode:normal;height:100%;}
- html:active-view-transition-type(home-category)::view-transition-new(site-menu){animation:menuArrival 240ms cubic-bezier(.22,1,.36,1) 180ms backwards;}
+ html:active-view-transition-type(home-category)::view-transition-new(site-menu){animation:menuArrival 260ms cubic-bezier(.22,1,.36,1) 320ms backwards;}
  @keyframes menuArrival{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
 }
 @media(prefers-reduced-motion:reduce){
@@ -1396,3 +1391,8 @@ html{scrollbar-gutter:stable;}
 }
 
 @media(max-width:700px){.SEC_Titulo > .Title{translate:0 -32px;}}
+
+/* An opaque header surface occludes the menu throughout its upward/downward travel. */
+.SiteHeader{isolation:isolate;}
+.SiteHeader::before{content:"";position:absolute;inset:0;z-index:16;background:rgb(245,245,240);pointer-events:none;}
+.SiteHeader > a,.SiteHeader > .MenuDesktop{position:relative;z-index:20;}

@@ -55,3 +55,13 @@
 @keyframes mobileSearchBackdropOut{from{opacity:1;}to{opacity:0;}}
 .MobileSearch.is-closing::backdrop{animation:mobileSearchBackdropOut 300ms ease both;}
 @media(prefers-reduced-motion:reduce){.MobileSearch::backdrop{animation:none;}}
+
+/* Selected editorial seal: keep the existing magnifier and morphing grid glyphs. */
+@media(max-width:700px){
+ .MobileTools .MobileTools_Toggle{outline:1px solid rgb(139,0,0);outline-offset:4px;border:1px solid rgb(245,245,240);box-shadow:none;}
+ .MobileTools_Options{bottom:74px;min-width:182px;gap:0;padding:8px 16px;border:1px solid rgb(139,0,0);border-radius:12px;background:rgb(245,245,240);transform:translateY(8px) scale(.98);transform-origin:bottom right;}
+ .MobileTools_Options>button{display:flex;align-items:center;justify-content:space-between;gap:24px;width:100%;height:48px;border:0;border-radius:0;background:transparent;box-shadow:none;}
+ .MobileTools_Options>button+button{border-top:1px solid rgba(139,0,0,.25);}
+ .MobileTools_Options .MobileTools_Label{position:static;padding:0;background:transparent;box-shadow:none;white-space:nowrap;font-size:17px;}
+ .MobileTools_Options svg{flex:none;}
+}
