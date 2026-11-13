@@ -1369,3 +1369,8 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 .TitleGridLayer::before{inset:-112px 0;background-image:linear-gradient(to right,rgba(209,47,47,.28) 1px,transparent 1px),linear-gradient(rgba(209,47,47,.28) 1px,transparent 1px);background-size:22px 22px;background-position:0 112px,0 112px;transform:translate3d(0,var(--grid-offset,0px),0);}
 .TitleGridLayer::after{inset:0;background:linear-gradient(rgba(245,245,240,0) 40%,rgb(245,245,240) 85%);}
 @media(prefers-reduced-motion:reduce){.TitleGridLayer::before{transform:none;}}
+
+/* Menu header stays reachable; only the category list can scroll while open. */
+body.MenuMobile-open > .SiteHeader,body.MenuMobile-closing > .SiteHeader{position:fixed;inset:0 0 auto;width:100%;z-index:1000;}
+body.MenuMobile-open .MenuMobile_Categorias,body.MenuMobile-closing .MenuMobile_Categorias{overscroll-behavior:contain;touch-action:pan-y;}
+body.MenuMobile-open .MobileTools,body.MenuMobile-closing .MobileTools{opacity:0;pointer-events:none;}

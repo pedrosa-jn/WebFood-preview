@@ -160,46 +160,73 @@ function iniciarMenuMovil() {
 	const boton = document.querySelector('.MenuToggle');
 	const menu = document.querySelector('.MenuMobile');
 	const cabecera = document.querySelector('.SiteHeader');
-	if (!boton || !menu) return;
-
-	const cerrar = (devolverFoco = false) => {
-		boton.setAttribute('aria-expanded', 'false');
-		boton.setAttribute('aria-label', 'Abrir menú');
-		menu.setAttribute('aria-hidden', 'true');
-		menu.inert = true;
-		menu.classList.add('is-closing');
-		menu.classList.remove('is-open');
-		document.body.classList.remove('MenuMobile-open');
-
-		if (devolverFoco) boton.focus();
+	if (!boton || !menu || !cabecera) return;
+	const reducido = matchMedia('(prefers-reduced-motion: reduce)');
+	const propiedades = ['position', 'top', 'left', 'right', 'width', 'paddingTop'];
+	let bloqueo = null, temporizador = 0;
+	const bloquear = () => {
+		if (bloqueo) return;
+		const altura = cabecera.getBoundingClientRect().height;
+		const padding = parseFloat(getComputedStyle(document.body).paddingTop) || 0;
+		bloqueo = {
+			y:window.scrollY,
+			estilos:Object.fromEntries(propiedades.map(p=>[p,document.body.style[p]])),
+			inertes:[...document.body.children].filter(el=>el!==cabecera).map(el=>[el,el.inert])
+		};
+		bloqueo.inertes.forEach(([el])=>{el.inert=true;});
+		Object.assign(document.body.style,{position:'fixed',top:`-${bloqueo.y}px`,left:'0',right:'0',width:'100%',paddingTop:`${padding+altura}px`});
 	};
-
-	boton.addEventListener('click', () => {
-		const abierto = boton.getAttribute('aria-expanded') === 'true';
-		if (abierto) {
-			cerrar();
-			return;
-		}
-
-		menu.inert = false;
-		boton.setAttribute('aria-expanded', 'true');
-		boton.setAttribute('aria-label', 'Cerrar menú');
-		menu.setAttribute('aria-hidden', 'false');
-		cabecera?.style.setProperty('border-bottom-color', 'transparent');
+	const terminarCierre = () => {
+		if (boton.getAttribute('aria-expanded') === 'true') return;
+		clearTimeout(temporizador);
 		menu.classList.remove('is-closing');
-		menu.classList.add('is-open');
-		document.body.classList.add('MenuMobile-open');
+		document.body.classList.remove('MenuMobile-open','MenuMobile-closing');
+		cabecera.style.removeProperty('border-bottom-color');
+		if (!bloqueo) return;
+		const guardado = bloqueo; bloqueo = null;
+		Object.assign(document.body.style,guardado.estilos);
+		guardado.inertes.forEach(([el,inert])=>{el.inert=inert;});
+		const behavior = document.documentElement.style.scrollBehavior;
+		document.documentElement.style.scrollBehavior='auto';
+		window.scrollTo(0,guardado.y);
+		document.documentElement.style.scrollBehavior=behavior;
+	};
+	const cerrar = (devolverFoco=false,inmediato=false) => {
+		if (!bloqueo) return;
+		boton.setAttribute('aria-expanded','false');
+		boton.setAttribute('aria-label','Abrir menú');
+		menu.setAttribute('aria-hidden','true'); menu.inert=true;
+		menu.classList.add('is-closing'); menu.classList.remove('is-open');
+		document.body.classList.remove('MenuMobile-open');
+		document.body.classList.add('MenuMobile-closing');
+		if (devolverFoco) boton.focus({preventScroll:true});
+		clearTimeout(temporizador);
+		if (inmediato || reducido.matches) terminarCierre();
+		else temporizador=window.setTimeout(terminarCierre,650);
+	};
+	boton.addEventListener('click',()=>{
+		if (boton.getAttribute('aria-expanded')==='true') {cerrar();return;}
+		clearTimeout(temporizador);
+		bloquear();
+		menu.inert=false;
+		boton.setAttribute('aria-expanded','true');boton.setAttribute('aria-label','Cerrar menú');
+		menu.setAttribute('aria-hidden','false');cabecera.style.setProperty('border-bottom-color','transparent');
+		document.body.classList.remove('MenuMobile-closing');document.body.classList.add('MenuMobile-open');
+		menu.classList.remove('is-closing');menu.classList.add('is-open');
 	});
-
-	menu.addEventListener('transitionend', evento => {
-		if (evento.target !== menu || evento.propertyName !== 'transform' || !menu.classList.contains('is-closing')) return;
-		menu.classList.remove('is-closing');
-		cabecera?.style.removeProperty('border-bottom-color');
+	menu.addEventListener('transitionend',e=>{if(e.target===menu&&e.propertyName==='transform'&&menu.classList.contains('is-closing'))terminarCierre();});
+	menu.addEventListener('click',e=>{if(e.target.closest('a[href]'))cerrar(false,true);});
+	cabecera.querySelector(':scope > a')?.addEventListener('click',()=>cerrar(false,true));
+	document.addEventListener('keydown',e=>{
+		if(boton.getAttribute('aria-expanded')!=='true')return;
+		if(e.key==='Escape'){e.preventDefault();cerrar(true);return;}
+		if(e.key!=='Tab')return;
+		const elementos=[...cabecera.querySelectorAll('a[href],button:not([disabled])')].filter(el=>el.getClientRects().length&&!el.closest('[inert]'));
+		const primero=elementos[0],ultimo=elementos[elementos.length-1];
+		if(e.shiftKey&&document.activeElement===primero){e.preventDefault();ultimo?.focus();}
+		else if(!e.shiftKey&&document.activeElement===ultimo){e.preventDefault();primero?.focus();}
 	});
-
-	document.addEventListener('keydown', evento => {
-		if (evento.key === 'Escape' && boton.getAttribute('aria-expanded') === 'true') cerrar(true);
-	});
+	matchMedia('(min-width:701px) and (hover:hover) and (pointer:fine)').addEventListener('change',e=>{if(e.matches)cerrar(false,true);});
 }
 
 function crearElementoLista(elemento, textos, mensajeVacio) {
@@ -285,9 +312,9 @@ function iniciarParallaxCuadricula() {
 	let visible = true, frame = 0;
 	const actualizar = () => {
 		frame = 0;
-		if (!visible || reducido.matches) return;
+		if (!visible || reducido.matches || document.body.classList.contains('MenuMobile-open') || document.body.classList.contains('MenuMobile-closing')) return;
 		const desplazamiento = Math.min(movil.matches ? 64 : 96, Math.max(0, window.scrollY) * (movil.matches ? .13 : .2));
-		titulo.style.setProperty('--grid-offset', `${(-desplazamiento).toFixed(3)}px`);
+		titulo.style.setProperty('--grid-offset', `${desplazamiento.toFixed(3)}px`);
 	};
 	const solicitar = () => {
 		if (!frame && visible && !reducido.matches) frame = requestAnimationFrame(actualizar);
