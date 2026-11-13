@@ -286,8 +286,8 @@ function iniciarParallaxCuadricula() {
 	const actualizar = () => {
 		frame = 0;
 		if (!visible || reducido.matches) return;
-		const progreso = Math.min(1, Math.max(0, window.scrollY / (titulo.offsetHeight + 63)));
-		titulo.style.setProperty('--grid-offset', `${(-progreso * (movil.matches ? 9 : 18)).toFixed(3)}px`);
+		const desplazamiento = Math.min(movil.matches ? 64 : 96, Math.max(0, window.scrollY) * (movil.matches ? .13 : .2));
+		titulo.style.setProperty('--grid-offset', `${(-desplazamiento).toFixed(3)}px`);
 	};
 	const solicitar = () => {
 		if (!frame && visible && !reducido.matches) frame = requestAnimationFrame(actualizar);

@@ -385,17 +385,18 @@ body.IntroPortada-saliente .SEC_Titulo--home .TXT_Buscador{
 }
 /* Ink sweep selected in the isolated home motion comparison. */
 .CAT_TitleInk{display:block;}
-.Categorias--revelado-listo .CAT_TitleInk{clip-path:inset(0 100% 0 0);transition:clip-path 620ms cubic-bezier(.16,1,.3,1) var(--reveal-delay,0ms);}
+.Categorias--revelado-listo .CAT_TitleInk{clip-path:inset(-.25em calc(100% + .15em) -.25em -.15em);}
 .Categorias--revelado-listo .CAT_Index,
 .Categorias--revelado-listo .CAT_Description,
 .Categorias--revelado-listo .CAT_Arrow{opacity:0;translate:0 4px;transition:opacity 420ms cubic-bezier(.22,1,.36,1) calc(var(--reveal-delay,0ms) + 75ms),translate 420ms cubic-bezier(.22,1,.36,1) calc(var(--reveal-delay,0ms) + 75ms);}
-.Categorias--revelado-listo > a.is-revealed .CAT_TitleInk{clip-path:inset(0);}
+.Categorias--revelado-listo > a.is-revealed .CAT_TitleInk{clip-path:none;animation:homeInkSweep 620ms cubic-bezier(.16,1,.3,1) var(--reveal-delay,0ms) backwards;}
+@keyframes homeInkSweep{from{clip-path:inset(-.25em calc(100% + .15em) -.25em -.15em);}to{clip-path:inset(-.25em -.15em -.25em -.15em);}}
 .Categorias--revelado-listo > a.is-revealed .CAT_Index,
 .Categorias--revelado-listo > a.is-revealed .CAT_Description,
 .Categorias--revelado-listo > a.is-revealed .CAT_Arrow{opacity:1;translate:0 0;}
-.Categorias--revelado-listo > a:focus-visible .CAT_TitleInk{clip-path:inset(0);transition:none;}
+.Categorias--revelado-listo > a:focus-visible .CAT_TitleInk{clip-path:none;animation:none;}
 @media (prefers-reduced-motion:reduce){
- .Categorias--revelado-listo .CAT_TitleInk{clip-path:none;transition:none;}
+ .Categorias--revelado-listo .CAT_TitleInk{clip-path:none!important;animation:none!important;}
  .Categorias--revelado-listo .CAT_Index,.Categorias--revelado-listo .CAT_Description,.Categorias--revelado-listo .CAT_Arrow{opacity:1;translate:none;transition:none;}
 }
 @media (prefers-reduced-motion:reduce){
@@ -492,6 +493,6 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 .SEC_Titulo.SEC_Titulo--parallax{isolation:isolate;background-image:none;}
 .SEC_Titulo--parallax .TitleGridLayer{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;}
 .TitleGridLayer::before,.TitleGridLayer::after{content:"";position:absolute;pointer-events:none;}
-.TitleGridLayer::before{inset:-24px 0;background-image:linear-gradient(to right,rgba(209,47,47,.28) 1px,transparent 1px),linear-gradient(rgba(209,47,47,.28) 1px,transparent 1px);background-size:22px 22px;background-position:0 24px,0 24px;transform:translate3d(0,var(--grid-offset,0px),0);}
+.TitleGridLayer::before{inset:-112px 0;background-image:linear-gradient(to right,rgba(209,47,47,.28) 1px,transparent 1px),linear-gradient(rgba(209,47,47,.28) 1px,transparent 1px);background-size:22px 22px;background-position:0 112px,0 112px;transform:translate3d(0,var(--grid-offset,0px),0);}
 .TitleGridLayer::after{inset:0;background:linear-gradient(rgba(245,245,240,0) 40%,rgb(245,245,240) 85%);}
 @media(prefers-reduced-motion:reduce){.TitleGridLayer::before{transform:none;}}
