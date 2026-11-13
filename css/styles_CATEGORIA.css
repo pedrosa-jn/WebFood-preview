@@ -783,7 +783,7 @@ button{
 /* Mejoras de contraste, teclado y contenido variable */
 .MenuDesktop a{ color:#555661; }
 .MenuDesktop a.activo,.MenuDesktop a:hover{ color:rgb(139,0,0); }
-.MenuMobile_Numero{ color:#555661; }
+.MenuMobile_Numero{ color:#0A0C24; }
 .back_page{ color:#555661; }
 .SEC_Titulo .Title{ color:rgb(139,0,0); scale:1.2; }
 .TarjetaDescripcion{ color:#555661; }
@@ -1374,3 +1374,7 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 body.MenuMobile-open > .SiteHeader,body.MenuMobile-closing > .SiteHeader{position:fixed;inset:0 0 auto;width:100%;z-index:1000;}
 body.MenuMobile-open .MenuMobile_Categorias,body.MenuMobile-closing .MenuMobile_Categorias{overscroll-behavior:contain;touch-action:pan-y;}
 body.MenuMobile-open .MobileTools,body.MenuMobile-closing .MobileTools{opacity:0;pointer-events:none;}
+
+/* One menu scroll surface, keeping only the site header outside it. */
+.SiteHeader .MenuMobile{overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;touch-action:pan-y;}
+.SiteHeader .MenuMobile_Categorias{flex:0 0 auto;overflow:visible;min-height:0;}

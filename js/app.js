@@ -309,15 +309,24 @@ function iniciarParallaxCuadricula() {
 	capa.setAttribute('aria-hidden', 'true');
 	titulo.prepend(capa);
 	titulo.classList.add('SEC_Titulo--parallax');
-	let visible = true, frame = 0;
-	const actualizar = () => {
+	let visible = true, frame = 0, anterior = 0;
+	let scrollSuavizado = Math.max(0, window.scrollY);
+	const actualizar = ahora => {
 		frame = 0;
-		if (!visible || reducido.matches || document.body.classList.contains('MenuMobile-open') || document.body.classList.contains('MenuMobile-closing')) return;
-		const proporcion = movil.matches ? .4 : .55;
-		// The grid repeats every 22px: wrap its phase, never its visible motion.
-		// This also keeps sticky mobile headings scroll-linked without a travel cap.
-		const desplazamiento = (Math.max(0, window.scrollY) * proporcion) % 22;
+		if (!visible || reducido.matches || document.body.classList.contains('MenuMobile-open') || document.body.classList.contains('MenuMobile-closing') || document.body.style.position === 'fixed') { anterior = 0; return; }
+		const destino = Math.max(0, window.scrollY);
+		const dt = anterior ? Math.min(64, ahora - anterior) : 16.67;
+		anterior = ahora;
+		// A short, time-based damping follows the gesture without altering native scroll.
+		scrollSuavizado += (destino - scrollSuavizado) * (1 - Math.exp(-dt / 85));
+		const diferencia = Math.abs(destino - scrollSuavizado);
+		if (diferencia < .06) scrollSuavizado = destino;
+		const proporcion = movil.matches ? .16 : .28;
+		// Wrap only the phase of the repeating grid, keeping motion continuous.
+		const desplazamiento = (scrollSuavizado * proporcion) % 22;
 		titulo.style.setProperty('--grid-offset', `${desplazamiento.toFixed(3)}px`);
+		if (diferencia >= .06) frame = requestAnimationFrame(actualizar);
+		else anterior = 0;
 	};
 	const solicitar = () => {
 		if (!frame && visible && !reducido.matches) frame = requestAnimationFrame(actualizar);
@@ -761,6 +770,37 @@ function iniciarIntroPortada() {
 	void ejecutarIntro();
 }
 
+function iniciarReboteFooter() {
+	const marca = document.querySelector('footer .FooterLogo');
+	if (!marca || typeof marca.animate !== 'function') return;
+	const reducido = matchMedia('(prefers-reduced-motion: reduce)');
+	let yAnterior = Math.max(0, window.scrollY), tiempoAnterior = performance.now();
+	let preparado = document.documentElement.scrollHeight - innerHeight - yAnterior > 80;
+	let animacion = null, frame = 0;
+	const actualizar = ahora => {
+		frame = 0;
+		const y = Math.max(0, window.scrollY);
+		const distancia = Math.max(0, document.documentElement.scrollHeight - innerHeight - y);
+		const velocidad = (y - yAnterior) / Math.max(16, ahora - tiempoAnterior);
+		if (distancia > 80) preparado = true;
+		const bloqueado = document.body.style.position === 'fixed' || document.body.classList.contains('ModalReceta-open');
+		if (preparado && distancia <= 3 && velocidad > .02 && !bloqueado && !reducido.matches) {
+			preparado = false;
+			const amplitud = Math.min(18, Math.max(8, velocidad * 12));
+			animacion?.cancel();
+			animacion = marca.animate([
+				{transform:'translateY(0)',offset:0},
+				{transform:`translateY(${-amplitud}px)`,offset:.32},
+				{transform:`translateY(${amplitud * .12}px)`,offset:.73},
+				{transform:'translateY(0)',offset:1}
+			], {duration:720,easing:'cubic-bezier(.22,.61,.36,1)'});
+		}
+		yAnterior = y; tiempoAnterior = ahora;
+	};
+	window.addEventListener('scroll', () => { if (!frame) frame = requestAnimationFrame(actualizar); }, {passive:true});
+	reducido.addEventListener('change', () => { if (reducido.matches) animacion?.cancel(); });
+}
+
 function iniciarLogoAnimado() {
 	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 	document.querySelectorAll('[data-animated-src]').forEach(imagen => {
@@ -795,4 +835,5 @@ iniciarReveladoCategorias();
 iniciarParallaxCuadricula();
 iniciarTransicionPaginas();
 iniciarLogoAnimado();
+iniciarReboteFooter();
 iniciarCursorMorph();
