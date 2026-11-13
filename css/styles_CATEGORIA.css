@@ -875,8 +875,8 @@ button:focus-visible{
 ::view-transition-group(root){ animation-duration:var(--motion-view); animation-timing-function:var(--motion-ease-enter); }
 ::view-transition-old(root){ animation:pageSettle 200ms ease-in both; }
 ::view-transition-new(root){ animation:pagePaperReveal var(--motion-view) var(--motion-ease-enter) both; }
-@keyframes pageSettle{ to{ opacity:.94; } }
-@keyframes pagePaperReveal{ from{ opacity:.6; clip-path:inset(0 0 100% 0); } to{ opacity:1; clip-path:inset(0 0 0 0); } }
+@keyframes pageSettle{ to{ opacity:1; } }
+@keyframes pagePaperReveal{ from{ clip-path:inset(0 0 100% 0); } to{ clip-path:inset(0 0 0 0); } }
 footer .FooterBrand{
 	width:max-content; margin:32px 0 24px clamp(24px,5vw,60px); padding:0;
 	display:flex; flex-direction:column; align-items:flex-start; gap:8px;
@@ -1378,3 +1378,21 @@ body.MenuMobile-open .MobileTools,body.MenuMobile-closing .MobileTools{opacity:0
 /* One menu scroll surface, keeping only the site header outside it. */
 .SiteHeader .MenuMobile{overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;touch-action:pan-y;}
 .SiteHeader .MenuMobile_Categorias{flex:0 0 auto;overflow:visible;min-height:0;}
+
+
+/* Keep page width stable when dialogs lock scrolling. */
+html{scrollbar-gutter:stable;}
+/* On mobile the same brand mark travels between the two header positions. */
+@media(max-width:700px){
+ body > header > a > img{view-transition-name:site-brand;}
+ .SiteHeader > .MenuToggle{view-transition-name:site-menu;}
+ ::view-transition-group(site-brand){animation-duration:480ms;animation-timing-function:cubic-bezier(.22,1,.36,1);}
+ ::view-transition-old(site-brand),::view-transition-new(site-brand){animation:none;mix-blend-mode:normal;height:100%;}
+ html:active-view-transition-type(home-category)::view-transition-new(site-menu){animation:menuArrival 240ms cubic-bezier(.22,1,.36,1) 180ms backwards;}
+ @keyframes menuArrival{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
+}
+@media(prefers-reduced-motion:reduce){
+ body > header > a > img,.SiteHeader > .MenuToggle{view-transition-name:none;}
+}
+
+@media(max-width:700px){.SEC_Titulo > .Title{translate:0 -32px;}}

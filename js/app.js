@@ -147,6 +147,15 @@ function renderizarMenu(categoriaActiva) {
 }
 
 function iniciarTransicionPaginas() {
+	const marcarEntrada = (transicion, origen, destino) => {
+		if (!transicion?.types || !origen || !destino) return;
+		try {
+			if (esRutaInicio(new URL(origen)) && new URL(destino).pathname.endsWith('/categoria.html')) transicion.types.add('home-category');
+		} catch {}
+	};
+	window.addEventListener('pageswap', evento => marcarEntrada(evento.viewTransition, location.href, evento.activation?.entry?.url));
+	window.addEventListener('pagereveal', evento => marcarEntrada(evento.viewTransition, window.navigation?.activation?.from?.url, location.href));
+
 	// The home brand mark is already the current page: keep it from reloading itself.
 	document.addEventListener('click', evento => {
 		const enlace = evento.target.closest('a[data-home-logo]');
@@ -279,7 +288,7 @@ function iniciarReveladoCategorias() {
 			entradas.filter(e => e.isIntersecting && !e.target.classList.contains('is-revealed'))
 				.sort((a,b) => a.boundingClientRect.top - b.boundingClientRect.top)
 				.forEach((entrada, i) => {
-					entrada.target.style.setProperty('--reveal-delay', `${Math.min(i * 55, 220)}ms`);
+					entrada.target.style.setProperty('--reveal-delay', `${Math.min(i * 40, 160)}ms`);
 					entrada.target.classList.add('is-revealed');
 					observer.unobserve(entrada.target);
 				});
@@ -318,10 +327,10 @@ function iniciarParallaxCuadricula() {
 		const dt = anterior ? Math.min(64, ahora - anterior) : 16.67;
 		anterior = ahora;
 		// A short, time-based damping follows the gesture without altering native scroll.
-		scrollSuavizado += (destino - scrollSuavizado) * (1 - Math.exp(-dt / 85));
+		scrollSuavizado += (destino - scrollSuavizado) * (1 - Math.exp(-dt / 110));
 		const diferencia = Math.abs(destino - scrollSuavizado);
 		if (diferencia < .06) scrollSuavizado = destino;
-		const proporcion = movil.matches ? .16 : .28;
+		const proporcion = movil.matches ? .09 : .18;
 		// Wrap only the phase of the repeating grid, keeping motion continuous.
 		const desplazamiento = (scrollSuavizado * proporcion) % 22;
 		titulo.style.setProperty('--grid-offset', `${desplazamiento.toFixed(3)}px`);
@@ -468,7 +477,7 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 		modal.setAttribute('aria-hidden', 'false');
 		bloquearScrollFondo();
 		document.body.classList.add('ModalReceta-open');
-		modal.focus();
+		modal.focus({preventScroll:true});
 	};
 
 	const cerrar = () => {
@@ -482,8 +491,8 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 			modal.classList.remove('activo', 'is-closing');
 			document.body.classList.remove('ModalReceta-open');
 			restaurarScrollFondo();
-			if (elementoDisparador?.isConnected) elementoDisparador.focus();
-			else rejilla.focus();
+			if (elementoDisparador?.isConnected) elementoDisparador.focus({preventScroll:true});
+			else rejilla.focus({preventScroll:true});
 		}, duracion);
 	};
 
@@ -771,12 +780,12 @@ function iniciarIntroPortada() {
 }
 
 function iniciarReboteFooter() {
-	const marca = document.querySelector('footer .FooterLogo');
-	if (!marca || typeof marca.animate !== 'function') return;
+	const piezas = [...document.querySelectorAll('footer > .FooterBrand, footer > div:not(.FooterBrand)')];
+	if (!piezas.length || typeof piezas[0].animate !== 'function') return;
 	const reducido = matchMedia('(prefers-reduced-motion: reduce)');
 	let yAnterior = Math.max(0, window.scrollY), tiempoAnterior = performance.now();
 	let preparado = document.documentElement.scrollHeight - innerHeight - yAnterior > 80;
-	let animacion = null, frame = 0;
+	let animaciones = [], frame = 0;
 	const actualizar = ahora => {
 		frame = 0;
 		const y = Math.max(0, window.scrollY);
@@ -787,18 +796,18 @@ function iniciarReboteFooter() {
 		if (preparado && distancia <= 3 && velocidad > .02 && !bloqueado && !reducido.matches) {
 			preparado = false;
 			const amplitud = Math.min(18, Math.max(8, velocidad * 12));
-			animacion?.cancel();
-			animacion = marca.animate([
+			animaciones.forEach(a => a.cancel());
+			animaciones = piezas.map(pieza => pieza.animate([
 				{transform:'translateY(0)',offset:0},
 				{transform:`translateY(${-amplitud}px)`,offset:.32},
 				{transform:`translateY(${amplitud * .12}px)`,offset:.73},
 				{transform:'translateY(0)',offset:1}
-			], {duration:720,easing:'cubic-bezier(.22,.61,.36,1)'});
+			], {duration:720,easing:'cubic-bezier(.22,.61,.36,1)'}));
 		}
 		yAnterior = y; tiempoAnterior = ahora;
 	};
 	window.addEventListener('scroll', () => { if (!frame) frame = requestAnimationFrame(actualizar); }, {passive:true});
-	reducido.addEventListener('change', () => { if (reducido.matches) animacion?.cancel(); });
+	reducido.addEventListener('change', () => { if (reducido.matches) animaciones.forEach(a => a.cancel()); });
 }
 
 function iniciarLogoAnimado() {
