@@ -66,7 +66,7 @@ function renderizarCategorias() {
 	lista.innerHTML = CATEGORIAS.map((categoria, indice) => `
 		<a href="${urlCategoria(categoria.id)}" class="CAT_Box" style="--i:${indice + 1}">
 			<span class="CAT_Number CAT_Index">${dosDigitos(indice + 1)}</span>
-			<span class="CAT_Title">${textoSeguro(categoria.nombre)}</span>
+			<span class="CAT_Title"><span class="CAT_TitleInk">${textoSeguro(categoria.nombre)}</span></span>
 			<span class="CAT_Number CAT_Description">${textoSeguro(categoria.descripcion)}</span>
 			${FLECHA}
 		</a>`).join('');
@@ -242,8 +242,23 @@ function iniciarReveladoFilas(rejilla, claseRevelado = 'Recetas--revelado-listo'
 function iniciarReveladoCategorias() {
 	const lista = document.getElementById('Categorias');
 	if (!lista || !('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+	const filas = [...lista.querySelectorAll(':scope > a')];
 	lista.classList.add('Categorias--revelado-listo');
-	const iniciar = () => iniciarReveladoFilas(lista, 'Categorias--revelado-listo');
+	let iniciado = false;
+	const iniciar = () => {
+		if (iniciado) return;
+		iniciado = true;
+		const observer = new IntersectionObserver(entradas => {
+			entradas.filter(e => e.isIntersecting && !e.target.classList.contains('is-revealed'))
+				.sort((a,b) => a.boundingClientRect.top - b.boundingClientRect.top)
+				.forEach((entrada, i) => {
+					entrada.target.style.setProperty('--reveal-delay', `${Math.min(i * 55, 220)}ms`);
+					entrada.target.classList.add('is-revealed');
+					observer.unobserve(entrada.target);
+				});
+		}, { threshold: .14, rootMargin: '0px 0px -24px 0px' });
+		filas.forEach(fila => observer.observe(fila));
+	};
 	if (document.body.classList.contains('IntroPortada-activa')) {
 		document.addEventListener('intro:home-reveal', iniciar, { once: true });
 	} else {
@@ -255,6 +270,40 @@ function iniciarReveladoCategorias() {
 		categoria.style.setProperty('--reveal-delay', '0ms');
 		categoria.classList.add('is-revealed');
 	});
+}
+
+function iniciarParallaxCuadricula() {
+	const titulo = document.querySelector('.SEC_Titulo');
+	if (!titulo || !('IntersectionObserver' in window)) return;
+	const reducido = matchMedia('(prefers-reduced-motion: reduce)');
+	const movil = matchMedia('(max-width:700px)');
+	const capa = document.createElement('span');
+	capa.className = 'TitleGridLayer';
+	capa.setAttribute('aria-hidden', 'true');
+	titulo.prepend(capa);
+	titulo.classList.add('SEC_Titulo--parallax');
+	let visible = true, frame = 0;
+	const actualizar = () => {
+		frame = 0;
+		if (!visible || reducido.matches) return;
+		const progreso = Math.min(1, Math.max(0, window.scrollY / (titulo.offsetHeight + 63)));
+		titulo.style.setProperty('--grid-offset', `${(-progreso * (movil.matches ? 9 : 18)).toFixed(3)}px`);
+	};
+	const solicitar = () => {
+		if (!frame && visible && !reducido.matches) frame = requestAnimationFrame(actualizar);
+	};
+	const observer = new IntersectionObserver(entradas => {
+		visible = entradas[0].isIntersecting;
+		if (visible) solicitar();
+	});
+	observer.observe(titulo);
+	window.addEventListener('scroll', solicitar, {passive:true});
+	window.addEventListener('resize', solicitar, {passive:true});
+	reducido.addEventListener('change', () => {
+		if (reducido.matches) titulo.style.setProperty('--grid-offset', '0px');
+		else solicitar();
+	});
+	solicitar();
 }
 
 function renderizarRecetas() {
@@ -713,6 +762,7 @@ iniciarMenuMovil();
 iniciarBuscador();
 iniciarIntroPortada();
 iniciarReveladoCategorias();
+iniciarParallaxCuadricula();
 iniciarTransicionPaginas();
 iniciarLogoAnimado();
 iniciarCursorMorph();

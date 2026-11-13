@@ -1361,3 +1361,11 @@ footer .FooterBrand .FooterLogo{ margin:0; }
  .SiteHeader .MenuMobile{display:flex;}
  .Recetas{max-width:100%;overflow-x:clip;}
 }
+
+/* The grid moves as its own layer; the cream fade and heading remain stationary. */
+.SEC_Titulo.SEC_Titulo--parallax{isolation:isolate;background-image:none;}
+.SEC_Titulo--parallax .TitleGridLayer{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;}
+.TitleGridLayer::before,.TitleGridLayer::after{content:"";position:absolute;pointer-events:none;}
+.TitleGridLayer::before{inset:-24px 0;background-image:linear-gradient(to right,rgba(209,47,47,.28) 1px,transparent 1px),linear-gradient(rgba(209,47,47,.28) 1px,transparent 1px);background-size:22px 22px;background-position:0 24px,0 24px;transform:translate3d(0,var(--grid-offset,0px),0);}
+.TitleGridLayer::after{inset:0;background:linear-gradient(rgba(245,245,240,0) 40%,rgb(245,245,240) 85%);}
+@media(prefers-reduced-motion:reduce){.TitleGridLayer::before{transform:none;}}
