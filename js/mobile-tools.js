@@ -8,6 +8,19 @@
  const reduced = matchMedia('(prefers-reduced-motion:reduce)');
  const layoutButton = tools.querySelector('[data-layout-toggle]');
  const searchButton = tools.querySelector('[data-search-open]');
+ const toggleButton = tools.querySelector('[data-tools-toggle]');
+ const options = tools.querySelector('.MobileTools_Options');
+ let layoutRevision = 0;
+ const expandTools = expanded => {
+  tools.classList.toggle('is-expanded', expanded);
+  if (!expanded && options.contains(document.activeElement)) toggleButton.focus({preventScroll:true});
+  options.inert = !expanded;
+  toggleButton.setAttribute('aria-expanded', String(expanded));
+  toggleButton.setAttribute('aria-label', expanded ? 'Cerrar opciones de recetas' : 'Mostrar opciones de recetas');
+ };
+ toggleButton.addEventListener('click',()=>expandTools(!tools.classList.contains('is-expanded')));
+ document.addEventListener('pointerdown',e=>{if(!tools.contains(e.target))expandTools(false);});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&tools.classList.contains('is-expanded')){expandTools(false);toggleButton.focus({preventScroll:true});}});
  const panel = dialog.querySelector('.MobileSearch_Panel');
  const surface = dialog.querySelector('.MobileSearch_Surface');
  const content = dialog.querySelector('.MobileSearch_Content');
@@ -31,6 +44,8 @@
  setColumns(columns);
  layoutButton.addEventListener('click', () => {
   if (!mobile.matches) return;
+  expandTools(false);
+  const revision = ++layoutRevision;
   moving.forEach(a => a.cancel());
   const cards = [...grid.querySelectorAll(':scope > a')];
   const before = new Map(cards.map(el => [el, el.getBoundingClientRect()]));
@@ -55,7 +70,7 @@
     {transform:'translate3d(0,0,0)',clipPath:'inset(0 0 0 0 round 0px)'}
    ],{duration:460,easing:'cubic-bezier(.22,1,.36,1)'}));
   }
-  Promise.allSettled(moving.map(a=>a.finished)).then(()=>grid.classList.remove('is-switching-grid'));
+  Promise.allSettled(moving.map(a=>a.finished)).then(()=>{if(revision===layoutRevision)grid.classList.remove('is-switching-grid');});
   try { localStorage.setItem('recetas-columnas',String(columns)); } catch {}
  });
  const lockBackground = () => {
@@ -88,6 +103,7 @@
  const open = () => {
   if (!mobile.matches || dialog.open) return;
   origin=searchButton.getBoundingClientRect();
+  expandTools(false);
   lockBackground();
   sizeDialog();
   dialog.classList.remove('is-closing');
@@ -104,6 +120,7 @@
  const close = async (animate=true) => {
   if (!dialog.open || closing) return;
   closing=true;
+  origin=toggleButton.getBoundingClientRect();
   dialog.classList.add('is-closing');
   input.blur();
   shellAnimation?.cancel();contentAnimation?.cancel();
@@ -116,7 +133,7 @@
   shellAnimation?.cancel();contentAnimation?.cancel();
   unlockBackground();
   searchButton.setAttribute('aria-expanded','false');
-  searchButton.focus({preventScroll:true});
+  toggleButton.focus({preventScroll:true});
   closing=false;
  };
  const update = () => {
@@ -155,7 +172,7 @@
   if(category===grid.dataset.categoria)grid.querySelector(`a[data-id="${CSS.escape(recipeId)}"]`)?.click();
   else window.location.href=href;
  });
- mobile.addEventListener('change',()=>{if(!mobile.matches)close(false);});
+ mobile.addEventListener('change',()=>{expandTools(false);if(!mobile.matches)close(false);});
  update();
  tools.hidden=false;
 })();

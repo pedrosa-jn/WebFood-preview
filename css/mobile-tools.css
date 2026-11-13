@@ -1,18 +1,28 @@
 .MobileTools,.MobileSearch{display:none;}
 @media(max-width:700px){
- .MobileTools{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:calc(18px + env(safe-area-inset-bottom));z-index:900;display:flex;gap:4px;padding:5px;border:1px solid rgba(139,0,0,.25);border-radius:40px;background:rgb(245,245,240);box-shadow:0 5px 22px rgba(40,0,0,.15);transition:opacity 160ms ease,transform 200ms ease;}
+ .MobileTools{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:calc(18px + env(safe-area-inset-bottom));z-index:900;display:block;transition:opacity 160ms ease,transform 200ms ease;}
  .MobileTools[hidden]{display:none;}
- .MobileTools button{display:grid;place-items:center;width:50px;height:50px;padding:0;border:0;border-radius:50%;color:rgb(139,0,0);background:transparent;cursor:pointer;touch-action:manipulation;}
- .MobileTools [data-search-open]{background:rgb(139,0,0);color:rgb(245,245,240);}
- .MobileTools button:active{transform:scale(.94);}
+ .MobileTools button{position:relative;display:grid;place-items:center;width:54px;height:54px;padding:0;border:1px solid rgba(139,0,0,.24);border-radius:50%;color:rgb(139,0,0);background:rgb(245,245,240);box-shadow:0 4px 16px rgba(40,0,0,.13);cursor:pointer;touch-action:manipulation;}
+ .MobileTools .MobileTools_Toggle{background:rgb(139,0,0);color:rgb(245,245,240);border-color:rgb(245,245,240);}
+ .MobileTools button:active{scale:.94;}
  .MobileTools button:focus-visible,.MobileSearch button:focus-visible,.MobileSearch a:focus-visible{outline:2px solid rgb(139,0,0);outline-offset:3px;}
  .MobileTools svg{width:24px;height:24px;overflow:visible;}
+ .MobileTools_Toggle>svg{transition:transform 320ms cubic-bezier(.22,1,.36,1);}
+ .MobileTools.is-expanded .MobileTools_Toggle>svg{transform:rotate(45deg);}
+ .MobileTools_Options{position:absolute;right:0;bottom:68px;display:flex;flex-direction:column;gap:12px;visibility:hidden;opacity:0;pointer-events:none;transform:translateY(12px) scale(.9);transform-origin:bottom center;transition:opacity 180ms ease,transform 320ms cubic-bezier(.22,1,.36,1),visibility 0s 320ms;}
+ .MobileTools.is-expanded .MobileTools_Options{visibility:visible;opacity:1;pointer-events:auto;transform:none;transition:opacity 180ms ease,transform 320ms cubic-bezier(.22,1,.36,1),visibility 0s;}
+ .MobileTools_Label{position:absolute;right:calc(100% + 10px);padding:6px 10px;border-radius:6px;background:rgb(245,245,240);color:rgb(139,0,0);font:700 16px/1 "Barlow Condensed",sans-serif;box-shadow:0 2px 10px rgba(40,0,0,.08);}
  .MobileTools_Grid rect{transform-box:fill-box;transform-origin:left center;transition:transform 400ms cubic-bezier(.22,1,.36,1),opacity 240ms ease;}
  .is-one-column .MobileTools_Grid rect:nth-child(odd){transform:scaleX(2.5);}
  .is-one-column .MobileTools_Grid rect:nth-child(even){opacity:0;transform:translateX(-9px) scaleX(.2);}
  body.ModalReceta-open .MobileTools,body.MobileSearch-open .MobileTools,body:has(.MenuToggle[aria-expanded="true"]) .MobileTools{opacity:0;pointer-events:none;transform:translateY(12px);}
  .Recetas.Recetas--una-columna{grid-template-columns:minmax(0,1fr);}
- .Recetas--una-columna .bck-image:not(.bck-image--placeholder){background-position:center calc(50% - 36vw);}
+ .Recetas--una-columna .Tarjeta{display:flex;flex-direction:column;aspect-ratio:auto;}
+ .Recetas--una-columna .bck-image{position:relative;inset:auto;width:100%;aspect-ratio:8/5;flex:none;transform:none;}
+ .Recetas--una-columna .bck-image:not(.bck-image--placeholder){background-size:100% auto;background-position:center;}
+ .Recetas--una-columna .Tarjeta_TXT{position:relative;inset:auto;height:auto;min-height:0;padding:18px 20px 52px;}
+ .Recetas--una-columna .TarjetaTitle{font-size:clamp(1.5rem,6.4vw,1.85rem);line-height:1.06;}
+ .Recetas--una-columna .TarjetaDescripcion{left:20px;bottom:18px;font-size:.9rem;line-height:1.15;letter-spacing:.025em;}
  .Recetas.is-switching-grid>a{transition:none;}
  .Recetas{overflow-anchor:none;}
  .MobileSearch[open]{display:block;}

@@ -9,9 +9,9 @@
 	<link rel="preload" href="./fonts/BarlowCondensed-Regular-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="./fonts/BarlowCondensed-Black-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="./fonts/PlayfairDisplay-Italic-latin.woff2" as="font" type="font/woff2" crossorigin>
-	<link rel="stylesheet" type="text/css" href="./css/styles_CATEGORIA.css?v=meat-card-fit-20261113">
+	<link rel="stylesheet" type="text/css" href="./css/styles_CATEGORIA.css?v=mobile-refine-20261113">
 
-	<link rel="stylesheet" href="./css/mobile-tools.css?v=mobile-tools-20261113">
+	<link rel="stylesheet" href="./css/mobile-tools.css?v=mobile-refine-20261113">
 </head>
 
 <body>
@@ -85,12 +85,17 @@
 	</footer>
 
 <!-- MOBILE CATEGORY TOOLS -->
-	<div class="MobileTools" id="MobileTools" role="group" aria-label="Vista y búsqueda de recetas" hidden>
+	<div class="MobileTools" id="MobileTools" role="group" aria-label="Herramientas de recetas" hidden>
+		<div class="MobileTools_Options" id="MobileToolsOptions" inert>
 		<button type="button" data-layout-toggle aria-label="Cambiar a una columna" aria-pressed="false" aria-controls="Recetas">
-			<svg class="MobileTools_Grid" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="6" height="6" rx="1.5"/><rect x="12" y="3" width="6" height="6" rx="1.5"/><rect x="3" y="14" width="6" height="6" rx="1.5"/><rect x="12" y="14" width="6" height="6" rx="1.5"/></svg>
+			<span class="MobileTools_Label">Vista</span><svg class="MobileTools_Grid" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="6" height="6" rx="1.5"/><rect x="12" y="3" width="6" height="6" rx="1.5"/><rect x="3" y="14" width="6" height="6" rx="1.5"/><rect x="12" y="14" width="6" height="6" rx="1.5"/></svg>
 		</button>
 		<button type="button" data-search-open aria-label="Buscar una receta" aria-controls="MobileSearch" aria-expanded="false" aria-haspopup="dialog">
-			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>
+			<span class="MobileTools_Label">Buscar</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>
+		</button>
+		</div>
+		<button class="MobileTools_Toggle" type="button" data-tools-toggle aria-label="Mostrar opciones de recetas" aria-expanded="false" aria-controls="MobileToolsOptions">
+			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
 		</button>
 	</div>
 	<dialog class="MobileSearch" id="MobileSearch" aria-labelledby="MobileSearchTitle">
@@ -162,6 +167,6 @@
 
 
 
-	<script src="./js/mobile-tools.js?v=mobile-tools-20261113"></script>
+	<script src="./js/mobile-tools.js?v=mobile-refine-20261113"></script>
 </body>
 </html>

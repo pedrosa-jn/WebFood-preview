@@ -1348,3 +1348,16 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	}
 	.ModalReceta_Footer{flex:0 0 auto;}
 }
+
+/* Keep the mobile document on its vertical axis without changing sticky positioning. */
+@media(max-width:700px){
+ html,body{max-width:100%;overflow-x:clip;overscroll-behavior-x:none;}
+ @supports not (overflow:clip){html{overflow-x:hidden;}}
+}
+@media(max-width:700px){
+ .SiteHeader{max-width:100%;}
+ .SiteHeader .MenuDesktop{display:none;}
+ .SiteHeader .MenuToggle{display:block;}
+ .SiteHeader .MenuMobile{display:flex;}
+ .Recetas{max-width:100%;overflow-x:clip;}
+}
