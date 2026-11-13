@@ -1,7 +1,7 @@
 /* Renderiza las categorías y recetas desde data/recetas.js. */
 const FLECHA = '<svg class="CAT_Arrow" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>';
 const dosDigitos = numero => String(numero).padStart(2, '0');
-const urlCategoria = id => `./categoria.html?c=${encodeURIComponent(id)}&rev=pulse-tools-20261113`;
+const urlCategoria = id => `./categoria.html?c=${encodeURIComponent(id)}&rev=measured-menu-20261113`;
 const IMAGENES_RECETA = {
 	'espaguetis-carbonara': 'Recetas_IMG/pasta-carbonara.svg?rev=20261111d',
 	'espaguetis-con-cebolla-y-jamon': 'Recetas_IMG/pasta-jamon-cebolla.svg?rev=20261111d',
@@ -324,33 +324,60 @@ function iniciarIndicadorScroll() {
 	const indicador = document.createElement('span');
 	indicador.className = 'ScrollCueMouse';
 	indicador.setAttribute('aria-hidden','true');
-	indicador.innerHTML = '<svg viewBox="0 0 28 48" fill="none"><rect x="2.5" y="2.5" width="23" height="43" rx="11.5" fill="#F5F5F0" stroke="currentColor" stroke-width="2.5"/><circle class="ScrollCueMouse_Pulso" cx="14" cy="13" r="2.4" fill="currentColor"/></svg>';
+	// Same measured geometry and dot as the approved comparison; only the outline is thinner.
+	indicador.innerHTML = '<svg viewBox="304 102 190 330" fill="none"><rect class="ScrollCueMouse_Contorno" x="316" y="114" width="166" height="306" rx="83" fill="#F5F5F0" stroke="currentColor" stroke-width="6"/><circle class="ScrollCueMouse_Punto" cx="399" cy="167.716" r="16.5" fill="currentColor"/></svg>';
 	titulo.append(indicador);
-	let terminado = false, iniciado = false, temporizador = 0;
+	const contorno = indicador.querySelector('rect');
+	const punto = indicador.querySelector('circle');
+	let terminado = false, iniciado = false, activacionLista = false, datos = null;
+	let temporizador = 0, frame = 0, inicio = 0;
 	const ocultar = () => {
 		if (terminado) return;
-		terminado = true; clearTimeout(temporizador);
+		terminado = true; clearTimeout(temporizador); cancelAnimationFrame(frame);
 		indicador.classList.add('is-leaving');
 		window.removeEventListener('scroll', alScroll);
 		window.setTimeout(() => indicador.remove(), 300);
 	};
 	const alScroll = () => { if (window.scrollY > 32) ocultar(); };
-	const comenzar = () => {
-		if (terminado || iniciado) return;
-		if (!movil.matches || reducido.matches || document.hidden || window.scrollY > 32) { ocultar(); return; }
-		iniciado = true; indicador.classList.add('is-active');
-		temporizador = window.setTimeout(ocultar, 4450);
+	const pintar = fase => {
+		const i = Math.floor(fase / datos.frameDuration) % datos.frames.length;
+		const a = datos.frames[i], b = datos.frames[(i+1) % datos.frames.length];
+		const t = (fase % datos.frameDuration) / datos.frameDuration;
+		const mezcla = propiedad => a[propiedad] + (b[propiedad] - a[propiedad]) * t;
+		for (const propiedad of ['x','y','width','height']) contorno.setAttribute(propiedad,mezcla(propiedad));
+		contorno.setAttribute('rx',mezcla('width')/2);
+		punto.setAttribute('cx',mezcla('cx')); punto.setAttribute('cy',mezcla('cy'));
+		punto.setAttribute('opacity',mezcla('opacity'));
 	};
+	const actualizar = ahora => {
+		if (terminado) return;
+		const transcurrido = ahora - inicio;
+		if (transcurrido >= datos.duration * 2) { pintar(0); ocultar(); return; }
+		pintar(transcurrido % datos.duration);
+		frame = requestAnimationFrame(actualizar);
+	};
+	const comenzar = () => {
+		if (terminado || iniciado || !activacionLista || !datos) return;
+		if (!movil.matches || reducido.matches || document.hidden || window.scrollY > 32) { ocultar(); return; }
+		iniciado = true; pintar(0); indicador.classList.add('is-active');
+		inicio = performance.now(); frame = requestAnimationFrame(actualizar);
+		temporizador = window.setTimeout(ocultar,datos.duration * 2 + 40);
+	};
+	fetch('./data/scroll-reference-motion.json?v=measured-menu-20261113')
+		.then(respuesta => { if (!respuesta.ok) throw Error('scroll-motion'); return respuesta.json(); })
+		.then(valor => { if (terminado) return; datos = valor; comenzar(); })
+		.catch(ocultar);
 	window.addEventListener('scroll', alScroll, {passive:true});
 	document.addEventListener('visibilitychange', () => { if (document.hidden) ocultar(); }, {once:true});
 	movil.addEventListener('change', () => { if (!movil.matches) ocultar(); });
 	reducido.addEventListener('change', () => { if (reducido.matches) ocultar(); });
+	const activar = () => { activacionLista = true; comenzar(); };
 	if ('onpagereveal' in window) {
 		window.addEventListener('pagereveal', evento => {
-			if (evento.viewTransition) evento.viewTransition.finished.then(comenzar, comenzar);
-			else comenzar();
+			if (evento.viewTransition) evento.viewTransition.finished.then(activar,activar);
+			else activar();
 		}, {once:true});
-	} else comenzar();
+	} else activar();
 }
 
 function iniciarParallaxCuadricula() {

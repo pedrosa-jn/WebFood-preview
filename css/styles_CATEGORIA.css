@@ -1408,8 +1408,17 @@ html{scrollbar-gutter:stable;}
  .ScrollCueMouse{display:block;position:absolute;bottom:max(36px,calc(84px - 5vh + env(safe-area-inset-bottom)));left:50%;width:28px;height:48px;translate:-50% 0;color:rgb(139,0,0);opacity:0;pointer-events:none;transition:opacity 250ms ease;}
  .ScrollCueMouse svg{display:block;width:100%;height:100%;}
  .ScrollCueMouse.is-active{opacity:1;}
- .ScrollCueMouse.is-active .ScrollCueMouse_Pulso{animation:scrollMousePulse 1450ms cubic-bezier(.4,0,.2,1) 3;transform-origin:center;}
  .ScrollCueMouse.is-leaving{opacity:0;}
 }
-@keyframes scrollMousePulse{0%{transform:translateY(0);opacity:0;}12%{opacity:1;}65%{transform:translateY(12px);opacity:1;}90%,100%{transform:translateY(15px);opacity:0;}}
 @media(prefers-reduced-motion:reduce){.SiteHeader .MenuMobile,.SiteHeader .MenuMobile.is-open,.SiteHeader .MenuMobile.is-closing{transition:none!important;}.ScrollCueMouse{display:none;}}
+
+/* The menu keeps its sheet motion; labels use the approved home-title ink sweep. */
+.MenuMobile_Numero,.MenuMobile_Nombre{opacity:1;transform:none;transition:none;clip-path:inset(-.25em calc(100% + .15em) -.25em -.15em);}
+.MenuMobile.is-open .MenuMobile_Numero,.MenuMobile.is-open .MenuMobile_Nombre,
+.MenuMobile.is-closing .MenuMobile_Numero,.MenuMobile.is-closing .MenuMobile_Nombre{
+ opacity:1;transform:none;transition:none;clip-path:none;
+ animation:menuInkSweep 680ms cubic-bezier(.4,0,.25,1) calc(140ms + min(160ms,calc(var(--i) * 40ms))) backwards;
+}
+@keyframes menuInkSweep{from{clip-path:inset(-.25em calc(100% + .15em) -.25em -.15em);}to{clip-path:inset(-.25em -.15em -.25em -.15em);}}
+.MenuMobile_Categorias a:focus-visible .MenuMobile_Numero,.MenuMobile_Categorias a:focus-visible .MenuMobile_Nombre{clip-path:none;animation:none;}
+@media(prefers-reduced-motion:reduce){.MenuMobile_Numero,.MenuMobile_Nombre{clip-path:none!important;animation:none!important;}}
