@@ -1,7 +1,7 @@
 /* Renderiza las categorías y recetas desde data/recetas.js. */
 const FLECHA = '<svg class="CAT_Arrow" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>';
 const dosDigitos = numero => String(numero).padStart(2, '0');
-const urlCategoria = id => `./categoria.html?c=${encodeURIComponent(id)}`;
+const urlCategoria = id => `./categoria.html?c=${encodeURIComponent(id)}&rev=editorial-seal-20261113-r2`;
 const IMAGENES_RECETA = {
 	'espaguetis-carbonara': 'Recetas_IMG/pasta-carbonara.svg?rev=20261111d',
 	'espaguetis-con-cebolla-y-jamon': 'Recetas_IMG/pasta-jamon-cebolla.svg?rev=20261111d',
