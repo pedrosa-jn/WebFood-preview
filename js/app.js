@@ -313,7 +313,10 @@ function iniciarParallaxCuadricula() {
 	const actualizar = () => {
 		frame = 0;
 		if (!visible || reducido.matches || document.body.classList.contains('MenuMobile-open') || document.body.classList.contains('MenuMobile-closing')) return;
-		const desplazamiento = Math.min(movil.matches ? 64 : 96, Math.max(0, window.scrollY) * (movil.matches ? .13 : .2));
+		const proporcion = movil.matches ? .4 : .55;
+		// The grid repeats every 22px: wrap its phase, never its visible motion.
+		// This also keeps sticky mobile headings scroll-linked without a travel cap.
+		const desplazamiento = (Math.max(0, window.scrollY) * proporcion) % 22;
 		titulo.style.setProperty('--grid-offset', `${desplazamiento.toFixed(3)}px`);
 	};
 	const solicitar = () => {
