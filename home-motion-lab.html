@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Entradas de categorías · Cuaderno de recetas</title>
+ <link rel="icon" type="image/svg+xml" href="./images/Logo_Recipes.svg">
+ <link rel="stylesheet" href="./css/fonts.css">
+ <link rel="preload" href="./fonts/BarlowCondensed-Black-latin.woff2" as="font" type="font/woff2" crossorigin>
+ <link rel="stylesheet" href="./css/styles.css?v=mobile-refine-20261113">
+ <link rel="stylesheet" href="./css/home-motion-lab.css?v=20261113a">
+ <script defer src="./data/recetas.js?v=recipe-images-20261110"></script>
+ <script defer src="./js/home-motion-lab.js?v=20261113a"></script>
+</head>
+<body class="HomeMotionLab">
+ <header class="HomeMotionLab_Header"><a href="./index.html" aria-label="Volver a la home"><img src="./images/Logo_Recipes.svg" alt="Cuaderno de recetas"></a><a class="HomeMotionLab_Back" href="./index.html">Volver a la web</a></header>
+ <main>
+  <div class="HomeMotionLab_Intro"><h1>Dos formas de entrar</h1><p>Compara las dos animaciones con nuestras categorías. También aparecen al bajar por la página.</p></div>
+  <div class="HomeMotionLab_Controls" aria-label="Opciones de animación">
+   <div class="HomeMotionLab_Variants" role="group" aria-label="Tipo de entrada"><button type="button" data-mode="vertical" aria-pressed="true">Revelado vertical</button><button type="button" data-mode="ink" aria-pressed="false">Barrido de tinta</button></div>
+   <div class="HomeMotionLab_Playback"><button class="HomeMotionLab_Replay" type="button" id="HomeMotionReplay"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10a8 8 0 1 1 1.5 7M4 4v6h6"/></svg>Repetir</button><label><input type="checkbox" id="HomeMotionSlow">A cámara lenta</label></div>
+  </div>
+  <p class="HomeMotionLab_Status" id="HomeMotionStatus" role="status" aria-live="polite">Los títulos emergen desde abajo; números y descripciones los acompañan.</p>
+  <nav id="HomeMotionCategories" aria-label="Categorías de recetas"></nav>
+ </main>
+ <div class="HomeMotionLab_End"><p>Esta página es una prueba. La animación de la home sigue como estaba.</p><a href="./index.html">Volver a la home</a></div>
+</body>
+</html>
