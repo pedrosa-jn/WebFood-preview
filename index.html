@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script>
 		try {
-			if (sessionStorage.getItem('introPortadaVista') !== '28' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			if (sessionStorage.getItem('introPortadaVista') !== '29' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
 				document.documentElement.classList.add('intro-pending');
 			}
 		} catch {}
@@ -17,7 +17,7 @@
 	<link rel="preload" href="./fonts/BarlowCondensed-Regular-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="./fonts/BarlowCondensed-Black-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="./fonts/PlayfairDisplay-Italic-latin.woff2" as="font" type="font/woff2" crossorigin>
-	<link rel="stylesheet" type="text/css" href="./css/styles.css?v=home-scroll-reveal-20261113">
+	<link rel="stylesheet" type="text/css" href="./css/styles.css?v=mobile-intro-20261113">
 	<style>
 		/* Critical intro styles prevent an unstyled first frame while the rest of the page loads. */
 		@font-face{
@@ -34,11 +34,11 @@
 		.IntroPortada_Marca{position:relative;width:clamp(94px,calc(14vw - 10px),150px);aspect-ratio:814.95/496.1;display:grid;place-items:center}
 		.IntroPortada_Logo{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 		.IntroPortada_Logo--base{opacity:.5}
-		.IntroPortada_Logo--fill{clip-path:ellipse(150% 0% at 50% 100%);transition:clip-path 2050ms var(--intro-fill-ease)}
-		.IntroPortada.is-filling .IntroPortada_Logo--fill{clip-path:ellipse(150% 150% at 50% 100%)}
+		.IntroPortada_Logo--fill{overflow:visible}
 		.IntroPortada_Progreso{display:block;width:clamp(160px,21.5vw,258px);height:8px;min-height:8px;overflow:hidden;border:1px solid rgba(139,0,0,.9);border-radius:999px;background:rgba(139,0,0,.14)}
-		.IntroPortada_Progreso span{display:block;width:100%;height:100%;border-radius:inherit;background:rgb(139,0,0);clip-path:inset(0 100% 0 0);transition:clip-path 2050ms var(--intro-fill-ease)}
-		.IntroPortada.is-filling .IntroPortada_Progreso span{clip-path:inset(0 0 0 0)}
+		.IntroPortada_Indicador{display:grid;justify-items:center;gap:8px}
+		.IntroPortada_Contador{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:clamp(18px,2vw,20px);font-style:normal;line-height:1;color:rgb(139,0,0);font-variant-numeric:tabular-nums}
+		.IntroPortada_Progreso span{display:block;width:100%;height:100%;border-radius:inherit;background:rgb(139,0,0);transform:scaleX(0);transform-origin:left center}
 		.IntroPortada.is-revealing{pointer-events:none}
 		.IntroPortada.is-revealing .IntroPortada_Fondo{transform:translate3d(0,-100%,0)}
 		@media(max-width:600px){.IntroPortada_Escena{top:48%;gap:32px}.IntroPortada_Marca{width:clamp(100px,28vw,126px)}.IntroPortada_Progreso{width:min(50vw,188px)}}
@@ -53,9 +53,15 @@
 			<div class="IntroPortada_Escena">
 				<div class="IntroPortada_Marca">
 					<img class="IntroPortada_Logo IntroPortada_Logo--base" src="./images/Logo_Recipes.svg" alt="">
-					<img class="IntroPortada_Logo IntroPortada_Logo--fill" src="./images/Logo_Recipes.svg" alt="">
+					<svg class="IntroPortada_Logo IntroPortada_Logo--fill" viewBox="0 0 1000 609" aria-hidden="true">
+						<defs><clipPath id="IntroLogoClip"><path id="IntroLogoFillPath" d="M0 614 Q500 974 1000 614 V609 H0 Z"/></clipPath></defs>
+						<image href="./images/Logo_Recipes.svg" width="1000" height="609" clip-path="url(#IntroLogoClip)"/>
+					</svg>
 				</div>
-				<div class="IntroPortada_Progreso" style="display:block;width:clamp(160px,21.5vw,258px);height:8px;min-height:8px;overflow:hidden;border:1px solid rgba(139,0,0,.9);border-radius:999px;background:rgba(139,0,0,.14);flex:none"><span></span></div>
+				<div class="IntroPortada_Indicador">
+					<div class="IntroPortada_Progreso"><span></span></div>
+					<span class="IntroPortada_Contador">0%</span>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -114,7 +120,7 @@
 <!-- JS SCRIPT -->
 
 	<script src="./data/recetas.js?v=recipe-images-20261110"></script>
-	<script src="./js/app.js?v=meat-card-fit-20261113"></script>
+	<script src="./js/app.js?v=mobile-intro-20261113"></script>
 
 </body>
 </html>

@@ -589,7 +589,7 @@ function iniciarBuscador() {
 function iniciarIntroPortada() {
 	if (!document.querySelector('.SEC_Titulo--home')) return;
 	const intro = document.querySelector('.IntroPortada');
-	const versionIntro = '28';
+	const versionIntro = '29';
 	const limpiarIntro = () => {
 		intro?.remove();
 		document.body.classList.remove('IntroPortada-activa', 'IntroPortada-saliente', 'IntroPortada-esperando-logo', 'IntroPortada-logo-entrando', 'IntroPortada-home-cargada');
@@ -627,12 +627,33 @@ function iniciarIntroPortada() {
 		try {
 			await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
 			if (!intro.isConnected) { limpiarIntro(); return; }
-			const logoRelleno = intro.querySelector('.IntroPortada_Logo--fill');
-			const barraRelleno = intro.querySelector('.IntroPortada_Progreso span');
-			const finLogo = esperarTransicion(logoRelleno, 'clip-path', duracionRelleno + 500);
-			const finBarra = esperarTransicion(barraRelleno, 'clip-path', duracionRelleno + 500);
+			const curva = valor => {
+				let bajo = 0, alto = 1, t = valor;
+				for (let i = 0; i < 16; i++) {
+					const x = 3 * (1-t)**2 * t * .65 + 3 * (1-t) * t*t * .35 + t**3;
+					if (x < valor) bajo = t; else alto = t;
+					t = (bajo + alto) / 2;
+				}
+				return 3 * (1-t) * t*t + t**3;
+			};
+			const mascara = intro.querySelector('#IntroLogoFillPath');
+			const barra = intro.querySelector('.IntroPortada_Progreso span');
+			const contador = intro.querySelector('.IntroPortada_Contador');
 			intro.classList.add('is-filling');
-			await Promise.all([finLogo, finBarra]);
+			await new Promise(resolve => {
+				const inicio = performance.now();
+				const actualizar = ahora => {
+					if (!intro.isConnected) { resolve(); return; }
+					const t = Math.min(1, (ahora - inicio) / duracionRelleno);
+					const p = t === 1 ? 1 : curva(t);
+					const y = 614 - 799 * p;
+					mascara.setAttribute('d', `M0 ${y} Q500 ${y+360} 1000 ${y} V609 H0 Z`);
+					barra.style.transform = `scaleX(${p})`;
+					contador.textContent = `${t === 1 ? 100 : Math.floor(p*100)}%`;
+					if (t === 1) resolve(); else requestAnimationFrame(actualizar);
+				};
+				requestAnimationFrame(actualizar);
+			});
 			await esperar(pausaTrasRelleno);
 			if (!intro.isConnected) { limpiarIntro(); return; }
 			const fondo = intro.querySelector('.IntroPortada_Fondo');

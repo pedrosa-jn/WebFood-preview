@@ -1,0 +1,47 @@
+.MobileTools,.MobileSearch{display:none;}
+@media(max-width:700px){
+ .MobileTools{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:calc(18px + env(safe-area-inset-bottom));z-index:900;display:flex;gap:4px;padding:5px;border:1px solid rgba(139,0,0,.25);border-radius:40px;background:rgb(245,245,240);box-shadow:0 5px 22px rgba(40,0,0,.15);transition:opacity 160ms ease,transform 200ms ease;}
+ .MobileTools[hidden]{display:none;}
+ .MobileTools button{display:grid;place-items:center;width:50px;height:50px;padding:0;border:0;border-radius:50%;color:rgb(139,0,0);background:transparent;cursor:pointer;touch-action:manipulation;}
+ .MobileTools [data-search-open]{background:rgb(139,0,0);color:rgb(245,245,240);}
+ .MobileTools button:active{transform:scale(.94);}
+ .MobileTools button:focus-visible,.MobileSearch button:focus-visible,.MobileSearch a:focus-visible{outline:2px solid rgb(139,0,0);outline-offset:3px;}
+ .MobileTools svg{width:24px;height:24px;overflow:visible;}
+ .MobileTools_Grid rect{transform-box:fill-box;transform-origin:left center;transition:transform 400ms cubic-bezier(.22,1,.36,1),opacity 240ms ease;}
+ .is-one-column .MobileTools_Grid rect:nth-child(odd){transform:scaleX(2.5);}
+ .is-one-column .MobileTools_Grid rect:nth-child(even){opacity:0;transform:translateX(-9px) scaleX(.2);}
+ body.ModalReceta-open .MobileTools,body.MobileSearch-open .MobileTools,body:has(.MenuToggle[aria-expanded="true"]) .MobileTools{opacity:0;pointer-events:none;transform:translateY(12px);}
+ .Recetas.Recetas--una-columna{grid-template-columns:minmax(0,1fr);}
+ .Recetas--una-columna .bck-image:not(.bck-image--placeholder){background-position:center calc(50% - 36vw);}
+ .Recetas.is-switching-grid>a{transition:none;}
+ .Recetas{overflow-anchor:none;}
+ .MobileSearch[open]{display:block;}
+ .MobileSearch{position:fixed;inset:0;margin:0;padding:0;border:0;width:100%;height:100dvh;max-width:none;max-height:none;background:transparent;color:rgb(10,12,36);overflow:hidden;}
+ .MobileSearch::backdrop{animation:mobileSearchBackdropIn 300ms ease both;background:rgba(10,12,36,.56);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);}
+ .MobileSearch_Panel{position:absolute;left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right));top:calc(var(--search-top,0px) + max(14px,env(safe-area-inset-top)));height:calc(var(--search-height,100dvh) - max(14px,env(safe-area-inset-top)) - 14px);max-height:680px;isolation:isolate;}
+ .MobileSearch_Surface{position:absolute;inset:0;background:rgb(245,245,240);border-radius:24px;border:1px solid rgba(139,0,0,.25);box-shadow:0 12px 40px rgba(20,0,0,.18);transform-origin:top left;z-index:-1;pointer-events:none;}
+ .MobileSearch_Content{height:100%;display:flex;flex-direction:column;padding:20px;min-height:0;}
+ .MobileSearch_Top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px;}
+ .MobileSearch_Top h2{font:900 1.8rem/1 "Barlow Condensed",sans-serif;color:rgb(139,0,0);margin:0;}
+ .MobileSearch button{font:500 1.2rem/1 "Barlow Condensed",sans-serif;color:rgb(139,0,0);background:transparent;border:0;min-width:44px;min-height:44px;cursor:pointer;border-radius:50%;}
+ .MobileSearch button[hidden]{display:none;}
+ .MobileSearch form{display:flex;align-items:center;gap:10px;min-height:52px;padding:0 10px 0 15px;border:1px solid rgb(139,0,0);border-radius:28px;background:rgb(245,245,240);}
+ .MobileSearch form>svg{width:22px;height:22px;flex:none;color:rgb(139,0,0);}
+ .MobileSearch input{font:500 20px/1.2 "Barlow Condensed",sans-serif;color:rgb(10,12,36);background:transparent;border:0;outline:0;box-shadow:none;width:100%;min-width:0;padding:10px 0;appearance:none;-webkit-appearance:none;caret-color:rgb(139,0,0);}
+ .MobileSearch input::-webkit-search-cancel-button{display:none;}
+ .MobileSearch input::placeholder{color:rgb(90,85,80);opacity:1;}
+ .MobileSearch_Status{font:400 16px/1.3 "Barlow Condensed",sans-serif;margin:14px 2px 8px;}
+ .MobileSearch_Results{overflow-y:auto;overscroll-behavior:contain;flex:1;min-height:0;scrollbar-color:rgb(139,0,0) transparent;scrollbar-width:thin;padding-bottom:8px;}
+ .MobileSearch_Result{display:flex;flex-direction:column;gap:5px;padding:16px 3px;border-bottom:1px solid rgba(139,0,0,.18);text-decoration:none;color:rgb(10,12,36);font:400 17px/1.2 "Barlow Condensed",sans-serif;}
+ .MobileSearch_ResultTitle{font-weight:700;font-size:22px;color:rgb(139,0,0);}
+ .MobileSearch ::selection{color:rgb(245,245,240);background:rgb(139,0,0);}
+ body > footer{padding-bottom:95px;}
+}
+@media(prefers-reduced-motion:reduce){
+ .MobileTools,.MobileTools *,.MobileSearch *{transition:none!important;scroll-behavior:auto!important;}
+}
+
+@keyframes mobileSearchBackdropIn{from{opacity:0;}to{opacity:1;}}
+@keyframes mobileSearchBackdropOut{from{opacity:1;}to{opacity:0;}}
+.MobileSearch.is-closing::backdrop{animation:mobileSearchBackdropOut 300ms ease both;}
+@media(prefers-reduced-motion:reduce){.MobileSearch::backdrop{animation:none;}}

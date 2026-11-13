@@ -11,6 +11,7 @@
 	<link rel="preload" href="./fonts/PlayfairDisplay-Italic-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="stylesheet" type="text/css" href="./css/styles_CATEGORIA.css?v=meat-card-fit-20261113">
 
+	<link rel="stylesheet" href="./css/mobile-tools.css?v=mobile-tools-20261113">
 </head>
 
 <body>
@@ -83,6 +84,27 @@
 		<div>© 2026 Recetario — Todos los derechos reservados.</div>
 	</footer>
 
+<!-- MOBILE CATEGORY TOOLS -->
+	<div class="MobileTools" id="MobileTools" role="group" aria-label="Vista y búsqueda de recetas" hidden>
+		<button type="button" data-layout-toggle aria-label="Cambiar a una columna" aria-pressed="false" aria-controls="Recetas">
+			<svg class="MobileTools_Grid" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="6" height="6" rx="1.5"/><rect x="12" y="3" width="6" height="6" rx="1.5"/><rect x="3" y="14" width="6" height="6" rx="1.5"/><rect x="12" y="14" width="6" height="6" rx="1.5"/></svg>
+		</button>
+		<button type="button" data-search-open aria-label="Buscar una receta" aria-controls="MobileSearch" aria-expanded="false" aria-haspopup="dialog">
+			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>
+		</button>
+	</div>
+	<dialog class="MobileSearch" id="MobileSearch" aria-labelledby="MobileSearchTitle">
+		<div class="MobileSearch_Panel">
+			<div class="MobileSearch_Surface"></div>
+			<div class="MobileSearch_Content">
+				<div class="MobileSearch_Top"><h2 id="MobileSearchTitle">Buscar receta</h2><button type="button" data-search-close aria-label="Cerrar buscador"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+				<form role="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><input type="search" aria-label="Buscar en todas las recetas" placeholder="¿Qué te apetece cocinar?" autocomplete="off" enterkeyhint="search"><button type="button" data-search-clear aria-label="Borrar búsqueda" hidden>×</button></form>
+				<p class="MobileSearch_Status" role="status" aria-live="polite"></p>
+				<div class="MobileSearch_Results"></div>
+			</div>
+		</div>
+	</dialog>
+
 <!-- MODAL RECETA -->
 
 	<div class="ModalReceta" id="ModalReceta" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="ModalTitulo" tabindex="-1">
@@ -136,9 +158,10 @@
 <!-- JS SCRIPT -->
 
 	<script src="./data/recetas.js?v=recipe-images-20261110"></script>
-	<script src="./js/app.js?v=meat-card-fit-20261113"></script>
+	<script src="./js/app.js?v=mobile-intro-20261113"></script>
 
 
 
+	<script src="./js/mobile-tools.js?v=mobile-tools-20261113"></script>
 </body>
 </html>
