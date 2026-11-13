@@ -1,7 +1,7 @@
 /* Renderiza las categorías y recetas desde data/recetas.js. */
 const FLECHA = '<svg class="CAT_Arrow" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>';
 const dosDigitos = numero => String(numero).padStart(2, '0');
-const urlCategoria = id => `./categoria.html?c=${encodeURIComponent(id)}&rev=editorial-seal-20261113-r2`;
+const urlCategoria = id => `./categoria.html?c=${encodeURIComponent(id)}&rev=pulse-tools-20261113`;
 const IMAGENES_RECETA = {
 	'espaguetis-carbonara': 'Recetas_IMG/pasta-carbonara.svg?rev=20261111d',
 	'espaguetis-con-cebolla-y-jamon': 'Recetas_IMG/pasta-jamon-cebolla.svg?rev=20261111d',
@@ -313,6 +313,44 @@ function iniciarReveladoCategorias() {
 		categoria.style.setProperty('--reveal-delay', '0ms');
 		categoria.classList.add('is-revealed');
 	});
+}
+
+function iniciarIndicadorScroll() {
+	const titulo = document.querySelector('.SEC_Titulo');
+	if (!titulo || !document.getElementById('Recetas')) return;
+	const movil = matchMedia('(max-width:700px)');
+	const reducido = matchMedia('(prefers-reduced-motion:reduce)');
+	if (!movil.matches || reducido.matches) return;
+	const indicador = document.createElement('span');
+	indicador.className = 'ScrollCueMouse';
+	indicador.setAttribute('aria-hidden','true');
+	indicador.innerHTML = '<svg viewBox="0 0 28 48" fill="none"><rect x="2.5" y="2.5" width="23" height="43" rx="11.5" fill="#F5F5F0" stroke="currentColor" stroke-width="2.5"/><circle class="ScrollCueMouse_Pulso" cx="14" cy="13" r="2.4" fill="currentColor"/></svg>';
+	titulo.append(indicador);
+	let terminado = false, iniciado = false, temporizador = 0;
+	const ocultar = () => {
+		if (terminado) return;
+		terminado = true; clearTimeout(temporizador);
+		indicador.classList.add('is-leaving');
+		window.removeEventListener('scroll', alScroll);
+		window.setTimeout(() => indicador.remove(), 300);
+	};
+	const alScroll = () => { if (window.scrollY > 32) ocultar(); };
+	const comenzar = () => {
+		if (terminado || iniciado) return;
+		if (!movil.matches || reducido.matches || document.hidden || window.scrollY > 32) { ocultar(); return; }
+		iniciado = true; indicador.classList.add('is-active');
+		temporizador = window.setTimeout(ocultar, 4450);
+	};
+	window.addEventListener('scroll', alScroll, {passive:true});
+	document.addEventListener('visibilitychange', () => { if (document.hidden) ocultar(); }, {once:true});
+	movil.addEventListener('change', () => { if (!movil.matches) ocultar(); });
+	reducido.addEventListener('change', () => { if (reducido.matches) ocultar(); });
+	if ('onpagereveal' in window) {
+		window.addEventListener('pagereveal', evento => {
+			if (evento.viewTransition) evento.viewTransition.finished.then(comenzar, comenzar);
+			else comenzar();
+		}, {once:true});
+	} else comenzar();
 }
 
 function iniciarParallaxCuadricula() {
@@ -849,6 +887,7 @@ iniciarBuscador();
 iniciarIntroPortada();
 iniciarReveladoCategorias();
 iniciarParallaxCuadricula();
+iniciarIndicadorScroll();
 iniciarTransicionPaginas();
 iniciarLogoAnimado();
 iniciarReboteFooter();
