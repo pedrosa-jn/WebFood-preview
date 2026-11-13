@@ -11,7 +11,7 @@
  .MobileTools.is-expanded .MobileTools_Toggle>svg{transform:rotate(45deg);}
  .MobileTools_Options{position:absolute;right:0;bottom:68px;display:flex;flex-direction:column;gap:12px;visibility:hidden;opacity:0;pointer-events:none;transform:translateY(12px) scale(.9);transform-origin:bottom center;transition:opacity 180ms ease,transform 320ms cubic-bezier(.22,1,.36,1),visibility 0s 320ms;}
  .MobileTools.is-expanded .MobileTools_Options{visibility:visible;opacity:1;pointer-events:auto;transform:none;transition:opacity 180ms ease,transform 320ms cubic-bezier(.22,1,.36,1),visibility 0s;}
- .MobileTools_Label{position:absolute;right:calc(100% + 10px);padding:6px 10px;border-radius:6px;background:rgb(245,245,240);color:rgb(139,0,0);font:700 16px/1 "Barlow Condensed",sans-serif;box-shadow:0 2px 10px rgba(40,0,0,.08);}
+ .MobileTools_Label{position:absolute;right:calc(100% + 10px);padding:6px 10px;border-radius:6px;background:rgb(245,245,240);color:rgb(10,12,36);font:700 16px/1 "Barlow Condensed",sans-serif;box-shadow:0 2px 10px rgba(40,0,0,.08);}
  .MobileTools_Grid rect{transform-box:fill-box;transform-origin:left center;transition:transform 400ms cubic-bezier(.22,1,.36,1),opacity 240ms ease;}
  .is-one-column .MobileTools_Grid rect:nth-child(odd){transform:scaleX(2.5);}
  .is-one-column .MobileTools_Grid rect:nth-child(even){opacity:0;transform:translateX(-9px) scaleX(.2);}

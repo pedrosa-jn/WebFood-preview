@@ -1357,7 +1357,7 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 @media(max-width:700px){
  .SiteHeader{max-width:100%;}
  .SiteHeader .MenuDesktop{display:none;}
- .SiteHeader .MenuToggle{display:block;}
+ .SiteHeader .MenuToggle{display:block;width:41px;height:41px;}
  .SiteHeader .MenuMobile{display:flex;}
  .Recetas{max-width:100%;overflow-x:clip;}
 }
