@@ -1,7 +1,7 @@
 /* Renderiza las categorías y recetas desde data/recetas.js. */
 const FLECHA = '<svg class="CAT_Arrow" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>';
 const dosDigitos = numero => String(numero).padStart(2, '0');
-const urlCategoria = id => `./categoria.html?c=${encodeURIComponent(id)}&rev=estimated-recipes-20261113`;
+const urlCategoria = id => `./categoria.html?c=${encodeURIComponent(id)}&rev=active-prep-search-20261114`;
 const IMAGENES_RECETA = {
 	'espaguetis-carbonara': 'Recetas_IMG/pasta-carbonara.svg?rev=20261111d',
 	'espaguetis-con-cebolla-y-jamon': 'Recetas_IMG/pasta-jamon-cebolla.svg?rev=20261111d',
@@ -532,7 +532,7 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 			autor.textContent = ` · ${receta.autor}`;
 			titulo.append(autor);
 		}
-		// Estimaciones propias de cada receta; ≈ incluye los reposos de tiempoNota.
+		// Preparación activa estimada: excluye esperas y cocción sin intervención.
 		const metadatos = [receta.tiempo || 'Por estimar', receta.dificultad || 'Por valorar'];
 		datos.replaceChildren(...metadatos.map((valor, indice) => {
 			const etiqueta = document.createElement('span');

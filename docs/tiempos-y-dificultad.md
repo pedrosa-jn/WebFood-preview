@@ -1,125 +1,122 @@
-# Tiempos y dificultad: propuesta aplicada a las 105 fichas
+# Preparación activa y dificultad de las recetas
 
-13 de noviembre de 2026. Son estimaciones editoriales, no pruebas cronometradas en cocina. Se han leído las 105 elaboraciones y comparado técnicas y tiempos con 38 referencias de autores, medios culinarios, productores e instituciones. Algunas referencias solo sirven para contrastar una técnica, no son recetas equivalentes: se declara expresamente en cada fuente.
+Criterio rectificado por Javier el 14 de noviembre de 2026. Sustituye el tiempo total de la propuesta del día 13.
 
-## Criterio
+El tiempo visible es una estimación de **trabajo activo**, sin el símbolo ≈. Cuenta cortar, limpiar, mezclar, rellenar, empanar, freír por tandas, remover cuando lo exige la receta, montar y servir. Excluye remojos, adobos, frío, reposos, precalentados y las fases de olla u horno que no requieren intervención continua. Por ejemplo, cocido: 30 minutos de preparación, no 13 horas incluyendo la noche anterior.
 
-- El tiempo visible lleva `≈` e incluye preparación, cocción y las esperas necesarias para servir según la versión elegida. El desglose distingue elaboración de remojo, maceración, frío o reposo; elaboración **no significa trabajo activo continuo**. Se solapan tareas cuando el procedimiento lo permite.
-- Se respetan los minutos explícitos del documento; añadir precalentado, calentamiento y liberación de presión evita anunciar solo los minutos de válvula. Los datos incompletos no permiten garantizar punto, seguridad ni tiempo exacto.
-- Las esperas sin duración se estiman: noche de remojo = 12 horas; unas horas de maceración = 4; un rato de adobo = 30 minutos; enfriado según plato/molde. Son supuestos, no datos confirmados de la familia. Cada uno figura en la justificación y en la nota de tiempo del modal.
-- Fácil: mezcla, corte o cocción directa con técnica básica. Media: rellenos/formado, varias fases coordinadas, emulsiones delicadas, fritura por tandas o control del punto. Es un criterio editorial coherente, no una escala oficial ni una copia de las etiquetas de otras webs. No se fuerza una categoría Alta si ninguna elaboración lo justifica.
-- Las recetas mezcladas se estiman por su título principal, sin sumar la preparación ajena. Los ingredientes y los pasos permanecen intactos; las incidencias de la auditoría siguen abiertas.
-- Kebab: tiempo pendiente. El procedimiento de conservación necesita corregirse antes de asignarle una duración publicable. No se ha inventado una versión alternativa.
+La cocción que requiere atención directa (remover bechamel o freír croquetas, por ejemplo) sí forma parte del trabajo activo. No debe interpretarse la etiqueta como duración total hasta poder comer. La dificultad se mantiene como valoración editorial de la técnica.
 
-## Detalle receta por receta
+No se han añadido recetas: el ZIP original aportado contiene las mismas 105 fichas e incluye «Kebab» en data/recetas.js, línea 2492. Los ingredientes y pasos continúan intactos. El tiempo activo de kebab no avala el paso de conservación pendiente de revisar.
 
-| Receta | Tiempo total orientativo | Elaboración | Espera | Dificultad | Estado | Justificación y contraste |
-|---|---|---|---|---|---|---|
-| Mayonesa | ≈10 min | 10 min | 0 min | Fácil | provisional | Solo mayonesa: reunir ingredientes y emulsionar con batidora; se excluye la salsa de vino mezclada en la ficha. ([MAYO](#mayo)) |
-| Tomate Frito | ≈45 min | 45 min | 0 min | Fácil | estimado | Picar y pochar cebolla, reducir una lata pequeña de tomate; la reducción no tiene duración en el original. ([TOMATE](#tomate)) |
-| Bechamel | ≈20 min | 20 min | 0 min | Media | provisional | Incluye preparar el roux, añadir leche sin grumos y los 8 minutos de hervor indicados; pendiente de aclarar harina y unidades. ([BECHAMEL](#bechamel)) |
-| Salsa César | ≈10 min | 10 min | 0 min | Fácil | provisional | Orientación por una salsa César de batidora comparable, añadiendo mise en place; faltan todos los pasos del original. ([CESAR](#cesar)) |
-| Salmorejo · Abuelo Mariano | ≈1 h | 30 min | 30 min | Fácil | estimado | Escaldar y pelar tomates, triturar y colar; se presupone media hora de frío para servir fresco. ([SALMOREJO](#salmorejo)) |
-| Ajo Blanco | ≈45 min | 15 min | 30 min | Fácil | estimado | Triturar con almendras peladas y pan remojado; media hora orientativa de frío, reducible usando agua ya fría. ([AJOBLANCO](#ajoblanco)) |
-| Ensaladilla Rusa | ≈2 h 15 min | 45 min | 1 h 30 min | Fácil | estimado | 10 minutos de presión más subida y bajada de presión, pelado y montaje; enfriado de patatas y nevera estimados. ([ENSALADILLA](#ensaladilla)) |
-| Mousse de Espárragos | ≈4 h | 1 h | 3 h | Media | estimado | Mezclar y cuajar al baño maría, aproximadamente 45 minutos de horno; se estiman 3 horas para enfriar, según tamaño del molde. ([PASTEL](#pastel)) |
-| Pudin de Pescado | ≈4 h 15 min | 1 h 15 min | 3 h | Media | estimado | 10 minutos de pescado, desmenuzado y claras montadas, 30 de horno, preparación y templado; frío adicional orientativo. ([PASTEL](#pastel)) |
-| Ensalada Mixta | ≈15 min | 15 min | 0 min | Fácil | estimado | Lavar, escurrir, cortar y aliñar; atún en conserva, sin cocción. ([ENSALADA](#ensalada)) |
-| Ensalada de Queso, Jamón, Tomate | ≈15 min | 15 min | 0 min | Fácil | estimado | Versión principal con lechuga; cortar queso y embutido. La alternativa de pasta requiere cocerla y enfriarla aparte. ([ENSALADA](#ensalada)) |
-| Ensalada de Tomate, Atún y Piña | ≈10 min | 10 min | 0 min | Fácil | estimado | Mezclum preparado, atún en conserva y fruta; lavar y cortar tomate, mezclar y aliñar. ([ENSALADA](#ensalada)) |
-| Ensalada de Pasta y Ŕúcula | ≈55 min | 25 min | 30 min | Fácil | estimado | Calentar agua y cocer pasta mientras se cortan los acompañamientos; enfriado orientativo antes de mezclar. ([PASTA](#pasta), [ENSALADA](#ensalada)) |
-| Pimientos Rellenos · de Clara | ≈25 min | 25 min | 0 min | Fácil | estimado | Mezclar relleno frío y rellenar unos 20 pimientos; sin horno ni cocción y con ingredientes refrigerados. ([ENSALADA](#ensalada)) |
-| Ensalada Campera | ≈1 h 45 min | 45 min | 1 h | Fácil | estimado | Patatas en olla a presión con calentamiento y despresurización, picado y montaje; una hora orientativa de frío. ([ENSALADILLA](#ensaladilla)) |
-| Pastel de Salmón · de Clara | ≈2 h 20 min | 20 min | 2 h | Fácil | estimado | Montar capas con pan y ahumados, prensar en nevera; se estiman 2 horas de prensado, no fijadas por el original. ([ENSALADILLA](#ensaladilla)) |
-| Ensalada de Arroz | ≈55 min | 35 min | 20 min | Fácil | estimado | Cocer arroz, hacer tortilla y trocear jamón; se estima un enfriado breve para mezclar, sin reposo prolongado obligatorio. ([ARROZ](#arroz)) |
-| Huevos Rellenos | ≈1 h 40 min | 40 min | 1 h | Fácil | estimado | 15 minutos de hervor originales, enfriar para pelar, rellenar y decorar; una hora orientativa de nevera. ([HUEVOS](#huevos)) |
-| Sopa al Cuarto de Hora | ≈50 min | 50 min | 0 min | Media | provisional | Orientación provisional: limpiar pescado y gambas, preparar base, 5 minutos de sofrito más 10 de arroz y 5 de pescado. Faltan ingredientes e inicio. ([GAZPACHUELO](#gazpachuelo), [ARROZ](#arroz)) |
-| Crema de Calabacín | ≈45 min | 45 min | 0 min | Fácil | estimado | Pelar y trocear, sofreír, calentar y despresurizar la olla, 15 minutos de cocción indicados y triturado. ([CREMA](#crema)) |
-| Gazpachuelo o Sopa de Mayonesa · de la Abuela Carmen | ≈35 min | 35 min | 0 min | Media | estimado | Pelar patatas, cocerlas 10–15 minutos y ligar mayonesa con caldo templado para no cortarla; sin fumet largo. ([GAZPACHUELO](#gazpachuelo)) |
-| Sopa de Mayonesa · de la Abuela Cheli | ≈45 min | 45 min | 0 min | Media | estimado | Cocer pescado y gambas 10–15 minutos, templar y limpiar, preparar mayonesa e incorporarla gradualmente. ([GAZPACHUELO](#gazpachuelo)) |
-| Lentejas | ≈13 h | 1 h | 12 h | Fácil | estimado | Método de olla a presión: hervor previo de 5 minutos y cocción de 20, más preparación y gestión de presión. Remojo nocturno estimado en 12 horas. ([LENTEJAS](#lentejas), [LEGUMBRES](#legumbres)) |
-| Alubias | ≈13 h | 1 h | 12 h | Fácil | estimado | Método de presión con hervor previo de 5 minutos y 20 de cocción; calentamiento y liberación de presión incluidos. Remojo nocturno estimado en 12 horas. ([LEGUMBRES](#legumbres)) |
-| Alubias · de Miguel Angel | ≈13 h | 1 h | 12 h | Fácil | estimado | 30 minutos en olla según el original, más preparación, calentamiento y liberación de presión; remojo de 12 horas explícito. ([LEGUMBRES](#legumbres)) |
-| Cocido | ≈13 h 30 min | 1 h 30 min | 12 h | Fácil | estimado | Hervor de 15 minutos, presión de 20 y 5, manejo de caldos, preparación y fideos; remojo nocturno estimado en 12 horas. ([LEGUMBRES](#legumbres)) |
-| Potaje de Garbanzos | ≈13 h | 1 h | 12 h | Fácil | estimado | 20 minutos de olla y 5 de acabado, más preparación y presión; se parte de garbanzos secos con remojo previo orientativo de 12 horas. ([LEGUMBRES](#legumbres)) |
-| Patatas con Mejillones | ≈50 min | 50 min | 0 min | Media | estimado | Limpiar mejillones y cortar verduras, sofreír y guisar patatas antes de abrir el marisco; su punto condiciona el final. ([GAZPACHUELO](#gazpachuelo)) |
-| Sopa | ≈1 h | 1 h | 0 min | Fácil | estimado | Preparar verduras, 30 minutos o más en olla, calentamiento y despresurización; fideos al final. ([GAZPACHUELO](#gazpachuelo)) |
-| Paella | ≈1 h 30 min | 1 h 30 min | 0 min | Media | provisional | Incluye preparación y sofrito, 20 minutos de olla más gestión de presión, unos 18 de arroz inferidos del comparable y 5 de reposo; falta esa cocción en el original. ([PAELLA](#paella)) |
-| Arroz Blanco | ≈30 min | 30 min | 0 min | Fácil | estimado | Dorar ajo, calentar agua y cocer arroz hasta su punto; referencia de cacerola, no del método exprés. ([ARROZ](#arroz)) |
-| Pisto | ≈1 h | 1 h | 0 min | Fácil | estimado | Picar bastantes verduras, freír en dos sartenes, escurrir y terminar juntas; no incluye guarniciones opcionales de huevo y patatas. ([PISTO](#pisto)) |
-| Sopa Bouillabaisse · Abuela Carmen | ≈1 h | 1 h | 0 min | Media | estimado | Cocer pescado, verduras y almendras, limpiar, triturar, colar y dar hervor final; varios procesos coordinados. ([GAZPACHUELO](#gazpachuelo)) |
-| Espaguetis Carbonara | ≈25 min | 25 min | 0 min | Media | estimado | Calentar agua, cocer 8–10 minutos y preparar bacon y huevo; terminar fuera del fuego requiere controlar la emulsión. ([PASTA](#pasta)) |
-| Espaguetis con Cebolla y Jamón | ≈30 min | 30 min | 0 min | Fácil | estimado | Pasta y cebolla se preparan parcialmente en paralelo; picar, dorar y saltear con jamón. ([PASTA](#pasta)) |
-| Macarrones con Tomate y Chorizo | ≈45 min | 45 min | 0 min | Fácil | estimado | Pasta 8–10 minutos, sofrito, 10 minutos de salsa con vino y chorizo y gratinado, con preparación y precalentado. ([PASTA](#pasta)) |
-| Espaguetis con Ajo y Aceite | ≈25 min | 25 min | 0 min | Fácil | estimado | Cocción de pasta 8–10 minutos, ajo y salteado final de 5; agua y picado incluidos. ([PASTA](#pasta)) |
-| Espaguetis Bolognesa | ≈40 min | 40 min | 0 min | Fácil | estimado | Versión familiar con tomate ya frito y sofrito corto; no se traslada el tiempo de un ragú de varias horas. ([PASTA](#pasta)) |
-| Espaguetis con Gambas y Ajo | ≈40 min | 40 min | 0 min | Fácil | estimado | Los 10 minutos iniciales de gambas y la pasta posterior son consecutivos; pelado, colado y salteado incluidos. ([PASTA](#pasta)) |
-| Ensalada de Pasta | ≈25 min | 25 min | 0 min | Fácil | estimado | Cocer pasta y cortar acompañamientos en paralelo; el original no exige nevera, se sirve recién aliñada. ([PASTA](#pasta), [ENSALADA](#ensalada)) |
-| Ensalada de Pasta con Gambas | ≈1 h 25 min | 25 min | 1 h | Fácil | estimado | Se parte de gambas ya cocidas; cocción de pasta y montaje, más una hora orientativa de frío. ([PASTA](#pasta), [ENSALADILLA](#ensaladilla)) |
-| Fideos Amarillos | ≈1 h 30 min | 1 h 30 min | 0 min | Media | estimado | Limpiar marisco, 10 minutos de cocción, sofrito y colado, 20 de olla con su presión y pasta cocida al final. ([PAELLA](#paella)) |
-| Lasagna | ≈1 h 5 min | 1 h 5 min | 0 min | Media | estimado | Láminas de remojo y relleno corto de carne; incluye bechamel casera preparada en paralelo y gratinado. Comprarla hecha reduce trabajo. ([CANELONES](#canelones)) |
-| Canelones · Abuela Carmen | ≈1 h 5 min | 1 h 5 min | 0 min | Media | provisional | Dorar carne, cocer y rellenar pasta, hacer bechamel y gratinar; no es el ragú largo del comparable. Faltan ingredientes en la ficha. ([CANELONES](#canelones)) |
-| Canelones · Abuela Cheli | ≈45 min | 45 min | 0 min | Media | estimado | Relleno corto con tomate frito y enrollado manual; el original termina al rellenar y no prescribe bechamel ni gratinado. ([CANELONES](#canelones)) |
-| Tortilla Francesa | ≈10 min | 10 min | 0 min | Fácil | estimado | Batir, calentar sartén, cuajar y plegar; sin rellenos elaborados. ([TORTILLA](#tortilla)) |
-| Tortilla de Patatas | ≈50 min | 50 min | 0 min | Media | estimado | Pelar y freír 5–6 patatas, escurrir, mezclar y voltear; dificultad por el giro y el punto de cuajado. ([TORTILLA](#tortilla)) |
-| Huevos Fritos | ≈10 min | 10 min | 0 min | Fácil | estimado | Calentar aceite y freír una tanda doméstica; las patatas y el chorizo son acompañamientos opcionales no incluidos. ([TORTILLA](#tortilla)) |
-| Huevos con Bechamel | ≈1 h | 1 h | 0 min | Media | estimado | 15 minutos de huevos y enfriado para pelar; rellenado, bechamel y gratinado, con tareas en paralelo. ([HUEVOS](#huevos), [BECHAMEL](#bechamel)) |
-| Huevos en Salsa Amarilla | ≈1 h 5 min | 1 h 5 min | 0 min | Media | estimado | Cocer 15 minutos, enfriar, rellenar, enharinar, freír y guisar con majado; más fases que los huevos rellenos fríos. ([HUEVOS](#huevos)) |
-| Huevos al Plato | ≈25 min | 25 min | 0 min | Fácil | estimado | Montaje y horneado corto, partiendo de tomate y guarniciones ya cocinadas como indica la receta. ([HUEVOS](#huevos)) |
-| Huevos Rellenos | ≈1 h 40 min | 40 min | 1 h | Fácil | estimado | 15 minutos de cocción, pelado y montaje, con enfriado y una hora orientativa de nevera. Técnica equivalente a la otra variante. ([HUEVOS](#huevos)) |
-| Rollo de Carne | ≈2 h 20 min | 1 h 50 min | 30 min | Media | estimado | Rellenar y atar la aleta, dorar y preparar salsa, 45 minutos de presión con calentamiento y despresurización; enfriado antes de cortar aparte. ([ROLLO](#rollo)) |
-| Carne con Tomate | ≈1 h 15 min | 1 h 15 min | 0 min | Fácil | estimado | Se elige la cacerola: picado y sellado, 10 minutos de rehogado y 40 a fuego lento. La alternativa a presión puede acortar el tiempo. ([ESTOFADO](#estofado)) |
-| Albóndigas | ≈1 h 5 min | 1 h 5 min | 0 min | Media | estimado | Mezclar, formar bolas, enharinar y freír por tandas, preparar salsa y guisar; no se añade el largo reposo del comparable que aquí no se exige. ([ALBONDIGAS](#albondigas)) |
-| Solomillo de Cerdo · de Mamá | ≈35 min | 35 min | 0 min | Fácil | estimado | Majado y preparación con precalentado en paralelo, más los 20 minutos de horno indicados; depende del grosor. ([LOMO](#lomo)) |
-| Solomillo de Ternera de Navidad · de Mamá | ≈45 min | 45 min | 0 min | Media | provisional | Preparación y precalentado, 30 minutos de horno y corte; comparable de solomillo de 600 g con media hora de horno. Falta peso de la pieza familiar: no garantiza su punto. ([SOLOMILLO](#solomillo)) |
-| Carne en Salsa · de la Abuela Carmen | ≈1 h | 1 h | 0 min | Fácil | estimado | Sellar, pochar cebollas y preparar salsa, más 15 minutos de olla y tiempos de presión. ([ESTOFADO](#estofado)) |
-| Albondigón | ≈1 h 15 min | 1 h 5 min | 10 min | Media | provisional | Solo pasos 1–7: mezclar, reposar brevemente, formar pieza y dorar, 15 minutos de presión y gestión de olla; se excluyen los pasos de albóndigas mezclados. ([ALBONDIGAS](#albondigas)) |
-| Codillo | ≈2 h 10 min | 2 h 10 min | 0 min | Fácil | estimado | El original exige 90 minutos en olla; se añaden preparación, calentamiento y despresurización. Comparable de técnica, no se sustituyen esos 90 minutos. ([ESTOFADO](#estofado)) |
-| Cinta de Lomo a la Sal | ≈1 h | 1 h | 0 min | Fácil | estimado | Se toma la opción de 1 kg: cubrir con sal y asar unos 45 minutos, preparar, precalentar y retirar costra; la pieza de medio kilo requiere ajustar. ([LOMO](#lomo)) |
-| Carne Estofada | ≈1 h 5 min | 1 h 5 min | 0 min | Fácil | provisional | Picado y sofrito, 10 minutos con vino y 20 de olla, más presión; estimación provisional porque falta incorporar la carne en los pasos. ([ESTOFADO](#estofado)) |
-| Cordero · Mamá | ≈6 h 30 min | 2 h 30 min | 4 h | Fácil | provisional | Se orienta el asado de pierna/paletilla en torno a 2 horas más preparación; unas cuantas horas de maceración se estiman en 4. Peso y temperatura pendientes. ([CORDERO](#cordero)) |
-| Cordero · Adela | ≈2 h 45 min | 2 h 45 min | 0 min | Media | provisional | Dorado fuerte, cocción lenta y patatas; se estima algo más de 2 horas de horno por la técnica. Faltan peso y tiempos para afinarlo. ([CORDERO](#cordero)) |
-| Cordero a Mi Manera | ≈5 h 5 min | 1 h 5 min | 4 h | Media | provisional | Se conservan los 20 + 20 + 10 minutos de horno del original, preparación y 4 horas orientativas de maceración. Corte y peso no especificados: estimación provisional. ([CORDERO](#cordero)) |
-| Carne en Salsa | ≈1 h 15 min | 1 h 15 min | 0 min | Fácil | estimado | Pochar, sellar y reducir vino, 30 minutos de presión, subida y bajada de presión; pieza de ternera de 1,5 kg. ([ESTOFADO](#estofado)) |
-| Lomo al Caramelo | ≈1 h | 1 h | 0 min | Fácil | provisional | Sellado, base y reducción, 15 minutos de presión con calentamiento y apertura, crema y corte; provisional por un paso de cordero ajeno a esta ficha. ([ESTOFADO](#estofado)) |
-| Filetes Rusos | ≈40 min | 40 min | 0 min | Fácil | estimado | Pochar media cebolla, mezclar carne, formar, empanar y freír; no lleva la salsa ni el guiso del comparable. ([ALBONDIGAS](#albondigas)) |
-| Filetes Empanados | ≈20 min | 20 min | 0 min | Fácil | estimado | Filetes ya cortados: salar, empanar y freír una tanda doméstica; no hay relleno ni enrollado. ([FLAMENQUIN](#flamenquin)) |
-| Flamenquines | ≈40 min | 40 min | 0 min | Media | estimado | Extender, rellenar y enrollar, empanar y freír por tandas; el sellado exige más cuidado que un filete empanado. ([FLAMENQUIN](#flamenquin)) |
-| Roast Beef | ≈1 h 35 min | 1 h 5 min | 30 min | Media | provisional | Se conservan 15 + 15 minutos de asado y 20 de horno apagado; preparación y salsa, más enfriado orientativo antes del corte. El comparable usa otro método más largo; temperatura y punto familiar pendientes de precisar. ([ROSBIF](#rosbif)) |
-| Albóndigas Amarillas | ≈1 h | 1 h | 0 min | Media | estimado | Formar bolas enharinadas, preparar majado y cocer en caldo hasta tiernas; sin la fritura previa de la otra variante. ([ALBONDIGAS](#albondigas)) |
-| Carne Mechada | ≈1 h 55 min | 1 h 40 min | 15 min | Media | provisional | Solo carne mechada, pasos 1–5: mechar y sellar, sofrito y salsa, 30 minutos de presión más calentamiento y apertura; reposo de corte orientativo. Se excluye la carrillada mezclada. ([ROLLO](#rollo)) |
-| Cinta de Lomo con Ciruelas, Orejones e Higos | ≈1 h 15 min | 1 h 15 min | 0 min | Fácil | estimado | Sellado y sofrito con vino antes de los 45 minutos de horno explícitos; no hay maceración previa obligatoria. ([LOMO](#lomo)) |
-| Cinta de Lomo al Horno | ≈1 h 10 min | 1 h 10 min | 0 min | Fácil | estimado | Cebolla, sellado y reducción antes de 30 minutos de horno; patatas cocidas y doradas en paralelo, incluidas porque forman parte del acabado. ([LOMO](#lomo)) |
-| Pollo en Pepitoria | ≈1 h | 1 h | 0 min | Media | estimado | Dorar base y pollo, 20 minutos de presión con su gestión y ligar con yema sin cortarla; comparable de ave, manda la olla del original. ([POLLO](#pollo)) |
-| Pollo · Abuela Carmen | ≈1 h 15 min | 1 h 15 min | 0 min | Fácil | estimado | Se estima la opción de cacerola: dorados y unos 40 minutos de guiso; no se presupone olla rápida para reducir artificialmente el total. ([POLLO](#pollo)) |
-| Pollo al Horno · de la Abuela Cheli | ≈1 h 50 min | 1 h 50 min | 0 min | Fácil | estimado | 90 minutos de horno originales más preparación, precalentado en paralelo y unos minutos para sacar y trinchar; peso no indicado. ([POLLO](#pollo)) |
-| Pollo a la Sopa de Cebolla | ≈1 h 15 min | 1 h 15 min | 0 min | Fácil | estimado | Pollo troceado: 60 minutos de horno y preparación con precalentado en paralelo. ([POLLO](#pollo)) |
-| Pollo al Horno | ≈1 h 20 min | 1 h 20 min | 0 min | Fácil | estimado | 60 minutos de horno prescritos más majado, preparación, precalentado y trinchado; depende del tamaño del pollo entero. ([POLLO](#pollo)) |
-| Pollo con Cerveza y Yogur | ≈1 h 35 min | 1 h 5 min | 30 min | Fácil | provisional | Preparar y dorar pollo, salsa y guiso estimado de 35–40 minutos; un rato de adobo se orienta en 30 minutos. Faltan duración de guiso y paso de dorado explícito. ([POLLO](#pollo)) |
-| Pollo con Limón | ≈2 h 5 min | 1 h 35 min | 30 min | Fácil | estimado | 80 minutos de horno y preparación con precalentado en paralelo; macerar un rato se interpreta provisionalmente como media hora. ([POLLO](#pollo)) |
-| Pavo al Oporto | ≈37 h 30 min | 1 h 30 min | 36 h | Media | provisional | 36 horas de maceración expresas; preparación, dorado y reducción más 45 minutos de horno. El tamaño/corte de los 2 kg y la frase de dorado incompleta requieren confirmación; no garantiza punto de cocción. ([POLLO](#pollo)) |
-| Salmón a la Naranja · de Mariano | ≈40 min | 40 min | 0 min | Fácil | estimado | Pochar cebolla, añadir salmón y cocer 15 minutos con naranja; patatas cocidas en paralelo como guarnición. ([PESCADO](#pescado)) |
-| Pescado Frito | ≈30 min | 30 min | 0 min | Media | estimado | Limpiar una tanda doméstica de pescado, enharinar y freír por tandas; el aceite y el tamaño de las piezas requieren atención. ([FLAMENQUIN](#flamenquin)) |
-| Calamares en Salsa · de la Abuela Carmen | ≈1 h 15 min | 1 h 15 min | 0 min | Media | estimado | Limpiar 2 kg requiere tiempo; se estiman unos 25 minutos de limpieza y picado y 50 de sofrito y guiso. Arroz opcional no incluido. ([CALAMARES](#calamares)) |
-| Calamares en su Tinta | ≈1 h 10 min | 1 h 10 min | 0 min | Media | estimado | Limpieza de 1 kg, sofrito, 10 minutos con vino, 10 en olla y 5 de acabado, con calentamiento y despresurización; arroz opcional aparte. ([CALAMARES](#calamares)) |
-| Dorada a la Espalda | ≈30 min | 30 min | 0 min | Media | estimado | 15 minutos de horno más preparación y precalentado; ajada con vinagre en paralelo y cuidado de la emulsión caliente. ([PESCADO](#pescado)) |
-| Pescado Dominga | ≈1 h | 1 h | 0 min | Media | estimado | Freír patatas y cebolla mientras se prepara caldo de espinas; montaje y cocción final del pescado. Tamaño sin especificar. ([PESCADO](#pescado)) |
-| Merluza al Horno | ≈55 min | 55 min | 0 min | Fácil | estimado | Preparar y freír parcialmente patatas antes de los hasta 30 minutos de horno del original. ([PESCADO](#pescado)) |
-| Pescado al Horno | ≈1 h | 1 h | 0 min | Fácil | estimado | Limpieza, cortes y patatas con cebolla antes de los hasta 30 minutos de horno; mayor preparación que la merluza sencilla. ([PESCADO](#pescado)) |
-| Pescado al Horno · de Ana | ≈40 min | 40 min | 0 min | Fácil | estimado | Sofreír y triturar cebolla y preparar pescado, más 20 minutos de horno a 200 °C indicados. ([PESCADO](#pescado)) |
-| Lubina al Horno | ≈45 min | 45 min | 0 min | Fácil | provisional | Solo lubina al horno: el original ya indica 45 minutos, con 10 de verduras y 20 de pescado. Se excluye la lubina al champán mezclada. ([PESCADO](#pescado)) |
-| Chirlas | ≈1 h 20 min | 20 min | 1 h | Fácil | estimado | Picar ajo y abrir las chirlas con vino; una hora orientativa de remojo previo para desarenar, exigido sin duración por el original. ([PESCADO](#pescado)) |
-| Empanadillas | ≈50 min | 50 min | 0 min | Media | estimado | Sofrito, huevo duro preparado en paralelo, rellenar y sellar obleas compradas, freír por tandas; horno alternativo de 10 minutos. ([EMPANADA](#empanada)) |
-| Croquetas | ≈3 h 30 min | 1 h 30 min | 2 h | Media | estimado | Bechamel con cebolla y jamón, formar, empanar y freír; se estima un mínimo orientativo de 2 horas de frío para dar cuerpo, ampliable según espesor. ([CROQUETAS](#croquetas)) |
-| Emparedados | ≈25 min | 25 min | 0 min | Fácil | estimado | Montaje con jamón y queso, baño de leche y huevo, escurrir y freír una tanda doméstica; patatas opcionales aparte. ([CLUB](#club)) |
-| Empanada | ≈1 h 40 min | 1 h 20 min | 20 min | Media | estimado | Picar y pochar verduras, escurrir, montar y hornear 20–30 minutos; enfriado breve del relleno y final estimado en 20 minutos. ([EMPANADA](#empanada)) |
-| Sandwich Club | ≈25 min | 25 min | 0 min | Fácil | estimado | Tostar pan, planchar pollo y bacon y montar; no incluye las patatas fritas sugeridas para acompañar. ([CLUB](#club)) |
-| Paninis | ≈25 min | 25 min | 0 min | Fácil | estimado | Montar durante el precalentado de 10 minutos, más 10–15 minutos de gratinado indicados; masa de pan ya hecha. ([QUICHE](#quiche)) |
-| Burritos | ≈35 min | 35 min | 0 min | Fácil | estimado | Verduras y pollo salteados, cortar lechuga y tomate en paralelo, calentar tortillas compradas y montar; guacamole ya preparado. ([CLUB](#club)) |
-| Kebab | Por revisar | — | — | Media | pendiente | Tiempo pendiente de revisión: el original deja pollo en horno apagado 3 horas o toda la noche. No se publica como tiempo válido ni se avala ese procedimiento. ([SEGURIDAD](#seguridad)) |
-| Quiche de Jamón y Queso | ≈1 h | 1 h | 0 min | Fácil | estimado | Hojaldre comprado, montar y batir, 40 minutos de horno expresos y precalentado en paralelo; breve templado incluido. ([QUICHE](#quiche)) |
-| Bizcocho · de Clara | ≈1 h 30 min | 1 h 10 min | 20 min | Fácil | estimado | Mezclar, preparar molde, subida inicial de duración no indicada y 40 minutos a 150 °C con grill breve; enfriado orientativo antes de servir. ([BIZCOCHO](#bizcocho)) |
-| Flan de Huevo | ≈4 h 45 min | 45 min | 4 h | Media | provisional | Caramelo, aromatizar leche, mezcla, 12 minutos de presión y despresurización; 4 horas orientativas de frío. Proporción de una sola yema pendiente de confirmar. ([FLAN](#flan)) |
+Las fuentes comparables de la auditoría sirven de contexto técnico. Estos minutos de trabajo se infieren de las tareas concretas de cada ficha; no son cronometrajes ni valores publicados por esas fuentes. Las dudas de las elaboraciones siguen abiertas.
+
+| Receta | Preparación activa | Dificultad | Justificación |
+|---|---|---|---|
+| Mayonesa | 10 min | Fácil | Reunir ingredientes y emulsionar con batidora. |
+| Tomate Frito | 15 min | Fácil | Picar cebolla, iniciar sofrito y ajustar la salsa; reducción desatendida excluida. |
+| Bechamel | 20 min | Media | Preparar roux, añadir leche y remover continuamente mientras espesa. |
+| Salsa César | 10 min | Fácil | Preparar ingredientes y batir; orientación provisional porque faltan los pasos. |
+| Salmorejo · Abuelo Mariano | 30 min | Fácil | Escaldar, pelar, triturar, colar y preparar guarnición. |
+| Ajo Blanco | 15 min | Fácil | Remojar y escurrir pan, preparar ingredientes y triturar. |
+| Ensaladilla Rusa | 30 min | Fácil | Lavar patatas, poner olla, pelar, trocear, mezclar y decorar. |
+| Mousse de Espárragos | 15 min | Media | Batir, engrasar molde y montar baño maría; horno y enfriado excluidos. |
+| Pudin de Pescado | 35 min | Media | Preparar caldo, limpiar y desmenuzar pescado, montar claras, mezclar y preparar molde. |
+| Ensalada Mixta | 15 min | Fácil | Lavar, escurrir, cortar y aliñar. |
+| Ensalada de Queso, Jamón, Tomate | 15 min | Fácil | Lavar, cortar verduras, queso y embutido, mezclar y aliñar. |
+| Ensalada de Tomate, Atún y Piña | 10 min | Fácil | Cortar tomate y piña, escurrir atún y aliñar. |
+| Ensalada de Pasta y Ŕúcula | 20 min | Fácil | Preparar pasta y cortar acompañamientos, escurrir y mezclar. |
+| Pimientos Rellenos · de Clara | 25 min | Fácil | Preparar relleno y rellenar unos veinte pimientos; picar y aliñar la base. |
+| Ensalada Campera | 30 min | Fácil | Lavar y poner patatas, picar verduras, pelar y trocear patatas, mezclar vinagreta. |
+| Pastel de Salmón · de Clara | 20 min | Fácil | Untar y montar capas, envolver y decorar después del prensado. |
+| Ensalada de Arroz | 20 min | Fácil | Preparar arroz, hacer tortilla y trocear jamón, escurrir y mezclar. |
+| Huevos Rellenos | 25 min | Fácil | Poner huevos a cocer, pelar, preparar relleno, rellenar y decorar. |
+| Sopa al Cuarto de Hora | 30 min | Media | Limpiar pescado y gambas, preparar sofrito, majado y guarnición; inicio incompleto. |
+| Crema de Calabacín | 25 min | Fácil | Pelar y trocear verdura, sofreír, añadir agua y triturar al acabar la olla. |
+| Gazpachuelo o Sopa de Mayonesa · de la Abuela Carmen | 20 min | Media | Pelar y cortar patatas, preparar mayonesa y ligarla con el caldo. |
+| Sopa de Mayonesa · de la Abuela Cheli | 25 min | Media | Preparar caldo, pelar gambas y limpiar pescado, hacer mayonesa y ligar. |
+| Lentejas | 20 min | Fácil | Lavar legumbres, preparar verduras, dar hervor, reunir ingredientes y poner olla. |
+| Alubias | 20 min | Fácil | Lavar, preparar verduras, dar hervor y cambiar agua, reunir ingredientes y poner olla. |
+| Alubias · de Miguel Angel | 15 min | Fácil | Preparar ajo y cebolla, escurrir legumbres y montar olla. |
+| Cocido | 30 min | Fácil | Preparar carnes y garbanzos, desespumar, colar y cambiar caldos, incorporar embutidos y preparar fideos. |
+| Potaje de Garbanzos | 20 min | Fácil | Preparar verduras y legumbres, montar olla y realizar incorporaciones finales. |
+| Patatas con Mejillones | 30 min | Media | Limpiar mejillones, pelar y cortar patatas, picar verduras y preparar sofrito. |
+| Sopa | 15 min | Fácil | Limpiar y cortar verduras, montar olla, colar y añadir fideos. |
+| Paella | 40 min | Media | Picar y sofreír verduras, majar ajo, dorar pollo y trasladar a olla y paellera; acabado. |
+| Arroz Blanco | 10 min | Fácil | Pelar y dorar ajos, rehogar arroz, añadir y ajustar agua, servir. |
+| Pisto | 40 min | Fácil | Pelar y cortar abundante verdura, atender dos sartenes, escurrir y mezclar. |
+| Sopa Bouillabaisse · Abuela Carmen | 35 min | Media | Limpiar y cortar pescado y verduras, desmenuzar pescado cocido, triturar, colar y mezclar. |
+| Espaguetis Carbonara | 20 min | Media | Trocear y freír bacon, batir huevo y queso, escurrir pasta y ligar fuera del fuego. |
+| Espaguetis con Cebolla y Jamón | 20 min | Fácil | Picar y atender cebolla y jamón, escurrir pasta y saltear. |
+| Macarrones con Tomate y Chorizo | 25 min | Fácil | Picar y sofreír verduras, trocear chorizo, preparar salsa, escurrir pasta y montar gratinado. |
+| Espaguetis con Ajo y Aceite | 15 min | Fácil | Pelar y picar ajos, dorarlos, escurrir pasta y atender salteado final. |
+| Espaguetis Bolognesa | 25 min | Fácil | Picar y sofreír verduras, desmenuzar y dorar carne, mezclar salsa y pasta. |
+| Espaguetis con Gambas y Ajo | 25 min | Fácil | Limpiar y pelar gambas, colar caldo, preparar ajos, escurrir pasta y saltear. |
+| Ensalada de Pasta | 15 min | Fácil | Preparar y escurrir pasta, cortar tomate y embutido, mezclar y aliñar. |
+| Ensalada de Pasta con Gambas | 15 min | Fácil | Preparar y escurrir pasta, reunir gambas ya cocidas, maíz y mayonesa, mezclar. |
+| Fideos Amarillos | 45 min | Media | Limpiar y pelar marisco, hacer y triturar sofrito y cabezas, colar caldo y terminar con pasta. |
+| Lasagna | 40 min | Media | Preparar relleno y bechamel, secar placas y montar capas; horno excluido. |
+| Canelones · Abuela Carmen | 45 min | Media | Dorar relleno, preparar y secar pasta, rellenar, hacer bechamel y montar gratinado. |
+| Canelones · Abuela Cheli | 35 min | Media | Picar cebolla, atender relleno, preparar y secar pasta y rellenar manualmente. |
+| Tortilla Francesa | 10 min | Fácil | Batir huevos, cuajar y plegar en sartén. |
+| Tortilla de Patatas | 30 min | Media | Pelar y cortar patatas, atender fritura y escurrido, batir, mezclar y voltear tortilla. |
+| Huevos Fritos | 10 min | Fácil | Calentar y atender una tanda doméstica de huevos fritos. |
+| Huevos con Bechamel | 35 min | Media | Preparar huevos, pelar, mezclar relleno y rellenar; hacer bechamel y montar gratinado. |
+| Huevos en Salsa Amarilla | 40 min | Media | Pelar y rellenar huevos, enharinar y freír, preparar majado y montar salsa. |
+| Huevos al Plato | 10 min | Fácil | Montar cazuelas con tomate y guarniciones ya cocinadas y cascar huevos. |
+| Huevos Rellenos | 25 min | Fácil | Poner huevos, pelar, mezclar relleno, rellenar y decorar. |
+| Rollo de Carne | 45 min | Media | Preparar relleno, extender y atar aleta, sellar, hacer sofrito, triturar salsa y cortar. |
+| Carne con Tomate | 30 min | Fácil | Trocear verduras, salpimentar y dorar carne por tandas, rehogar y montar salsa. |
+| Albóndigas | 45 min | Media | Mezclar y formar albóndigas, enharinar y freír por tandas, preparar sofrito y salsa. |
+| Solomillo de Cerdo · de Mamá | 15 min | Fácil | Picar ajo y perejil, salpimentar y aderezar carne, preparar fuente y cortar al servir. |
+| Solomillo de Ternera de Navidad · de Mamá | 15 min | Media | Limpiar y sazonar pieza, picar ajo, montar fuente, incorporar líquidos y cortar. |
+| Carne en Salsa · de la Abuela Carmen | 30 min | Fácil | Preparar adobo, dorar carne y cebollas, montar olla, triturar salsa y cortar. |
+| Albondigón | 35 min | Media | Mezclar y formar pieza, enharinar, dorar cebolla y carne y montar olla; solo pasos principales. |
+| Codillo | 10 min | Fácil | Preparar verduras y codillo, reunir ingredientes y montar olla. |
+| Cinta de Lomo a la Sal | 15 min | Fácil | Limpiar lomo, cubrir con sal, extraer de costra y cortar. |
+| Carne Estofada | 30 min | Fácil | Pelar y cortar verduras y patatas, preparar sofrito y montar olla; elaboración original incompleta. |
+| Cordero · Mamá | 20 min | Fácil | Preparar majado, untar cordero, montar fuente y realizar riegos y acabado. |
+| Cordero · Adela | 25 min | Media | Preparar pieza y patatas, cortar cebolla, preparar caldo y realizar vueltas y riegos. |
+| Cordero a Mi Manera | 20 min | Media | Untar y majar adobo, cortar cebolla, preparar caldo y realizar riegos y vueltas. |
+| Carne en Salsa | 30 min | Fácil | Preparar y dorar verduras y carne, incorporar vino, montar olla y triturar salsa. |
+| Lomo al Caramelo | 30 min | Fácil | Preparar y sellar carne, base y salsa, preparar crema y cortar; paso ajeno pendiente. |
+| Filetes Rusos | 30 min | Fácil | Picar y dorar cebolla, mezclar carne, formar, empanar y freír por tandas. |
+| Filetes Empanados | 20 min | Fácil | Sazonar, pasar por huevo y pan y freír una tanda doméstica. |
+| Flamenquines | 35 min | Media | Extender, rellenar, enrollar, empanar y freír por tandas. |
+| Roast Beef | 25 min | Media | Preparar adobo y cebolla, montar asado, dar vuelta, preparar salsa y cortar. |
+| Albóndigas Amarillas | 35 min | Media | Mezclar y formar bolas, enharinar, preparar majado y montar caldo. |
+| Carne Mechada | 40 min | Media | Preparar mechado, rellenar y sellar carne, hacer sofrito, montar olla, triturar y cortar; sin carrillada. |
+| Cinta de Lomo con Ciruelas, Orejones e Higos | 25 min | Fácil | Preparar y sellar lomo, cortar y dorar cebolla y ajos, añadir vino y montar fuente. |
+| Cinta de Lomo al Horno | 30 min | Fácil | Picar y dorar verduras, sellar carne, preparar líquidos y atender dorado de patatas. |
+| Pollo en Pepitoria | 25 min | Media | Picar y dorar verduras y pollo, montar olla y ligar salsa con yema. |
+| Pollo · Abuela Carmen | 30 min | Fácil | Preparar y dorar pollo por tandas, picar y dorar cebolla y montar salsa. |
+| Pollo al Horno · de la Abuela Cheli | 15 min | Fácil | Preparar y sazonar pollo, introducir limón y montar fuente; trinchar al servir. |
+| Pollo a la Sopa de Cebolla | 10 min | Fácil | Sazonar pollo troceado y repartir sobre, aceite y vino en la fuente. |
+| Pollo al Horno | 20 min | Fácil | Preparar majado, sazonar y pincelar pollo, montar fuente y trinchar. |
+| Pollo con Cerveza y Yogur | 25 min | Fácil | Preparar adobo y pollo, dorar, atender ajos, batir y montar salsa. |
+| Pollo con Limón | 15 min | Fácil | Preparar y sazonar pollo, exprimir limón, aderezar, añadir líquidos y montar fuente. |
+| Pavo al Oporto | 30 min | Media | Preparar maceración, dorar pavo, atender reducción, montar fuente, ligar salsa y cortar. |
+| Salmón a la Naranja · de Mariano | 20 min | Fácil | Picar y atender cebolla, preparar salmón y zumo y atender incorporaciones. |
+| Pescado Frito | 30 min | Media | Limpiar y preparar pescado, enharinar y freír por tandas. |
+| Calamares en Salsa · de la Abuela Carmen | 35 min | Media | Limpiar y trocear 2 kg, picar verduras, atender sofrito y montar guiso. |
+| Calamares en su Tinta | 35 min | Media | Limpiar y trocear 1 kg, picar y sofreír base, montar olla y terminar salsa con tinta. |
+| Dorada a la Espalda | 15 min | Media | Preparar pescado y fuente, laminar y freír ajos, incorporar vinagre y terminar pescado. |
+| Pescado Dominga | 35 min | Media | Preparar pescado y espinas, cortar y freír patatas y cebolla, colar caldo y montar fuente. |
+| Merluza al Horno | 25 min | Fácil | Preparar pescado, pelar, cortar y prefritar patatas, exprimir limón y montar fuente. |
+| Pescado al Horno | 30 min | Fácil | Limpiar y hacer cortes al pescado, cortar y prefritar patatas y cebolla, preparar aderezo y fuente. |
+| Pescado al Horno · de Ana | 20 min | Fácil | Picar, sofreír y triturar cebolla, sazonar pescado y montar fuente. |
+| Lubina al Horno | 20 min | Fácil | Cortar verduras, preparar aderezo y lubinas y montar bandeja; sin la receta al champán. |
+| Chirlas | 15 min | Fácil | Lavar y escurrir chirlas, picar ajos y atender apertura y salsa de vino. |
+| Empanadillas | 40 min | Media | Picar y atender sofrito, preparar y pelar huevo, mezclar, rellenar, sellar y freír por tandas. |
+| Croquetas | 60 min | Media | Preparar y remover bechamel, añadir relleno, formar, empanar y atender fritura por tandas. |
+| Emparedados | 25 min | Fácil | Montar sándwiches, cortar, bañar, escurrir y freír por tandas. |
+| Empanada | 40 min | Media | Picar y atender sofrito, escurrir atún y relleno, extender, cerrar, pincelar y abrir chimenea. |
+| Sandwich Club | 25 min | Fácil | Tostar pan, planchar pollo y bacon, cortar verduras y montar los pisos. |
+| Paninis | 10 min | Fácil | Cortar pan, preparar y repartir ingredientes, montar y llevar al horno. |
+| Burritos | 30 min | Fácil | Cortar verduras y pollo, atender salteado, cortar guarniciones, calentar tortillas y montar. |
+| Kebab | 25 min | Media | Preparar adobo, trocear pollo cocinado, saltear, cortar guarniciones y montar pitas; conservación pendiente. |
+| Quiche de Jamón y Queso | 15 min | Fácil | Forrar molde, cortar relleno, disponer capas, batir mezcla y rellenar. |
+| Bizcocho · de Clara | 15 min | Fácil | Medir y mezclar, engrasar molde y verter; intervenciones breves para ajustar horno. |
+| Flan de Huevo | 20 min | Media | Preparar caramelo, aromatizar leche, mezclar, llenar y cerrar molde y montar baño maría. |
 
 ## Fuentes consultadas
 
@@ -277,10 +274,4 @@ Las cifras de la tabla son inferencias sobre el documento familiar. Las siguient
 
 [AESAN · Prevenir intoxicaciones alimentarias](https://www.aesan.gob.es/en/actualidad/campanyas-seguridad-alimentaria/campania_verano). Recomienda refrigerar sobras cuanto antes y no exceder 2 horas a temperatura ambiente. No permite avalar dejar pollo en horno apagado hasta el día siguiente.
 
-## Verificación
 
-- 105 IDs conservados, sin altas ni bajas. Solo se cambian `tiempo` y `dificultad` y se añade `tiempoNota`.
-- Ingredientes, pasos, títulos, autores, categorías e imágenes comparados íntegramente con la instantánea de la auditoría.
-- El informe original permanece como registro previo: sus incidencias de contenido no se dan por resueltas al añadir estimaciones.
-
-Nota de verificación del navegador: se detectó un error previo del indicador de scroll móvil si el timestamp del primer frame precede a su inicio. Se limita ese tiempo a cero para evitar un índice negativo. No se cambia su geometría, duración ni pacing.

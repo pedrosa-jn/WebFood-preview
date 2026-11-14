@@ -1,4 +1,4 @@
-/* Mobile category tools. Existing recipe modals remain the source of recipe behavior. */
+/* Category search on all screens; the mobile grid switch stays mobile-only. */
 (() => {
  const grid = document.getElementById('Recetas');
  const tools = document.getElementById('MobileTools');
@@ -15,10 +15,10 @@
   tools.classList.toggle('is-expanded', expanded);
   if (!expanded && options.contains(document.activeElement)) toggleButton.focus({preventScroll:true});
   options.inert = !expanded;
-  toggleButton.setAttribute('aria-expanded', String(expanded));
-  toggleButton.setAttribute('aria-label', expanded ? 'Cerrar opciones de recetas' : 'Mostrar opciones de recetas');
+  toggleButton.setAttribute('aria-expanded', String(mobile.matches ? expanded : dialog.open));
+  toggleButton.setAttribute('aria-label', mobile.matches ? (expanded ? 'Cerrar opciones de recetas' : 'Mostrar opciones de recetas') : 'Buscar una receta');
  };
- toggleButton.addEventListener('click',()=>expandTools(!tools.classList.contains('is-expanded')));
+ toggleButton.addEventListener('click',()=>mobile.matches ? expandTools(!tools.classList.contains('is-expanded')) : open());
  document.addEventListener('pointerdown',e=>{if(!tools.contains(e.target))expandTools(false);});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&tools.classList.contains('is-expanded')){expandTools(false);toggleButton.focus({preventScroll:true});}});
  const panel = dialog.querySelector('.MobileSearch_Panel');
@@ -101,14 +101,15 @@
   return `translate(${origin.left-r.left}px,${origin.top-r.top}px) scale(${origin.width/r.width},${origin.height/r.height})`;
  };
  const open = () => {
-  if (!mobile.matches || dialog.open) return;
-  origin=searchButton.getBoundingClientRect();
+  if (dialog.open) return;
+  origin=(mobile.matches ? searchButton : toggleButton).getBoundingClientRect();
   expandTools(false);
   lockBackground();
   sizeDialog();
   dialog.classList.remove('is-closing');
   dialog.showModal();
   searchButton.setAttribute('aria-expanded','true');
+  if (!mobile.matches) toggleButton.setAttribute('aria-expanded','true');
   closing=false;
   input.focus({preventScroll:true});
   shellAnimation?.cancel();contentAnimation?.cancel();
@@ -133,6 +134,7 @@
   shellAnimation?.cancel();contentAnimation?.cancel();
   unlockBackground();
   searchButton.setAttribute('aria-expanded','false');
+  toggleButton.setAttribute('aria-expanded','false');
   toggleButton.focus({preventScroll:true});
   closing=false;
  };
@@ -159,7 +161,7 @@
  closeButton.addEventListener('click',()=>close());
  dialog.addEventListener('cancel',e=>{e.preventDefault();close();});
  dialog.addEventListener('click',e=>{if(e.target===dialog)close();});
- dialog.addEventListener('close',()=>{unlockBackground();searchButton.setAttribute('aria-expanded','false');});
+ dialog.addEventListener('close',()=>{unlockBackground();searchButton.setAttribute('aria-expanded','false');toggleButton.setAttribute('aria-expanded','false');});
  input.addEventListener('input',update);
  clear.addEventListener('click',()=>{input.value='';update();input.focus();});
  dialog.querySelector('form').addEventListener('submit',e=>{e.preventDefault();results.querySelector('a')?.click();});
@@ -172,7 +174,14 @@
   if(category===grid.dataset.categoria)grid.querySelector(`a[data-id="${CSS.escape(recipeId)}"]`)?.click();
   else window.location.href=href;
  });
- mobile.addEventListener('change',()=>{expandTools(false);if(!mobile.matches)close(false);});
+ const adaptTools = () => {
+  expandTools(false);
+  toggleButton.setAttribute('aria-controls', mobile.matches ? 'MobileToolsOptions' : 'MobileSearch');
+  if (mobile.matches) toggleButton.removeAttribute('aria-haspopup');
+  else toggleButton.setAttribute('aria-haspopup','dialog');
+ };
+ mobile.addEventListener('change',()=>{close(false);adaptTools();});
+ adaptTools();
  update();
  tools.hidden=false;
 })();

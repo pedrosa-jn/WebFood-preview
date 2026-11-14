@@ -1,5 +1,5 @@
 .MobileTools,.MobileSearch{display:none;}
-@media(max-width:700px){
+/* Shared search controls: phone, tablet and desktop. */
  .MobileTools{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:calc(18px + env(safe-area-inset-bottom));z-index:900;display:block;transition:opacity 160ms ease,transform 200ms ease;}
  .MobileTools[hidden]{display:none;}
  .MobileTools button{position:relative;display:grid;place-items:center;width:54px;height:54px;padding:0;border:1px solid rgba(139,0,0,.24);border-radius:50%;color:rgb(139,0,0);background:rgb(245,245,240);box-shadow:0 4px 16px rgba(40,0,0,.13);cursor:pointer;touch-action:manipulation;}
@@ -16,6 +16,7 @@
  .is-one-column .MobileTools_Grid rect:nth-child(odd){transform:scaleX(2.5);}
  .is-one-column .MobileTools_Grid rect:nth-child(even){opacity:0;transform:translateX(-9px) scaleX(.2);}
  body.ModalReceta-open .MobileTools,body.MobileSearch-open .MobileTools,body:has(.MenuToggle[aria-expanded="true"]) .MobileTools{opacity:0;pointer-events:none;transform:translateY(12px);}
+@media(max-width:700px){
  .Recetas.Recetas--una-columna{grid-template-columns:minmax(0,1fr);}
  .Recetas--una-columna .Tarjeta{display:flex;flex-direction:column;aspect-ratio:auto;}
  .Recetas--una-columna .bck-image{position:relative;inset:auto;width:100%;aspect-ratio:8/5;flex:none;transform:none;}
@@ -25,6 +26,7 @@
  .Recetas--una-columna .TarjetaDescripcion{left:20px;bottom:18px;font-size:.9rem;line-height:1.15;letter-spacing:.025em;}
  .Recetas.is-switching-grid>a{transition:none;}
  .Recetas{overflow-anchor:none;}
+}
  .MobileSearch[open]{display:block;}
  .MobileSearch{position:fixed;inset:0;margin:0;padding:0;border:0;width:100%;height:100dvh;max-width:none;max-height:none;background:transparent;color:rgb(10,12,36);overflow:hidden;}
  .MobileSearch::backdrop{animation:mobileSearchBackdropIn 300ms ease both;background:rgba(10,12,36,.56);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);}
@@ -45,8 +47,8 @@
  .MobileSearch_Result{display:flex;flex-direction:column;gap:5px;padding:16px 3px;border-bottom:1px solid rgba(139,0,0,.18);text-decoration:none;color:rgb(10,12,36);font:400 17px/1.2 "Barlow Condensed",sans-serif;}
  .MobileSearch_ResultTitle{font-weight:700;font-size:22px;color:rgb(139,0,0);}
  .MobileSearch ::selection{color:rgb(245,245,240);background:rgb(139,0,0);}
- body > footer{padding-bottom:95px;}
-}
+@media(max-width:700px){body > footer{padding-bottom:95px;}}
+
 @media(prefers-reduced-motion:reduce){
  .MobileTools,.MobileTools *,.MobileSearch *{transition:none!important;scroll-behavior:auto!important;}
 }
@@ -72,3 +74,14 @@
  .MobileTools_Options svg{flex:none;}
 }
 @media(prefers-reduced-motion:reduce){.MobileTools,.MobileTools *{transition:none!important;}}
+
+.MobileTools_Toggle [data-tools-search]{display:none;}
+.MobileTools .MobileTools_Toggle{outline:1px solid rgb(139,0,0);outline-offset:4px;border:1px solid rgb(245,245,240);box-shadow:none;}
+@media(min-width:701px){
+ .MobileTools{right:28px;bottom:28px;}
+ .MobileTools_Options{display:none;}
+ .MobileTools_Toggle [data-tools-plus]{display:none;}
+ .MobileTools_Toggle [data-tools-search]{display:block;}
+ .MobileSearch_Panel{left:50%;right:auto;width:min(620px,calc(100% - 48px));top:calc(var(--search-top,0px) + 24px);height:calc(var(--search-height,100dvh) - 48px);max-height:680px;transform:translateX(-50%);}
+ .MobileSearch_Content{padding:28px;}
+}
