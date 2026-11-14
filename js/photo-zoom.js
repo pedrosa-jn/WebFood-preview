@@ -12,13 +12,12 @@
  trigger.setAttribute('aria-label','Ampliar imagen de la receta');
  trigger.setAttribute('aria-haspopup','dialog');
  trigger.setAttribute('aria-controls','RecipePhotoZoom');
- trigger.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>';
  area.append(trigger);
  const viewer = document.createElement('dialog');
  viewer.id = 'RecipePhotoZoom';
  viewer.className = 'RecipePhotoZoom';
  viewer.setAttribute('aria-labelledby','RecipePhotoZoomTitle');
- viewer.innerHTML = '<header class="RecipePhotoZoom_Header"><p id="RecipePhotoZoomTitle"></p><button type="button" aria-label="Cerrar imagen ampliada"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>';
+ viewer.innerHTML = '<header class="RecipePhotoZoom_Header"><h2 id="RecipePhotoZoomTitle"></h2><button type="button" aria-label="Cerrar imagen ampliada">×</button></header>';
  document.body.append(viewer);
  const enlarged = document.createElement('img');
  enlarged.className = 'RecipePhotoZoom_Image';
@@ -44,10 +43,14 @@
   opening = true;
   enlarged.src = photo.currentSrc || photo.src;
   enlarged.alt = photo.alt;
-  viewer.querySelector('p').textContent = document.querySelector('#ModalTitulo > span')?.textContent || 'Imagen de la receta';
+  viewer.querySelector('h2').textContent = document.querySelector('#ModalTitulo > span')?.textContent || 'Imagen de la receta';
   try { await enlarged.decode(); } catch { opening = false; return; }
   opening = false;
   if (!desktop.matches || !recipe.classList.contains('activo')) return;
+  const titleStyle = getComputedStyle(document.getElementById('ModalTitulo'));
+  Object.assign(viewer.querySelector('h2').style, {font:titleStyle.font,letterSpacing:titleStyle.letterSpacing,textTransform:titleStyle.textTransform});
+  const closeStyle = getComputedStyle(recipe.querySelector('.ModalReceta_Cerrar'));
+  Object.assign(closeButton.style, {font:closeStyle.font,letterSpacing:closeStyle.letterSpacing});
   viewer.append(enlarged);
   viewer.showModal();
   closeButton.focus({preventScroll:true});
