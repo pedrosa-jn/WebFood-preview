@@ -1,10 +1,9 @@
-/* A single-level desktop photo viewer. It leaves recipe layout and scroll untouched. */
+/* A single-level recipe photo viewer. It leaves recipe layout and scroll untouched. */
 (() => {
  const recipe = document.getElementById('ModalReceta');
  const photo = document.getElementById('ModalImg');
  const area = photo?.closest('.ModalReceta_Imagen');
  if (!recipe || !photo || !area) return;
- const desktop = matchMedia('(min-width:701px)');
  const reduced = matchMedia('(prefers-reduced-motion:reduce)');
  const trigger = document.createElement('button');
  trigger.type = 'button';
@@ -36,17 +35,17 @@
   motion?.cancel();
   viewer.classList.remove('is-closing');
   closing = false;
-  if (desktop.matches && recipe.classList.contains('activo')) trigger.focus({preventScroll:true});
+  if (recipe.classList.contains('activo')) trigger.focus({preventScroll:true});
  };
  trigger.addEventListener('click', async () => {
-  if (!desktop.matches || opening || viewer.open || area.classList.contains('is-placeholder') || !photo.getAttribute('src')) return;
+  if (opening || viewer.open || area.classList.contains('is-placeholder') || !photo.getAttribute('src')) return;
   opening = true;
   enlarged.src = photo.currentSrc || photo.src;
   enlarged.alt = photo.alt;
   viewer.querySelector('h2').textContent = document.querySelector('#ModalTitulo > span')?.textContent || 'Imagen de la receta';
   try { await enlarged.decode(); } catch { opening = false; return; }
   opening = false;
-  if (!desktop.matches || !recipe.classList.contains('activo')) return;
+  if (!recipe.classList.contains('activo')) return;
   const titleStyle = getComputedStyle(document.getElementById('ModalTitulo'));
   Object.assign(viewer.querySelector('h2').style, {font:titleStyle.font,letterSpacing:titleStyle.letterSpacing,textTransform:titleStyle.textTransform});
   const closeStyle = getComputedStyle(recipe.querySelector('.ModalReceta_Cerrar'));
@@ -59,5 +58,4 @@
  closeButton.addEventListener('click',()=>close());
  viewer.addEventListener('click',event=>{if(event.target===viewer)close();});
  viewer.addEventListener('cancel',event=>{event.preventDefault();close();});
- desktop.addEventListener('change',()=>{if(!desktop.matches)close(false);});
 })();

@@ -1422,3 +1422,9 @@ html{scrollbar-gutter:stable;}
 @keyframes menuInkSweep{from{clip-path:inset(-.25em calc(100% + .15em) -.25em -.15em);}to{clip-path:inset(-.25em -.15em -.25em -.15em);}}
 .MenuMobile_Categorias a:focus-visible .MenuMobile_Numero,.MenuMobile_Categorias a:focus-visible .MenuMobile_Nombre{clip-path:none;animation:none;}
 @media(prefers-reduced-motion:reduce){.MenuMobile_Numero,.MenuMobile_Nombre{clip-path:none!important;animation:none!important;}}
+
+/* Safari's expanded browser bars must not push the category title below center. */
+@media(max-width:700px){
+ .SEC_Titulo{height:calc(100svh - 63px);min-height:280px;}
+ .SEC_Titulo > .Title{translate:none;margin:0;}
+}

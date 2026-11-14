@@ -29,7 +29,7 @@
  const status = dialog.querySelector('[role="status"]');
  const clear = dialog.querySelector('[data-search-clear]');
  const closeButton = dialog.querySelector('[data-search-close]');
- let columns = 2, moving = [], shellAnimation = null, contentAnimation = null;
+ let columns = 1, moving = [], shellAnimation = null, contentAnimation = null;
  let closing = false, lock = null, origin = null, resultsAnimation = null, resultsVisible = false;
  const normalize = value => String(value || '').toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
  const catalog = RECETAS.map(r => ({...r, match:normalize([r.titulo,r.autor].filter(Boolean).join(' '))}));
@@ -40,7 +40,7 @@
   layoutButton.setAttribute('aria-pressed', String(columns === 1));
   layoutButton.setAttribute('aria-label', columns === 1 ? 'Cambiar a dos columnas' : 'Cambiar a una columna');
  };
- try { if (localStorage.getItem('recetas-columnas') === '1') columns = 1; } catch {}
+ try { const saved = localStorage.getItem('recetas-columnas-v2'); if (saved === '1' || saved === '2') columns = Number(saved); } catch {}
  setColumns(columns);
  layoutButton.addEventListener('click', () => {
   if (!mobile.matches) return;
@@ -71,7 +71,7 @@
    ],{duration:460,easing:'cubic-bezier(.22,1,.36,1)'}));
   }
   Promise.allSettled(moving.map(a=>a.finished)).then(()=>{if(revision===layoutRevision)grid.classList.remove('is-switching-grid');});
-  try { localStorage.setItem('recetas-columnas',String(columns)); } catch {}
+  try { localStorage.setItem('recetas-columnas-v2',String(columns)); } catch {}
  });
  const lockBackground = () => {
   const properties = ['position','top','left','right','width'];
