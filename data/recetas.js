@@ -47,14 +47,15 @@ const CATEGORIAS = [
   }
 ];
 
+// Tiempos orientativos (≈), incluidos reposos; ver tiempoNota. Kebab pendiente de revisión.
 const RECETAS = [
   {
     "id": "mayonesa",
     "categoria": "salsas",
     "titulo": "Mayonesa",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈10 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Uno o dos huevos",
@@ -69,15 +70,16 @@ const RECETAS = [
       "SALSA DE VINO (para acompañar unos filetes)",
       "Después de haber frito los filetes en la sartén añadimos el vino y lo dejamos reducir un par de minutos.",
       "Añadir a la fuente de los filetes y servir."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 10 min. Elaboración (preparación y cocción): 10 min. Provisional; ficha pendiente de aclarar. Solo mayonesa: reunir ingredientes y emulsionar con batidora; se excluye la salsa de vino mezclada en la ficha."
   },
   {
     "id": "tomate-frito",
     "categoria": "salsas",
     "titulo": "Tomate Frito",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈45 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "1 cebolla",
@@ -86,15 +88,16 @@ const RECETAS = [
     "pasos": [
       "Se pica la cebolla y  se dora en una sartén con el fondo cubierto de aceite.",
       "Cuando la cebolla esté dorada se añade el tomate un poco de sal y una cucharada pequeña de azúcar."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 45 min. Elaboración (preparación y cocción): 45 min. Picar y pochar cebolla, reducir una lata pequeña de tomate; la reducción no tiene duración en el original."
   },
   {
     "id": "bechamel",
     "categoria": "salsas",
     "titulo": "Bechamel",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈20 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "2 cucharadas soperas de aceite",
@@ -108,28 +111,30 @@ const RECETAS = [
       "Se remueve bien todo con una cuchara de madera y se va añadiendo la leche poco a poco sin dejar que se formen grumos. (Si se forman se puede pasar por la minipimer)",
       "Se tiene hirviendo unos 8 minutos y está lista para usar",
       "Si se quiere más líquida se añade más leche."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 20 min. Elaboración (preparación y cocción): 20 min. Provisional; ficha pendiente de aclarar. Incluye preparar el roux, añadir leche sin grumos y los 8 minutos de hervor indicados; pendiente de aclarar harina y unidades."
   },
   {
     "id": "salsa-cesar",
     "categoria": "salsas",
     "titulo": "Salsa César",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈10 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "120 gramos de parmesano\n5 Cucharadas de aceite de oliva\n1 huevo\n4 anchoas\n2 Cucharadas de Salsa Perrins\n1 Cucharada de mostaza en grano\n1 ajo pequeño\nSal\nPimienta\nUnas gotas de vinagre"
     ],
-    "pasos": []
+    "pasos": [],
+    "tiempoNota": "Tiempo total estimado: 10 min. Elaboración (preparación y cocción): 10 min. Provisional; ficha pendiente de aclarar. Orientación por una salsa César de batidora comparable, añadiendo mise en place; faltan todos los pasos del original."
   },
   {
     "id": "salmorejo-abuelo-mariano",
     "categoria": "frios",
     "titulo": "Salmorejo",
     "autor": "Abuelo Mariano",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "6 - 8 tomates maduros",
@@ -146,15 +151,16 @@ const RECETAS = [
       "Se bate todo bien y se va añadiendo poco a poco el aceite.",
       "Cuando está bien trabado se añade (el vinagre) y la sal y agua al gusto.",
       "Se cuela bien todo y se añade jamón picado, huevo duro."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h. Elaboración (preparación y cocción): 30 min. Remojo, maceración, enfriado o reposo: 30 min. Escaldar y pelar tomates, triturar y colar; se presupone media hora de frío para servir fresco."
   },
   {
     "id": "ajo-blanco",
     "categoria": "frios",
     "titulo": "Ajo Blanco",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈45 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Un puñado de almendras blancas",
@@ -165,15 +171,16 @@ const RECETAS = [
     "pasos": [
       "En el vaso de la batidora se ponen todos los ingredientes y se baten bien. Se añade agua al gusto.",
       "Se sirve muy frío con trocitos de manzana y uvas."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 45 min. Elaboración (preparación y cocción): 15 min. Remojo, maceración, enfriado o reposo: 30 min. Triturar con almendras peladas y pan remojado; media hora orientativa de frío, reducible usando agua ya fría."
   },
   {
     "id": "ensaladilla-rusa",
     "categoria": "frios",
     "titulo": "Ensaladilla Rusa",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈2 h 15 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Un kilo de patatas",
@@ -190,15 +197,16 @@ const RECETAS = [
       "Se mezcla todo con la mayonesa y se decora con algunos pimientos, aceitunas y huevo rallado.",
       "Enfriar en la nevera",
       "Para hacer la mayonesa"
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 2 h 15 min. Elaboración (preparación y cocción): 45 min. Remojo, maceración, enfriado o reposo: 1 h 30 min. 10 minutos de presión más subida y bajada de presión, pelado y montaje; enfriado de patatas y nevera estimados."
   },
   {
     "id": "mousse-de-esparragos",
     "categoria": "frios",
     "titulo": "Mousse de Espárragos",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈4 h",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "8 huevos",
@@ -213,15 +221,16 @@ const RECETAS = [
       "Poner al baño maría en una  cacerola con agua hirviendo.",
       "Meter en el horno hasta que se cuaje todo bien.",
       "Servir frío y cubrir con mayonesa."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 4 h. Elaboración (preparación y cocción): 1 h. Remojo, maceración, enfriado o reposo: 3 h. Mezclar y cuajar al baño maría, aproximadamente 45 minutos de horno; se estiman 3 horas para enfriar, según tamaño del molde."
   },
   {
     "id": "pudin-de-pescado",
     "categoria": "frios",
     "titulo": "Pudin de Pescado",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈4 h 15 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "1 paquete de pescada congelada o una pescada entera",
@@ -241,15 +250,16 @@ const RECETAS = [
       "Meter en el horno unos 30 minutos.",
       "Para saber si está listo metemos una aguja o un cuchillo y si sale limpio es que ya está hecho.",
       "Dejamos enfriar en la nevera y servimos cubierto de mayonesa."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 4 h 15 min. Elaboración (preparación y cocción): 1 h 15 min. Remojo, maceración, enfriado o reposo: 3 h. 10 minutos de pescado, desmenuzado y claras montadas, 30 de horno, preparación y templado; frío adicional orientativo."
   },
   {
     "id": "ensalada-mixta",
     "categoria": "frios",
     "titulo": "Ensalada Mixta",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈15 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Lechuga",
@@ -265,15 +275,16 @@ const RECETAS = [
       "Se pela la cebolla y se trocea.",
       "Se abre la lata de atún, se escurre de su aceite y se añade a la ensalada.",
       "Se pone todo en la fuente y se aliña con sal, vinagre y aceite en este orden."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 15 min. Elaboración (preparación y cocción): 15 min. Lavar, escurrir, cortar y aliñar; atún en conserva, sin cocción."
   },
   {
     "id": "ensalada-de-queso-jamon-tomate",
     "categoria": "frios",
     "titulo": "Ensalada de Queso, Jamón, Tomate",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈15 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Lechuga",
@@ -291,15 +302,16 @@ const RECETAS = [
       "Se añade el queso.",
       "Se pone todo en la fuente y se aliña con sal, vinagre y aceite en este orden.",
       "* Lo mismo se puede hacer sustituyendo la lechuga por pasta."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 15 min. Elaboración (preparación y cocción): 15 min. Versión principal con lechuga; cortar queso y embutido. La alternativa de pasta requiere cocerla y enfriarla aparte."
   },
   {
     "id": "ensalada-de-tomate-atun-y-pina",
     "categoria": "frios",
     "titulo": "Ensalada de Tomate, Atún y Piña",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈10 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Una bolsa de mezclum de lechugas",
@@ -311,15 +323,16 @@ const RECETAS = [
     "pasos": [
       "Se pone  la lechuga en un bol y se añade el resto de los ingredientes.",
       "Se aliña con sal, aceite y vinagre."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 10 min. Elaboración (preparación y cocción): 10 min. Mezclum preparado, atún en conserva y fruta; lavar y cortar tomate, mezclar y aliñar."
   },
   {
     "id": "ensalada-de-pasta-y-rucula",
     "categoria": "frios",
     "titulo": "Ensalada de Pasta y Ŕúcula",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈55 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Una bolsa de rúcula",
@@ -335,15 +348,16 @@ const RECETAS = [
       "Se cuece la pasta y se deja enfriar",
       "Una vez fría se mezcla con la rúcula y el resto de los ingredientes.",
       "Se aliña con sal, vinagre y aceite"
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 55 min. Elaboración (preparación y cocción): 25 min. Remojo, maceración, enfriado o reposo: 30 min. Calentar agua y cocer pasta mientras se cortan los acompañamientos; enfriado orientativo antes de mezclar."
   },
   {
     "id": "pimientos-rellenos-de-clara",
     "categoria": "frios",
     "titulo": "Pimientos Rellenos",
     "autor": "de Clara",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈25 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Una tarrina de queso Philadelphia grande",
@@ -357,15 +371,16 @@ const RECETAS = [
       "Se rellenan los pimientos y se van colocando sobre una cama de cebolleta y pimientos verdes previamente picados y aliñados.",
       "Se añade el caldo de los pimientos por encima.",
       "Se sirve frío pero no mucho."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 25 min. Elaboración (preparación y cocción): 25 min. Mezclar relleno frío y rellenar unos 20 pimientos; sin horno ni cocción y con ingredientes refrigerados."
   },
   {
     "id": "ensalada-campera",
     "categoria": "frios",
     "titulo": "Ensalada Campera",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 45 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "4 ó 5 patatas medianas",
@@ -384,15 +399,16 @@ const RECETAS = [
       "Con el aceite de las latas de atún, un chorreón de vinagre, sal y unos 50 ml más de aceite de oliva hacemos una vinagreta.",
       "Lo ponemos por encima de las patatas aún templadas y se mezcla todo bien.",
       "Se mete en la nevera un buen rato hast que esté fría y está listo para comer."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 45 min. Elaboración (preparación y cocción): 45 min. Remojo, maceración, enfriado o reposo: 1 h. Patatas en olla a presión con calentamiento y despresurización, picado y montaje; una hora orientativa de frío."
   },
   {
     "id": "pastel-de-salmon-de-clara",
     "categoria": "frios",
     "titulo": "Pastel de Salmón",
     "autor": "de Clara",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈2 h 20 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Trucha, salmón y palometa ahumada.",
@@ -402,15 +418,16 @@ const RECETAS = [
       "En una fuente se pone una capa de ahumados, una capa de pan untada con mayonesa por los dos lados, otra capa de ahumados, pan.. así hasta un mínimo de tres capas, siendo la última una de pan.",
       "Se envuelve en papel albal y se mete en la nevera con algo que pese encima.",
       "Cuando esté prensado se unta con mayonesa por todos lados y se adorna."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 2 h 20 min. Elaboración (preparación y cocción): 20 min. Remojo, maceración, enfriado o reposo: 2 h. Montar capas con pan y ahumados, prensar en nevera; se estiman 2 horas de prensado, no fijadas por el original."
   },
   {
     "id": "ensalada-de-arroz",
     "categoria": "frios",
     "titulo": "Ensalada de Arroz",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈55 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Arroz basmati",
@@ -423,15 +440,16 @@ const RECETAS = [
       "Se hace una tortilla francesa y se trocea.",
       "En un bol se pone el arroz y se añade la tortilla troceada y el jamón cortado finito.",
       "Se remueve todo bien y se añade sal al gusto."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 55 min. Elaboración (preparación y cocción): 35 min. Remojo, maceración, enfriado o reposo: 20 min. Cocer arroz, hacer tortilla y trocear jamón; se estima un enfriado breve para mezclar, sin reposo prolongado obligatorio."
   },
   {
     "id": "huevos-rellenos",
     "categoria": "frios",
     "titulo": "Huevos Rellenos",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 40 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "1 huevo por persona",
@@ -450,28 +468,30 @@ const RECETAS = [
       "Preparamos un poco de mayonesa y cubrimos los huevos con ella.",
       "Adornamos con pimiento rojo y aceitunas.",
       "Metemos en la nevera y servimos frío."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 40 min. Elaboración (preparación y cocción): 40 min. Remojo, maceración, enfriado o reposo: 1 h. 15 minutos de hervor originales, enfriar para pelar, rellenar y decorar; una hora orientativa de nevera."
   },
   {
     "id": "sopa-al-cuarto-de-hora",
     "categoria": "guisos",
     "titulo": "Sopa al Cuarto de Hora",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈50 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [],
     "pasos": [
       "Cuando hayan cogido color apartaremos los picatostes sobre papel de cocina para que escurran.\n3. Pelar las gambas, reservar los cuerpos al frío y comenzar a dorar las cáscaras en la cacerola anterior. Una vez que estén bien fritas las apartaremos y las desecharemos.Esta parte es opcional)\n4.  En ese mismo aceite rehogamos la cebolla y el jamón picados. Dejaremos rehogar 5 minutos.\n5. Limpiar el rape, retirar la espina y cortar los lomos en trozos más pequeños.\n6. Cubrir entonces con agua y añadir 3 cucharadas de tomate frito.\n7. Mientras el caldo comienza a hervir haremos un “majao” en el mortero con la sal, los ajos, el azafrán, las yemas de los huevos cocidos y el vino blanco. Lo echaremos sobre la sopa junto con el arroz y los guisantes. Cocinaremos a fuego medio durante 10 minutos; desespumando si fuera preciso.\n8. Pasado este tiempo incorporar las almejas bien lavadas, el rape troceado y los cuerpos de las gambas. Mantener a fuego medio-alto durante 5 minutos.\n9.Como guarnición picaremos las claras de los huevos y las mezclaremos con el perejil picado y los dados de pan frito."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 50 min. Elaboración (preparación y cocción): 50 min. Provisional; ficha pendiente de aclarar. Orientación provisional: limpiar pescado y gambas, preparar base, 5 minutos de sofrito más 10 de arroz y 5 de pescado. Faltan ingredientes e inicio."
   },
   {
     "id": "crema-de-calabacin",
     "categoria": "guisos",
     "titulo": "Crema de Calabacín",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈45 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "3 calabacines",
@@ -486,15 +506,16 @@ const RECETAS = [
       "Añadir agua, sal y avecrem.",
       "Cocer todo en la olla unos 15’.",
       "Pasado este tiempo abrir la olla, y triturar con la batidora y los quesitos."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 45 min. Elaboración (preparación y cocción): 45 min. Pelar y trocear, sofreír, calentar y despresurizar la olla, 15 minutos de cocción indicados y triturado."
   },
   {
     "id": "gazpachuelo-o-sopa-de-mayonesa-de-la-abuela-carmen",
     "categoria": "guisos",
     "titulo": "Gazpachuelo o Sopa de Mayonesa",
     "autor": "de la Abuela Carmen",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈35 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "Tres o cuatro patatas dependiendo de los comensales",
@@ -510,15 +531,16 @@ const RECETAS = [
       "Preparamos una mayonesa.",
       "En una sopera ponemos la mayonesa y poco a poco vamos echando el agua no muy caliente de las patatas y batimos con la minipimer.",
       "Añadimos las patatas y servimos."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 35 min. Elaboración (preparación y cocción): 35 min. Pelar patatas, cocerlas 10–15 minutos y ligar mayonesa con caldo templado para no cortarla; sin fumet largo."
   },
   {
     "id": "sopa-de-mayonesa-de-la-abuela-cheli",
     "categoria": "guisos",
     "titulo": "Sopa de Mayonesa",
     "autor": "de la Abuela Cheli",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈45 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "Mayonesa",
@@ -533,15 +555,16 @@ const RECETAS = [
       "Preparamos una mayonesa.",
       "En una sopera ponemos la mayonesa y poco a poco vamos echando el agua no muy caliente de las gambas y el pescado y batimos con la minipimer.",
       "Añadimos las gambas y servimos.Se puede tomar caliente o fría."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 45 min. Elaboración (preparación y cocción): 45 min. Cocer pescado y gambas 10–15 minutos, templar y limpiar, preparar mayonesa e incorporarla gradualmente."
   },
   {
     "id": "lentejas",
     "categoria": "guisos",
     "titulo": "Lentejas",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈13 h",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "½ Kg de lentejas que se mantienen en remojo la noche anterior",
@@ -561,15 +584,16 @@ const RECETAS = [
       "Se lavan las lentejas, siempre con agua fría y se ponen en una olla con agua.",
       "Le damos un hervor durante 5’.",
       "Añadimos todos los ingredientes y los tenemos en la olla a presión unos 20’. También se pueden cocinar  en la cacerola una hora más o menos moviéndolas con frecuencia para que no se agarren."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 13 h. Elaboración (preparación y cocción): 1 h. Remojo, maceración, enfriado o reposo: 12 h. Método de olla a presión: hervor previo de 5 minutos y cocción de 20, más preparación y gestión de presión. Remojo nocturno estimado en 12 horas."
   },
   {
     "id": "alubias",
     "categoria": "guisos",
     "titulo": "Alubias",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈13 h",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "½ Kg de alubias que se mantienen en remojo la noche anterior",
@@ -589,15 +613,16 @@ const RECETAS = [
       "Se lavan las alubias , siempre con agua fría y se ponen en una olla con agua.",
       "Le damos un hervor durante 5’, tiramos el agua y volvemos a echar agua fría.",
       "Añadimos todos los ingredientes y los tenemos en la olla a presión unos 20’."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 13 h. Elaboración (preparación y cocción): 1 h. Remojo, maceración, enfriado o reposo: 12 h. Método de presión con hervor previo de 5 minutos y 20 de cocción; calentamiento y liberación de presión incluidos. Remojo nocturno estimado en 12 horas."
   },
   {
     "id": "alubias-de-miguel-angel",
     "categoria": "guisos",
     "titulo": "Alubias",
     "autor": "de Miguel Angel",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈13 h",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "1 cabeza de ajo entera",
@@ -608,15 +633,16 @@ const RECETAS = [
     ],
     "pasos": [
       "Se ponen en la olla todos los ingredientes con agua y sal y se cuecen durante unos 30’."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 13 h. Elaboración (preparación y cocción): 1 h. Remojo, maceración, enfriado o reposo: 12 h. 30 minutos en olla según el original, más preparación, calentamiento y liberación de presión; remojo de 12 horas explícito."
   },
   {
     "id": "cocido",
     "categoria": "guisos",
     "titulo": "Cocido",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈13 h 30 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "½ kg de garbanzos",
@@ -639,15 +665,16 @@ const RECETAS = [
       "Se mezclan los dos caldos dejando un poco con los garbanzos...",
       "Servir la sopa con fideos de primer plato y de segundo los garbanzos con la carne.",
       "Se pueden añadir patatas cocidas, judías verdes."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 13 h 30 min. Elaboración (preparación y cocción): 1 h 30 min. Remojo, maceración, enfriado o reposo: 12 h. Hervor de 15 minutos, presión de 20 y 5, manejo de caldos, preparación y fideos; remojo nocturno estimado en 12 horas."
   },
   {
     "id": "potaje-de-garbanzos",
     "categoria": "guisos",
     "titulo": "Potaje de Garbanzos",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈13 h",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "½ kg de garbanzos previamente remojados",
@@ -668,15 +695,16 @@ const RECETAS = [
       "Ponemos todos los ingredientes en la olla menos la morcilla y el chorizo  y cocemos durante unos 20’.",
       "Pasado este tiempo, abrir la olla y añadir un chorreón de tomate frito.Se le da un hervor, se añade el chorizo y la morcilla y se tiene unos 5 minutos para que suelten el sabor.",
       "Se sirve caliente."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 13 h. Elaboración (preparación y cocción): 1 h. Remojo, maceración, enfriado o reposo: 12 h. 20 minutos de olla y 5 de acabado, más preparación y presión; se parte de garbanzos secos con remojo previo orientativo de 12 horas."
   },
   {
     "id": "patatas-con-mejillones",
     "categoria": "guisos",
     "titulo": "Patatas con Mejillones",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈50 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "1kg de patatas 3/4 de mejillones",
@@ -691,15 +719,16 @@ const RECETAS = [
       "Se marean las patatas en rodajas gordas.",
       "Se le echa el vino y el laurel y cuando las patatas estén casi tiernas se le echa el pimentón, perejil, guindilla y los mejillones( limpios).",
       "Se tapa y se deja cocer."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 50 min. Elaboración (preparación y cocción): 50 min. Limpiar mejillones y cortar verduras, sofreír y guisar patatas antes de abrir el marisco; su punto condiciona el final."
   },
   {
     "id": "sopa",
     "categoria": "guisos",
     "titulo": "Sopa",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "1 cuarto trasero de pollo",
@@ -712,15 +741,16 @@ const RECETAS = [
       "Se pone todo en la olla a presión con agua y se tiene una media hora o más.",
       "Pasado este tiempo abrir la olla y añadir fideos.",
       "Es mejor cocer los fideos en una cacerola aparte con un poco de la sopa."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h. Elaboración (preparación y cocción): 1 h. Preparar verduras, 30 minutos o más en olla, calentamiento y despresurización; fideos al final."
   },
   {
     "id": "paella",
     "categoria": "guisos",
     "titulo": "Paella",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 30 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "2 Tomates",
@@ -742,15 +772,16 @@ const RECETAS = [
       "Se tiene unos 20’ en la olla.",
       "En una paellera se vierte el contenido de la olla y se añade el arroz, rectificando de sal, vino, pimentón, chorizo…",
       "Dejar reposar unos 5’ y servir."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 30 min. Elaboración (preparación y cocción): 1 h 30 min. Provisional; ficha pendiente de aclarar. Incluye preparación y sofrito, 20 minutos de olla más gestión de presión, unos 18 de arroz inferidos del comparable y 5 de reposo; falta esa cocción en el original."
   },
   {
     "id": "arroz-blanco",
     "categoria": "guisos",
     "titulo": "Arroz Blanco",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈30 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Dos puñados de arroz por persona",
@@ -766,15 +797,16 @@ const RECETAS = [
       "Cubrir con agua y desmenuzar una pastilla de avecrem.",
       "Cuando el agua se consuma añadir más e ir rectificando de agua y sal hasta que el arroz esté al gusto.",
       "Servir sólo o con tomate frito. Se puede acompañar de un huevo frito, salchichas..."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 30 min. Elaboración (preparación y cocción): 30 min. Dorar ajo, calentar agua y cocer arroz hasta su punto; referencia de cacerola, no del método exprés."
   },
   {
     "id": "pisto",
     "categoria": "guisos",
     "titulo": "Pisto",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "2 calabacines",
@@ -793,15 +825,16 @@ const RECETAS = [
       "Se van poniendo en un escurridor para eliminar el aceite.",
       "Poner todo en una cacerola y añadir un buen chorreón de tomate Orlando y avecrem.",
       "Hervir un rato y servir con patatas fritas y un huevo frito."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h. Elaboración (preparación y cocción): 1 h. Picar bastantes verduras, freír en dos sartenes, escurrir y terminar juntas; no incluye guarniciones opcionales de huevo y patatas."
   },
   {
     "id": "sopa-bouillabaisse-abuela-carmen",
     "categoria": "guisos",
     "titulo": "Sopa Bouillabaisse",
     "autor": "Abuela Carmen",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "Rape o pescada, ¼ almejas, ¼ gambas",
@@ -816,15 +849,16 @@ const RECETAS = [
       "Se pasa toda la verdura y se cuela por un chino y el caldo que queda se cuela también.",
       "Se mezcla todo y se pone a hervir.",
       "Las almendras se cuecen solas hasta que estén tiernas se baten y se añaden a la sopa ya colada."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h. Elaboración (preparación y cocción): 1 h. Cocer pescado, verduras y almendras, limpiar, triturar, colar y dar hervor final; varios procesos coordinados."
   },
   {
     "id": "espaguetis-carbonara",
     "categoria": "pasta",
     "titulo": "Espaguetis Carbonara",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈25 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "Medio paquete de espaguetis",
@@ -841,15 +875,16 @@ const RECETAS = [
       "En un bol se baten los huevos, se salan y se añade el queso rallado.",
       "Se mezcla todo bien y se añade a los espaguetis calientes pero fuera del fuego.",
       "Se puede añadir un poquito de pimienta."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 25 min. Elaboración (preparación y cocción): 25 min. Calentar agua, cocer 8–10 minutos y preparar bacon y huevo; terminar fuera del fuego requiere controlar la emulsión."
   },
   {
     "id": "espaguetis-con-cebolla-y-jamon",
     "categoria": "pasta",
     "titulo": "Espaguetis con Cebolla y Jamón",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈30 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Medio paquete de espaguetis",
@@ -863,15 +898,16 @@ const RECETAS = [
       "En una sartén se fríe la cebolla bien picada y una vez dorada se añade el jamón.",
       "Se dora todo junto unos minutos y luego añadimos la pasta a la sartén.",
       "Mantenemos en el fuego unos minutos y removemos bien."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 30 min. Elaboración (preparación y cocción): 30 min. Pasta y cebolla se preparan parcialmente en paralelo; picar, dorar y saltear con jamón."
   },
   {
     "id": "macarrones-con-tomate-y-chorizo",
     "categoria": "pasta",
     "titulo": "Macarrones con Tomate y Chorizo",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈45 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Medio paquete de macarrones",
@@ -891,15 +927,16 @@ const RECETAS = [
       "Mantenemos en el fuego, removemos bien y añadimos un chorrito de vino y el chorizo troceado unos 10 minutos.",
       "En una fuente de horno ponemos la pasta y el tomate y cubrimos con queso rallado.",
       "Precalentamos el horno y gratinamos la pasta."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 45 min. Elaboración (preparación y cocción): 45 min. Pasta 8–10 minutos, sofrito, 10 minutos de salsa con vino y chorizo y gratinado, con preparación y precalentado."
   },
   {
     "id": "espaguetis-con-ajo-y-aceite",
     "categoria": "pasta",
     "titulo": "Espaguetis con Ajo y Aceite",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈25 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Medio paquete de espaguetis",
@@ -913,15 +950,16 @@ const RECETAS = [
       "En una sartén se fríen los dientes de ajo.",
       "Se mezcla la pasta con los ajos en la sartén.",
       "Mantenemos en el fuego unos cinco minutos."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 25 min. Elaboración (preparación y cocción): 25 min. Cocción de pasta 8–10 minutos, ajo y salteado final de 5; agua y picado incluidos."
   },
   {
     "id": "espaguetis-bolognesa",
     "categoria": "pasta",
     "titulo": "Espaguetis Bolognesa",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈40 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Medio paquete de espaguetis",
@@ -943,15 +981,16 @@ const RECETAS = [
       "Se dora todo junto unos minutos y luego añadimos el tomate frito.",
       "Mantenemos en el fuego y removemos bien.",
       "En una fuente ponemos la pasta y el tomate y cubrimos con queso rallado."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 40 min. Elaboración (preparación y cocción): 40 min. Versión familiar con tomate ya frito y sofrito corto; no se traslada el tiempo de un ragú de varias horas."
   },
   {
     "id": "espaguetis-con-gambas-y-ajo",
     "categoria": "pasta",
     "titulo": "Espaguetis con Gambas y Ajo",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈40 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Espaguettis",
@@ -968,15 +1007,16 @@ const RECETAS = [
       "Se añaden las gambas a la sartén y se marean un poco.",
       "Se añaden los espaguetis y se marea todo junto un poco.",
       "Están listos para servir."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 40 min. Elaboración (preparación y cocción): 40 min. Los 10 minutos iniciales de gambas y la pasta posterior son consecutivos; pelado, colado y salteado incluidos."
   },
   {
     "id": "ensalada-de-pasta",
     "categoria": "pasta",
     "titulo": "Ensalada de Pasta",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈25 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Pasta",
@@ -993,15 +1033,16 @@ const RECETAS = [
       "Se trocea el embutido.",
       "Se añade el queso.",
       "Se pone todo en la fuente y se aliña con sal, vinagre y aceite en este orden."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 25 min. Elaboración (preparación y cocción): 25 min. Cocer pasta y cortar acompañamientos en paralelo; el original no exige nevera, se sirve recién aliñada."
   },
   {
     "id": "ensalada-de-pasta-con-gambas",
     "categoria": "pasta",
     "titulo": "Ensalada de Pasta con Gambas",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 25 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Pasta",
@@ -1015,15 +1056,16 @@ const RECETAS = [
       "Se escurre bien del agua y se pone en una fuente. Lo rociamos con un poco de aceite.",
       "Se añade el maíz, las gambas y la mayonesa y se revuelve bien.",
       "Se mete en la nevera y se deja enfriar."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 25 min. Elaboración (preparación y cocción): 25 min. Remojo, maceración, enfriado o reposo: 1 h. Se parte de gambas ya cocidas; cocción de pasta y montaje, más una hora orientativa de frío."
   },
   {
     "id": "fideos-amarillos",
     "categoria": "pasta",
     "titulo": "Fideos Amarillos",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 30 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "¼ de chirlas",
@@ -1046,15 +1088,16 @@ const RECETAS = [
       "Se añade el sofrito al agua previamente colada y se cuece todo junto con medio vaso de vino blanco, el laurel, pimentón y el avecrem. Se mete en la olla unos veinte minutos.",
       "Añadimos las gambas, chirlas y calamares y cocemos un rato.",
       "Cuando haya hervido un poco y justo antes de comer cocer los espaguetis en ese caldo."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 30 min. Elaboración (preparación y cocción): 1 h 30 min. Limpiar marisco, 10 minutos de cocción, sofrito y colado, 20 de olla con su presión y pasta cocida al final."
   },
   {
     "id": "lasagna",
     "categoria": "pasta",
     "titulo": "Lasagna",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 5 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "6 Placas de lasaña El Pavo",
@@ -1073,15 +1116,16 @@ const RECETAS = [
       "Se cubre el fondo de una fuente con una capa de pasta otra de carne, otra de pasta y otra de carne y se cubre con una capa final de pasta.",
       "Se cubre con bechamel( se puede hacer o comprar hecha).",
       "Se le pone queso rallado por encima y se mete en el horno hasta que se gratine."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 5 min. Elaboración (preparación y cocción): 1 h 5 min. Láminas de remojo y relleno corto de carne; incluye bechamel casera preparada en paralelo y gratinado. Comprarla hecha reduce trabajo."
   },
   {
     "id": "canelones-abuela-carmen",
     "categoria": "pasta",
     "titulo": "Canelones",
     "autor": "Abuela Carmen",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 5 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "1\\2 kg carne picada ternera",
@@ -1095,15 +1139,16 @@ const RECETAS = [
       "Se cuecen los canelones y se rellenan con la mezcla.( se puede añadir un poquito de tomate para que quede más jugoso).",
       "Se cubre una fuente con un poquito de tomate( esto es opcional) y se van poniendo los canelones.",
       "Se hace una bechamel y se le echa por encima a los canelones con queso rallado y se gratina."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 5 min. Elaboración (preparación y cocción): 1 h 5 min. Provisional; ficha pendiente de aclarar. Dorar carne, cocer y rellenar pasta, hacer bechamel y gratinar; no es el ragú largo del comparable. Faltan ingredientes en la ficha."
   },
   {
     "id": "canelones-abuela-cheli",
     "categoria": "pasta",
     "titulo": "Canelones",
     "autor": "Abuela Cheli",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈45 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "¼ de Carne picada",
@@ -1117,15 +1162,16 @@ const RECETAS = [
       "Se añade la carne picada  y se le echa un poquito de tomate. Se marea durante unos minutos hasta que la carne esté hecha.",
       "En una cacerola se cuecen los canelones según las indicaciones del envase.",
       "Una vez cocidos y secos los canelones se extienden en un paño limpio y se van rellenando con la masa y enrollando."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 45 min. Elaboración (preparación y cocción): 45 min. Relleno corto con tomate frito y enrollado manual; el original termina al rellenar y no prescribe bechamel ni gratinado."
   },
   {
     "id": "tortilla-francesa",
     "categoria": "huevos",
     "titulo": "Tortilla Francesa",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈10 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "1 o 2 huevos",
@@ -1138,15 +1184,16 @@ const RECETAS = [
       "Cuando el aceite esté caliente, verter el huevo batido y dejar que se cuaje un poquito.",
       "Con una espumadera doblar la tortilla y cuando el huevo esté cuajado servir en un plato.",
       "Al huevo se le puede añadir queso, jamón…"
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 10 min. Elaboración (preparación y cocción): 10 min. Batir, calentar sartén, cuajar y plegar; sin rellenos elaborados."
   },
   {
     "id": "tortilla-de-patatas",
     "categoria": "huevos",
     "titulo": "Tortilla de Patatas",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈50 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "5 o 6 huevos",
@@ -1164,15 +1211,16 @@ const RECETAS = [
       "Añadimos la mezcla de las patatas con el huevo y dejamos que se cuaje la mezcla un poco.",
       "Con otro plato o con un vuelca tortillas le damos la vuelta y lo tenemos al fuego un poco más dependiendo de cómo nos guste la tortilla muy cuajada o poco cuajada.",
       "Servir en un plato y dividir entre el número de comensales."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 50 min. Elaboración (preparación y cocción): 50 min. Pelar y freír 5–6 patatas, escurrir, mezclar y voltear; dificultad por el giro y el punto de cuajado."
   },
   {
     "id": "huevos-fritos",
     "categoria": "huevos",
     "titulo": "Huevos Fritos",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈10 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Un huevo por persona",
@@ -1183,15 +1231,16 @@ const RECETAS = [
       "Se pone bastante aceite en una sartén y cuando esté caliente se casca un huevo y se fríe hasta que la clara esté blanca y la yema no esté muy cruda.",
       "Se escurre de aceite y se pone en un plato.",
       "Se sirve con patatas fritas, jamón o chorizo."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 10 min. Elaboración (preparación y cocción): 10 min. Calentar aceite y freír una tanda doméstica; las patatas y el chorizo son acompañamientos opcionales no incluidos."
   },
   {
     "id": "huevos-con-bechamel",
     "categoria": "huevos",
     "titulo": "Huevos con Bechamel",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "1 huevo duro por persona",
@@ -1207,15 +1256,16 @@ const RECETAS = [
       "Se cortan los huevos por la mitad por la parte más ancha y se van rellenando con la mezcla.",
       "Se hace una bechamel clarita con un poco de cebolla dorada.",
       "Se ponen los huevos en una fuente y se vierte por encima la bechamel. Se espolvorea con el queso rallado y se gratina en el horno."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h. Elaboración (preparación y cocción): 1 h. 15 minutos de huevos y enfriado para pelar; rellenado, bechamel y gratinado, con tareas en paralelo."
   },
   {
     "id": "huevos-en-salsa-amarilla",
     "categoria": "huevos",
     "titulo": "Huevos en Salsa Amarilla",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 5 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "1 huevo por persona",
@@ -1236,15 +1286,16 @@ const RECETAS = [
       "En una olla o fuente de barro se pone un poco de aceite y el diente de ajo machacado.",
       "Se añade agua como hasta la mitad de la cacerola, un trozo de jamón o tocino y cuando hierve se ponen los huevos con azafrán y se añade un poco del aceite de freírlos.",
       "Se tienen cociendo un ratito."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 5 min. Elaboración (preparación y cocción): 1 h 5 min. Cocer 15 minutos, enfriar, rellenar, enharinar, freír y guisar con majado; más fases que los huevos rellenos fríos."
   },
   {
     "id": "huevos-al-plato",
     "categoria": "huevos",
     "titulo": "Huevos al Plato",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈25 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "1 huevo por persona",
@@ -1254,15 +1305,16 @@ const RECETAS = [
     "pasos": [
       "En una cazuela de barro se pone un fondo de aceite, tomate frito y se casca un huevo por persona.",
       "Se añade a un lado la guarnición y se mete en el horno con el fuego solo por abajo hasta que se cuaje la yema."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 25 min. Elaboración (preparación y cocción): 25 min. Montaje y horneado corto, partiendo de tomate y guarniciones ya cocinadas como indica la receta."
   },
   {
     "id": "huevos-rellenos-2",
     "categoria": "huevos",
     "titulo": "Huevos Rellenos",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 40 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "1 huevo por persona",
@@ -1281,15 +1333,16 @@ const RECETAS = [
       "Se añade la mayonesa por encima de cada huevo.  Se ralla la yema de huevo reservada por encima y se decoran con aceitunas pimiento rojo…",
       "Se mete en la nevera y se deja enfriar.",
       "Se puede cambiar el atún por salmón ahumado y paté de salmón."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 40 min. Elaboración (preparación y cocción): 40 min. Remojo, maceración, enfriado o reposo: 1 h. 15 minutos de cocción, pelado y montaje, con enfriado y una hora orientativa de nevera. Técnica equivalente a la otra variante."
   },
   {
     "id": "rollo-de-carne",
     "categoria": "carnes",
     "titulo": "Rollo de Carne",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈2 h 20 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "1 aleta de ternera 1kg",
@@ -1307,15 +1360,16 @@ const RECETAS = [
       "Se marea el rollo solo.",
       "Se dora cebolla, vino y ajo y cuando esté dorado se añade el rollo que se marea.",
       "Se mete en la olla a presión tres cuartos de hora, se pasa la salsa y se deja que se enfría la carne antes de cortarlo y se sirve."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 2 h 20 min. Elaboración (preparación y cocción): 1 h 50 min. Remojo, maceración, enfriado o reposo: 30 min. Rellenar y atar la aleta, dorar y preparar salsa, 45 minutos de presión con calentamiento y despresurización; enfriado antes de cortar aparte."
   },
   {
     "id": "carne-con-tomate",
     "categoria": "carnes",
     "titulo": "Carne con Tomate",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 15 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Carne de ternera troceada 1 kg y ½",
@@ -1331,15 +1385,16 @@ const RECETAS = [
       "Se rehoga con la carne en la sartén unos diez minutos y se añade el tomate, el laurel, el vino  y medio vaso de agua.",
       "Se cuece a fuego lento 40 minutos, o se mete en la olla unos 20 minutos para asegurarnos de que la carne quede tierna.",
       "Se sirve acompañada de patatas fritas, puré de patatas o asadas."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 15 min. Elaboración (preparación y cocción): 1 h 15 min. Se elige la cacerola: picado y sellado, 10 minutos de rehogado y 40 a fuego lento. La alternativa a presión puede acortar el tiempo."
   },
   {
     "id": "albondigas",
     "categoria": "carnes",
     "titulo": "Albóndigas",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 5 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "½ Kg de carne picada (¼ de cerdo y ¼ de ternera o ¼ de cerdo y ¼ de pollo)",
@@ -1356,15 +1411,16 @@ const RECETAS = [
       "Cuando estén doradas se sacan y se apartan en un plato.",
       "Se pica la cebolla y se dora en la cacerola, cuando esté dorada se añade medio vaso de vino y se deja cocer un poco, añadimos agua y echamos las albóndigas.",
       "Añadimos una pastilla de avecrem desleída y colorante y dejamos hervir un rato hasta que las albóndigas estén tiernas y sin dejar que se consuma el líquido."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 5 min. Elaboración (preparación y cocción): 1 h 5 min. Mezclar, formar bolas, enharinar y freír por tandas, preparar salsa y guisar; no se añade el largo reposo del comparable que aquí no se exige."
   },
   {
     "id": "solomillo-de-cerdo-de-mama",
     "categoria": "carnes",
     "titulo": "Solomillo de Cerdo",
     "autor": "de Mamá",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈35 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Dos solomillos de cerdo",
@@ -1378,15 +1434,16 @@ const RECETAS = [
       "Se pican el ajo y el perejil.",
       "Se salpimenta la carne.",
       "En una fuente se pone la carne y se adereza con el ajo y el perejil, el zumo de limón, un chorro de aceite y el caldo de avecrem y se mete en el horno con el fuego arriba y abajo durante unos 20 minutos."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 35 min. Elaboración (preparación y cocción): 35 min. Majado y preparación con precalentado en paralelo, más los 20 minutos de horno indicados; depende del grosor."
   },
   {
     "id": "solomillo-de-ternera-de-navidad-de-mama",
     "categoria": "carnes",
     "titulo": "Solomillo de Ternera de Navidad",
     "autor": "de Mamá",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈45 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "Un solomillo de ternera",
@@ -1402,15 +1459,16 @@ const RECETAS = [
       "Se añade un chorreón de coñac u oporto.",
       "Se disuelve una pastilla de avecrem en agua y se le echa a la carne  cuando se haya evaporado el alcohol.",
       "Después de una media hora se saca del horno y se corta en rodajas."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 45 min. Elaboración (preparación y cocción): 45 min. Provisional; ficha pendiente de aclarar. Preparación y precalentado, 30 minutos de horno y corte; comparable de solomillo de 600 g con media hora de horno. Falta peso de la pieza familiar: no garantiza su punto."
   },
   {
     "id": "carne-en-salsa-de-la-abuela-carmen",
     "categoria": "carnes",
     "titulo": "Carne en Salsa",
     "autor": "de la Abuela Carmen",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Uno o dos solomillos de cerdo según el tamaño",
@@ -1426,15 +1484,16 @@ const RECETAS = [
       "Cuando esté dorada se añade un puñado de almendras, la carne, avecrem y agua y se cuece unos 15 minutos en la olla.",
       "Se pasa la salsa y se corta la carne.",
       "Se puede acompañar de una patatas fritas."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h. Elaboración (preparación y cocción): 1 h. Sellar, pochar cebollas y preparar salsa, más 15 minutos de olla y tiempos de presión."
   },
   {
     "id": "albondigon",
     "categoria": "carnes",
     "titulo": "Albondigón",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 15 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "1Kg de carne picada (½ de cerdo y ½ de ternera)",
@@ -1455,15 +1514,16 @@ const RECETAS = [
       "Cuando estén doradas se sacan y se apartan en un plato.",
       "Se pica la cebolla y se dora en la cacerola, cuando esté dorada se añade medio vaso de vino y se deja cocer un poco, añadimos agua y echamos las albóndigas.",
       "Añadimos una pastilla de avecrem desleída y colorante y dejamos hervir un rato hasta que las albóndigas estén tiernas y sin dejar que se consuma el líquido."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 15 min. Elaboración (preparación y cocción): 1 h 5 min. Remojo, maceración, enfriado o reposo: 10 min. Provisional; ficha pendiente de aclarar. Solo pasos 1–7: mezclar, reposar brevemente, formar pieza y dorar, 15 minutos de presión y gestión de olla; se excluyen los pasos de albóndigas mezclados."
   },
   {
     "id": "codillo",
     "categoria": "carnes",
     "titulo": "Codillo",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈2 h 10 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Un codillo",
@@ -1474,15 +1534,16 @@ const RECETAS = [
     "pasos": [
       "En la olla se pone el codillo con todos los ingredientes y se cubre de agua. No añadir sal.",
       "Se cuece durante unos 90 minutos."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 2 h 10 min. Elaboración (preparación y cocción): 2 h 10 min. El original exige 90 minutos en olla; se añaden preparación, calentamiento y despresurización. Comparable de técnica, no se sustituyen esos 90 minutos."
   },
   {
     "id": "cinta-de-lomo-a-la-sal",
     "categoria": "carnes",
     "titulo": "Cinta de Lomo a la Sal",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "1Kg de cinta de lomo para 8 personas",
@@ -1495,15 +1556,16 @@ const RECETAS = [
       "Se mete en el horno hasta que la sal se vaya abriendo.Se pincha la carne, si sale sangre es que no está.",
       "Se saca la carne de la sal y se corta en rodajas.",
       "Se puede servir con puré de manzana, ensalada de pimientos..."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h. Elaboración (preparación y cocción): 1 h. Se toma la opción de 1 kg: cubrir con sal y asar unos 45 minutos, preparar, precalentar y retirar costra; la pieza de medio kilo requiere ajustar."
   },
   {
     "id": "carne-estofada",
     "categoria": "carnes",
     "titulo": "Carne Estofada",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 5 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "1 kg y ¼ de carne para estofar",
@@ -1520,15 +1582,16 @@ const RECETAS = [
       "Se marea el ajo, la cebolla, el tomate, el pimiento y las zanahorias previamente troceadas.",
       "Se añade un vaso de vino, un chorreón de vinagre y una hoja de laurel y se marea todo junto unos 10 minutos.",
       "Se pasa todo a la olla con las patatas troceadas y se añade una cucharadita muy pequeña de pimentón y se deja cocer unos 20 minutos."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 5 min. Elaboración (preparación y cocción): 1 h 5 min. Provisional; ficha pendiente de aclarar. Picado y sofrito, 10 minutos con vino y 20 de olla, más presión; estimación provisional porque falta incorporar la carne en los pasos."
   },
   {
     "id": "cordero-mama",
     "categoria": "carnes",
     "titulo": "Cordero",
     "autor": "Mamá",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈6 h 30 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Una pierna de cordero o una paletilla",
@@ -1547,15 +1610,16 @@ const RECETAS = [
       "Aparte se disuelven dos pastillas de avecrem con agua.",
       "Se baña el cordero constantemente.",
       "Cuando esté hecho se pone ¼ de hora más con el horno fuerte arriba y abajo."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 6 h 30 min. Elaboración (preparación y cocción): 2 h 30 min. Remojo, maceración, enfriado o reposo: 4 h. Provisional; ficha pendiente de aclarar. Se orienta el asado de pierna/paletilla en torno a 2 horas más preparación; unas cuantas horas de maceración se estiman en 4. Peso y temperatura pendientes."
   },
   {
     "id": "cordero-adela",
     "categoria": "carnes",
     "titulo": "Cordero",
     "autor": "Adela",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈2 h 45 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "Una pierna de cordero",
@@ -1573,15 +1637,16 @@ const RECETAS = [
       "En un cazo se pone una cebolla cortada en cuatro, un cabeza de ajo sin pelar, una hoja de laurel, un chorreón de vinagre (medio vaso) con agua y se tiene hirviendo unos cinco minutos.",
       "Cuando el cordero esté chamuscado se pone el fuego solo por abajo al mínimo, se le echa el caldo del cazo y algo más de sal.",
       "Se añade una patata por persona y se va moviendo el cordero."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 2 h 45 min. Elaboración (preparación y cocción): 2 h 45 min. Provisional; ficha pendiente de aclarar. Dorado fuerte, cocción lenta y patatas; se estima algo más de 2 horas de horno por la técnica. Faltan peso y tiempos para afinarlo."
   },
   {
     "id": "cordero-a-mi-manera",
     "categoria": "carnes",
     "titulo": "Cordero a Mi Manera",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈5 h 5 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "Cordero",
@@ -1598,15 +1663,16 @@ const RECETAS = [
       "Regar el cordero con la mezcla del cazo y poner más fuerte el horno durante unos 20 minutos más.",
       "Ir regando el cordero y darle la vuelta.",
       "Después de unos 10 minutos, apagar el horno y servir."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 5 h 5 min. Elaboración (preparación y cocción): 1 h 5 min. Remojo, maceración, enfriado o reposo: 4 h. Provisional; ficha pendiente de aclarar. Se conservan los 20 + 20 + 10 minutos de horno del original, preparación y 4 horas orientativas de maceración. Corte y peso no especificados: estimación provisional."
   },
   {
     "id": "carne-en-salsa",
     "categoria": "carnes",
     "titulo": "Carne en Salsa",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 15 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Un rollo de 1kg y ½ de ternera.",
@@ -1621,15 +1687,16 @@ const RECETAS = [
       "Se añade el vaso de vino blanco y se deja al fuego unos 5 minutos para que se evapore el vino.",
       "Se pone todo en la olla a presión y se añade agua cubriendo un poquito la carne durante 30 minutos.",
       "Se pasa la salsa.Este mismo guiso sirve para el pollo y el albondigón."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 15 min. Elaboración (preparación y cocción): 1 h 15 min. Pochar, sellar y reducir vino, 30 minutos de presión, subida y bajada de presión; pieza de ternera de 1,5 kg."
   },
   {
     "id": "lomo-al-caramelo",
     "categoria": "carnes",
     "titulo": "Lomo al Caramelo",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Un par de solomillos de cerdo",
@@ -1648,15 +1715,16 @@ const RECETAS = [
       "Después de unos 5 minutos añadimos la cucharada de caramelo líquido, el zumo de naranja y agua y se mete en la olla unos 15 minutos.",
       "Se prepara una crema de champiñón aparte y se añade a la olla cuando la carne ya esté blanda.",
       "Se corta la carne y se sirve con patatas fritas, puré…"
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h. Elaboración (preparación y cocción): 1 h. Provisional; ficha pendiente de aclarar. Sellado, base y reducción, 15 minutos de presión con calentamiento y apertura, crema y corte; provisional por un paso de cordero ajeno a esta ficha."
   },
   {
     "id": "filetes-rusos",
     "categoria": "carnes",
     "titulo": "Filetes Rusos",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈40 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "½ Kg de carne picada (¼ de cerdo y ¼ de ternera o ¼ de cerdo y ¼ de pollo)",
@@ -1673,15 +1741,16 @@ const RECETAS = [
       "En un bol se bate un huevo y se añade la carne picada salpimentada y el diente de ajo picado.",
       "Añadimos la leche, pan rallado, la cebolla dorada y el avecrem.",
       "Se van haciendo bolitas, se pasan por pan rallado, se aplastan con la mano y se fríen."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 40 min. Elaboración (preparación y cocción): 40 min. Pochar media cebolla, mezclar carne, formar, empanar y freír; no lleva la salsa ni el guiso del comparable."
   },
   {
     "id": "filetes-empanados",
     "categoria": "carnes",
     "titulo": "Filetes Empanados",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈20 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Filete de vaca por persona",
@@ -1692,15 +1761,16 @@ const RECETAS = [
     "pasos": [
       "Se adereza  la carne con sal  y se pasa por el huevo y el pan rallado.",
       "Se fríe en abundante aceite."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 20 min. Elaboración (preparación y cocción): 20 min. Filetes ya cortados: salar, empanar y freír una tanda doméstica; no hay relleno ni enrollado."
   },
   {
     "id": "flamenquines",
     "categoria": "carnes",
     "titulo": "Flamenquines",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈40 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "Filetes de pollo o cerdo",
@@ -1717,15 +1787,16 @@ const RECETAS = [
       "Se enrolla el filete (se sujeta con palillos si se quedase abierto).",
       "Se pasa por huevo y pan rallado.",
       "Se fríen."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 40 min. Elaboración (preparación y cocción): 40 min. Extender, rellenar y enrollar, empanar y freír por tandas; el sellado exige más cuidado que un filete empanado."
   },
   {
     "id": "roast-beef",
     "categoria": "carnes",
     "titulo": "Roast Beef",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 35 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "Una pieza de tapa de carne de 1 kg y 800 gramos",
@@ -1741,15 +1812,16 @@ const RECETAS = [
       "Se apaga el horno y se baja la rejilla a la altura mínima dejando la carne dentro con el horno apagado unos 20 minutos.",
       "Se saca la cebolla y se hace una salsa con ella añadiendo agua y avecrem si hace falta. Se pasa la salsa.",
       "Pasados los 20 minutos se saca la carne y se deja enfriar. se sirve en rodajas con la salsa aparte."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 35 min. Elaboración (preparación y cocción): 1 h 5 min. Remojo, maceración, enfriado o reposo: 30 min. Provisional; ficha pendiente de aclarar. Se conservan 15 + 15 minutos de asado y 20 de horno apagado; preparación y salsa, más enfriado orientativo antes del corte. El comparable usa otro método más largo; temperatura y punto familiar pendientes de precisar."
   },
   {
     "id": "albondigas-amarillas",
     "categoria": "carnes",
     "titulo": "Albóndigas Amarillas",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "½ Kg de carne picada (¼ de cerdo y ¼ de ternera o ¼ de cerdo y ¼ de pollo)",
@@ -1765,15 +1837,16 @@ const RECETAS = [
       "Se majan tres dientes de ajo en el mortero con sal y un poquito de agua.",
       "En una olla o fuente de barro se pone un poco de aceite y el diente de ajo machacado. Se añade agua como hasta la mitad de la cacerola, un trozo de jamón o tocino y vino blanco, cuando hierva se añaden las albóndigas.",
       "Añadimos una pastilla de avecrem desleída y colorante y dejamos hervir un rato hasta que las albóndigas estén tiernas y sin dejar que se consuma el líquido."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h. Elaboración (preparación y cocción): 1 h. Formar bolas enharinadas, preparar majado y cocer en caldo hasta tiernas; sin la fritura previa de la otra variante."
   },
   {
     "id": "carne-mechada",
     "categoria": "carnes",
     "titulo": "Carne Mechada",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 55 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "Carne de babilla o de cadera",
@@ -1805,15 +1878,16 @@ const RECETAS = [
       "Se pasa todo a la olla express cubierto con agua y se tiene una media hora.",
       "Pasado este tiempo se deja enfriar la olla y se abre.",
       "Se puede servir con una guarnición de patatas fritas, arroz, puré de patatas…"
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 55 min. Elaboración (preparación y cocción): 1 h 40 min. Remojo, maceración, enfriado o reposo: 15 min. Provisional; ficha pendiente de aclarar. Solo carne mechada, pasos 1–5: mechar y sellar, sofrito y salsa, 30 minutos de presión más calentamiento y apertura; reposo de corte orientativo. Se excluye la carrillada mezclada."
   },
   {
     "id": "cinta-de-lomo-con-ciruelas-orejones-e-higos",
     "categoria": "carnes",
     "titulo": "Cinta de Lomo con Ciruelas, Orejones e Higos",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 15 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Cinta de lomo de cerdo",
@@ -1827,15 +1901,16 @@ const RECETAS = [
       "Se aparta.",
       "Se fríen las cebollas, y dientes de ajo y a eso se le añade vino tinto y se dora con la carne.",
       "En una fuente de horno se pone la carne con la cebolla y los orejones por encima, unos tres cuartos de hora."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 15 min. Elaboración (preparación y cocción): 1 h 15 min. Sellado y sofrito con vino antes de los 45 minutos de horno explícitos; no hay maceración previa obligatoria."
   },
   {
     "id": "cinta-de-lomo-al-horno",
     "categoria": "carnes",
     "titulo": "Cinta de Lomo al Horno",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 10 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Una pieza de 1kg ¼ de cinta de lomo",
@@ -1850,15 +1925,16 @@ const RECETAS = [
       "Se añade vino tinto y vino blanco y el laurel y se dejan al fuego hasta que se evapore.",
       "Se mete en el horno con un poquito de aguauna media hora.",
       "Se ponen alrededor unas patatas cocidas previamente doradas con sal, avecrem, ajo en polvo y perejil."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 10 min. Elaboración (preparación y cocción): 1 h 10 min. Cebolla, sellado y reducción antes de 30 minutos de horno; patatas cocidas y doradas en paralelo, incluidas porque forman parte del acabado."
   },
   {
     "id": "pollo-en-pepitoria",
     "categoria": "carnes",
     "titulo": "Pollo en Pepitoria",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "Un pollo troceado o pechugas de pollo",
@@ -1874,15 +1950,16 @@ const RECETAS = [
       "Se añade el pollo salpimentado, una hoja de laurel, el vino y el zumo del limón.",
       "Se marea todo y se mete en la olla con un poco de azafrán unos 20 minutos.",
       "Se añade una yema para trabar la salsa."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h. Elaboración (preparación y cocción): 1 h. Dorar base y pollo, 20 minutos de presión con su gestión y ligar con yema sin cortarla; comparable de ave, manda la olla del original."
   },
   {
     "id": "pollo-abuela-carmen",
     "categoria": "carnes",
     "titulo": "Pollo",
     "autor": "Abuela Carmen",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 15 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Un pollo troceado o muslos de pollo.",
@@ -1898,15 +1975,16 @@ const RECETAS = [
       "En ese mismo aceite se dora la cebolla previamente picada.",
       "Cuando esté dorada se le añade el pollo y el  vino blanco que se deja evaporar unos minutos.",
       "Añadimos luego agua hasta cubrirlo y avecrem. Se deja cocer un buen rato o se mete en la olla a presión."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 15 min. Elaboración (preparación y cocción): 1 h 15 min. Se estima la opción de cacerola: dorados y unos 40 minutos de guiso; no se presupone olla rápida para reducir artificialmente el total."
   },
   {
     "id": "pollo-al-horno-de-la-abuela-cheli",
     "categoria": "carnes",
     "titulo": "Pollo al Horno",
     "autor": "de la Abuela Cheli",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 50 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Un pollo entero",
@@ -1921,15 +1999,16 @@ const RECETAS = [
       "Se salpimenta el pollo y se  mete un limón y la pastilla de avecrem en su interior.",
       "Se pone en una fuente de horno y se embadurna bien con aceite y el vaso de vino.",
       "Metemos en el horno unos 90  minutos a horno fuerte al principio y luego un poco más suave."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 50 min. Elaboración (preparación y cocción): 1 h 50 min. 90 minutos de horno originales más preparación, precalentado en paralelo y unos minutos para sacar y trinchar; peso no indicado."
   },
   {
     "id": "pollo-a-la-sopa-de-cebolla",
     "categoria": "carnes",
     "titulo": "Pollo a la Sopa de Cebolla",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 15 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Un pollo troceado",
@@ -1941,15 +2020,16 @@ const RECETAS = [
       "Precalentamos el horno unos 10 minutos.",
       "Se salpimenta el pollo y se pone en una fuente de horno y se embadurna bien con el sobre de sopa de cebolla, el aceite y el vaso de vino.",
       "Metemos en el horno unos 60  minutos a horno fuerte al principio y luego un poco más suave."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 15 min. Elaboración (preparación y cocción): 1 h 15 min. Pollo troceado: 60 minutos de horno y preparación con precalentado en paralelo."
   },
   {
     "id": "pollo-al-horno",
     "categoria": "carnes",
     "titulo": "Pollo al Horno",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 20 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Un pollo entero",
@@ -1963,15 +2043,16 @@ const RECETAS = [
       "Hacemos un majado con el ajo, el perejil y aceite.",
       "Se salpimenta el pollo y con un pincel se unta con el majado anterior.",
       "Se pone en una fuente de horno, añadimos el vino y  metemos  en el horno unos 60 minutos a horno fuerte al principio y luego un poco más suave."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 20 min. Elaboración (preparación y cocción): 1 h 20 min. 60 minutos de horno prescritos más majado, preparación, precalentado y trinchado; depende del tamaño del pollo entero."
   },
   {
     "id": "pollo-con-cerveza-y-yogur",
     "categoria": "carnes",
     "titulo": "Pollo con Cerveza y Yogur",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 35 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Un pollo troceado",
@@ -1987,15 +2068,16 @@ const RECETAS = [
       "En el vaso de la batidora se añade un diente crudo, una cerveza y un yogur natural. Se bate todo.",
       "Se vierte la salsa en la cacerola y se añade el pollo.",
       "Se tiene cociendo un buen rato."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 35 min. Elaboración (preparación y cocción): 1 h 5 min. Remojo, maceración, enfriado o reposo: 30 min. Provisional; ficha pendiente de aclarar. Preparar y dorar pollo, salsa y guiso estimado de 35–40 minutos; un rato de adobo se orienta en 30 minutos. Faltan duración de guiso y paso de dorado explícito."
   },
   {
     "id": "pollo-con-limon",
     "categoria": "carnes",
     "titulo": "Pollo con Limón",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈2 h 5 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Un pollo",
@@ -2008,15 +2090,16 @@ const RECETAS = [
       "Se limpia bien el pollo y se salpimenta.",
       "Se coloca en una fuente y se le añade el zumo de un limón y un poco de aceite y se deja macerar un rato.",
       "Cuando esté macerado se le añade vino blanco, agua y avecrem y se mete en el horno unos 80 minutos."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 2 h 5 min. Elaboración (preparación y cocción): 1 h 35 min. Remojo, maceración, enfriado o reposo: 30 min. 80 minutos de horno y preparación con precalentado en paralelo; macerar un rato se interpreta provisionalmente como media hora."
   },
   {
     "id": "pavo-al-oporto",
     "categoria": "carnes",
     "titulo": "Pavo al Oporto",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈37 h 30 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "2kg de pavo",
@@ -2031,15 +2114,16 @@ const RECETAS = [
       "Se dora el pavo con aceite y mantequilla durante  se riega con el vino y los higos hasta que el vino se vaya consumiendo.",
       "Se mezcla con un caldo hecho con ½ litro de agua y avecrem y se mete en el horno precalentado  a 150 grados durante 45 minutos.",
       "Si la salsa queda clara se le añade un poco de maizena."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 37 h 30 min. Elaboración (preparación y cocción): 1 h 30 min. Remojo, maceración, enfriado o reposo: 36 h. Provisional; ficha pendiente de aclarar. 36 horas de maceración expresas; preparación, dorado y reducción más 45 minutos de horno. El tamaño/corte de los 2 kg y la frase de dorado incompleta requieren confirmación; no garantiza punto de cocción."
   },
   {
     "id": "salmon-a-la-naranja-de-mariano",
     "categoria": "pescado",
     "titulo": "Salmón a la Naranja",
     "autor": "de Mariano",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈40 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Salmón fresco cortado en lonchas finas",
@@ -2053,15 +2137,16 @@ const RECETAS = [
       "En esa sartén se añade el salmón y se mezcla todo bien.",
       "Se añade el zumo de una naranja y se tiene cociendo a fuego lento 15 minutos hasta que la naranja se consuma.",
       "Se sirve acompañado de unas patatitas cocidas."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 40 min. Elaboración (preparación y cocción): 40 min. Pochar cebolla, añadir salmón y cocer 15 minutos con naranja; patatas cocidas en paralelo como guarnición."
   },
   {
     "id": "pescado-frito",
     "categoria": "pescado",
     "titulo": "Pescado Frito",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈30 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "Cualquier pescado troceado o boquerones, bacaladillas, pijotas, calamares …",
@@ -2074,15 +2159,16 @@ const RECETAS = [
       "Se pone el aceite a calentar",
       "Se enharina el pescado y cuando el aceite esté muy caliente se va echando el pescado en la sartén o freidora.",
       "Se puede servir con una ensalada."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 30 min. Elaboración (preparación y cocción): 30 min. Limpiar una tanda doméstica de pescado, enharinar y freír por tandas; el aceite y el tamaño de las piezas requieren atención."
   },
   {
     "id": "calamares-en-salsa-de-la-abuela-carmen",
     "categoria": "pescado",
     "titulo": "Calamares en Salsa",
     "autor": "de la Abuela Carmen",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 15 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "2Kg de calamares",
@@ -2098,15 +2184,16 @@ const RECETAS = [
       "Se hace un sofrito con la cebolla muy picada, (el tomate y el pimiento) y cuando esté dorada se echan los calamares y el vino y se tienen cociendo un ratito.",
       "Si está flojo de sabor, se puede añadir un chorreón de tomate frito.",
       "Se pueden servir con un arroz blanco o unas patatas fritas."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 15 min. Elaboración (preparación y cocción): 1 h 15 min. Limpiar 2 kg requiere tiempo; se estiman unos 25 minutos de limpieza y picado y 50 de sofrito y guiso. Arroz opcional no incluido."
   },
   {
     "id": "calamares-en-su-tinta",
     "categoria": "pescado",
     "titulo": "Calamares en su Tinta",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 10 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "1kg de calamares",
@@ -2123,15 +2210,16 @@ const RECETAS = [
       "Se abre la olla y se añade un chorreón de tomate frito y la tinta.",
       "Si se queda muy clara la salsa se le añade un poco de harina y se deja cocer unos 5 minutos y se rectifica de sal.",
       "Se sirve con arroz blanco."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 10 min. Elaboración (preparación y cocción): 1 h 10 min. Limpieza de 1 kg, sofrito, 10 minutos con vino, 10 en olla y 5 de acabado, con calentamiento y despresurización; arroz opcional aparte."
   },
   {
     "id": "dorada-a-la-espalda",
     "categoria": "pescado",
     "titulo": "Dorada a la Espalda",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈30 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "Una lubina o dorada para dos personas.",
@@ -2148,15 +2236,16 @@ const RECETAS = [
       "Mientras se fríen varios dientes de ajo en la sartén con un par de cucharadas de aceite.",
       "Cuando estén dorados los ajos echamos un chorreón de vinagre con cuidado de que no nos salte el aceite y dejamos un par de minutos en el fuego cubiertos con una tapa.",
       "Sacar el pescado del horno y añadir por encima el contenido de la sartén."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 30 min. Elaboración (preparación y cocción): 30 min. 15 minutos de horno más preparación y precalentado; ajada con vinagre en paralelo y cuidado de la emulsión caliente."
   },
   {
     "id": "pescado-dominga",
     "categoria": "pescado",
     "titulo": "Pescado Dominga",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "Una pescada",
@@ -2173,15 +2262,16 @@ const RECETAS = [
       "Se cuece la raspa y la cabeza.",
       "Se pone en una fuente las patatas con la  cebolla, la pescada, avecrem, perejil, el aceite de freír las patatas y el vino blanco.",
       "Justo antes de comer se le echa el caldo de cocer la raspa y se cuece un ratito."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h. Elaboración (preparación y cocción): 1 h. Freír patatas y cebolla mientras se prepara caldo de espinas; montaje y cocción final del pescado. Tamaño sin especificar."
   },
   {
     "id": "merluza-al-horno",
     "categoria": "pescado",
     "titulo": "Merluza al Horno",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈55 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Patatas",
@@ -2197,15 +2287,16 @@ const RECETAS = [
       "Se frien un poco las patatas y una vez fritas se ponen en la fuente.",
       "Se pone el pescado en la fuente sobre las patatas y se echa el zumo de limón, aceite y vino además de ½ pastilla de avecrem.",
       "Se mete en el horno no más de 30 minutos."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 55 min. Elaboración (preparación y cocción): 55 min. Preparar y freír parcialmente patatas antes de los hasta 30 minutos de horno del original."
   },
   {
     "id": "pescado-al-horno",
     "categoria": "pescado",
     "titulo": "Pescado al Horno",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Patatas",
@@ -2222,15 +2313,16 @@ const RECETAS = [
       "Se frien un poco las patatas con la cebolla cortada en gajos y una vez fritas se ponen en la fuente.",
       "Se pone el pescado en la fuente sobre las patatas y se echa el zumo de limón, tres dientes de ajo picados, aceite perejil.",
       "Se mete en el horno no más de 30 minutos."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h. Elaboración (preparación y cocción): 1 h. Limpieza, cortes y patatas con cebolla antes de los hasta 30 minutos de horno; mayor preparación que la merluza sencilla."
   },
   {
     "id": "pescado-al-horno-de-ana",
     "categoria": "pescado",
     "titulo": "Pescado al Horno",
     "autor": "de Ana",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈40 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Pescado",
@@ -2245,15 +2337,16 @@ const RECETAS = [
       "Se sala el pescado y se pone en la fuente.",
       "Echamos la salsa por encima, una cucharada de tomate frito sobre cada trozo de pescado.",
       "Se mete en el horno 20 minutos a 200 ºC."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 40 min. Elaboración (preparación y cocción): 40 min. Sofreír y triturar cebolla y preparar pescado, más 20 minutos de horno a 200 °C indicados."
   },
   {
     "id": "lubina-al-horno",
     "categoria": "pescado",
     "titulo": "Lubina al Horno",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈45 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "45min 3 raciones",
@@ -2283,15 +2376,16 @@ const RECETAS = [
       "Se saca el pescado y se le quita la piel",
       "Se pone el pescado en una fuente",
       "Se pone por encima la salsa y se gratina fuerte hasta que tenga un ligero tono dorado."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 45 min. Elaboración (preparación y cocción): 45 min. Provisional; ficha pendiente de aclarar. Solo lubina al horno: el original ya indica 45 minutos, con 10 de verduras y 20 de pescado. Se excluye la lubina al champán mezclada."
   },
   {
     "id": "chirlas",
     "categoria": "pescado",
     "titulo": "Chirlas",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 20 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "1Kg de chirlas (previamente puestas en remojo en agua con sal para que suelten la arena)",
@@ -2302,15 +2396,16 @@ const RECETAS = [
     "pasos": [
       "Se ponen los ajos picados en el aceite caliente y justo antes de que se doren se añaden las chirla  con sal.",
       "Cuando se han abierto un poco se añade el vino y se dejan cocer hasta que se abren del todo y el vino se ha evaporado.."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 20 min. Elaboración (preparación y cocción): 20 min. Remojo, maceración, enfriado o reposo: 1 h. Picar ajo y abrir las chirlas con vino; una hora orientativa de remojo previo para desarenar, exigido sin duración por el original."
   },
   {
     "id": "empanadillas",
     "categoria": "otros",
     "titulo": "Empanadillas",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈50 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "Un paquete de obleas “la cocinera” o similar, pueden ser grandes o pequeñas al gusto.",
@@ -2332,15 +2427,16 @@ const RECETAS = [
       "Con un tenedor vamos sellando cada oblea presionando los bordes con las púas del tenedor.",
       "Se pone bastante aceite a calentar en una sartén y se quita el papel protector y se van van friendo.",
       "Se pueden cocinar también en el horno precalentado a 180 grados durante unos 10 minutos, pintandolas previamente con una yema de huevo batida."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 50 min. Elaboración (preparación y cocción): 50 min. Sofrito, huevo duro preparado en paralelo, rellenar y sellar obleas compradas, freír por tandas; horno alternativo de 10 minutos."
   },
   {
     "id": "croquetas",
     "categoria": "otros",
     "titulo": "Croquetas",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈3 h 30 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "750 grs de leche fría",
@@ -2359,15 +2455,16 @@ const RECETAS = [
       "Se vierte todo en una fuente y se deja enfriar.",
       "Cuando la masa esté fría y sólida se van troceando y se pasan por huevo batido primero y luego por pan rallado.",
       "Se van friendo en aceite caliente."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 3 h 30 min. Elaboración (preparación y cocción): 1 h 30 min. Remojo, maceración, enfriado o reposo: 2 h. Bechamel con cebolla y jamón, formar, empanar y freír; se estima un mínimo orientativo de 2 horas de frío para dar cuerpo, ampliable según espesor."
   },
   {
     "id": "emparedados",
     "categoria": "otros",
     "titulo": "Emparedados",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈25 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Pan de molde sin corteza",
@@ -2383,15 +2480,16 @@ const RECETAS = [
       "Se escurren bien y luego se pasan por huevo previamente batido en un plato.",
       "Mientras tanto se ha puesto bastante aceite en una sartén. Cuando esté caliente el aceite se van friendo los sandwiches.",
       "Se ponen en una fuente sobre papel de cocina para que absorba el aceite y se sirve con patatas fritas o ensalada."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 25 min. Elaboración (preparación y cocción): 25 min. Montaje con jamón y queso, baño de leche y huevo, escurrir y freír una tanda doméstica; patatas opcionales aparte."
   },
   {
     "id": "empanada",
     "categoria": "otros",
     "titulo": "Empanada",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 40 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "2 láminas de hojaldre\n4 latas de atún de 80 gramos (de peso neto)(el peso escurrido es de 56 gramos)\n3 cebollas medianas\n1 pimiento rojo (de los gordos para asar)\n1 pimiento verde italiano (de los alargados para sofrito)\n2 tomates grandes maduros\n3 dientes de ajo\n1 cucharada pequeña de pimentón (del normal o dulce)\n1/2 vaso de aceite de girasol (unos 125 ml)\nSal y pimienta negra molida"
@@ -2404,15 +2502,16 @@ const RECETAS = [
       "Deja que se enfríe el sofrito mientras escurre y luego espárcelo sobre una de las láminas de hojaldre dejando uno o dos centímetros libres por cada lado. Pon a calentar el horno a 200ºC (calor arriba y abajo).",
       "Luego coloca encima la otra lámina de hojaldre y cierra los bordes apretando bien. Pincela con el aceite del sofrito la superficie de la empanada y haz una chimenea (un agujero) en el centro de la empanada para que salga el vapor.",
       "Mete en el horno a 180ºC y deja durante 20 a 30 minutos o hasta que veas el hojaldre bien dorado (vigila de vez en cuando para evitar que se queme). Luego saca del horno, deja enfriar y tu empanada de atún está lista para comer."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 40 min. Elaboración (preparación y cocción): 1 h 20 min. Remojo, maceración, enfriado o reposo: 20 min. Picar y pochar verduras, escurrir, montar y hornear 20–30 minutos; enfriado breve del relleno y final estimado en 20 minutos."
   },
   {
     "id": "sandwich-club",
     "categoria": "otros",
     "titulo": "Sandwich Club",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈25 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Pan de molde (tres rebanadas por unidad)",
@@ -2429,15 +2528,16 @@ const RECETAS = [
       "Se cubre con otra rebanada y encima ponemos otro poco de mayonesa un filete de pechuga previamente frito a la plancha y una par de lonchas de bacon también fritas.",
       "Cubrimos con la tercera loncha y cortamos en cuatro triángulos.",
       "Servir con patatas fritas."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 25 min. Elaboración (preparación y cocción): 25 min. Tostar pan, planchar pollo y bacon y montar; no incluye las patatas fritas sugeridas para acompañar."
   },
   {
     "id": "paninis",
     "categoria": "otros",
     "titulo": "Paninis",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈25 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Pan de barra cortado como para bocadillo",
@@ -2452,15 +2552,16 @@ const RECETAS = [
       "Se abre cada trozo en dos mitades y se extiende tomate frito, una loncha de queso suave y encima ponemos lo que queramos: jamón york picado, atún, salchichas...y se cubre con queso rallado.",
       "Se mete en la bandeja del horno y se tiene ahí unos 10-15 minutos hasta que veamos que el queso esté dorado.",
       "Podemos servir acompañados de una ensalada."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 25 min. Elaboración (preparación y cocción): 25 min. Montar durante el precalentado de 10 minutos, más 10–15 minutos de gratinado indicados; masa de pan ya hecha."
   },
   {
     "id": "burritos",
     "categoria": "otros",
     "titulo": "Burritos",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈35 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Un paquete de burritos o tortas de maíz o trigo Old El Paso",
@@ -2486,15 +2587,16 @@ const RECETAS = [
       "En cada burrito servimos un poco de la mezcla anterior, lechuga, tomate, guacamole… al gusto.",
       "Enrollamos bien y están listos para comer.",
       "Se puede cambiar el pollo por carne picada."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 35 min. Elaboración (preparación y cocción): 35 min. Verduras y pollo salteados, cortar lechuga y tomate en paralelo, calentar tortillas compradas y montar; guacamole ya preparado."
   },
   {
     "id": "kebab",
     "categoria": "otros",
     "titulo": "Kebab",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "Por revisar",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "Una pechuga de pollo",
@@ -2510,15 +2612,16 @@ const RECETAS = [
       "E trincha en filetes muy finos y se trocea.",
       "Se pone en una sartén y se dora un poco. Añadimos el jugo que ha soltado el pollo en el horno.",
       "Se abre el pan de pita y se añade una base de salsa de yogur, lechuga, tomate, cebolla y el pollo. Se envuelve todo bien y a comer."
-    ]
+    ],
+    "tiempoNota": "Tiempo pendiente de revisión: el original deja pollo en horno apagado 3 horas o toda la noche. No se publica como tiempo válido ni se avala ese procedimiento."
   },
   {
     "id": "quiche-de-jamon-y-queso",
     "categoria": "otros",
     "titulo": "Quiche de Jamón y Queso",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "Pasta de hojaldre",
@@ -2532,15 +2635,16 @@ const RECETAS = [
       "Se cubre un molde redondo con el hojaldre y se cubre con una capa de queso, una de jamón york troceado y otra de queso.",
       "Se baten los huevos con medio bote de leche Ideal o nata y se vierte sobre la mezcla anterior.",
       "Se mete en el horno 200 grados arriba y abajo durante 40 minutos."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h. Elaboración (preparación y cocción): 1 h. Hojaldre comprado, montar y batir, 40 minutos de horno expresos y precalentado en paralelo; breve templado incluido."
   },
   {
     "id": "bizcocho-de-clara",
     "categoria": "postres",
     "titulo": "Bizcocho",
     "autor": "de Clara",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈1 h 30 min",
+    "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
       "3 huevos",
@@ -2556,15 +2660,16 @@ const RECETAS = [
       "Se unta  un molde con un poco de mantequilla y se vierte la mezcla anterior.",
       "Se mete en el horno y una vez que la mezcla ha subido se baja a 150 grados por arriba y por abajo unos 40 minutos controlando cada poco tiempo pinchando hasta comprobar que no está crudo.",
       "En último lugar se pone el grill un poco para que se dore un poquito."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 1 h 30 min. Elaboración (preparación y cocción): 1 h 10 min. Remojo, maceración, enfriado o reposo: 20 min. Mezclar, preparar molde, subida inicial de duración no indicada y 40 minutos a 150 °C con grill breve; enfriado orientativo antes de servir."
   },
   {
     "id": "flan-de-huevo",
     "categoria": "postres",
     "titulo": "Flan de Huevo",
     "autor": "",
-    "tiempo": "",
-    "dificultad": "",
+    "tiempo": "≈4 h 45 min",
+    "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
       "1 yema de huevo",
@@ -2580,6 +2685,7 @@ const RECETAS = [
       "Es preferible que el molde esté tapado",
       "*caramelizar el molde",
       "Se echa un poco de azúcar en el molde y se pone en el fuego o en el microondas, hasta que se vaya poniendo color caramelo."
-    ]
+    ],
+    "tiempoNota": "Tiempo total estimado: 4 h 45 min. Elaboración (preparación y cocción): 45 min. Remojo, maceración, enfriado o reposo: 4 h. Provisional; ficha pendiente de aclarar. Caramelo, aromatizar leche, mezcla, 12 minutos de presión y despresurización; 4 horas orientativas de frío. Proporción de una sola yema pendiente de confirmar."
   }
 ];
