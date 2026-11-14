@@ -1,0 +1,30 @@
+.RecipePhotoTrigger{display:none;}
+@media(min-width:701px){
+ .RecipePhotoTrigger{position:absolute;inset:0;z-index:1;display:block;width:100%;height:100%;margin:0;padding:0;border:0;background:transparent;color:rgb(245,245,240);cursor:zoom-in;}
+ .RecipePhotoTrigger>svg{position:absolute;right:22px;bottom:22px;width:26px;height:26px;filter:drop-shadow(0 1px 2px rgba(10,12,36,.5));pointer-events:none;transition:transform 400ms cubic-bezier(.22,1,.36,1);}
+ .RecipePhotoTrigger:focus-visible{outline:2px solid rgb(245,245,240);outline-offset:-8px;}
+ .ModalReceta_Imagen.is-placeholder .RecipePhotoTrigger{display:none;}
+ .ModalReceta_Imagen img{transition:transform 650ms cubic-bezier(.22,1,.36,1);}
+ .ModalReceta_Imagen:focus-within img{transform:scale(1.025);}
+}
+@media(min-width:701px) and (hover:hover) and (pointer:fine){
+ .ModalReceta_Imagen:has(.RecipePhotoTrigger:hover) img{transform:scale(1.025);}
+ .RecipePhotoTrigger:hover>svg{transform:scale(1.08);}
+}
+.RecipePhotoZoom{position:fixed;inset:0;width:100%;height:100dvh;max-width:none;max-height:none;margin:0;padding:78px 40px 32px;border:0;background:transparent;color:rgb(245,245,240);box-sizing:border-box;overflow:hidden;}
+.RecipePhotoZoom[open]{display:grid;place-items:center;}
+.RecipePhotoZoom::backdrop{background:rgba(10,12,36,.94);animation:recipePhotoBackdropIn 260ms ease both;}
+.RecipePhotoZoom.is-closing::backdrop{animation:recipePhotoBackdropOut 190ms ease both;}
+.RecipePhotoZoom_Header{height:auto;min-height:44px;padding:0;background:transparent;border:0;position:absolute;top:20px;left:40px;right:28px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.RecipePhotoZoom_Header p{margin:0;font:700 clamp(20px,2vw,28px)/1.1 "Barlow Condensed",sans-serif;color:inherit;}
+.RecipePhotoZoom_Header button{display:grid;place-items:center;flex:none;width:44px;height:44px;padding:10px;border:0;border-radius:50%;color:inherit;background:transparent;cursor:pointer;}
+.RecipePhotoZoom_Header button:focus-visible{outline:2px solid currentColor;outline-offset:3px;}
+.RecipePhotoZoom_Header svg{width:24px;height:24px;}
+.RecipePhotoZoom_Image{display:block;width:auto;height:auto;max-width:100%;max-height:calc(100dvh - 110px);object-fit:contain;}
+@keyframes recipePhotoBackdropIn{from{opacity:0;}to{opacity:1;}}
+@keyframes recipePhotoBackdropOut{from{opacity:1;}to{opacity:0;}}
+@media(prefers-reduced-motion:reduce){
+ .ModalReceta_Imagen img,.RecipePhotoTrigger>svg{transition:none;}
+ .ModalReceta_Imagen:focus-within img,.ModalReceta_Imagen:has(.RecipePhotoTrigger:hover) img{transform:none;}
+ .RecipePhotoZoom::backdrop{animation:none;}
+}
