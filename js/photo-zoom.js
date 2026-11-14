@@ -53,7 +53,7 @@
   Object.assign(closeButton.style, {font:closeStyle.font,letterSpacing:closeStyle.letterSpacing});
   viewer.append(enlarged);
   viewer.showModal();
-  closeButton.focus({preventScroll:true});
+  viewer.focus({preventScroll:true});
   if (!reduced.matches) motion = enlarged.animate([{opacity:0,transform:'translateY(8px) scale(.985)'},{opacity:1,transform:'none'}],{duration:360,easing:'cubic-bezier(.22,1,.36,1)'});
  });
  closeButton.addEventListener('click',()=>close());
