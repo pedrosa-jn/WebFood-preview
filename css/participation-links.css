@@ -1,0 +1,1 @@
+.FooterParticipation{position:relative;z-index:1;display:flex;gap:24px;margin-left:auto}.FooterParticipation a{color:#8b0000;font:600 17px 'Barlow Condensed',sans-serif;text-underline-offset:4px}.FooterParticipation a:focus-visible{outline:2px solid #8b0000;outline-offset:5px}@media(max-width:700px){.FooterParticipation{margin:0;gap:20px;flex-wrap:wrap}}

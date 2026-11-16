@@ -105,6 +105,7 @@ function renderizarMenu(categoriaActiva) {
 		menuDesktop.innerHTML = CATEGORIAS.map(categoria => `
 			<a href="${urlCategoria(categoria.id)}" data-categoria="${textoSeguro(categoria.id)}"${categoria.id === categoriaActiva ? ' class="activo" aria-current="page"' : ''}>${textoSeguro(categoria.nombre)}</a>`).join('');
 
+		menuDesktop.insertAdjacentHTML('beforeend', '<a class="MenuCuenta" href="./participa.html">LA CUENTA</a>');
 		const activo = menuDesktop.querySelector('.MenuDesktop a.activo');
 		if (activo) {
 			let idAnterior = null;
@@ -164,6 +165,7 @@ function renderizarMenu(categoriaActiva) {
 				<span class="MenuMobile_Numero">${dosDigitos(indice + 1)}</span>
 				<span class="MenuMobile_Nombre">${textoSeguro(categoria.nombre)}</span>
 			</a>`).join('');
+		menuMobile.insertAdjacentHTML('beforeend', '<a class="MenuCuenta" href="./participa.html">LA CUENTA</a>');
 	}
 }
 
