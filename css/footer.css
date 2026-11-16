@@ -1,0 +1,105 @@
+/* One cream surface: the illustration sits behind the footer at its bottom edge. */
+body > .SiteFooter {
+ position: relative;
+ isolation: isolate;
+ display: flex;
+ align-items: flex-start;
+ justify-content: space-between;
+ min-height: clamp(380px, 36vw, 680px);
+ box-sizing: border-box;
+ padding: 28px clamp(24px, 5vw, 60px) 0;
+ background: rgb(245, 245, 240);
+}
+body > .SiteFooter > .FooterBrand {
+ position: relative;
+ z-index: 1;
+ flex: 0 0 auto;
+ margin: 0;
+ padding: 0;
+ border: 0;
+}
+body > .SiteFooter > .FooterLandscape {
+ position: absolute;
+ inset: auto 0 52px;
+ z-index: -1;
+ display: block;
+ width: 100%;
+ margin: 0;
+ padding: 0;
+ border: 0;
+ background: transparent;
+ pointer-events: none;
+}
+.FooterLandscape img {
+ display: block;
+ width: 100%;
+ height: auto;
+ mix-blend-mode: multiply;
+ /* Feather only the empty sky to avoid a rectangular paper edge. */
+ mask-image: linear-gradient(to bottom, transparent, #000 32%);
+}
+body > .SiteFooter > .FooterCopyright {
+ position: absolute;
+ inset: auto 0 0;
+ z-index: 1;
+ display: flex;
+ justify-content: center;
+ box-sizing: border-box;
+ min-height: 52px;
+ margin: 0;
+ padding: 16px 24px;
+ border: 0;
+ color: rgb(139, 0, 0);
+ font-weight: 400;
+ font-size: 13px;
+ text-align: center;
+}
+@media (max-width: 700px) {
+ body > .SiteFooter {
+  min-height: 420px;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 24px;
+ }
+ body > .SiteFooter > .FooterLandscape {
+  bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+ }
+ body > .SiteFooter > .FooterCopyright {
+  min-height: calc(76px + env(safe-area-inset-bottom, 0px));
+  padding: 12px 76px calc(12px + env(safe-area-inset-bottom, 0px));
+ }
+ .FooterLandscape img {
+  height: 230px;
+  object-fit: cover;
+  object-position: center bottom;
+ }
+}
+
+/* Desktop composition selected in the adjustable preview. */
+@media (min-width: 701px) {
+ body > .SiteFooter { min-height: 586px; }
+ body > .SiteFooter > .FooterBrand {
+  position: absolute;
+  left: 3%;
+  top: 236px;
+ }
+ body > .SiteFooter .FooterBrand .FooterLogo {
+  width: 229px;
+  height: 229px;
+ }
+}
+
+/* Mobile composition selected in the adjustable preview. */
+@media (max-width: 700px) {
+ body > .SiteFooter { min-height: 456px; }
+ body > .SiteFooter > .FooterBrand {
+  position: absolute;
+  left: 0px;
+  top: 127px;
+ }
+ body > .SiteFooter .FooterBrand .FooterLogo {
+  width: 166px;
+  height: 166px;
+ }
+ .FooterLandscape img { object-position: 92% bottom; }
+}
