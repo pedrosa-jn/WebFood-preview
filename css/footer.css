@@ -69,7 +69,7 @@ body > .SiteFooter > .FooterCopyright {
   padding: 12px 76px calc(12px + env(safe-area-inset-bottom, 0px));
  }
  .FooterLandscape img {
-  height: 230px;
+  height: 227px;
   object-fit: cover;
   object-position: center bottom;
  }
@@ -77,29 +77,31 @@ body > .SiteFooter > .FooterCopyright {
 
 /* Desktop composition selected in the adjustable preview. */
 @media (min-width: 701px) {
- body > .SiteFooter { min-height: 586px; }
+ body > .SiteFooter { min-height: 691px; }
  body > .SiteFooter > .FooterBrand {
   position: absolute;
-  left: 3%;
-  top: 236px;
+  left: 129px;
+  top: 188px;
  }
  body > .SiteFooter .FooterBrand .FooterLogo {
-  width: 229px;
-  height: 229px;
+  width: 200px;
+  height: 200px;
  }
 }
 
 /* Mobile composition selected in the adjustable preview. */
 @media (max-width: 700px) {
- body > .SiteFooter { min-height: 456px; }
+ body > .SiteFooter { min-height: 581px; }
  body > .SiteFooter > .FooterBrand {
   position: absolute;
-  left: 0px;
-  top: 127px;
+  left: 53px;
+  top: 168px;
  }
  body > .SiteFooter .FooterBrand .FooterLogo {
-  width: 166px;
-  height: 166px;
+  width: 122px;
+  height: 122px;
  }
- .FooterLandscape img { object-position: 92% bottom; }
+ .FooterLandscape img { object-position: 79% bottom; }
 }
+
+@media(min-width:701px){body > .SiteFooter > .FooterLandscape{width:89%;left:50%;right:auto;translate:-50% 0;}}
