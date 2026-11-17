@@ -107,3 +107,10 @@ body > .SiteFooter > .FooterCopyright {
 @media(min-width:701px){body > .SiteFooter > .FooterLandscape{width:70%;left:57%;right:auto;translate:-50% 0;bottom:72px;}}
 
 @media(max-width:700px){body > .SiteFooter > .FooterLandscape{bottom:calc(105px + env(safe-area-inset-bottom,0px));}}
+
+/* Notebook annotations sit alongside the animated seal, above the landscape. */
+.FooterNotes{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,54px);width:min(52%,760px);margin:152px 22% 0 auto;color:#8b0000}
+.FooterNotes section{min-width:0}.FooterNotes h2{font:400 20px/1.1 'Marker Aid','Barlow Condensed',sans-serif;letter-spacing:.08em;margin:0 0 20px}.FooterNotes p,.FooterNotes a{display:block;font:400 16px/1.45 'Barlow Condensed',sans-serif;margin:0 0 10px;color:inherit}.FooterNotes a{text-decoration:underline;text-underline-offset:4px}.FooterNotes a:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+@media(min-width:701px) and (max-width:1100px){body>.SiteFooter>.FooterBrand{left:6%;top:145px}.FooterNotes{width:64%;margin:140px 0 0 auto;gap:18px}body>.SiteFooter .FooterBrand .FooterLogo{width:130px;height:130px}}
+@media(max-width:700px){body>.SiteFooter{min-height:760px}body>.SiteFooter>.FooterBrand{top:34px;left:24px}.FooterNotes{width:100%;margin:168px 0 250px;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.FooterNotes h2{font-size:19px;margin-bottom:12px}.FooterNotes section:last-child{grid-column:1/-1}.FooterNotes p,.FooterNotes a{font-size:16px;margin-bottom:6px}}
+body>.SiteFooter>.FooterNotes{border:0;padding:0;background:transparent}

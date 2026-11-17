@@ -1,21 +1,33 @@
-.MobileTools,.MobileSearch{display:none;}
-/* Shared search controls: phone, tablet and desktop. */
- .MobileTools{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:calc(18px + env(safe-area-inset-bottom));z-index:900;display:block;transition:opacity 160ms ease,transform 200ms ease;}
- .MobileTools[hidden]{display:none;}
- .MobileTools button{position:relative;display:grid;place-items:center;width:54px;height:54px;padding:0;border:1px solid rgba(139,0,0,.24);border-radius:50%;color:rgb(139,0,0);background:rgb(245,245,240);box-shadow:0 4px 16px rgba(40,0,0,.13);cursor:pointer;touch-action:manipulation;}
- .MobileTools .MobileTools_Toggle{background:rgb(139,0,0);color:rgb(245,245,240);border-color:rgb(245,245,240);}
- .MobileTools button:active{scale:.94;}
- .MobileTools button:focus-visible,.MobileSearch button:focus-visible,.MobileSearch a:focus-visible{outline:2px solid rgb(139,0,0);outline-offset:3px;}
- .MobileTools svg{width:24px;height:24px;overflow:visible;}
- .MobileTools_Toggle>svg{transition:transform 320ms cubic-bezier(.22,1,.36,1);}
- .MobileTools.is-expanded .MobileTools_Toggle>svg{transform:rotate(45deg);}
- .MobileTools_Options{position:absolute;right:0;bottom:68px;display:flex;flex-direction:column;gap:12px;visibility:hidden;opacity:0;pointer-events:none;transform:translateY(12px) scale(.9);transform-origin:bottom center;transition:opacity 180ms ease,transform 320ms cubic-bezier(.22,1,.36,1),visibility 0s 320ms;}
- .MobileTools.is-expanded .MobileTools_Options{visibility:visible;opacity:1;pointer-events:auto;transform:none;transition:opacity 180ms ease,transform 320ms cubic-bezier(.22,1,.36,1),visibility 0s;}
- .MobileTools_Label{position:absolute;right:calc(100% + 10px);padding:6px 10px;border-radius:6px;background:rgb(245,245,240);color:rgb(10,12,36);font:700 16px/1 "Barlow Condensed",sans-serif;box-shadow:0 2px 10px rgba(40,0,0,.08);}
- .MobileTools_Grid rect{transform-box:fill-box;transform-origin:left center;transition:transform 400ms cubic-bezier(.22,1,.36,1),opacity 240ms ease;}
- .is-one-column .MobileTools_Grid rect:nth-child(odd){transform:scaleX(2.5);}
- .is-one-column .MobileTools_Grid rect:nth-child(even){opacity:0;transform:translateX(-9px) scaleX(.2);}
- body.ModalReceta-open .MobileTools,body.MobileSearch-open .MobileTools,body:has(.MenuToggle[aria-expanded="true"]) .MobileTools{opacity:0;pointer-events:none;transform:translateY(12px);}
+/* Shared search and mobile view controls. The accent is a local trial token. */
+.MobileTools{--tool-bg:#0a0c24;--tool-ink:#f5f5f0;position:fixed;right:max(18px,env(safe-area-inset-right));bottom:calc(18px + env(safe-area-inset-bottom));z-index:900;transition:opacity 160ms ease,transform 200ms ease}
+.MobileTools[hidden]{display:none}
+.MobileTools button{position:relative;display:grid;place-items:center;width:54px;height:54px;padding:0;border:0;border-radius:50%;color:var(--tool-ink);background:transparent;cursor:pointer;touch-action:manipulation}
+.MobileTools svg{width:24px;height:24px;overflow:visible}
+.MobileTools>svg{position:absolute;width:0;height:0;pointer-events:none}
+.MobileTools button:focus-visible,.MobileSearch button:focus-visible,.MobileSearch a:focus-visible{outline:2px solid #0a0c24;outline-offset:4px}
+.MobileTools button:active>svg{scale:.94}
+.MobileTools_Toggle{z-index:2}
+.MobileTools_Toggle>svg{position:absolute;transition:opacity 180ms ease,scale 300ms cubic-bezier(.22,1,.36,1)}
+.MobileTools_Toggle [data-tools-search]{opacity:1;scale:1}
+.MobileTools_Toggle [data-tools-plus]{opacity:0;scale:.6}
+.MobileTools.is-expanded [data-tools-search]{opacity:0;scale:.6}
+.MobileTools.is-expanded [data-tools-plus]{opacity:1;scale:1}
+.MobileTools_Blob{position:absolute;inset:0;pointer-events:none;filter:url(#toolsMerge)}
+.MobileTools_Blob i{position:absolute;inset:0;display:block;border-radius:50%;background:var(--tool-bg);transition:transform 520ms cubic-bezier(.65,0,.2,1)}
+.MobileTools_Blob i:nth-child(2),.MobileTools_Blob i:nth-child(3){transform:scale(.5)}
+.MobileTools.is-expanded .MobileTools_Blob i:nth-child(2){transform:translateY(-72px) scale(1)}
+.MobileTools.is-expanded .MobileTools_Blob i:nth-child(3){transform:translateY(-144px) scale(1);transition-delay:45ms}
+.MobileTools_Options{position:absolute;inset:0;z-index:1;visibility:hidden;pointer-events:none;transition:visibility 0s 570ms}
+.MobileTools.is-expanded .MobileTools_Options{visibility:visible;transition-delay:0s}
+.MobileTools_Options>button{position:absolute;inset:0;opacity:0;pointer-events:none;transform:scale(.5);transition:transform 520ms cubic-bezier(.65,0,.2,1),opacity 140ms ease}
+.MobileTools_Options>button:nth-child(1){--satellite-y:-144px;transition-delay:45ms,0ms}
+.MobileTools_Options>button:nth-child(2){--satellite-y:-72px}
+.MobileTools.is-expanded .MobileTools_Options>button{opacity:1;pointer-events:auto;transform:translateY(var(--satellite-y)) scale(1)}
+.MobileTools_Label{position:absolute;right:calc(100% + 12px);padding:6px 9px;white-space:nowrap;background:#f5f5f0;color:#0a0c24;border-radius:4px;font:400 16px/1 'Barlow Condensed',sans-serif;opacity:0;transition:opacity 140ms ease}
+.MobileTools.is-expanded .MobileTools_Label{opacity:1;transition-delay:340ms}
+.MobileTools_Grid rect{transition:x 420ms cubic-bezier(.22,1,.36,1),width 420ms cubic-bezier(.22,1,.36,1),opacity 300ms ease}
+.is-one-column .MobileTools_Grid rect:nth-child(even){opacity:0}
+body.ModalReceta-open .MobileTools,body.MobileSearch-open .MobileTools,body:has(.MenuToggle[aria-expanded="true"]) .MobileTools{opacity:0;pointer-events:none;transform:translateY(12px)}
 @media(max-width:700px){
  .Recetas.Recetas--una-columna{grid-template-columns:minmax(0,1fr);}
  .Recetas--una-columna .Tarjeta{display:flex;flex-direction:column;aspect-ratio:auto;}
@@ -30,15 +42,15 @@
  .MobileSearch[open]{display:block;}
  .MobileSearch{position:fixed;inset:0;margin:0;padding:0;border:0;width:100%;height:100dvh;max-width:none;max-height:none;background:transparent;color:rgb(10,12,36);overflow:hidden;}
  .MobileSearch::backdrop{animation:mobileSearchBackdropIn 300ms ease both;background:rgba(10,12,36,.56);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);}
- .MobileSearch_Panel{position:absolute;left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right));top:calc(var(--search-top,0px) + max(14px,env(safe-area-inset-top)));height:calc(var(--search-height,100dvh) - max(14px,env(safe-area-inset-top)) - 14px);max-height:680px;isolation:isolate;}
- .MobileSearch_Surface{position:absolute;inset:0;background:rgb(245,245,240);border-radius:24px;border:1px solid rgba(139,0,0,.25);box-shadow:0 12px 40px rgba(20,0,0,.18);transform-origin:top left;z-index:-1;pointer-events:none;}
+ .MobileSearch_Panel{position:absolute;left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right));top:calc(var(--search-top,0px) + max(14px,env(safe-area-inset-top)));height:calc(var(--search-height,100dvh) - max(14px,env(safe-area-inset-top)) - 14px);isolation:isolate;}
+ .MobileSearch_Surface{position:fixed;inset:0;background:rgb(245,245,240);border:0;z-index:-1;pointer-events:none;}
  .MobileSearch_Content{height:100%;display:flex;flex-direction:column;padding:20px;min-height:0;}
  .MobileSearch_Top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px;}
  .MobileSearch_Top h2{font:900 1.8rem/1 "Barlow Condensed",sans-serif;color:rgb(139,0,0);margin:0;}
  .MobileSearch button{font:500 1.2rem/1 "Barlow Condensed",sans-serif;color:rgb(139,0,0);background:transparent;border:0;min-width:44px;min-height:44px;cursor:pointer;border-radius:50%;}
  .MobileSearch button[hidden]{display:none;}
  .MobileSearch form{display:flex;align-items:center;gap:10px;min-height:52px;padding:0 10px 0 15px;border:1px solid rgb(139,0,0);border-radius:28px;background:rgb(245,245,240);}
- .MobileSearch form>svg{width:22px;height:22px;flex:none;color:rgb(139,0,0);}
+ .MobileSearch form>svg{width:22px;height:22px;flex:none;stroke-width:2;color:rgb(10,12,36);}
  .MobileSearch input{font:500 20px/1.2 "Barlow Condensed",sans-serif;color:rgb(10,12,36);background:transparent;border:0;outline:0;box-shadow:none;width:100%;min-width:0;padding:10px 0;appearance:none;-webkit-appearance:none;caret-color:rgb(139,0,0);}
  .MobileSearch input::-webkit-search-cancel-button{display:none;}
  .MobileSearch input::placeholder{color:rgb(90,85,80);opacity:1;}
@@ -47,41 +59,31 @@
  .MobileSearch_Result{display:flex;flex-direction:column;gap:5px;padding:16px 3px;border-bottom:1px solid rgba(139,0,0,.18);text-decoration:none;color:rgb(10,12,36);font:400 17px/1.2 "Barlow Condensed",sans-serif;}
  .MobileSearch_ResultTitle{font-weight:700;font-size:22px;color:rgb(139,0,0);}
  .MobileSearch ::selection{color:rgb(245,245,240);background:rgb(139,0,0);}
-@media(max-width:700px){body > footer{padding-bottom:95px;}}
 
-@media(prefers-reduced-motion:reduce){
- .MobileTools,.MobileTools *,.MobileSearch *{transition:none!important;scroll-behavior:auto!important;}
-}
-
-@keyframes mobileSearchBackdropIn{from{opacity:0;}to{opacity:1;}}
-@keyframes mobileSearchBackdropOut{from{opacity:1;}to{opacity:0;}}
-.MobileSearch.is-closing::backdrop{animation:mobileSearchBackdropOut 300ms ease both;}
-@media(prefers-reduced-motion:reduce){.MobileSearch::backdrop{animation:none;}}
-
-/* Two satellites emerge from the editorial seal and return to their origin. */
-@media(max-width:700px){
- .MobileTools .MobileTools_Toggle{z-index:2;outline:1px solid rgb(139,0,0);outline-offset:4px;border:1px solid rgb(245,245,240);box-shadow:none;transition:transform 420ms cubic-bezier(.22,1,.36,1);}
- .MobileTools.is-expanded .MobileTools_Toggle{transform:scale(.94);}
- .MobileTools_Options{inset:auto 0 0 auto;z-index:1;width:54px;height:54px;min-width:0;display:block;padding:0;border:0;border-radius:0;background:transparent;opacity:1;transform:none;pointer-events:none;visibility:hidden;transition:visibility 0s 440ms;}
- .MobileTools.is-expanded .MobileTools_Options{opacity:1;transform:none;pointer-events:none;visibility:visible;transition:visibility 0s;}
- .MobileTools_Options>button{position:absolute;inset:0;display:grid;place-items:center;width:54px;height:54px;padding:0;border:1px solid rgb(139,0,0);border-radius:50%;background:rgb(245,245,240);box-shadow:none;opacity:0;pointer-events:none;transform:translateY(0) scale(.2) rotate(-40deg);transition:transform 360ms cubic-bezier(.55,0,.8,.4),opacity 140ms ease 210ms;}
- .MobileTools_Options>button:nth-child(1){--satellite-y:-144px;transition-delay:0ms,210ms;}
- .MobileTools_Options>button:nth-child(2){--satellite-y:-72px;transition-delay:50ms,260ms;}
- .MobileTools.is-expanded .MobileTools_Options>button{opacity:1;pointer-events:auto;transform:translateY(var(--satellite-y)) scale(1) rotate(0);transition:transform 560ms cubic-bezier(.22,1.15,.36,1),opacity 100ms ease;}
- .MobileTools.is-expanded .MobileTools_Options>button:nth-child(1){transition-delay:55ms,55ms;}
- .MobileTools.is-expanded .MobileTools_Options>button:nth-child(2){transition-delay:0ms,0ms;}
- .MobileTools_Options .MobileTools_Label{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;}
- .MobileTools_Options svg{flex:none;}
-}
-@media(prefers-reduced-motion:reduce){.MobileTools,.MobileTools *{transition:none!important;}}
-
-.MobileTools_Toggle [data-tools-search]{display:none;}
-.MobileTools .MobileTools_Toggle{outline:1px solid rgb(139,0,0);outline-offset:4px;border:1px solid rgb(245,245,240);box-shadow:none;}
+@keyframes mobileSearchBackdropIn{from{opacity:0}to{opacity:1}}
+@keyframes mobileSearchBackdropOut{from{opacity:1}to{opacity:0}}
+.MobileSearch.is-closing::backdrop{animation:mobileSearchBackdropOut 420ms ease both}
 @media(min-width:701px){
- .MobileTools{right:28px;bottom:28px;}
- .MobileTools_Options{display:none;}
- .MobileTools_Toggle [data-tools-plus]{display:none;}
- .MobileTools_Toggle [data-tools-search]{display:block;}
- .MobileSearch_Panel{left:50%;right:auto;width:min(620px,calc(100% - 48px));top:calc(var(--search-top,0px) + 24px);height:calc(var(--search-height,100dvh) - 48px);max-height:680px;transform:translateX(-50%);}
- .MobileSearch_Content{padding:28px;}
+ .MobileTools{right:28px;bottom:28px;--tool-bg:#0a0c24;--tool-ink:#f5f5f0}
+ .MobileTools_Toggle{background:var(--tool-bg)!important;outline:1px solid #0a0c24;outline-offset:4px;border:1px solid #f5f5f0!important}
+ .MobileTools_Blob,.MobileTools_Options{display:none}
+ .MobileTools_Toggle [data-tools-plus]{display:none}
+ .MobileSearch_Panel{left:50%;right:auto;width:min(620px,calc(100% - 48px));top:calc(var(--search-top,0px) + 24px);height:calc(var(--search-height,100dvh) - 48px);max-height:680px;transform:translateX(-50%)}
+ .MobileSearch_Content{padding:28px}
 }
+@media(prefers-reduced-motion:reduce){
+ .MobileTools,.MobileTools *,.MobileSearch *{transition:none!important;scroll-behavior:auto!important}
+ .MobileTools_Blob{filter:none}
+ .MobileSearch::backdrop,.MobileSearch.is-closing::backdrop{animation:none}
+}
+
+@media(max-width:700px){.MobileTools_Toggle{outline:2px solid #f5f5f0;outline-offset:-2px}.MobileTools_Options>button{outline:1px solid #f5f5f0;outline-offset:-1px}}
+
+.MobileSearch_OpeningIcon{position:fixed;z-index:2;display:grid;place-items:center;width:54px;height:54px;color:#f5f5f0;pointer-events:none}.MobileSearch_OpeningIcon svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+
+.MobileSearch_OpeningIcon[hidden]{display:none}
+
+.MobileSearch_OpeningIcon{height:54px;display:block;overflow:hidden;border:1px solid #0a0c24;border-radius:27px;background:#f5f5f0;color:#0a0c24}
+.MobileSearch_OpeningIcon svg{position:absolute;left:15px;top:15px;width:24px;height:24px}
+.MobileSearch_OpeningIcon span{position:absolute;left:50px;right:10px;top:0;height:52px;display:flex;align-items:center;white-space:nowrap;font:500 20px/1.2 'Barlow Condensed',sans-serif;color:#0a0c24}
+.MobileSearch_OpeningIcon[hidden]{display:none}

@@ -10,13 +10,19 @@
  const searchButton = tools.querySelector('[data-search-open]');
  const toggleButton = tools.querySelector('[data-tools-toggle]');
  const options = tools.querySelector('.MobileTools_Options');
+ tools.insertAdjacentHTML('afterbegin', '<svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><filter id="toolsMerge" filterUnits="userSpaceOnUse" x="-24" y="-180" width="102" height="260" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/><feColorMatrix in="blur" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 22 -9" result="merge"/><feComposite in="SourceGraphic" in2="merge" operator="atop"/></filter></defs></svg><div class="MobileTools_Blob" aria-hidden="true"><i></i><i></i><i></i></div>');
+ tools.querySelectorAll('[data-tools-search], [data-search-open] svg').forEach(svg=>{svg.innerHTML='<circle cx="10.75" cy="10.75" r="6.75"/><path d="m15.6 15.6 4.65 4.65"/>';svg.setAttribute('stroke-width','2');});
+ const plus = toggleButton.querySelector('[data-tools-plus]');
+ plus.innerHTML='<path d="m6 6 12 12M18 6 6 18"/>';
+ const rects=[...layoutButton.querySelectorAll('rect')];
+
  let layoutRevision = 0;
  const expandTools = expanded => {
   tools.classList.toggle('is-expanded', expanded);
   if (!expanded && options.contains(document.activeElement)) toggleButton.focus({preventScroll:true});
   options.inert = !expanded;
   toggleButton.setAttribute('aria-expanded', String(mobile.matches ? expanded : dialog.open));
-  toggleButton.setAttribute('aria-label', mobile.matches ? (expanded ? 'Cerrar opciones de recetas' : 'Mostrar opciones de recetas') : 'Buscar una receta');
+  toggleButton.setAttribute('aria-label', mobile.matches ? (expanded ? 'Cerrar opciones de recetas' : 'Buscar y cambiar vista') : 'Buscar una receta');
  };
  toggleButton.addEventListener('click',()=>mobile.matches ? expandTools(!tools.classList.contains('is-expanded')) : open());
  document.addEventListener('pointerdown',e=>{if(!tools.contains(e.target))expandTools(false);});
@@ -39,12 +45,12 @@
   layoutButton.classList.toggle('is-one-column', columns === 1);
   layoutButton.setAttribute('aria-pressed', String(columns === 1));
   layoutButton.setAttribute('aria-label', columns === 1 ? 'Cambiar a dos columnas' : 'Cambiar a una columna');
+  rects.forEach((rect,i)=>{rect.style.x=(columns===1?4:(i%2?14:4))+'px';rect.style.y=(i<2?4:14)+'px';rect.style.width=(columns===1&&i%2===0?16:6)+'px';rect.style.height='6px';});
  };
  try { const saved = localStorage.getItem('recetas-columnas-v2'); if (saved === '1' || saved === '2') columns = Number(saved); } catch {}
  setColumns(columns);
  layoutButton.addEventListener('click', () => {
   if (!mobile.matches) return;
-  expandTools(false);
   const revision = ++layoutRevision;
   moving.forEach(a => a.cancel());
   const cards = [...grid.querySelectorAll(':scope > a')];
@@ -89,47 +95,105 @@
   lock=null;
   document.body.classList.remove('MobileSearch-open');
  };
+ // Reveal the surface through a moving aperture. Text never stretches with it.
+ const panelClip = (rect,element=surface) => {
+  const bounds=element.getBoundingClientRect();
+  return `inset(${rect.top-bounds.top}px ${bounds.right-rect.right}px ${bounds.bottom-rect.bottom}px ${rect.left-bounds.left}px round ${rect.width<=56?'27':'24'}px)`;
+ };
+ const openingIcon=document.createElement('div');openingIcon.className='MobileSearch_OpeningIcon';openingIcon.setAttribute('aria-hidden','true');openingIcon.innerHTML=toggleButton.querySelector('[data-tools-search]').outerHTML+'<span>¿Qué te apetece cocinar?</span>';openingIcon.hidden=true;dialog.append(openingIcon);
+ let iconAnimation=null,retargetOpening=null;
+ const destinationClip = () => panelClip(panel.getBoundingClientRect());
+ const controlColor = () => getComputedStyle(tools).getPropertyValue('--tool-bg').trim() || 'rgb(139,0,0)';
  const sizeDialog = () => {
-  if (closing) return;
   dialog.style.setProperty('--search-height',`${window.visualViewport?.height || innerHeight}px`);
   dialog.style.setProperty('--search-top',`${window.visualViewport?.offsetTop || 0}px`);
+  if(!dialog.open || closing)return;
+  const target=destinationClip();
+  if(shellAnimation?.playState==='running'){
+   if(retargetOpening){retargetOpening();return;}
+   iconAnimation?.cancel();openingIcon.hidden=true;
+   const current=getComputedStyle(surface).clipPath;
+   const color=getComputedStyle(surface).backgroundColor;
+   shellAnimation.cancel();
+   surface.style.clipPath=target;
+   shellAnimation=surface.animate([{clipPath:current,backgroundColor:color},{clipPath:target,backgroundColor:'rgb(245,245,240)'}],{duration:280,easing:'cubic-bezier(.22,1,.36,1)'});
+  }else surface.style.clipPath=target;
  };
  window.visualViewport?.addEventListener('resize',sizeDialog);
  window.visualViewport?.addEventListener('scroll',sizeDialog);
- const originTransform = () => {
-  const r=panel.getBoundingClientRect();
-  return `translate(${origin.left-r.left}px,${origin.top-r.top}px) scale(${origin.width/r.width},${origin.height/r.height})`;
- };
+ window.addEventListener('resize',sizeDialog);
  const open = () => {
   if (dialog.open) return;
   origin=(mobile.matches ? searchButton : toggleButton).getBoundingClientRect();
   expandTools(false);
   lockBackground();
+  closing=false;
   sizeDialog();
   dialog.classList.remove('is-closing');
   dialog.showModal();
   searchButton.setAttribute('aria-expanded','true');
   if (!mobile.matches) toggleButton.setAttribute('aria-expanded','true');
-  closing=false;
-  input.focus({preventScroll:true});
   shellAnimation?.cancel();contentAnimation?.cancel();
+  surface.style.clipPath=destinationClip();
   if (!reduced.matches) {
-   shellAnimation=surface.animate([{transform:originTransform(),borderRadius:'50%',backgroundColor:'rgb(139,0,0)'},{transform:'none',borderRadius:'24px',backgroundColor:'rgb(245,245,240)'}],{duration:460,easing:'cubic-bezier(.22,1,.36,1)'});
-   contentAnimation=content.animate([{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:300,delay:90,fill:'backwards',easing:'cubic-bezier(.22,1,.36,1)'});
+   const field=dialog.querySelector('form').getBoundingClientRect();
+   const width=field.width;
+   const startLeft=origin.right-width;
+   const horizontal=width-54;
+   const ease='cubic-bezier(.65,0,.25,1)';
+   const duration=1000;
+   // The field is an actual capsule. Its leading edge and lens travel together.
+   Object.assign(openingIcon.style,{left:startLeft+'px',top:origin.top+'px',width:width+'px'});
+   openingIcon.hidden=false;
+   const lens=openingIcon.querySelector('svg');
+   const copy=openingIcon.querySelector('span');
+   lens.getAnimations().forEach(a=>a.cancel());copy.getAnimations().forEach(a=>a.cancel());
+   lens.animate([
+    {transform:`translateX(${horizontal}px)`,color:'#f5f5f0',offset:0,easing:ease},
+    {transform:'translateX(0)',color:'#0a0c24',offset:.48},
+    {transform:'translateX(0)',color:'#0a0c24',offset:1}
+   ],{duration,fill:'forwards',easing:'linear'});
+   copy.animate([{opacity:0},{opacity:0,offset:.48},{opacity:1,offset:.56},{opacity:1}],{duration,fill:'forwards'});
+   iconAnimation?.cancel();
+   const capsuleFrames=()=>[
+    {clipPath:`inset(0 0 0 ${horizontal}px round 27px)`,transform:'translateY(0)',opacity:1,backgroundColor:'#0a0c24',offset:0,easing:ease},
+    {clipPath:'inset(0 round 27px)',transform:'translateY(0)',opacity:1,backgroundColor:'#f5f5f0',offset:.48,easing:ease},
+    {clipPath:'inset(0 round 27px)',transform:`translate(${dialog.querySelector('form').getBoundingClientRect().left-startLeft}px,${dialog.querySelector('form').getBoundingClientRect().top-origin.top}px)`,opacity:1,backgroundColor:'#f5f5f0',offset:.85},
+    {clipPath:'inset(0 round 27px)',transform:`translate(${dialog.querySelector('form').getBoundingClientRect().left-startLeft}px,${dialog.querySelector('form').getBoundingClientRect().top-origin.top}px)`,opacity:0,backgroundColor:'#f5f5f0',offset:1}
+   ];
+   iconAnimation=openingIcon.animate(capsuleFrames(),{duration,easing:'linear',fill:'forwards'});
+   const frames=()=>[
+    {clipPath:panelClip(dialog.querySelector('form').getBoundingClientRect()),opacity:0,offset:0},
+    {clipPath:panelClip(dialog.querySelector('form').getBoundingClientRect()),opacity:0,offset:.84},
+    {clipPath:destinationClip(),opacity:1,offset:1}
+   ];
+   shellAnimation=surface.animate(frames(),{duration,easing:'linear'});
+   const openingMotion=shellAnimation;
+   retargetOpening=()=>{openingMotion.effect.setKeyframes(frames());iconAnimation?.effect.setKeyframes(capsuleFrames());};
+   openingMotion.finished.then(()=>{if(shellAnimation===openingMotion){retargetOpening=null;surface.style.clipPath=destinationClip();openingIcon.hidden=true;}}).catch(()=>{});
+   contentAnimation=content.animate([{opacity:0},{opacity:0,offset:.84},{opacity:1}],{duration,easing:'linear'});
   }
+  input.focus({preventScroll:true});
  };
  const close = async (animate=true) => {
   if (!dialog.open || closing) return;
   closing=true;
+  retargetOpening=null;
+  iconAnimation?.cancel();openingIcon.hidden=true;
   origin=toggleButton.getBoundingClientRect();
   dialog.classList.add('is-closing');
-  input.blur();
+  const currentClip=getComputedStyle(surface).clipPath;
+  const currentColor=getComputedStyle(surface).backgroundColor;
   shellAnimation?.cancel();contentAnimation?.cancel();
   if (animate && !reduced.matches) {
-   contentAnimation=content.animate([{opacity:1},{opacity:0}],{duration:130,fill:'forwards'});
-   shellAnimation=surface.animate([{transform:'none',borderRadius:'24px',backgroundColor:'rgb(245,245,240)'},{transform:originTransform(),borderRadius:'50%',backgroundColor:'rgb(139,0,0)'}],{duration:300,easing:'cubic-bezier(.4,0,.2,1)',fill:'forwards'});
+   contentAnimation=content.animate([{opacity:getComputedStyle(content).opacity},{opacity:0}],{duration:120,fill:'forwards'});
+   shellAnimation=surface.animate([
+    {clipPath:currentClip,backgroundColor:currentColor},
+    {clipPath:panelClip(origin),backgroundColor:controlColor()}
+   ],{duration:420,easing:'cubic-bezier(.65,0,.35,1)',fill:'forwards'});
    await shellAnimation.finished.catch(()=>{});
   }
+  input.blur();
   dialog.close();
   shellAnimation?.cancel();contentAnimation?.cancel();
   unlockBackground();
@@ -142,7 +206,7 @@
   const query=normalize(input.value.trim());
   clear.hidden=!query;
   results.replaceChildren();
-  if (!query) { status.textContent='Busca en todas las recetas del cuaderno.';resultsVisible=false;return; }
+  if (!query) { resultsAnimation?.cancel(); status.textContent='Busca en todas las recetas del cuaderno.';resultsVisible=false;return; }
   const matches=catalog.filter(r=>r.match.includes(query));
   status.textContent=matches.length ? `${matches.length} ${matches.length===1?'receta encontrada':'recetas encontradas'}` : 'No encontramos recetas. Prueba con otro nombre.';
   for (const r of matches) {

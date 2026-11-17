@@ -1027,8 +1027,7 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 		background:rgb(139,0,0);
 	}
 	.ModalReceta_Info{ grid-column:2; grid-row:1; }
-	/* The title block sits on the burgundy panel; its lower edge should blend in. */
-	.ModalReceta_Titulo{ border-color:rgb(139,0,0); border-bottom:1px solid rgb(139,0,0); }
+	/* Title separator is shared below for both device layouts. */
 	.ModalReceta_Imagen img{
 		width:100%; height:100%; object-fit:cover; object-position:center;
 	}
@@ -1431,3 +1430,6 @@ html{scrollbar-gutter:stable;}
 
 /* Reserve the final shared border so the opaque footer cannot cover it. */
 .Recetas{padding-bottom:0;border-bottom:1px solid rgb(10,12,36);}
+
+/* The title edge blends into its burgundy panel on every screen. */
+.ModalReceta_Titulo{border-color:rgb(139,0,0);border-bottom:1px solid rgb(139,0,0);}

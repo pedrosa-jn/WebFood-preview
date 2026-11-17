@@ -3,6 +3,21 @@ const FLECHA = '<svg class="CAT_Arrow" aria-hidden="true" width="18" height="18"
 const dosDigitos = numero => String(numero).padStart(2, '0');
 const urlCategoria = id => `./categoria.html?c=${encodeURIComponent(id)}&rev=mobile-photo-center-20261114`;
 const IMAGENES_RECETA = {
+	'sopa-bouillabaisse-abuela-carmen': 'Recetas_IMG/Guisos_Sopa_Bouillabaisse.jpg?rev=photos-20261117',
+	'pisto': 'Recetas_IMG/Guisos_Pisto_Casero.jpg?rev=photos-20261117',
+	'arroz-blanco': 'Recetas_IMG/Guisos_Arroz_Blanco.jpg?rev=photos-20261117',
+	'paella': 'Recetas_IMG/Guisos_Paella_Pollo.jpg?rev=photos-20261117',
+	'sopa': 'Recetas_IMG/Guisos_Sopa_Pollo.jpg?rev=photos-20261117',
+	'patatas-con-mejillones': 'Recetas_IMG/Guisos_Patatas_Mejillones.jpg?rev=photos-20261117',
+	'potaje-de-garbanzos': 'Recetas_IMG/Guisos_Potaje_Garbanzos.jpg?rev=photos-20261117',
+	'cocido': 'Recetas_IMG/Guisos_Cocido_Clasico.jpg?rev=photos-20261117',
+	'alubias-de-miguel-angel': 'Recetas_IMG/Guisos_Alubias_Miguel.jpg?rev=photos-20261117',
+	'alubias': 'Recetas_IMG/Guisos_Alubias_Caseras.jpg?rev=photos-20261117',
+	'lentejas': 'Recetas_IMG/Guisos_Lentejas_Caseras.jpg?rev=photos-20261117',
+	'sopa-de-mayonesa-de-la-abuela-cheli': 'Recetas_IMG/Guisos_Sopa_Mayonesa.jpg?rev=photos-20261117',
+	'gazpachuelo-o-sopa-de-mayonesa-de-la-abuela-carmen': 'Recetas_IMG/Guisos_Gazpachuelo_Carmen.jpg?rev=photos-20261117',
+	'crema-de-calabacin': 'Recetas_IMG/Guisos_Crema_Calabacin.jpg?rev=photos-20261117',
+	'sopa-al-cuarto-de-hora': 'Recetas_IMG/Guisos_Sopa_Cuarto.jpg?rev=photos-20261117',
 	'espaguetis-carbonara': 'Recetas_IMG/pasta-carbonara.svg?rev=20261111d',
 	'espaguetis-con-cebolla-y-jamon': 'Recetas_IMG/pasta-jamon-cebolla.svg?rev=20261111d',
 	'macarrones-con-tomate-y-chorizo': 'Recetas_IMG/pasta-macarrones-chorizo.svg?rev=20261111d',
@@ -47,7 +62,7 @@ const IMAGENES_RECETA = {
 	'pollo-con-limon': 'Recetas_IMG/Carnes_Pollo_Limon.jpg?rev=carnes-20261111a',
 	'pavo-al-oporto': 'Recetas_IMG/Carnes_Pavo_Oporto.jpg?rev=carnes-20261111a',
 	'tortilla-de-patatas': 'Recetas_IMG/Huevos_Tortilla_Patatas.jpg?rev=generated-20261114',
-	'huevos-al-plato': 'Recetas_IMG/Huevos_Huevos_Plato.jpg?rev=generated-20261114',
+	'huevos-al-plato': 'Recetas_IMG/Huevos_Huevos_Plato.jpg?rev=photos-20261117',
 	'huevos-en-salsa-amarilla': 'Recetas_IMG/Huevos_Salsa_Amarilla.jpg?rev=generated-20261114',
 	'huevos-con-bechamel': 'Recetas_IMG/Huevos_Huevos_Bechamel.jpg?rev=generated-20261114',
 	'huevos-fritos': 'Recetas_IMG/Huevos_Huevos_Fritos.jpg?rev=generated-20261114',
@@ -105,7 +120,7 @@ function renderizarMenu(categoriaActiva) {
 		menuDesktop.innerHTML = CATEGORIAS.map(categoria => `
 			<a href="${urlCategoria(categoria.id)}" data-categoria="${textoSeguro(categoria.id)}"${categoria.id === categoriaActiva ? ' class="activo" aria-current="page"' : ''}>${textoSeguro(categoria.nombre)}</a>`).join('');
 
-		menuDesktop.insertAdjacentHTML('beforeend', '<a class="MenuCuenta" href="./participa.html">LA CUENTA</a>');
+		menuDesktop.insertAdjacentHTML('beforeend', '<a class="MenuCuenta" href="./participa.html" aria-label="La Cuenta"><span class="MenuCuenta_Code" aria-hidden="true"></span><img class="MenuCuenta_Artwork" src="./images/ticket/LaCuenta.svg" alt="" width="50" height="21"></a>');
 		const activo = menuDesktop.querySelector('.MenuDesktop a.activo');
 		if (activo) {
 			let idAnterior = null;
@@ -165,7 +180,7 @@ function renderizarMenu(categoriaActiva) {
 				<span class="MenuMobile_Numero">${dosDigitos(indice + 1)}</span>
 				<span class="MenuMobile_Nombre">${textoSeguro(categoria.nombre)}</span>
 			</a>`).join('');
-		menuMobile.insertAdjacentHTML('beforeend', '<a class="MenuCuenta" href="./participa.html">LA CUENTA</a>');
+		menuMobile.insertAdjacentHTML('beforeend', '<a class="MenuCuenta" href="./participa.html" aria-label="La Cuenta"><span class="MenuCuenta_Code" aria-hidden="true"></span><img class="MenuCuenta_Artwork" src="./images/ticket/LaCuenta.svg" alt="" width="50" height="21"></a>');
 	}
 }
 
