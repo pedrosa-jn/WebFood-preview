@@ -1428,3 +1428,6 @@ html{scrollbar-gutter:stable;}
  .SEC_Titulo{height:calc(100svh - 63px);min-height:280px;}
  .SEC_Titulo > .Title{translate:none;margin:0;}
 }
+
+/* Reserve the final shared border so the opaque footer cannot cover it. */
+.Recetas{padding-bottom:0;border-bottom:1px solid rgb(10,12,36);}

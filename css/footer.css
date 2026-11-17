@@ -69,7 +69,7 @@ body > .SiteFooter > .FooterCopyright {
   padding: 12px 76px calc(12px + env(safe-area-inset-bottom, 0px));
  }
  .FooterLandscape img {
-  height: 227px;
+  height: 171px;
   object-fit: cover;
   object-position: center bottom;
  }
@@ -77,21 +77,21 @@ body > .SiteFooter > .FooterCopyright {
 
 /* Desktop composition selected in the adjustable preview. */
 @media (min-width: 701px) {
- body > .SiteFooter { min-height: 691px; }
+ body > .SiteFooter { min-height: 587px; }
  body > .SiteFooter > .FooterBrand {
   position: absolute;
   left: 129px;
   top: 188px;
  }
  body > .SiteFooter .FooterBrand .FooterLogo {
-  width: 200px;
-  height: 200px;
+  width: 177px;
+  height: 177px;
  }
 }
 
 /* Mobile composition selected in the adjustable preview. */
 @media (max-width: 700px) {
- body > .SiteFooter { min-height: 581px; }
+ body > .SiteFooter { min-height: 537px; }
  body > .SiteFooter > .FooterBrand {
   position: absolute;
   left: 53px;
@@ -101,7 +101,9 @@ body > .SiteFooter > .FooterCopyright {
   width: 122px;
   height: 122px;
  }
- .FooterLandscape img { object-position: 79% bottom; }
+ .FooterLandscape img { object-position: 100% bottom; }
 }
 
-@media(min-width:701px){body > .SiteFooter > .FooterLandscape{width:89%;left:50%;right:auto;translate:-50% 0;}}
+@media(min-width:701px){body > .SiteFooter > .FooterLandscape{width:70%;left:57%;right:auto;translate:-50% 0;bottom:72px;}}
+
+@media(max-width:700px){body > .SiteFooter > .FooterLandscape{bottom:calc(105px + env(safe-area-inset-bottom,0px));}}
