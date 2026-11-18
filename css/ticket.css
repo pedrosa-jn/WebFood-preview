@@ -85,3 +85,10 @@ img.barcode{display:block;width:224px;max-width:100%;height:auto;background:none
 
 /* Keep the light receipt copy readable at the unscaled mobile size. */
 .thanks,.sub,.choice-description{font-size:12px;}
+
+/* Receipt CTA copy and inset arrows follow Javier's reference. */
+.ParticipateScene .choice-action{padding-inline:6px 14px;gap:18px;align-items:center}
+.ParticipateScene .choice-title{line-height:1.02}
+.ParticipateScene .choice-copy{min-width:0}
+.ParticipateScene .choice-description{margin-top:6px}
+.ParticipateScene .choice-action .icon{align-self:center}
