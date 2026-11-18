@@ -1433,3 +1433,6 @@ html{scrollbar-gutter:stable;}
 
 /* The title edge blends into its burgundy panel on every screen. */
 .ModalReceta_Titulo{border-color:rgb(139,0,0);border-bottom:1px solid rgb(139,0,0);}
+
+/* Navbar typography matches the home category labels. */
+.SiteHeader .MenuDesktop a:not(.MenuCuenta),.SiteHeader .MenuMobile_Nombre{color:#0a0c24;font-weight:900;}

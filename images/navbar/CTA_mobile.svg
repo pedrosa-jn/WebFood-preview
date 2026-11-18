@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 177.99 29.47">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #911a1c;
+        font-family: MarkerAid-Regular, 'Marker Aid';
+        font-size: 25.99px;
+      }
+
+      .cls-2 {
+        letter-spacing: 0em;
+      }
+
+      .cls-3 {
+        letter-spacing: .02em;
+      }
+    </style>
+  </defs>
+  <g id="Layer_9" data-name="Layer 9">
+    <text class="cls-1" transform="translate(0 23.62)"><tspan class="cls-3" x="0" y="0">¿Postre o </tspan><tspan class="cls-2" x="115.36" y="0">c</tspan><tspan class="cls-3" x="128.26" y="0">afé?</tspan></text>
+  </g>
+</svg>

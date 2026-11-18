@@ -1,17 +1,46 @@
-.SiteHeader .MenuDesktop a.MenuCuenta{position:relative;display:flex;align-items:center;justify-content:flex-end;flex-direction:column;align-self:flex-start;width:112px;height:78px;margin-top:-18px;padding:8px 14px 10px;border-radius:0 0 10px 10px;background:#8b0000;color:#f5f5f0;text-decoration:none;white-space:nowrap;line-height:.9}
-.MenuCuenta_Code{display:block;width:100%;height:15px;margin-bottom:6px;background:#f5f5f0;mask-image:url('../images/ticket/03_Code.svg');mask-size:100% 100%;mask-repeat:no-repeat}
-.MenuCuenta_Text{display:block;text-align:left;font:400 23px/.88 'Marker Aid','Barlow Condensed',sans-serif;letter-spacing:.015em}
-.SiteHeader .MenuDesktop a.MenuCuenta:after{display:none}
-.SiteHeader .MenuMobile_Categorias a.MenuCuenta{display:flex;align-items:center;justify-content:center;gap:16px;align-self:stretch;margin:20px 24px 28px;padding:16px 24px;min-height:76px;border-radius:0 0 10px 10px;background:#8b0000;color:#f5f5f0}
-.SiteHeader .MenuMobile_Categorias a.MenuCuenta .MenuCuenta_Code{width:68px;height:28px;margin:0}
-.SiteHeader .MenuMobile_Categorias a.MenuCuenta:before{display:none}
-.SiteHeader a.MenuCuenta:focus-visible{outline:2px solid #0a0c24;outline-offset:4px}
+/* Supplied handwritten CTA, rendered inline so the bundled font is available. */
+.SiteHeader .MenuDesktop a.MenuCuenta{position:relative;display:flex;align-items:center;justify-content:center;flex:none;align-self:center;width:76px;height:54px;margin:0 16px 0 32px;padding:4px 0;background:none;border:0;border-radius:0;overflow:visible;transform:none}
+.MenuCuenta svg{display:block;width:100%;height:auto;overflow:visible}
+.SiteHeader .MenuDesktop a.MenuCuenta::after,.SiteHeader .MenuMobile_Categorias a.MenuCuenta::before{display:none}
+.SiteHeader .MenuMobile_Categorias a.MenuCuenta{display:block;align-self:flex-start;width:min(240px,70%);height:auto;min-height:44px;margin:28px 24px 38px;padding:6px 0;background:none;border:0;border-radius:0;transform:none}
+.MenuCuenta:focus-visible{outline:2px solid #0a0c24;outline-offset:6px}
+.MenuDesktop_Indicador{display:none!important}
+.SiteHeader .MenuDesktop a[data-categoria]{position:relative;transform:none}
+.SiteHeader .MenuDesktop a[data-categoria]::after{display:none}
+.NavStroke{position:absolute;left:-7%;bottom:-9px;width:114%;height:9px;background-image:var(--stroke);background-repeat:no-repeat;background-size:100% 100%;pointer-events:none;clip-path:inset(0 100% 0 0);transition:clip-path .48s cubic-bezier(.22,.61,.36,1)}
+[data-categoria="guisos"] .NavStroke{height:24px;bottom:0}
+[data-categoria="huevos"] .NavStroke{height:calc(100% + 10px);bottom:-5px;left:-12%;width:124%}
+.SiteHeader .MenuDesktop a:is(.activo,:hover,:focus-visible) .NavStroke{clip-path:inset(0 -2% 0 -2%)}
+@media(prefers-reduced-motion:reduce){.NavStroke{transition:none}}
+@media(min-width:701px) and (max-width:1100px){
+ .SiteHeader .MenuDesktop{gap:clamp(8px,1.2vw,14px)}
+ .SiteHeader .MenuDesktop a[data-categoria]{font-size:14px;letter-spacing:0}
+ .SiteHeader .MenuDesktop a.MenuCuenta{width:68px;height:50px;margin:0 12px 0 16px}
+}
+.SiteHeader .MenuDesktop a.activo .NavStroke{animation:nav-mark-draw .6s cubic-bezier(.22,.61,.36,1) both}
+@keyframes nav-mark-draw{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 -2% 0 -2%)}}
+@media(prefers-reduced-motion:reduce){.SiteHeader .MenuDesktop a.activo .NavStroke{animation:none}}
 
-/* Supplied outlined lettering, with the barcode clipped by the upper page edge. */
-.MenuCuenta_Artwork{display:block;width:64px;height:auto;flex:none}
-.SiteHeader .MenuDesktop a.MenuCuenta{padding:0;overflow:hidden}
-.SiteHeader .MenuDesktop a.MenuCuenta .MenuCuenta_Code{position:absolute;left:14px;top:0;width:84px;height:25px;margin:0;flex:none}
-.SiteHeader .MenuDesktop a.MenuCuenta .MenuCuenta_Artwork{position:absolute;left:27px;bottom:12px;width:64px;height:auto;max-width:none}
-.SiteHeader .MenuMobile_Categorias a.MenuCuenta .MenuCuenta_Artwork{width:84px}
-.SiteHeader .MenuDesktop a.MenuCuenta .MenuCuenta_Artwork,.SiteHeader .MenuMobile_Categorias a.MenuCuenta .MenuCuenta_Artwork{margin:0;object-fit:contain}
-.SiteHeader .MenuDesktop a.MenuCuenta .MenuCuenta_Code{height:36px}
+[data-categoria="frios"] .NavStroke{height:7px;bottom:calc(50% - 3.5px);}
+
+/* Small annotation at the lower right of Guisos, as in the reference. */
+[data-categoria="guisos"] .NavStroke{left:auto;right:-7%;bottom:-4px;width:66%;height:14px}
+@media(hover:hover) and (pointer:fine){
+ .MenuCuenta svg{transform-origin:center;transition:transform .35s cubic-bezier(.22,.61,.36,1)}
+ .MenuCuenta:is(:hover,:focus-visible) svg{transform:none}
+ .MenuDesktop .MenuCuenta:is(:hover,:focus-visible) [data-reveal-word]{animation:cta-word-reveal .36s calc(var(--word)*.075s) both}
+}
+@keyframes cta-word-reveal{0%{transform:scale(1)}55%{transform:scale(1.065)}100%{transform:scale(1.02)}}
+@media(prefers-reduced-motion:reduce){.MenuCuenta svg{transition:none!important}.MenuCuenta [data-reveal-word]{animation:none!important}.MenuCuenta:is(:hover,:focus-visible) svg{transform:none}}
+
+.MenuCuenta [data-reveal-word]{transform-box:fill-box;transform-origin:center;opacity:1}
+.SiteHeader .MenuMobile_Nombre{color:#8b0000}
+.SiteHeader .MenuMobile_Numero{color:#0a0c24}
+.SiteHeader .MenuMobile_Categorias a.MenuCuenta{align-self:center;margin-left:auto;margin-right:auto}
+.MenuMobile_Titulo svg{display:block;width:min(300px,82vw);height:auto;margin:0 auto;overflow:visible}
+.SiteHeader .MenuMobile_Titulo{margin:34px 0 38px;height:auto;min-height:0}
+
+.MenuMobile_Titulo [data-reveal-word]{transform-box:fill-box;transform-origin:center;opacity:1}
+.MenuMobile.is-open.is-menu-settled .is-word-entered [data-reveal-word]{animation:menu-word-entry .36s calc(.14s + var(--word)*.075s) both}
+@keyframes menu-word-entry{0%{transform:scale(1)}55%{transform:scale(1.065)}100%{transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){.MenuMobile.is-open.is-menu-settled .is-word-entered [data-reveal-word]{animation:none!important}}

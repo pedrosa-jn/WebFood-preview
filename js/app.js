@@ -112,15 +112,86 @@ function esRutaInicio(url) {
 	return url.pathname.endsWith('/') || /(?:^|\/)index\.html$/.test(url.pathname);
 }
 
+function navbarCuentaArtwork(mobile) { return mobile ? `<svg aria-hidden="true" focusable="false" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 177.99 29.47">
+  <defs>
+    <style>
+      .NavMobile-1 {
+        fill: #911a1c;
+        font-family: 'Marker Aid';
+        font-size: 25.99px;
+      }
+
+      .NavMobile-2 {
+        letter-spacing: 0em;
+      }
+
+      .NavMobile-3 {
+        letter-spacing: .02em;
+      }
+    </style>
+  </defs>
+  <g data-name="Layer 9">
+    <g transform="translate(0 23.62)"><text class="NavMobile-1 NavMobile-3" data-reveal-word="" style="--word:0" x="0">¿Postre</text><text class="NavMobile-1 NavMobile-3" data-reveal-word="" style="--word:1" x="94.48">o</text><text class="NavMobile-1" data-reveal-word="" style="--word:2"><tspan class="NavMobile-2" x="115.36" y="0">c</tspan><tspan class="NavMobile-3" x="128.26" y="0">afé?</tspan></text></g>
+  </g>
+</svg>` : `<svg aria-hidden="true" focusable="false" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82.35 57.02">
+  <defs>
+    <style>
+      .NavDesktop-1 {
+        font-size: 19.66px;
+      }
+
+      .NavDesktop-2 {
+        font-size: 25.99px;
+      }
+
+      .NavDesktop-3 {
+        fill: #911a1c;
+        font-family: 'Marker Aid';
+      }
+
+      .NavDesktop-4 {
+        letter-spacing: -.04em;
+      }
+
+      .NavDesktop-5 {
+        letter-spacing: .1em;
+      }
+
+      .NavDesktop-6 {
+        letter-spacing: .1em;
+      }
+
+      .NavDesktop-7 {
+        letter-spacing: .07em;
+      }
+
+      .NavDesktop-8 {
+        letter-spacing: .06em;
+      }
+
+      .NavDesktop-9 {
+        letter-spacing: .11em;
+      }
+
+      .NavDesktop-10 {
+        letter-spacing: .02em;
+      }
+    </style>
+  </defs>
+  <g data-name="Layer 9">
+    <g transform="translate(0 16.76)"><text data-reveal-word="" style="--word:0" class="NavDesktop-3 NavDesktop-1"><tspan class="NavDesktop-8" x="0" y="0">O</tspan><tspan class="NavDesktop-5" x="11.66" y="0">ye!</tspan></text><text data-reveal-word="" style="--word:1" class="NavDesktop-3 NavDesktop-1"><tspan class="NavDesktop-7" x="0" y="14.75">d</tspan><tspan class="NavDesktop-5" x="11.56" y="14.75">ame </tspan><tspan class="NavDesktop-9" x="60.2" y="14.75">l</tspan><tspan class="NavDesktop-6" x="69.52" y="14.75">a</tspan></text><text data-reveal-word="" style="--word:2" class="NavDesktop-3 NavDesktop-2"><tspan class="NavDesktop-10" x="0" y="34.41">cuen</tspan><tspan class="NavDesktop-4" x="56.25" y="34.41">t</tspan><tspan class="NavDesktop-10" x="66.78" y="34.41">a</tspan></text></g>
+  </g>
+</svg>`; }
+
 function renderizarMenu(categoriaActiva) {
 	const menuDesktop = document.querySelector('.MenuDesktop');
 	const menuMobile = document.querySelector('.MenuMobile_Categorias');
 
 	if (menuDesktop) {
 		menuDesktop.innerHTML = CATEGORIAS.map(categoria => `
-			<a href="${urlCategoria(categoria.id)}" data-categoria="${textoSeguro(categoria.id)}"${categoria.id === categoriaActiva ? ' class="activo" aria-current="page"' : ''}>${textoSeguro(categoria.nombre)}</a>`).join('');
+			<a href="${urlCategoria(categoria.id)}" data-categoria="${textoSeguro(categoria.id)}"${categoria.id === categoriaActiva ? ' class="activo" aria-current="page"' : ''}>${textoSeguro(categoria.nombre)}<span class="NavStroke" aria-hidden="true" style="--stroke:url('../images/navbar/stroke-${({salsas:0,frios:8,guisos:6,pasta:1,carnes:4,pescado:3,huevos:9,otros:2,postres:7})[categoria.id]??0}.svg')"></span></a>`).join('');
 
-		menuDesktop.insertAdjacentHTML('beforeend', '<a class="MenuCuenta" href="./participa.html" aria-label="La Cuenta"><span class="MenuCuenta_Code" aria-hidden="true"></span><img class="MenuCuenta_Artwork" src="./images/ticket/LaCuenta.svg" alt="" width="50" height="21"></a>');
+		menuDesktop.insertAdjacentHTML('beforeend', `<a class="MenuCuenta" href="./participa.html" aria-label="La Cuenta">${navbarCuentaArtwork(false)}</a>`);
 		const activo = menuDesktop.querySelector('.MenuDesktop a.activo');
 		if (activo) {
 			let idAnterior = null;
@@ -180,7 +251,7 @@ function renderizarMenu(categoriaActiva) {
 				<span class="MenuMobile_Numero">${dosDigitos(indice + 1)}</span>
 				<span class="MenuMobile_Nombre">${textoSeguro(categoria.nombre)}</span>
 			</a>`).join('');
-		menuMobile.insertAdjacentHTML('beforeend', '<a class="MenuCuenta" href="./participa.html" aria-label="La Cuenta"><span class="MenuCuenta_Code" aria-hidden="true"></span><img class="MenuCuenta_Artwork" src="./images/ticket/LaCuenta.svg" alt="" width="50" height="21"></a>');
+		menuMobile.insertAdjacentHTML('beforeend', `<a class="MenuCuenta" href="./participa.html" aria-label="La Cuenta">${navbarCuentaArtwork(true)}</a>`);
 	}
 }
 
@@ -210,6 +281,18 @@ function iniciarMenuMovil() {
 	if (!boton || !menu || !cabecera) return;
 	const reducido = matchMedia('(prefers-reduced-motion: reduce)');
 	const propiedades = ['position', 'top', 'left', 'right', 'width', 'paddingTop'];
+ const entradas = [...menu.querySelectorAll('.MenuMobile_Titulo,.MenuCuenta')];
+ const observarEntradas = new IntersectionObserver(entries=>{
+  if (!menu.classList.contains('is-open') || !menu.classList.contains('is-menu-settled')) return;
+  for (const entry of entries) if(entry.isIntersecting){entry.target.classList.add('is-word-entered');observarEntradas.unobserve(entry.target);}
+ },{root:menu,threshold:.35});
+ const animarEntradas = () => {
+  if(!menu.classList.contains('is-open'))return;
+  menu.classList.add('is-menu-settled');
+  entradas.forEach(el=>observarEntradas.observe(el));
+ };
+
+
 	let bloqueo = null, temporizador = 0;
 	const bloquear = () => {
 		if (bloqueo) return;
@@ -243,7 +326,8 @@ function iniciarMenuMovil() {
 		boton.setAttribute('aria-expanded','false');
 		boton.setAttribute('aria-label','Abrir menú');
 		menu.setAttribute('aria-hidden','true'); menu.inert=true;
-		menu.classList.add('is-closing'); menu.classList.remove('is-open');
+		menu.classList.add('is-closing'); menu.classList.remove('is-open','is-menu-settled');
+ observarEntradas.disconnect();
 		document.body.classList.remove('MenuMobile-open');
 		document.body.classList.add('MenuMobile-closing');
 		if (devolverFoco) boton.focus({preventScroll:true});
@@ -260,8 +344,10 @@ function iniciarMenuMovil() {
 		menu.setAttribute('aria-hidden','false');cabecera.style.setProperty('border-bottom-color','transparent');
 		document.body.classList.remove('MenuMobile-closing');document.body.classList.add('MenuMobile-open');
 		menu.classList.remove('is-closing');menu.classList.add('is-open');
+ observarEntradas.disconnect();menu.classList.remove('is-menu-settled');entradas.forEach(el=>el.classList.remove('is-word-entered'));
+ if(reducido.matches)animarEntradas();
 	});
-	menu.addEventListener('transitionend',e=>{if(e.target===menu&&e.propertyName==='transform'&&menu.classList.contains('is-closing'))terminarCierre();});
+	menu.addEventListener('transitionend',e=>{if(e.target!==menu||e.propertyName!=='transform')return;if(menu.classList.contains('is-closing'))terminarCierre();else animarEntradas();});
 	menu.addEventListener('click',e=>{if(e.target.closest('a[href]'))cerrar(false,true);});
 	cabecera.querySelector(':scope > a')?.addEventListener('click',()=>cerrar(false,true));
 	document.addEventListener('keydown',e=>{
@@ -922,6 +1008,7 @@ function iniciarReboteFooter() {
 	};
 	window.addEventListener('scroll', () => { if (!frame) frame = requestAnimationFrame(actualizar); }, {passive:true});
 	reducido.addEventListener('change', () => { if (reducido.matches) animaciones.forEach(a => a.cancel()); });
+ window.addEventListener('resize',()=>{animaciones.forEach(a=>a.cancel());yAnterior=Math.max(0,scrollY);tiempoAnterior=performance.now();preparado=false;},{passive:true});
 }
 
 function iniciarLogoAnimado() {

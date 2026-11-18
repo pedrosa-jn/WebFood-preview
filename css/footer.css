@@ -1,116 +1,33 @@
-/* One cream surface: the illustration sits behind the footer at its bottom edge. */
-body > .SiteFooter {
- position: relative;
- isolation: isolate;
- display: flex;
- align-items: flex-start;
- justify-content: space-between;
- min-height: clamp(380px, 36vw, 680px);
- box-sizing: border-box;
- padding: 28px clamp(24px, 5vw, 60px) 0;
- background: rgb(245, 245, 240);
+/* Fluid composition: the artwork stays in flow, including its transparent margins. */
+body>.SiteFooter{
+ --footer-content:min(82vw,800px);
+ position:relative;isolation:isolate;display:grid;
+ grid-template-columns:minmax(0,1fr) repeat(2,minmax(0,calc(var(--footer-content)/2))) minmax(0,1fr);
+ grid-template-rows:auto auto auto;
+ align-items:center;justify-items:center;gap:0;
+ box-sizing:border-box;width:100%;height:auto;min-height:0;
+ padding:clamp(85px,calc(8.445vw + 52.06px),198px) 0 0;margin:0;
+ background:#f5f5f0;overflow:visible;
 }
-body > .SiteFooter > .FooterBrand {
- position: relative;
- z-index: 1;
- flex: 0 0 auto;
- margin: 0;
- padding: 0;
- border: 0;
-}
-body > .SiteFooter > .FooterLandscape {
- position: absolute;
- inset: auto 0 52px;
- z-index: -1;
- display: block;
- width: 100%;
- margin: 0;
- padding: 0;
- border: 0;
- background: transparent;
- pointer-events: none;
-}
-.FooterLandscape img {
- display: block;
- width: 100%;
- height: auto;
- mix-blend-mode: multiply;
- /* Feather only the empty sky to avoid a rectangular paper edge. */
- mask-image: linear-gradient(to bottom, transparent, #000 32%);
-}
-body > .SiteFooter > .FooterCopyright {
- position: absolute;
- inset: auto 0 0;
- z-index: 1;
- display: flex;
- justify-content: center;
- box-sizing: border-box;
- min-height: 52px;
- margin: 0;
- padding: 16px 24px;
- border: 0;
- color: rgb(139, 0, 0);
- font-weight: 400;
- font-size: 13px;
- text-align: center;
-}
-@media (max-width: 700px) {
- body > .SiteFooter {
-  min-height: 420px;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding-top: 24px;
- }
- body > .SiteFooter > .FooterLandscape {
-  bottom: calc(76px + env(safe-area-inset-bottom, 0px));
- }
- body > .SiteFooter > .FooterCopyright {
-  min-height: calc(76px + env(safe-area-inset-bottom, 0px));
-  padding: 12px 76px calc(12px + env(safe-area-inset-bottom, 0px));
- }
- .FooterLandscape img {
-  height: 171px;
-  object-fit: cover;
-  object-position: center bottom;
- }
-}
+body>.SiteFooter>div{position:relative;inset:auto;translate:none;box-sizing:border-box;display:block;flex:none;margin:0;padding:0;border:0;background:transparent;min-width:0;height:auto;max-height:none;align-self:center;justify-self:center}
+body>.SiteFooter>.FooterBrand{grid-column:2;grid-row:1;width:clamp(230px,calc(5.68vw + 207.85px),306px);z-index:1}
+body>.SiteFooter .FooterLogo{display:block;position:static;width:100%;height:auto;max-height:none;aspect-ratio:1;object-fit:contain;margin:0;padding:0;border:0}
+body>.SiteFooter>.FooterInvitation{grid-column:3;grid-row:1;width:clamp(112px,calc(3.214vw + 99.46px),155px);max-width:100%;z-index:1}
+.FooterInvitation a{display:block;color:#8b0000;text-decoration:none}
+.FooterInvitation svg{display:block;width:100%;height:auto;overflow:visible}
+.FooterInvitation a:focus-visible{outline:2px solid #8b0000;outline-offset:8px}
+body>.SiteFooter>.FooterLandscape{grid-column:2/4;grid-row:2;width:clamp(240px,calc(13.303vw + 254.1px),484px);max-width:95vw;margin-top:calc(-1 * clamp(88px,calc(3.513vw + 74.3px),135px));pointer-events:none}
+body>.SiteFooter .FooterLandscape img{display:block;position:static;width:100%;height:auto;max-width:100%;max-height:none;aspect-ratio:1100/724;object-fit:contain;margin:0;padding:0;transform:none;translate:none;mix-blend-mode:darken;mask-image:linear-gradient(to bottom,transparent,#000 35%)}
+body>.SiteFooter>.FooterCopyright{grid-column:1/-1;grid-row:3;display:flex;justify-content:center;align-items:center;width:100%;min-height:calc(clamp(52px,calc(62.33px - .598vw),60px) + env(safe-area-inset-bottom,0px));margin-top:clamp(-24px,calc(3.363vw - 37.12px),21px);padding:14px 24px calc(14px + env(safe-area-inset-bottom,0px));color:#8b0000;font:400 clamp(13px,calc(.075vw + 12.7px),14px)/1.3 'Barlow Condensed',sans-serif;text-align:center}
+@media(max-width:700px){body>.SiteFooter>.FooterBrand{max-width:59vw}body>.SiteFooter>.FooterCopyright{padding-inline:60px}}
+@media(max-width:360px){body>.SiteFooter>.FooterBrand{width:210px}body>.SiteFooter>.FooterInvitation{width:100px}}
 
-/* Desktop composition selected in the adjustable preview. */
-@media (min-width: 701px) {
- body > .SiteFooter { min-height: 587px; }
- body > .SiteFooter > .FooterBrand {
-  position: absolute;
-  left: 129px;
-  top: 188px;
- }
- body > .SiteFooter .FooterBrand .FooterLogo {
-  width: 177px;
-  height: 177px;
- }
+@media(hover:hover) and (pointer:fine){
+ .FooterInvitation svg{transform-origin:center;transition:transform .4s cubic-bezier(.22,.61,.36,1)}
+ .FooterInvitation a:is(:hover,:focus-visible) svg{transform:none}
+ .FooterInvitation a:is(:hover,:focus-visible) [data-reveal-word]{animation:footer-word-reveal .4s calc(var(--word)*.075s) both}
 }
+@keyframes footer-word-reveal{0%{transform:scale(1)}55%{transform:scale(1.065)}100%{transform:scale(1.02)}}
+@media(prefers-reduced-motion:reduce){.FooterInvitation svg{transition:none!important}.FooterInvitation [data-reveal-word]{animation:none!important}.FooterInvitation a:is(:hover,:focus-visible) svg{transform:none}}
 
-/* Mobile composition selected in the adjustable preview. */
-@media (max-width: 700px) {
- body > .SiteFooter { min-height: 537px; }
- body > .SiteFooter > .FooterBrand {
-  position: absolute;
-  left: 53px;
-  top: 168px;
- }
- body > .SiteFooter .FooterBrand .FooterLogo {
-  width: 122px;
-  height: 122px;
- }
- .FooterLandscape img { object-position: 100% bottom; }
-}
-
-@media(min-width:701px){body > .SiteFooter > .FooterLandscape{width:70%;left:57%;right:auto;translate:-50% 0;bottom:72px;}}
-
-@media(max-width:700px){body > .SiteFooter > .FooterLandscape{bottom:calc(105px + env(safe-area-inset-bottom,0px));}}
-
-/* Notebook annotations sit alongside the animated seal, above the landscape. */
-.FooterNotes{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,54px);width:min(52%,760px);margin:152px 22% 0 auto;color:#8b0000}
-.FooterNotes section{min-width:0}.FooterNotes h2{font:400 20px/1.1 'Marker Aid','Barlow Condensed',sans-serif;letter-spacing:.08em;margin:0 0 20px}.FooterNotes p,.FooterNotes a{display:block;font:400 16px/1.45 'Barlow Condensed',sans-serif;margin:0 0 10px;color:inherit}.FooterNotes a{text-decoration:underline;text-underline-offset:4px}.FooterNotes a:focus-visible{outline:2px solid currentColor;outline-offset:4px}
-@media(min-width:701px) and (max-width:1100px){body>.SiteFooter>.FooterBrand{left:6%;top:145px}.FooterNotes{width:64%;margin:140px 0 0 auto;gap:18px}body>.SiteFooter .FooterBrand .FooterLogo{width:130px;height:130px}}
-@media(max-width:700px){body>.SiteFooter{min-height:760px}body>.SiteFooter>.FooterBrand{top:34px;left:24px}.FooterNotes{width:100%;margin:168px 0 250px;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.FooterNotes h2{font-size:19px;margin-bottom:12px}.FooterNotes section:last-child{grid-column:1/-1}.FooterNotes p,.FooterNotes a{font-size:16px;margin-bottom:6px}}
-body>.SiteFooter>.FooterNotes{border:0;padding:0;background:transparent}
+.FooterInvitation [data-reveal-word]{transform-box:fill-box;transform-origin:center;opacity:1}

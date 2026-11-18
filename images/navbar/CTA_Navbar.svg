@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82.35 57.02">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 19.66px;
+      }
+
+      .cls-2 {
+        font-size: 25.99px;
+      }
+
+      .cls-3 {
+        fill: #911a1c;
+        font-family: MarkerAid-Regular, 'Marker Aid';
+      }
+
+      .cls-4 {
+        letter-spacing: -.04em;
+      }
+
+      .cls-5 {
+        letter-spacing: .1em;
+      }
+
+      .cls-6 {
+        letter-spacing: .1em;
+      }
+
+      .cls-7 {
+        letter-spacing: .07em;
+      }
+
+      .cls-8 {
+        letter-spacing: .06em;
+      }
+
+      .cls-9 {
+        letter-spacing: .11em;
+      }
+
+      .cls-10 {
+        letter-spacing: .02em;
+      }
+    </style>
+  </defs>
+  <g id="Layer_9" data-name="Layer 9">
+    <text class="cls-3" transform="translate(0 16.76)"><tspan class="cls-1"><tspan class="cls-8" x="0" y="0">O</tspan><tspan class="cls-5" x="11.66" y="0">ye!</tspan></tspan><tspan class="cls-1"><tspan class="cls-7" x="0" y="14.75">d</tspan><tspan class="cls-5" x="11.56" y="14.75">ame </tspan><tspan class="cls-9" x="60.2" y="14.75">l</tspan><tspan class="cls-6" x="69.52" y="14.75">a</tspan></tspan><tspan class="cls-2"><tspan class="cls-10" x="0" y="34.41">cuen</tspan><tspan class="cls-4" x="56.25" y="34.41">t</tspan><tspan class="cls-10" x="66.78" y="34.41">a</tspan></tspan></text>
+  </g>
+</svg>
