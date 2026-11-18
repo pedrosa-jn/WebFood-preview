@@ -11,5 +11,13 @@ function fitParticipationPaper(){
   paper.style.zoom=String(Math.min(desiredWidth/360,available/paper.offsetHeight));
  }
 }
-document.fonts.ready.then(()=>requestAnimationFrame(fitParticipationPaper));
+async function prepareParticipation(){
+ try{
+  await document.fonts.ready;
+  await Promise.all([...document.querySelectorAll('.ParticipateScene img')].map(img=>img.decode().catch(()=>{})));
+  fitParticipationPaper();
+  if(typeof play==='function')play();
+ }finally{document.documentElement.classList.remove('participation-loading');}
+}
+prepareParticipation();
 window.addEventListener('resize',fitParticipationPaper);

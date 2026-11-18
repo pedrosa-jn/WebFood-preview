@@ -44,3 +44,36 @@
 .MenuMobile.is-open.is-menu-settled .is-word-entered [data-reveal-word]{animation:menu-word-entry .36s calc(.14s + var(--word)*.075s) both}
 @keyframes menu-word-entry{0%{transform:scale(1)}55%{transform:scale(1.065)}100%{transform:scale(1)}}
 @media(prefers-reduced-motion:reduce){.MenuMobile.is-open.is-menu-settled .is-word-entered [data-reveal-word]{animation:none!important}}
+
+/* Receipt separators frame the mobile heading without duplicating Salsas' rule. */
+.SiteHeader .MenuMobile_Titulo{width:calc(100% - 48px);margin:24px 24px 0;padding:24px 0;border-block:1px dashed #0a0c24}
+.SiteHeader .MenuMobile_Categorias>a:first-child::before{display:none}
+.MenuHeadingStroke{clip-path:inset(-5% 100% -5% 0)}
+.MenuMobile.is-open.is-menu-settled .is-word-entered .MenuHeadingStroke{animation:menu-heading-draw .45s .7s cubic-bezier(.22,.61,.36,1) both}
+@keyframes menu-heading-draw{from{clip-path:inset(-5% 100% -5% 0)}to{clip-path:inset(-5% -2% -5% -2%)}}
+.MenuMobile.is-closing .MenuHeadingStroke{clip-path:none;animation:none}
+@media(prefers-reduced-motion:reduce){.MenuHeadingStroke{clip-path:none!important;animation:none!important}}
+
+/* Mobile artwork and proportions supplied in the November 18 reference. */
+@media(max-width:700px){
+ .SiteHeader .MenuMobile{overflow-y:auto;overflow-x:hidden;justify-content:flex-start;}
+ .SiteHeader .MenuMobile_Titulo{width:100%;margin:10px 0 20px;padding:0;border:0;flex:none;}
+ .SiteHeader .MenuMobile_Titulo svg{width:42%;max-width:210px;height:auto;}
+ .SiteHeader .MenuMobile_Categorias{flex:none;overflow:visible;justify-content:flex-start;width:100%;padding:0;}
+ .SiteHeader .MenuMobile_Categorias>a:not(.MenuCuenta){flex:none;min-height:60px;padding:10px 9.2%;gap:14px;}
+ .SiteHeader .MenuMobile_Numero,.SiteHeader .MenuMobile_Nombre{font-size:clamp(30px,9.2vw,46px);line-height:1;font-weight:900;letter-spacing:0;}
+ .SiteHeader .MenuMobile.is-open .MenuMobile_Numero{opacity:1;}
+ .SiteHeader .MenuMobile_Categorias>a:not(.MenuCuenta)::before{left:0;right:0;border-top:.5px solid #8b0000;}
+ .SiteHeader .MenuMobile_Categorias a.MenuCuenta{position:relative;isolation:isolate;flex:none;align-self:stretch;height:auto!important;width:100%;max-width:none;margin:24px 0 0;padding:32px 0 calc(24px + env(safe-area-inset-bottom,0px));}
+ .SiteHeader .MenuMobile_Categorias a.MenuCuenta svg{position:relative;z-index:1;width:52%;max-width:260px;margin:auto;}
+ .SiteHeader .MenuMobile_Categorias a.MenuCuenta::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(to right,rgba(139,0,0,.16) 1px,transparent 1px),linear-gradient(to bottom,rgba(139,0,0,.16) 1px,transparent 1px);background-size:21px 21px;background-position:center bottom;mask-image:linear-gradient(to bottom,transparent,#000 65%);}
+}
+
+
+
+/* Shared display weight and size; color separates numbering from category names. */
+@media(max-width:700px){
+ .SiteHeader .MenuMobile_Numero,.SiteHeader .MenuMobile_Nombre{font-size:clamp(30px,9.2vw,46px);font-weight:900;line-height:1;opacity:1}
+ .SiteHeader .MenuMobile_Numero{color:#8b0000;font-variant-numeric:tabular-nums}
+ .SiteHeader .MenuMobile_Nombre{color:#0a0c24}
+}

@@ -1,9 +1,9 @@
 // Fuente única de contenido. Añade recetas copiando un bloque de RECETAS.
 const CATEGORIAS = [
   {
-    "id": "salsas",
-    "nombre": "SALSAS",
-    "descripcion": "Bases y acompañamientos"
+    "id": "otros",
+    "nombre": "PARA PICAR",
+    "descripcion": "Croquetas, empanadas y bocados"
   },
   {
     "id": "frios",
@@ -36,9 +36,9 @@ const CATEGORIAS = [
     "descripcion": "Tortillas y huevos de mil formas"
   },
   {
-    "id": "otros",
-    "nombre": "OTROS",
-    "descripcion": "Empanadas, bocadillos y más"
+    "id": "salsas",
+    "nombre": "SALSAS",
+    "descripcion": "Bases y acompañamientos"
   },
   {
     "id": "postres",
@@ -62,10 +62,10 @@ const RECETAS = [
       "Una cucharada de vinagre",
       "Sal",
       "Un vaso de aceite suave",
-      "½  vaso de vino blanco"
+      "½ vaso de vino blanco"
     ],
     "pasos": [
-      "En el vaso de la batidora poner dos huevos o uno  según la cantidad de mayonesa que queramos hacer, el vinagre, la sal y añadimos un poco de aceite.",
+      "En el vaso de la batidora poner dos huevos o uno según la cantidad de mayonesa que queramos hacer, el vinagre, la sal y añadimos un poco de aceite.",
       "Batimos con la minipimer sin moverla y cuando haya emulsionado echar el resto del aceite poco a poco y mover la batidora de forma ascendente y descendente.",
       "SALSA DE VINO (para acompañar unos filetes)",
       "Después de haber frito los filetes en la sartén añadimos el vino y lo dejamos reducir un par de minutos.",
@@ -86,7 +86,7 @@ const RECETAS = [
       "Una lata pequeña de tomate triturado natural"
     ],
     "pasos": [
-      "Se pica la cebolla y  se dora en una sartén con el fondo cubierto de aceite.",
+      "Se pica la cebolla y se dora en una sartén con el fondo cubierto de aceite.",
       "Cuando la cebolla esté dorada se añade el tomate un poco de sal y una cucharada pequeña de azúcar."
     ],
     "tiempoNota": "Preparación activa estimada: 15 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Picar cebolla, iniciar sofrito y ajustar la salsa; reducción desatendida excluida."
@@ -143,7 +143,7 @@ const RECETAS = [
       "Un trozo de pan mojado o media barra empapada y escurrida del agua",
       "Sal",
       "Aceite",
-      "Vinagre ( el abuelo no le echa vinagre)"
+      "Vinagre (el abuelo no le echa vinagre)"
     ],
     "pasos": [
       "Se escaldan los tomates y se pelan.",
@@ -218,7 +218,7 @@ const RECETAS = [
     "pasos": [
       "Poner los ingredientes en la batidora y batir.",
       "Cubrir un molde con mantequilla y verter la mezcla dentro.",
-      "Poner al baño maría en una  cacerola con agua hirviendo.",
+      "Poner al baño maría en una cacerola con agua hirviendo.",
       "Meter en el horno hasta que se cuaje todo bien.",
       "Servir frío y cubrir con mayonesa."
     ],
@@ -243,7 +243,7 @@ const RECETAS = [
       "Cocer el pescado en un caldo corto: agua, media cebolla, 2 hojas de laurel y chorreón de vino durante unos 10 minutos.",
       "Cuando esté blando el pescado, se saca, se deja enfriar y se desmenuza.",
       "Se baten las claras a punto de nieve y se añaden las yemas.",
-      "Se mezcla con el pescado, añadimos tomate frito (mejor si es casero)  y batimos todo bien para que el pescado quede bien desmenuzado.",
+      "Se mezcla con el pescado, añadimos tomate frito (mejor si es casero) y batimos todo bien para que el pescado quede bien desmenuzado.",
       "Rectificamos de sal.",
       "Cogemos un molde, lo untamos con aceite y espolvoreamos pan rallado.",
       "Ponemos la mezcla en el molde y el molde al baño maría en el fuego mientras se calienta el horno hasta que hierva el agua.",
@@ -290,7 +290,7 @@ const RECETAS = [
       "Lechuga",
       "Tomate",
       "Queso feta, fresco, en daditos",
-      "Embutido: jamón york, pavo, mortadela, jamón serrano ...troceado",
+      "Embutido: jamón york, pavo, mortadela, jamón serrano... troceado",
       "Sal, aceite y vinagre",
       "Y"
     ],
@@ -317,11 +317,11 @@ const RECETAS = [
       "Una bolsa de mezclum de lechugas",
       "Una lata de atún",
       "Un tomate o varios tomatitos cherry",
-      "Una rodaja de piña  natural troceada",
+      "Una rodaja de piña natural troceada",
       "Sal, aceite y vinagre"
     ],
     "pasos": [
-      "Se pone  la lechuga en un bol y se añade el resto de los ingredientes.",
+      "Se pone la lechuga en un bol y se añade el resto de los ingredientes.",
       "Se aliña con sal, aceite y vinagre."
     ],
     "tiempoNota": "Preparación activa estimada: 10 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Cortar tomate y piña, escurrir atún y aliñar."
@@ -329,7 +329,7 @@ const RECETAS = [
   {
     "id": "ensalada-de-pasta-y-rucula",
     "categoria": "frios",
-    "titulo": "Ensalada de Pasta y Ŕúcula",
+    "titulo": "Ensalada de Pasta y Rúcula",
     "autor": "",
     "tiempo": "20 min",
     "dificultad": "Fácil",
@@ -398,7 +398,7 @@ const RECETAS = [
       "Se mezclan con la verdura y el atún.",
       "Con el aceite de las latas de atún, un chorreón de vinagre, sal y unos 50 ml más de aceite de oliva hacemos una vinagreta.",
       "Lo ponemos por encima de las patatas aún templadas y se mezcla todo bien.",
-      "Se mete en la nevera un buen rato hast que esté fría y está listo para comer."
+      "Se mete en la nevera un buen rato hasta que esté fría y está listo para comer."
     ],
     "tiempoNota": "Preparación activa estimada: 30 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Lavar y poner patatas, picar verduras, pelar y trocear patatas, mezclar vinagreta."
   },
@@ -481,7 +481,7 @@ const RECETAS = [
     "imagen": "",
     "ingredientes": [],
     "pasos": [
-      "Cuando hayan cogido color apartaremos los picatostes sobre papel de cocina para que escurran.\n3. Pelar las gambas, reservar los cuerpos al frío y comenzar a dorar las cáscaras en la cacerola anterior. Una vez que estén bien fritas las apartaremos y las desecharemos.Esta parte es opcional)\n4.  En ese mismo aceite rehogamos la cebolla y el jamón picados. Dejaremos rehogar 5 minutos.\n5. Limpiar el rape, retirar la espina y cortar los lomos en trozos más pequeños.\n6. Cubrir entonces con agua y añadir 3 cucharadas de tomate frito.\n7. Mientras el caldo comienza a hervir haremos un “majao” en el mortero con la sal, los ajos, el azafrán, las yemas de los huevos cocidos y el vino blanco. Lo echaremos sobre la sopa junto con el arroz y los guisantes. Cocinaremos a fuego medio durante 10 minutos; desespumando si fuera preciso.\n8. Pasado este tiempo incorporar las almejas bien lavadas, el rape troceado y los cuerpos de las gambas. Mantener a fuego medio-alto durante 5 minutos.\n9.Como guarnición picaremos las claras de los huevos y las mezclaremos con el perejil picado y los dados de pan frito."
+      "Cuando hayan cogido color apartaremos los picatostes sobre papel de cocina para que escurran.\n3. Pelar las gambas, reservar los cuerpos al frío y comenzar a dorar las cáscaras en la cacerola anterior. Una vez que estén bien fritas las apartaremos y las desecharemos. Esta parte es opcional)\n4. En ese mismo aceite rehogamos la cebolla y el jamón picados. Dejaremos rehogar 5 minutos.\n5. Limpiar el rape, retirar la espina y cortar los lomos en trozos más pequeños.\n6. Cubrir entonces con agua y añadir 3 cucharadas de tomate frito.\n7. Mientras el caldo comienza a hervir haremos un “majao” en el mortero con la sal, los ajos, el azafrán, las yemas de los huevos cocidos y el vino blanco. Lo echaremos sobre la sopa junto con el arroz y los guisantes. Cocinaremos a fuego medio durante 10 minutos; desespumando si fuera preciso.\n8. Pasado este tiempo incorporar las almejas bien lavadas, el rape troceado y los cuerpos de las gambas. Mantener a fuego medio-alto durante 5 minutos.\n9. Como guarnición picaremos las claras de los huevos y las mezclaremos con el perejil picado y los dados de pan frito."
     ],
     "tiempoNota": "Preparación activa estimada: 30 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Limpiar pescado y gambas, preparar sofrito, majado y guarnición; inicio incompleto."
   },
@@ -495,7 +495,7 @@ const RECETAS = [
     "imagen": "",
     "ingredientes": [
       "3 calabacines",
-      "1  cebolla",
+      "1 cebolla",
       "1 puerro",
       "7 u 8 quesitos",
       "3 ó 4 patatas"
@@ -527,7 +527,7 @@ const RECETAS = [
     "pasos": [
       "Ponemos a hervir agua en una cacerola y añadimos sal y avecrem.",
       "Pelamos las patatas y las cortamos en rodajas gruesas.",
-      "Cuando el agua esté hirviendo añadimos las patatas y las dejamos cocer hasta que estén blandas, unos 10- 15 minutos.Sacamos las patatas aparte.",
+      "Cuando el agua esté hirviendo añadimos las patatas y las dejamos cocer hasta que estén blandas, unos 10-15 minutos. Sacamos las patatas aparte.",
       "Preparamos una mayonesa.",
       "En una sopera ponemos la mayonesa y poco a poco vamos echando el agua no muy caliente de las patatas y batimos con la minipimer.",
       "Añadimos las patatas y servimos."
@@ -549,12 +549,12 @@ const RECETAS = [
       "Una pastilla de avecrem"
     ],
     "pasos": [
-      "Ponemos  a hervir agua en una cacerola y añadimos sal.",
-      "Cuando el agua esté hirviendo añadimos cocemos las gambas con el pescado y  con la pastilla de avecrem de pescado unos 10- 15 minutos.",
+      "Ponemos a hervir agua en una cacerola y añadimos sal.",
+      "Cuando el agua esté hirviendo añadimos cocemos las gambas con el pescado y con la pastilla de avecrem de pescado unos 10-15 minutos.",
       "Cuando el pescado y las gambas estén frías las pelamos y reservamos.",
       "Preparamos una mayonesa.",
       "En una sopera ponemos la mayonesa y poco a poco vamos echando el agua no muy caliente de las gambas y el pescado y batimos con la minipimer.",
-      "Añadimos las gambas y servimos.Se puede tomar caliente o fría."
+      "Añadimos las gambas y servimos. Se puede tomar caliente o fría."
     ],
     "tiempoNota": "Preparación activa estimada: 25 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Preparar caldo, pelar gambas y limpiar pescado, hacer mayonesa y ligar."
   },
@@ -583,7 +583,7 @@ const RECETAS = [
     "pasos": [
       "Se lavan las lentejas, siempre con agua fría y se ponen en una olla con agua.",
       "Le damos un hervor durante 5’.",
-      "Añadimos todos los ingredientes y los tenemos en la olla a presión unos 20’. También se pueden cocinar  en la cacerola una hora más o menos moviéndolas con frecuencia para que no se agarren."
+      "Añadimos todos los ingredientes y los tenemos en la olla a presión unos 20’. También se pueden cocinar en la cacerola una hora más o menos moviéndolas con frecuencia para que no se agarren."
     ],
     "tiempoNota": "Preparación activa estimada: 20 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Lavar legumbres, preparar verduras, dar hervor, reunir ingredientes y poner olla."
   },
@@ -610,7 +610,7 @@ const RECETAS = [
       "1 cucharada de pilar n y azafrán"
     ],
     "pasos": [
-      "Se lavan las alubias , siempre con agua fría y se ponen en una olla con agua.",
+      "Se lavan las alubias, siempre con agua fría y se ponen en una olla con agua.",
       "Le damos un hervor durante 5’, tiramos el agua y volvemos a echar agua fría.",
       "Añadimos todos los ingredientes y los tenemos en la olla a presión unos 20’."
     ],
@@ -646,9 +646,9 @@ const RECETAS = [
     "imagen": "",
     "ingredientes": [
       "½ kg de garbanzos",
-      "Un pedazo de tocino salado gordo ( un par de trozos)",
-      "1 hueso  canilla y otro de vaca",
-      "Una punta  de jamón",
+      "Un pedazo de tocino salado gordo (un par de trozos)",
+      "1 hueso canilla y otro de vaca",
+      "Una punta de jamón",
       "Dos trozos de chorizo y morcilla (opcional)",
       "½ kg de morcillo y cuarto trasero de pollo",
       "Sal"
@@ -661,7 +661,7 @@ const RECETAS = [
       "Se saca el caldo que se ha formado y se cuela en otra cacerola.",
       "Se vuelve a echar agua en la olla con los huesos y carne y se cubre algo más que antes.",
       "Se cierra la olla y se tiene hirviendo unos 20’.",
-      "Transcurrido este tiempo, se abre la olla. Se le añade el chorizo y la morcilla, se cierra y se tiene hirviendo unos 5’.(esto es opcional)",
+      "Transcurrido este tiempo, se abre la olla. Se le añade el chorizo y la morcilla, se cierra y se tiene hirviendo unos 5’. (esto es opcional)",
       "Se mezclan los dos caldos dejando un poco con los garbanzos...",
       "Servir la sopa con fideos de primer plato y de segundo los garbanzos con la carne.",
       "Se pueden añadir patatas cocidas, judías verdes."
@@ -692,8 +692,8 @@ const RECETAS = [
       "Sal"
     ],
     "pasos": [
-      "Ponemos todos los ingredientes en la olla menos la morcilla y el chorizo  y cocemos durante unos 20’.",
-      "Pasado este tiempo, abrir la olla y añadir un chorreón de tomate frito.Se le da un hervor, se añade el chorizo y la morcilla y se tiene unos 5 minutos para que suelten el sabor.",
+      "Ponemos todos los ingredientes en la olla menos la morcilla y el chorizo y cocemos durante unos 20’.",
+      "Pasado este tiempo, abrir la olla y añadir un chorreón de tomate frito. Se le da un hervor, se añade el chorizo y la morcilla y se tiene unos 5 minutos para que suelten el sabor.",
       "Se sirve caliente."
     ],
     "tiempoNota": "Preparación activa estimada: 20 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Preparar verduras y legumbres, montar olla y realizar incorporaciones finales."
@@ -717,7 +717,7 @@ const RECETAS = [
     "pasos": [
       "Se sofríe la cebolla con el ajo.",
       "Se marean las patatas en rodajas gordas.",
-      "Se le echa el vino y el laurel y cuando las patatas estén casi tiernas se le echa el pimentón, perejil, guindilla y los mejillones( limpios).",
+      "Se le echa el vino y el laurel y cuando las patatas estén casi tiernas se le echa el pimentón, perejil, guindilla y los mejillones (limpios).",
       "Se tapa y se deja cocer."
     ],
     "tiempoNota": "Preparación activa estimada: 30 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Limpiar mejillones, pelar y cortar patatas, picar verduras y preparar sofrito."
@@ -793,7 +793,7 @@ const RECETAS = [
     ],
     "pasos": [
       "En una sartén dorar los dientes de ajo con un poco de aceite en el fondo.",
-      "Añadir el arroz y sofreir unos segundos.",
+      "Añadir el arroz y sofreír unos segundos.",
       "Cubrir con agua y desmenuzar una pastilla de avecrem.",
       "Cuando el agua se consuma añadir más e ir rectificando de agua y sal hasta que el arroz esté al gusto.",
       "Servir sólo o con tomate frito. Se puede acompañar de un huevo frito, salchichas..."
@@ -812,7 +812,7 @@ const RECETAS = [
       "2 calabacines",
       "2 berenjenas",
       "1 cebolla",
-      "4  pimientos verdes",
+      "4 pimientos verdes",
       "4 ó 5 tomates",
       "Tomate frito",
       "Aceite",
@@ -820,7 +820,7 @@ const RECETAS = [
     ],
     "pasos": [
       "Pelar y trocear la verdura.",
-      "Freír  cada cosa por separado.",
+      "Freír cada cosa por separado.",
       "En una sartén la cebolla, el pimiento y el tomate y en otra el calabacín y la berenjena.",
       "Se van poniendo en un escurridor para eliminar el aceite.",
       "Poner todo en una cacerola y añadir un buen chorreón de tomate Orlando y avecrem.",
@@ -963,8 +963,8 @@ const RECETAS = [
     "imagen": "",
     "ingredientes": [
       "Medio paquete de espaguetis",
-      "½  kg de carne picada",
-      "½  cebolla",
+      "½ kg de carne picada",
+      "½ cebolla",
       "1 pimiento",
       "1 diente de ajo",
       "Tomate frito",
@@ -976,7 +976,7 @@ const RECETAS = [
       "Pasado este tiempo, se cuela la pasta y se reserva.",
       "Picamos la cebolla y el pimiento.",
       "En una sartén se fríe la cebolla y una vez dorada se añade el pimiento.",
-      "En un bol ponemos la carne picada y  la salamos.",
+      "En un bol ponemos la carne picada y la salamos.",
       "Una vez dorada la cebolla añadimos la carne picada y cuando deje de estar cruda añadimos un chorreón de vino.",
       "Se dora todo junto unos minutos y luego añadimos el tomate frito.",
       "Mantenemos en el fuego y removemos bien.",
@@ -993,7 +993,7 @@ const RECETAS = [
     "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
-      "Espaguettis",
+      "Espaguetis",
       "300 grs de gambas frescas",
       "3 ó 4 dientes de ajo",
       "Aceite"
@@ -1003,7 +1003,7 @@ const RECETAS = [
       "Una vez cocidas se sacan y se cuela el agua.",
       "En ese agua se cuecen los espaguetis.",
       "Se sacan del agua cuando estén.",
-      "En una sartén  con un poco de aceite se doran los dientes de ajo.",
+      "En una sartén con un poco de aceite se doran los dientes de ajo.",
       "Se añaden las gambas a la sartén y se marean un poco.",
       "Se añaden los espaguetis y se marea todo junto un poco.",
       "Están listos para servir."
@@ -1082,9 +1082,9 @@ const RECETAS = [
     ],
     "pasos": [
       "Se cuecen las chirlas, gambas y calamares todo junto con sal durante unos 10’.",
-      "Se hace un sofrito con el ajo,la cebolla, pimiento y tomates y se pasa por el chino.",
+      "Se hace un sofrito con el ajo, la cebolla, pimiento y tomates y se pasa por el chino.",
       "Se cuela el agua de cocer las gambas, chirlas y calamares y se reserva.",
-      "Se pelan las gambas, chirlas y calamares y se reservan también.Algunas de las cabezas de gambas se sofríen un poco con aceite y se pasan por la minipimer con un poco de caldo y vino.",
+      "Se pelan las gambas, chirlas y calamares y se reservan también. Algunas de las cabezas de gambas se sofríen un poco con aceite y se pasan por la minipimer con un poco de caldo y vino.",
       "Se añade el sofrito al agua previamente colada y se cuece todo junto con medio vaso de vino blanco, el laurel, pimentón y el avecrem. Se mete en la olla unos veinte minutos.",
       "Añadimos las gambas, chirlas y calamares y cocemos un rato.",
       "Cuando haya hervido un poco y justo antes de comer cocer los espaguetis en ese caldo."
@@ -1110,11 +1110,11 @@ const RECETAS = [
     "pasos": [
       "Se ponen las placas en remojo mientras se cocinan el resto de los ingredientes.",
       "Se pica la cebolla finita y se dora.",
-      "Se salpimenta la carne y se añade al sofrito. Se sofrie un ratito hasta que la carne esté hecha. Se añade el tomate triturado y cuatro cucharadas de tomate frito.",
+      "Se salpimenta la carne y se añade al sofrito. Se sofríe un ratito hasta que la carne esté hecha. Se añade el tomate triturado y cuatro cucharadas de tomate frito.",
       "Se sofríe un poquito todo junto durante unos 10 minutos.",
       "Se sacan las placas del remojo y se secan.",
       "Se cubre el fondo de una fuente con una capa de pasta otra de carne, otra de pasta y otra de carne y se cubre con una capa final de pasta.",
-      "Se cubre con bechamel( se puede hacer o comprar hecha).",
+      "Se cubre con bechamel (se puede hacer o comprar hecha).",
       "Se le pone queso rallado por encima y se mete en el horno hasta que se gratine."
     ],
     "tiempoNota": "Preparación activa estimada: 40 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Preparar relleno y bechamel, secar placas y montar capas; horno excluido."
@@ -1136,8 +1136,8 @@ const RECETAS = [
     "pasos": [
       "Se dora la carne aliñada con sal ajo y pimienta, no mucho.",
       "Se añade fuera del fuego el paté y se remueve bien.",
-      "Se cuecen los canelones y se rellenan con la mezcla.( se puede añadir un poquito de tomate para que quede más jugoso).",
-      "Se cubre una fuente con un poquito de tomate( esto es opcional) y se van poniendo los canelones.",
+      "Se cuecen los canelones y se rellenan con la mezcla. (se puede añadir un poquito de tomate para que quede más jugoso).",
+      "Se cubre una fuente con un poquito de tomate (esto es opcional) y se van poniendo los canelones.",
       "Se hace una bechamel y se le echa por encima a los canelones con queso rallado y se gratina."
     ],
     "tiempoNota": "Preparación activa estimada: 45 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Dorar relleno, preparar y secar pasta, rellenar, hacer bechamel y montar gratinado."
@@ -1159,7 +1159,7 @@ const RECETAS = [
     "pasos": [
       "Se adereza la carne con un poco de sal.",
       "En una sartén con un poco de aceite se dora la cebolla.",
-      "Se añade la carne picada  y se le echa un poquito de tomate. Se marea durante unos minutos hasta que la carne esté hecha.",
+      "Se añade la carne picada y se le echa un poquito de tomate. Se marea durante unos minutos hasta que la carne esté hecha.",
       "En una cacerola se cuecen los canelones según las indicaciones del envase.",
       "Una vez cocidos y secos los canelones se extienden en un paño limpio y se van rellenando con la masa y enrollando."
     ],
@@ -1278,7 +1278,7 @@ const RECETAS = [
     "pasos": [
       "Se cuecen los huevos durante 15 minutos y se dejan enfriar.",
       "Cuando estén fríos se pelan y se les saca la yema.",
-      "Se hace una masa con con la yema, el jamón y un poquito de leche.",
+      "Se hace una masa con la yema, el jamón y un poquito de leche.",
       "Se cortan los huevos por la mitad y se rellenan con la masa anterior.",
       "Se pasan los huevos por harina y se fríen en aceite.",
       "Una vez fritos se reservan.",
@@ -1326,11 +1326,11 @@ const RECETAS = [
     "pasos": [
       "Se cuecen los huevos duros en bastante agua durante unos 15 minutos desde que empieza a hervir el agua.",
       "Se apartan y se dejan enfriar.",
-      "Una vez fríos se pelan  y se abren por la mitad.",
+      "Una vez fríos se pelan y se abren por la mitad.",
       "Se sacan las yemas y se ponen en un bol junto con el bonito, un chorrito de leche y otro de tomate. Reservamos una para decorar.",
       "Se mezcla todo bien y se rellenan los huevos.",
       "Se van poniendo en una fuente.",
-      "Se añade la mayonesa por encima de cada huevo.  Se ralla la yema de huevo reservada por encima y se decoran con aceitunas pimiento rojo…",
+      "Se añade la mayonesa por encima de cada huevo. Se ralla la yema de huevo reservada por encima y se decoran con aceitunas pimiento rojo…",
       "Se mete en la nevera y se deja enfriar.",
       "Se puede cambiar el atún por salmón ahumado y paté de salmón."
     ],
@@ -1355,11 +1355,11 @@ const RECETAS = [
       "2 huevos duros cocidos"
     ],
     "pasos": [
-      "Se extiende la carne y se pone a carne picada en medio en una tira y entre medias se añade el jamón en tiras y el huevo duro en rodajas.",
+      "Se extiende la carne y se pone la carne picada en medio en una tira y entre medias se añade el jamón en tiras y el huevo duro en rodajas.",
       "Se enrolla bien y se atan con un cordel y en los extremos se pone un palillo.",
       "Se marea el rollo solo.",
       "Se dora cebolla, vino y ajo y cuando esté dorado se añade el rollo que se marea.",
-      "Se mete en la olla a presión tres cuartos de hora, se pasa la salsa y se deja que se enfría la carne antes de cortarlo y se sirve."
+      "Se mete en la olla a presión tres cuartos de hora, se pasa la salsa y se deja que se enfríe la carne antes de cortarlo y se sirve."
     ],
     "tiempoNota": "Preparación activa estimada: 45 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Preparar relleno, extender y atar aleta, sellar, hacer sofrito, triturar salsa y cortar."
   },
@@ -1381,8 +1381,8 @@ const RECETAS = [
       "Sal y pimienta"
     ],
     "pasos": [
-      "Se salpimenta y se dora la carne. Se dora la  cebolla y los dientes de ajo muy picados.",
-      "Se rehoga con la carne en la sartén unos diez minutos y se añade el tomate, el laurel, el vino  y medio vaso de agua.",
+      "Se salpimenta y se dora la carne. Se dora la cebolla y los dientes de ajo muy picados.",
+      "Se rehoga con la carne en la sartén unos diez minutos y se añade el tomate, el laurel, el vino y medio vaso de agua.",
       "Se cuece a fuego lento 40 minutos, o se mete en la olla unos 20 minutos para asegurarnos de que la carne quede tierna.",
       "Se sirve acompañada de patatas fritas, puré de patatas o asadas."
     ],
@@ -1457,7 +1457,7 @@ const RECETAS = [
       "Se añade un chorreón de aceite.",
       "Se pica ajo y se le echa por encima a la carne.",
       "Se añade un chorreón de coñac u oporto.",
-      "Se disuelve una pastilla de avecrem en agua y se le echa a la carne  cuando se haya evaporado el alcohol.",
+      "Se disuelve una pastilla de avecrem en agua y se le echa a la carne cuando se haya evaporado el alcohol.",
       "Después de una media hora se saca del horno y se corta en rodajas."
     ],
     "tiempoNota": "Preparación activa estimada: 15 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Limpiar y sazonar pieza, picar ajo, montar fuente, incorporar líquidos y cortar."
@@ -1507,7 +1507,7 @@ const RECETAS = [
       "En un bol se pone la carne picada, se salpimenta y se le pica un diente de ajo pequeño, dos huevos batidos, un chorrito de vino y tres puñados de pan rallado.",
       "Se mezcla todo bien y se deja reposar un poco.",
       "Se hace una bola grande alargada y se pasa por harina.",
-      "Se dora la cebolla en una cacerola con un poco de aceite y cuando esté dorada se añade la carne y se sofrie con la cebolla.",
+      "Se dora la cebolla en una cacerola con un poco de aceite y cuando esté dorada se añade la carne y se sofríe con la cebolla.",
       "Se añade un vaso de vino blanco y se deja evaporar.",
       "Pasamos a la olla con agua y una pastilla de avecrem y se cierra.",
       "Se tiene a fuego una vez que suba la pesa unos 15 minutos.",
@@ -1553,7 +1553,7 @@ const RECETAS = [
     "pasos": [
       "Se limpia la carne de la grasa más gorda.",
       "Se cubre una fuente con parte de la sal y se coloca la carne con el resto de la sal de manera que quede bien cubierta.",
-      "Se mete en el horno hasta que la sal se vaya abriendo.Se pincha la carne, si sale sangre es que no está.",
+      "Se mete en el horno hasta que la sal se vaya abriendo. Se pincha la carne, si sale sangre es que no está.",
       "Se saca la carne de la sal y se corta en rodajas.",
       "Se puede servir con puré de manzana, ensalada de pimientos..."
     ],
@@ -1602,7 +1602,7 @@ const RECETAS = [
     ],
     "pasos": [
       "Se unta el cordero con el vinagre y la sal.",
-      "Se maja bastante ajo ( no una cabeza entera), limón y aceite.",
+      "Se maja bastante ajo (no una cabeza entera), limón y aceite.",
       "Se unta bien el cordero con ello.",
       "Se deja macerar unas cuantas horas.",
       "Se pone el cordero en una fuente de horno con un chorreón de aceite.",
@@ -1631,7 +1631,7 @@ const RECETAS = [
       "Una patata por persona"
     ],
     "pasos": [
-      "Se pone el  horno arriba y abajo muy fuerte.",
+      "Se pone el horno arriba y abajo muy fuerte.",
       "Se pone el cordero en una fuente de barro untado con sal y aceite.",
       "Se achicharra en el horno y se le da la vuelta.",
       "En un cazo se pone una cebolla cortada en cuatro, un cabeza de ajo sin pelar, una hoja de laurel, un chorreón de vinagre (medio vaso) con agua y se tiene hirviendo unos cinco minutos.",
@@ -1682,11 +1682,11 @@ const RECETAS = [
       "½ vaso de vino blanco"
     ],
     "pasos": [
-      "En un perol se pone un chorro de aceite, una cebolla grande troceada y unos seis dientes de ajo enteros.Se dora todo bien.",
+      "En un perol se pone un chorro de aceite, una cebolla grande troceada y unos seis dientes de ajo enteros. Se dora todo bien.",
       "Se añade la carne y se marea hasta dorarse.",
       "Se añade el vaso de vino blanco y se deja al fuego unos 5 minutos para que se evapore el vino.",
       "Se pone todo en la olla a presión y se añade agua cubriendo un poquito la carne durante 30 minutos.",
-      "Se pasa la salsa.Este mismo guiso sirve para el pollo y el albondigón."
+      "Se pasa la salsa. Este mismo guiso sirve para el pollo y el albondigón."
     ],
     "tiempoNota": "Preparación activa estimada: 30 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Preparar y dorar verduras y carne, incorporar vino, montar olla y triturar salsa."
   },
@@ -1759,7 +1759,7 @@ const RECETAS = [
       "Huevo"
     ],
     "pasos": [
-      "Se adereza  la carne con sal  y se pasa por el huevo y el pan rallado.",
+      "Se adereza la carne con sal y se pasa por el huevo y el pan rallado.",
       "Se fríe en abundante aceite."
     ],
     "tiempoNota": "Preparación activa estimada: 20 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Sazonar, pasar por huevo y pan y freír una tanda doméstica."
@@ -1805,10 +1805,10 @@ const RECETAS = [
       "Majado de aceite, ajo, perejil y coñac o vino y pimienta (opcional)"
     ],
     "pasos": [
-      "Se unta la carne con el majado o se salpimenta solo.Si hemos elegido la opción del majado dejamos macerar un poco.",
+      "Se unta la carne con el majado o se salpimenta solo. Si hemos elegido la opción del majado dejamos macerar un poco.",
       "Se pone la carne en el horno alto a tope por arriba y por abajo en la rejilla con un chorreón de aceite si no hemos añadido el majado.",
       "En la parte de abajo del horno en la bandeja se pone una cebolla troceada.",
-      "Después de 15 minutos  se da la vuelta a la carne y se le echa otro chorreón de aceite otros 15 minutos.",
+      "Después de 15 minutos se da la vuelta a la carne y se le echa otro chorreón de aceite otros 15 minutos.",
       "Se apaga el horno y se baja la rejilla a la altura mínima dejando la carne dentro con el horno apagado unos 20 minutos.",
       "Se saca la cebolla y se hace una salsa con ella añadiendo agua y avecrem si hace falta. Se pasa la salsa.",
       "Pasados los 20 minutos se saca la carne y se deja enfriar. se sirve en rodajas con la salsa aparte."
@@ -1923,7 +1923,7 @@ const RECETAS = [
     "pasos": [
       "Se doran los ajos y la cebolla con un poco de aceite, y una vez dorados se retiran y en ese aceite se sella la carne.",
       "Se añade vino tinto y vino blanco y el laurel y se dejan al fuego hasta que se evapore.",
-      "Se mete en el horno con un poquito de aguauna media hora.",
+      "Se mete en el horno con un poquito de agua una media hora.",
       "Se ponen alrededor unas patatas cocidas previamente doradas con sal, avecrem, ajo en polvo y perejil."
     ],
     "tiempoNota": "Preparación activa estimada: 30 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Picar y dorar verduras, sellar carne, preparar líquidos y atender dorado de patatas."
@@ -1970,10 +1970,10 @@ const RECETAS = [
       "Avecrem"
     ],
     "pasos": [
-      "Se salpimenta el pollo y se sofrie con varios ajos picados en una sartén bien cubierta con aceite.",
+      "Se salpimenta el pollo y se sofríe con varios ajos picados en una sartén bien cubierta con aceite.",
       "Cuando estén dorados se apartan.",
       "En ese mismo aceite se dora la cebolla previamente picada.",
-      "Cuando esté dorada se le añade el pollo y el  vino blanco que se deja evaporar unos minutos.",
+      "Cuando esté dorada se le añade el pollo y el vino blanco que se deja evaporar unos minutos.",
       "Añadimos luego agua hasta cubrirlo y avecrem. Se deja cocer un buen rato o se mete en la olla a presión."
     ],
     "tiempoNota": "Preparación activa estimada: 30 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Preparar y dorar pollo por tandas, picar y dorar cebolla y montar salsa."
@@ -1996,9 +1996,9 @@ const RECETAS = [
     ],
     "pasos": [
       "Precalentamos el horno unos 10 minutos.",
-      "Se salpimenta el pollo y se  mete un limón y la pastilla de avecrem en su interior.",
+      "Se salpimenta el pollo y se mete un limón y la pastilla de avecrem en su interior.",
       "Se pone en una fuente de horno y se embadurna bien con aceite y el vaso de vino.",
-      "Metemos en el horno unos 90  minutos a horno fuerte al principio y luego un poco más suave."
+      "Metemos en el horno unos 90 minutos a horno fuerte al principio y luego un poco más suave."
     ],
     "tiempoNota": "Preparación activa estimada: 15 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Preparar y sazonar pollo, introducir limón y montar fuente; trinchar al servir."
   },
@@ -2019,7 +2019,7 @@ const RECETAS = [
     "pasos": [
       "Precalentamos el horno unos 10 minutos.",
       "Se salpimenta el pollo y se pone en una fuente de horno y se embadurna bien con el sobre de sopa de cebolla, el aceite y el vaso de vino.",
-      "Metemos en el horno unos 60  minutos a horno fuerte al principio y luego un poco más suave."
+      "Metemos en el horno unos 60 minutos a horno fuerte al principio y luego un poco más suave."
     ],
     "tiempoNota": "Preparación activa estimada: 10 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Sazonar pollo troceado y repartir sobre, aceite y vino en la fuente."
   },
@@ -2042,7 +2042,7 @@ const RECETAS = [
       "Precalentamos el horno unos 10 minutos.",
       "Hacemos un majado con el ajo, el perejil y aceite.",
       "Se salpimenta el pollo y con un pincel se unta con el majado anterior.",
-      "Se pone en una fuente de horno, añadimos el vino y  metemos  en el horno unos 60 minutos a horno fuerte al principio y luego un poco más suave."
+      "Se pone en una fuente de horno, añadimos el vino y metemos en el horno unos 60 minutos a horno fuerte al principio y luego un poco más suave."
     ],
     "tiempoNota": "Preparación activa estimada: 20 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Preparar majado, sazonar y pincelar pollo, montar fuente y trinchar."
   },
@@ -2064,7 +2064,7 @@ const RECETAS = [
     "pasos": [
       "Se limpia bien el pollo y se salpimenta.",
       "Se embadurna el pollo troceado con cuatro dientes de ajo y se tiene un rato.",
-      "Una vez dorado se fríen tres o cuatro  dientes de  ajo.",
+      "Una vez dorado se fríen tres o cuatro dientes de ajo.",
       "En el vaso de la batidora se añade un diente crudo, una cerveza y un yogur natural. Se bate todo.",
       "Se vierte la salsa en la cacerola y se añade el pollo.",
       "Se tiene cociendo un buen rato."
@@ -2111,8 +2111,8 @@ const RECETAS = [
     ],
     "pasos": [
       "Se dejan los higos en maceración con el vino de oporto en un recipiente bien cerrado durante 36 horas.",
-      "Se dora el pavo con aceite y mantequilla durante  se riega con el vino y los higos hasta que el vino se vaya consumiendo.",
-      "Se mezcla con un caldo hecho con ½ litro de agua y avecrem y se mete en el horno precalentado  a 150 grados durante 45 minutos.",
+      "Se dora el pavo con aceite y mantequilla durante se riega con el vino y los higos hasta que el vino se vaya consumiendo.",
+      "Se mezcla con un caldo hecho con ½ litro de agua y avecrem y se mete en el horno precalentado a 150 grados durante 45 minutos.",
       "Si la salsa queda clara se le añade un poco de maizena."
     ],
     "tiempoNota": "Preparación activa estimada: 30 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Preparar maceración, dorar pavo, atender reducción, montar fuente, ligar salsa y cortar."
@@ -2133,7 +2133,7 @@ const RECETAS = [
       "Aceite"
     ],
     "pasos": [
-      "Se pocha/fríe  la cebolla a fuego lento hasta que esté blandita pero no dorada.",
+      "Se pocha/fríe la cebolla a fuego lento hasta que esté blandita pero no dorada.",
       "En esa sartén se añade el salmón y se mezcla todo bien.",
       "Se añade el zumo de una naranja y se tiene cociendo a fuego lento 15 minutos hasta que la naranja se consuma.",
       "Se sirve acompañado de unas patatitas cocidas."
@@ -2179,7 +2179,7 @@ const RECETAS = [
       "Un vaso de vino blanco"
     ],
     "pasos": [
-      "Se limpian bien los calamares quitando la piel y el interior.Se le da la vuelta y se lava bien bajo el grifo.",
+      "Se limpian bien los calamares quitando la piel y el interior. Se le da la vuelta y se lava bien bajo el grifo.",
       "Se trocean y se salan.",
       "Se hace un sofrito con la cebolla muy picada, (el tomate y el pimiento) y cuando esté dorada se echan los calamares y el vino y se tienen cociendo un ratito.",
       "Si está flojo de sabor, se puede añadir un chorreón de tomate frito.",
@@ -2260,7 +2260,7 @@ const RECETAS = [
     "pasos": [
       "Se fríen las patatas con la cebolla cortada en tiras.",
       "Se cuece la raspa y la cabeza.",
-      "Se pone en una fuente las patatas con la  cebolla, la pescada, avecrem, perejil, el aceite de freír las patatas y el vino blanco.",
+      "Se pone en una fuente las patatas con la cebolla, la pescada, avecrem, perejil, el aceite de freír las patatas y el vino blanco.",
       "Justo antes de comer se le echa el caldo de cocer la raspa y se cuece un ratito."
     ],
     "tiempoNota": "Preparación activa estimada: 35 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Preparar pescado y espinas, cortar y freír patatas y cebolla, colar caldo y montar fuente."
@@ -2284,7 +2284,7 @@ const RECETAS = [
     "pasos": [
       "Se limpia el pescado y se sala.",
       "Se unta la bandeja del horno con aceite.",
-      "Se frien un poco las patatas y una vez fritas se ponen en la fuente.",
+      "Se fríen un poco las patatas y una vez fritas se ponen en la fuente.",
       "Se pone el pescado en la fuente sobre las patatas y se echa el zumo de limón, aceite y vino además de ½ pastilla de avecrem.",
       "Se mete en el horno no más de 30 minutos."
     ],
@@ -2310,7 +2310,7 @@ const RECETAS = [
     "pasos": [
       "Se limpia el pescado y se sala y se le mete dentro un trozo de tomate partido. Se hace un par de rajas en el lomo del pescado y se mete un gajo de limón en cada una de ellas.",
       "Se unta la bandeja del horno con aceite.",
-      "Se frien un poco las patatas con la cebolla cortada en gajos y una vez fritas se ponen en la fuente.",
+      "Se fríen un poco las patatas con la cebolla cortada en gajos y una vez fritas se ponen en la fuente.",
       "Se pone el pescado en la fuente sobre las patatas y se echa el zumo de limón, tres dientes de ajo picados, aceite perejil.",
       "Se mete en el horno no más de 30 minutos."
     ],
@@ -2333,7 +2333,7 @@ const RECETAS = [
       "Avecrem de pescado"
     ],
     "pasos": [
-      "Se sofrie la cebolla y se pasa por la batidora.",
+      "Se sofríe la cebolla y se pasa por la batidora.",
       "Se sala el pescado y se pone en la fuente.",
       "Echamos la salsa por encima, una cucharada de tomate frito sobre cada trozo de pescado.",
       "Se mete en el horno 20 minutos a 200 ºC."
@@ -2368,11 +2368,11 @@ const RECETAS = [
       "Sal y aceite"
     ],
     "pasos": [
-      "Precalentar el horno a 180º\n2.Partimos la cebolla en juliana y formamos una cama esparciéndola por la bandeja.\n3.Hacemos lo mismo con el pimiento la patata y el tomate, éstos últimos en rodajitas.\n4.En un frasco mezclamos y agitamos, el aceite, el agua, la sal (al gusto), el orégano y el vino. Lo vertemos por la bandeja regando las verduras.\n5.Ponemos la bandeja al horno unos 10 minutos.\n6.Una vez metida la bandeja de las verduras en el horno nos disponemos a \"arreglar\" las lubinas así que cuando las compremos le decimos al pescadero que nos las arregle para horno, esto es, escamarlas y quitarles el interior.\n7.Les hacemos dos hendiduras transversales (hasta la raspa) y en oblicuo (se ve mejor presentado el limón) y salpimentamos con el molinillo.\n8.Transcurridos los 10 minutos abrimos el horno y extraemos la bandeja hacia fuera colocando las lubinas en ella.\n9.Cerramos el horno y lo dejamos unos 20 minutos o hasta que está a nuestro gusto (hay gente que les gusta más tostada). Y a disfrutar con un buen vino blanco. Buen provecho.",
+      "Precalentar el horno a 180º\n2. Partimos la cebolla en juliana y formamos una cama esparciéndola por la bandeja.\n3. Hacemos lo mismo con el pimiento la patata y el tomate, éstos últimos en rodajitas.\n4. En un frasco mezclamos y agitamos, el aceite, el agua, la sal (al gusto), el orégano y el vino. Lo vertemos por la bandeja regando las verduras.\n5. Ponemos la bandeja al horno unos 10 minutos.\n6. Una vez metida la bandeja de las verduras en el horno nos disponemos a \"arreglar\" las lubinas así que cuando las compremos le decimos al pescadero que nos las arregle para horno, esto es, escamarlas y quitarles el interior.\n7. Les hacemos dos hendiduras transversales (hasta la raspa) y en oblicuo (se ve mejor presentado el limón) y salpimentamos con el molinillo.\n8. Transcurridos los 10 minutos abrimos el horno y extraemos la bandeja hacia fuera colocando las lubinas en ella.\n9. Cerramos el horno y lo dejamos unos 20 minutos o hasta que está a nuestro gusto (hay gente que les gusta más tostada). Y a disfrutar con un buen vino blanco. Buen provecho.",
       "Lubina al champán",
       "Se cuece el pescado al vapor 5 minutos",
-      "Salsa(textura mayonesa)",
-      "Un huevo entero y una yema, medio limón, sal , champán poco a poco, chorrito de aceite muy poco a poco alternando mientras se bate con varilla",
+      "Salsa (textura mayonesa)",
+      "Un huevo entero y una yema, medio limón, sal, champán poco a poco, chorrito de aceite muy poco a poco alternando mientras se bate con varilla",
       "Se saca el pescado y se le quita la piel",
       "Se pone el pescado en una fuente",
       "Se pone por encima la salsa y se gratina fuerte hasta que tenga un ligero tono dorado."
@@ -2394,7 +2394,7 @@ const RECETAS = [
       "Aceite"
     ],
     "pasos": [
-      "Se ponen los ajos picados en el aceite caliente y justo antes de que se doren se añaden las chirla  con sal.",
+      "Se ponen los ajos picados en el aceite caliente y justo antes de que se doren se añaden las chirla con sal.",
       "Cuando se han abierto un poco se añade el vino y se dejan cocer hasta que se abren del todo y el vino se ha evaporado.."
     ],
     "tiempoNota": "Preparación activa estimada: 15 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Lavar y escurrir chirlas, picar ajos y atender apertura y salsa de vino."
@@ -2419,14 +2419,14 @@ const RECETAS = [
     "pasos": [
       "En una sartén se pone un poco de aceite, que la cubra.",
       "Se pica la cebolla y se pone blanda en ese aceite sin dejar que se dore.",
-      "Se añade el tomate frito, unas tres o cuatro cucharadas y se sofrie todo un rato.",
+      "Se añade el tomate frito, unas tres o cuatro cucharadas y se sofríe todo un rato.",
       "Cuando esté listo (el aceite del tomate sube a la superficie), se aparta del fuego y se mezcla en un bol con el atún bien picadito.",
       "A esa mezcla le añadimos un huevo duro muy picado y pimiento rojo también muy troceado.",
       "En una superficie limpia y plana extendemos las obleas sin quitarles el papel que las protege aún para evitar que se resequen.",
       "Se pone una cucharada de la mezcla anterior en el centro de cada oblea y se doblan sobre sí mismas, cuidando que no se salga la masa.",
       "Con un tenedor vamos sellando cada oblea presionando los bordes con las púas del tenedor.",
-      "Se pone bastante aceite a calentar en una sartén y se quita el papel protector y se van van friendo.",
-      "Se pueden cocinar también en el horno precalentado a 180 grados durante unos 10 minutos, pintandolas previamente con una yema de huevo batida."
+      "Se pone bastante aceite a calentar en una sartén y se quita el papel protector y se van friendo.",
+      "Se pueden cocinar también en el horno precalentado a 180 grados durante unos 10 minutos, pintándolas previamente con una yema de huevo batida."
     ],
     "tiempoNota": "Preparación activa estimada: 40 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Picar y atender sofrito, preparar y pelar huevo, mezclar, rellenar, sellar y freír por tandas."
   },
@@ -2448,7 +2448,7 @@ const RECETAS = [
     "pasos": [
       "Se dora la cebolla y una vez dorada se echa el jamón. Se sofríe unos minutos.",
       "En una cacerola aparte se pone un poco de aceite y un trozo de mantequilla (esto es opcional).",
-      "Se añade la harina y se sofrie un poco.",
+      "Se añade la harina y se sofríe un poco.",
       "Añadimos la leche poco a poco y vamos moviendo bien deshaciendo grumos. Si los grumos no se deshacen se bate la mezcla con la minipimer.",
       "Cuando esta mezcla esté trabada, se añaden la cebolla y el jamón y se remueve todo bien durante un buen rato.",
       "Cuando la masa se separe del fondo y de las paredes de la cacerola quiere decir que está lista.",
@@ -2478,7 +2478,7 @@ const RECETAS = [
       "Se cortan por la mitad.",
       "En un plato se pone un poco de leche y se empapan los sándwiches en la leche.",
       "Se escurren bien y luego se pasan por huevo previamente batido en un plato.",
-      "Mientras tanto se ha puesto bastante aceite en una sartén. Cuando esté caliente el aceite se van friendo los sandwiches.",
+      "Mientras tanto se ha puesto bastante aceite en una sartén. Cuando esté caliente el aceite se van friendo los sándwiches.",
       "Se ponen en una fuente sobre papel de cocina para que absorba el aceite y se sirve con patatas fritas o ensalada."
     ],
     "tiempoNota": "Preparación activa estimada: 25 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Montar sándwiches, cortar, bañar, escurrir y freír por tandas."
@@ -2492,10 +2492,10 @@ const RECETAS = [
     "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
-      "2 láminas de hojaldre\n4 latas de atún de 80 gramos (de peso neto)(el peso escurrido es de 56 gramos)\n3 cebollas medianas\n1 pimiento rojo (de los gordos para asar)\n1 pimiento verde italiano (de los alargados para sofrito)\n2 tomates grandes maduros\n3 dientes de ajo\n1 cucharada pequeña de pimentón (del normal o dulce)\n1/2 vaso de aceite de girasol (unos 125 ml)\nSal y pimienta negra molida"
+      "2 láminas de hojaldre\n4 latas de atún de 80 gramos (de peso neto) (el peso escurrido es de 56 gramos)\n3 cebollas medianas\n1 pimiento rojo (de los gordos para asar)\n1 pimiento verde italiano (de los alargados para sofrito)\n2 tomates grandes maduros\n3 dientes de ajo\n1 cucharada pequeña de pimentón (del normal o dulce)\n1/2 vaso de aceite de girasol (unos 125 ml)\nSal y pimienta negra molida"
     ],
     "pasos": [
-      "Pela la cebolla y trocéala. Limpia los pimientos y trocéalos. Pela los ajos y córtalos en rodajas. Pon en una sartén el aceite y añade todas la cebolla, los pimientos, el ajo y media cuchara pequeña con sal. Deja que se pochen todas las verduras a fuego medio",
+      "Pela la cebolla y trocéala. Limpia los pimientos y trocéalos. Pela los ajos y córtalos en rodajas. Pon en una sartén el aceite y añade toda la cebolla, los pimientos, el ajo y media cuchara pequeña con sal. Deja que se pochen todas las verduras a fuego medio",
       "Mientras se pochan las verduras pela los tomates, quítales las semillas y pícalos muy finos. Cuando las verduras estén en su punto añade el pimentón (opcional), remueve durante unos segundos y añade el tomate. Deja al fuego unos 5 minutos.",
       "Pon el atún a escurrir y cuando hayan pasado los 5 minutos lo añadimos al sofrito y removemos bien. Prueba de sal y si hace falta añade un poco más. Si te gusta puedes añadir una pizca de pimienta negra molida.",
       "Coloca un colador sobre un bol grande y vuelca sobre el colador el sofrito. Queremos separar el aceite (para pintar luego la empanada) y que el sofrito quede menos aceitoso.",
@@ -2508,7 +2508,7 @@ const RECETAS = [
   {
     "id": "sandwich-club",
     "categoria": "otros",
-    "titulo": "Sandwich Club",
+    "titulo": "Sándwich Club",
     "autor": "",
     "tiempo": "25 min",
     "dificultad": "Fácil",
@@ -2524,8 +2524,8 @@ const RECETAS = [
     ],
     "pasos": [
       "Se tuestan un poco las rebanadas y se untan con un poquito de mayonesa.",
-      "Sobre una de las rebanadas de pone un poco de lechuga, varias rodajas de tomate, una loncha de queso y una de jamón york.",
-      "Se cubre con otra rebanada y encima ponemos otro poco de mayonesa un filete de pechuga previamente frito a la plancha y una par de lonchas de bacon también fritas.",
+      "Sobre una de las rebanadas se pone un poco de lechuga, varias rodajas de tomate, una loncha de queso y una de jamón york.",
+      "Se cubre con otra rebanada y encima ponemos otro poco de mayonesa un filete de pechuga previamente frito a la plancha y un par de lonchas de bacon también fritas.",
       "Cubrimos con la tercera loncha y cortamos en cuatro triángulos.",
       "Servir con patatas fritas."
     ],
@@ -2549,7 +2549,7 @@ const RECETAS = [
     "pasos": [
       "Se pone el horno a precalentar durante unos 10 minutos a unos 200 grados.",
       "Mientras tanto cortamos una barra de pan o baguette en varios trozos como para bocadillo dependiendo del número de comensales.",
-      "Se abre cada trozo en dos mitades y se extiende tomate frito, una loncha de queso suave y encima ponemos lo que queramos: jamón york picado, atún, salchichas...y se cubre con queso rallado.",
+      "Se abre cada trozo en dos mitades y se extiende tomate frito, una loncha de queso suave y encima ponemos lo que queramos: jamón york picado, atún, salchichas... y se cubre con queso rallado.",
       "Se mete en la bandeja del horno y se tiene ahí unos 10-15 minutos hasta que veamos que el queso esté dorado.",
       "Podemos servir acompañados de una ensalada."
     ],
@@ -2572,7 +2572,7 @@ const RECETAS = [
       "Sazonador (viene en el burrito kit) o si se compra aparte.",
       "Lechuga",
       "Tomate",
-      "Guacamole ( Mercadona tiene uno muy rico)"
+      "Guacamole (Mercadona tiene uno muy rico)"
     ],
     "pasos": [
       "Pelamos y cortamos la cebolla en juliana (en tiras finas).",
@@ -2609,7 +2609,7 @@ const RECETAS = [
       "Se deja macerando un par de horas",
       "Se precalienta el horno unos 20 minutos y se mete la pechuga unos 15 minutos a 250 grados arriba y abajo.",
       "Una vez pasado ese tiempo se apaga el horno y se deja dentro unas tres horas o toda la noche.",
-      "E trincha en filetes muy finos y se trocea.",
+      "Se trincha en filetes muy finos y se trocea.",
       "Se pone en una sartén y se dora un poco. Añadimos el jugo que ha soltado el pollo en el horno.",
       "Se abre el pan de pita y se añade una base de salsa de yogur, lechuga, tomate, cebolla y el pollo. Se envuelve todo bien y a comer."
     ],
@@ -2657,7 +2657,7 @@ const RECETAS = [
     "pasos": [
       "Se pone el horno a precalentar a 250 grados.",
       "Se hace una mezcla con todos los ingredientes anteriores.",
-      "Se unta  un molde con un poco de mantequilla y se vierte la mezcla anterior.",
+      "Se unta un molde con un poco de mantequilla y se vierte la mezcla anterior.",
       "Se mete en el horno y una vez que la mezcla ha subido se baja a 150 grados por arriba y por abajo unos 40 minutos controlando cada poco tiempo pinchando hasta comprobar que no está crudo.",
       "En último lugar se pone el grill un poco para que se dore un poquito."
     ],

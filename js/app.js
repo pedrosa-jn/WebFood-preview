@@ -112,26 +112,30 @@ function esRutaInicio(url) {
 	return url.pathname.endsWith('/') || /(?:^|\/)index\.html$/.test(url.pathname);
 }
 
-function navbarCuentaArtwork(mobile) { return mobile ? `<svg aria-hidden="true" focusable="false" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 177.99 29.47">
+function navbarCuentaArtwork(mobile) { return mobile ? `<svg aria-hidden="true" focusable="false" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 169.02 59.87">
   <defs>
     <style>
-      .NavMobile-1 {
-        fill: #911a1c;
-        font-family: 'Marker Aid';
-        font-size: 25.99px;
+      .MobileCtaV2-1 {
+        fill: #8b0000;
+        font-family: MarkerAid-Regular, 'Marker Aid';
+        font-size: 32.65px;
       }
 
-      .NavMobile-2 {
-        letter-spacing: 0em;
+      .MobileCtaV2-2 {
+        letter-spacing: -.03em;
       }
 
-      .NavMobile-3 {
+      .MobileCtaV2-3 {
+        letter-spacing: .02em;
+      }
+
+      .MobileCtaV2-4 {
         letter-spacing: .02em;
       }
     </style>
   </defs>
-  <g data-name="Layer 9">
-    <g transform="translate(0 23.62)"><text class="NavMobile-1 NavMobile-3" data-reveal-word="" style="--word:0" x="0">¿Postre</text><text class="NavMobile-1 NavMobile-3" data-reveal-word="" style="--word:1" x="94.48">o</text><text class="NavMobile-1" data-reveal-word="" style="--word:2"><tspan class="NavMobile-2" x="115.36" y="0">c</tspan><tspan class="NavMobile-3" x="128.26" y="0">afé?</tspan></text></g>
+  <g data-name="Menu">
+    <g transform="translate(23.65 27.83)"><text class="MobileCtaV2-1 MobileCtaV2-3" data-reveal-word="" style="--word:0" x="0" y="0">un</text><text class="MobileCtaV2-1 MobileCtaV2-3" data-reveal-word="" style="--word:1" x="47.05" y="0">cafe</text><text class="MobileCtaV2-1 MobileCtaV2-4" data-reveal-word="" style="--word:2" x="-23.49" y="24.69">y</text><text class="MobileCtaV2-1 MobileCtaV2-4" data-reveal-word="" style="--word:3" x="2.47" y="24.69">la</text><text class="MobileCtaV2-1" data-reveal-word="" style="--word:4"><tspan class="MobileCtaV2-4" x="44.44" y="24.69">cuen</tspan><tspan class="MobileCtaV2-2" x="113.07" y="24.69">t</tspan><tspan class="MobileCtaV2-3" x="125.55" y="24.69">a</tspan></text></g>
   </g>
 </svg>` : `<svg aria-hidden="true" focusable="false" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82.35 57.02">
   <defs>
@@ -145,7 +149,7 @@ function navbarCuentaArtwork(mobile) { return mobile ? `<svg aria-hidden="true" 
       }
 
       .NavDesktop-3 {
-        fill: #911a1c;
+        fill: #8b0000;
         font-family: 'Marker Aid';
       }
 
@@ -189,7 +193,7 @@ function renderizarMenu(categoriaActiva) {
 
 	if (menuDesktop) {
 		menuDesktop.innerHTML = CATEGORIAS.map(categoria => `
-			<a href="${urlCategoria(categoria.id)}" data-categoria="${textoSeguro(categoria.id)}"${categoria.id === categoriaActiva ? ' class="activo" aria-current="page"' : ''}>${textoSeguro(categoria.nombre)}<span class="NavStroke" aria-hidden="true" style="--stroke:url('../images/navbar/stroke-${({salsas:0,frios:8,guisos:6,pasta:1,carnes:4,pescado:3,huevos:9,otros:2,postres:7})[categoria.id]??0}.svg')"></span></a>`).join('');
+			<a href="${urlCategoria(categoria.id)}" data-categoria="${textoSeguro(categoria.id)}"${categoria.id === categoriaActiva ? ' class="activo" aria-current="page"' : ''}>${textoSeguro(categoria.nombre)}<span class="NavStroke" aria-hidden="true" style="--stroke:url('../images/navbar/stroke-${({salsas:0,frios:8,guisos:6,pasta:1,carnes:4,pescado:3,huevos:9,otros:2,postres:7})[categoria.id]??0}.svg?v=burgundy-20261118')"></span></a>`).join('');
 
 		menuDesktop.insertAdjacentHTML('beforeend', `<a class="MenuCuenta" href="./participa.html" aria-label="La Cuenta">${navbarCuentaArtwork(false)}</a>`);
 		const activo = menuDesktop.querySelector('.MenuDesktop a.activo');
@@ -251,7 +255,7 @@ function renderizarMenu(categoriaActiva) {
 				<span class="MenuMobile_Numero">${dosDigitos(indice + 1)}</span>
 				<span class="MenuMobile_Nombre">${textoSeguro(categoria.nombre)}</span>
 			</a>`).join('');
-		menuMobile.insertAdjacentHTML('beforeend', `<a class="MenuCuenta" href="./participa.html" aria-label="La Cuenta">${navbarCuentaArtwork(true)}</a>`);
+		menuMobile.insertAdjacentHTML('beforeend', `<a class="MenuCuenta" href="./participa.html" aria-label="Un café y la cuenta">${navbarCuentaArtwork(true)}</a>`);
 	}
 }
 
@@ -571,7 +575,9 @@ function renderizarRecetas() {
 	const titulo = document.getElementById('CatTitulo');
 	document.title = `${categoria.nombre} · Cuaderno de recetas`;
 	titulo.innerHTML = `<span>${textoSeguro(categoria.nombre.toLocaleLowerCase('es'))}</span>${textoSeguro(categoria.nombre)}<span>${textoSeguro(categoria.nombre.toLocaleLowerCase('es'))}</span>`;
-	const recetas = RECETAS.filter(receta => receta.categoria === categoria.id);
+	const ordenRecetas = new Intl.Collator('es', { sensitivity: 'base', numeric: true });
+	const recetas = RECETAS.filter(receta => receta.categoria === categoria.id)
+		.sort((a, b) => ordenRecetas.compare(a.titulo, b.titulo) || ordenRecetas.compare(a.autor || '', b.autor || ''));
 	rejilla.dataset.categoria = categoria.id;
 	rejilla.classList.toggle('Recetas--compactas', recetas.length < 8);
 	if (!recetas.length) {
@@ -746,7 +752,7 @@ function iniciarBuscador() {
 		nombre: [receta.titulo, receta.autor].filter(Boolean).join(' '),
 		id: receta.id,
 		categoriaId: receta.categoria,
-		categoria: CATEGORIAS.find(item => item.id === receta.categoria)?.nombre || 'OTROS'
+		categoria: CATEGORIAS.find(item => item.id === receta.categoria)?.nombre || 'PARA PICAR'
 	}));
 	const normalizar = valor => String(valor ?? '').toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 	const buscador = input.closest('.Buscador');

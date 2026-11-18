@@ -35,3 +35,18 @@ body{background:#f5f5f0}
  .ParticipateIntro{width:min(400px,100%)}
  .ParticipateScene .paper-elevation{width:380px;max-width:100%}
 }
+
+@media(min-width:1401px){
+ .ParticipateIntro{position:relative;left:117px;top:-149px;width:645px;scale:.79}
+ .ParticipateAccent{margin-bottom:-19px;font-size:135px}
+ .ParticipateNotebook{font-size:151px}
+ .ParticipateLastLine{margin-top:-13px}
+ .ParticipateScene .paper-elevation{position:relative;left:-270px;top:48px;scale:.87}
+}
+@media(max-width:700px){
+ .ParticipateIntro{position:relative;left:20px}
+ .ParticipateAccent{margin-bottom:-8px}
+ .ParticipateLastLine{margin-top:-6px}
+ .ParticipateScene .paper-elevation{position:relative;top:2px}
+}
+.participation-loading .ParticipateScene{visibility:hidden}

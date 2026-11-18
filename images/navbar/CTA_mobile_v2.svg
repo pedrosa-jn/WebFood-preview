@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 169.02 59.87">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #911a1c;
+        font-family: MarkerAid-Regular, 'Marker Aid';
+        font-size: 32.65px;
+      }
+
+      .cls-2 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-3 {
+        letter-spacing: .02em;
+      }
+
+      .cls-4 {
+        letter-spacing: .02em;
+      }
+    </style>
+  </defs>
+  <g id="Menu">
+    <text class="cls-1" transform="translate(23.65 27.83)"><tspan class="cls-3"><tspan x="0" y="0">un cafe </tspan></tspan><tspan class="cls-4" x="-23.49" y="24.69">y la cuen</tspan><tspan class="cls-2" x="113.07" y="24.69">t</tspan><tspan class="cls-3" x="125.55" y="24.69">a</tspan></text>
+  </g>
+</svg>
