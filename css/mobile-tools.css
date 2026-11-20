@@ -7,7 +7,7 @@
 .MobileTools button:focus-visible,.MobileSearch button:focus-visible,.MobileSearch a:focus-visible{outline:2px solid #0a0c24;outline-offset:4px}
 .MobileTools button:active>svg{scale:.94}
 .MobileTools_Toggle{z-index:2}
-.MobileTools_Toggle>svg{position:absolute;transition:opacity 180ms ease,scale 300ms cubic-bezier(.22,1,.36,1)}
+.MobileTools_Toggle>svg{pointer-events:none;position:absolute;transition:opacity 180ms ease,scale 300ms cubic-bezier(.22,1,.36,1)}
 .MobileTools_Toggle [data-tools-search]{opacity:1;scale:1}
 .MobileTools_Toggle [data-tools-plus]{opacity:0;scale:.6}
 .MobileTools.is-expanded [data-tools-search]{opacity:0;scale:.6}
@@ -15,13 +15,13 @@
 .MobileTools_Blob{position:absolute;inset:0;pointer-events:none;filter:url(#toolsMerge)}
 .MobileTools_Blob i{position:absolute;inset:0;display:block;border-radius:50%;background:var(--tool-bg);transition:transform 520ms cubic-bezier(.65,0,.2,1)}
 .MobileTools_Blob i:nth-child(2),.MobileTools_Blob i:nth-child(3){transform:scale(.5)}
-.MobileTools.is-expanded .MobileTools_Blob i:nth-child(2){transform:translateY(-72px) scale(1)}
-.MobileTools.is-expanded .MobileTools_Blob i:nth-child(3){transform:translateY(-144px) scale(1);transition-delay:45ms}
+.MobileTools.is-expanded .MobileTools_Blob i:nth-child(2){transform:translateY(calc(var(--tools-direction,-1) * 72px)) scale(1)}
+.MobileTools.is-expanded .MobileTools_Blob i:nth-child(3){transform:translateY(calc(var(--tools-direction,-1) * 144px)) scale(1);transition-delay:45ms}
 .MobileTools_Options{position:absolute;inset:0;z-index:1;visibility:hidden;pointer-events:none;transition:visibility 0s 570ms}
 .MobileTools.is-expanded .MobileTools_Options{visibility:visible;transition-delay:0s}
 .MobileTools_Options>button{position:absolute;inset:0;opacity:0;pointer-events:none;transform:scale(.5);transition:transform 520ms cubic-bezier(.65,0,.2,1),opacity 140ms ease}
-.MobileTools_Options>button:nth-child(1){--satellite-y:-144px;transition-delay:45ms,0ms}
-.MobileTools_Options>button:nth-child(2){--satellite-y:-72px}
+.MobileTools_Options>button:nth-child(1){--satellite-y:calc(var(--tools-direction,-1) * 144px);transition-delay:45ms,0ms}
+.MobileTools_Options>button:nth-child(2){--satellite-y:calc(var(--tools-direction,-1) * 72px)}
 .MobileTools.is-expanded .MobileTools_Options>button{opacity:1;pointer-events:auto;transform:translateY(var(--satellite-y)) scale(1)}
 .MobileTools_Label{position:absolute;right:calc(100% + 12px);padding:6px 9px;white-space:nowrap;background:#f5f5f0;color:#0a0c24;border-radius:4px;font:400 16px/1 'Barlow Condensed',sans-serif;opacity:0;transition:opacity 140ms ease}
 .MobileTools.is-expanded .MobileTools_Label{opacity:1;transition-delay:340ms}
@@ -78,6 +78,14 @@ body.ModalReceta-open .MobileTools,body.MobileSearch-open .MobileTools,body:has(
 }
 
 @media(max-width:700px){.MobileTools_Toggle{outline:2px solid #f5f5f0;outline-offset:-2px}.MobileTools_Options>button{outline:1px solid #f5f5f0;outline-offset:-1px}}
+@media(max-width:700px){
+ .MobileTools.is-positioned{left:0;top:0;right:auto;bottom:auto;translate:var(--tools-x) var(--tools-y)}
+ .MobileTools .MobileTools_Toggle{touch-action:none;cursor:grab;-webkit-user-select:none;user-select:none}
+ .MobileTools.is-dragging{transition:none}
+ .MobileTools.is-dragging .MobileTools_Toggle{cursor:grabbing}
+ .MobileTools.is-left .MobileTools_Label{right:auto;left:calc(100% + 12px)}
+ .MobileTools.opens-down{--tools-direction:1}
+}
 
 .MobileSearch_OpeningIcon{position:fixed;z-index:2;display:grid;place-items:center;width:54px;height:54px;color:#f5f5f0;pointer-events:none}.MobileSearch_OpeningIcon svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
 

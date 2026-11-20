@@ -10,7 +10,7 @@
  const searchButton = tools.querySelector('[data-search-open]');
  const toggleButton = tools.querySelector('[data-tools-toggle]');
  const options = tools.querySelector('.MobileTools_Options');
- tools.insertAdjacentHTML('afterbegin', '<svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><filter id="toolsMerge" filterUnits="userSpaceOnUse" x="-24" y="-180" width="102" height="260" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/><feColorMatrix in="blur" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 22 -9" result="merge"/><feComposite in="SourceGraphic" in2="merge" operator="atop"/></filter></defs></svg><div class="MobileTools_Blob" aria-hidden="true"><i></i><i></i><i></i></div>');
+ tools.insertAdjacentHTML('afterbegin', '<svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><filter id="toolsMerge" filterUnits="userSpaceOnUse" x="-24" y="-190" width="102" height="450" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/><feColorMatrix in="blur" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 22 -9" result="merge"/><feComposite in="SourceGraphic" in2="merge" operator="atop"/></filter></defs></svg><div class="MobileTools_Blob" aria-hidden="true"><i></i><i></i><i></i></div>');
  tools.querySelectorAll('[data-tools-search], [data-search-open] svg').forEach(svg=>{svg.innerHTML='<circle cx="10.75" cy="10.75" r="6.75"/><path d="m15.6 15.6 4.65 4.65"/>';svg.setAttribute('stroke-width','2');});
  const plus = toggleButton.querySelector('[data-tools-plus]');
  plus.innerHTML='<path d="m6 6 12 12M18 6 6 18"/>';
@@ -24,7 +24,92 @@
   toggleButton.setAttribute('aria-expanded', String(mobile.matches ? expanded : dialog.open));
   toggleButton.setAttribute('aria-label', mobile.matches ? (expanded ? 'Cerrar opciones de recetas' : 'Buscar y cambiar vista') : 'Buscar una receta');
  };
- toggleButton.addEventListener('click',()=>mobile.matches ? expandTools(!tools.classList.contains('is-expanded')) : open());
+ let suppressClickUntil = 0;
+ toggleButton.addEventListener('click',e=>{
+  if (performance.now() < suppressClickUntil) {e.preventDefault();return;}
+  mobile.matches ? expandTools(!tools.classList.contains('is-expanded')) : open();
+ });
+ // Store a fraction of the available area, so rotation keeps the control reachable.
+ const positionKey = 'recetas-tools-position-v1';
+ let savedPosition = null, drag = null;
+ try {
+  const value = JSON.parse(localStorage.getItem(positionKey));
+  if (value && ['x','y'].every(k=>Number.isFinite(value[k]) && value[k]>=0 && value[k]<=1)) savedPosition=value;
+ } catch {}
+ const safeArea = document.createElement('div');
+ safeArea.setAttribute('aria-hidden','true');
+ safeArea.style.cssText='position:fixed;visibility:hidden;pointer-events:none;left:max(18px,env(safe-area-inset-left));right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));bottom:calc(18px + env(safe-area-inset-bottom))';
+ document.body.append(safeArea);
+ const dragBounds = () => {
+  const area=safeArea.getBoundingClientRect(), viewport=window.visualViewport;
+  const left=Math.max(area.left,(viewport?.offsetLeft || 0)+18);
+  const top=Math.max(area.top,(viewport?.offsetTop || 0)+18);
+  const right=Math.max(left,Math.min(area.right,(viewport?.offsetLeft || 0)+(viewport?.width || innerWidth)-18)-54);
+  const bottom=Math.max(top,Math.min(area.bottom,(viewport?.offsetTop || 0)+(viewport?.height || innerHeight)-18)-54);
+  return {left,top,right,bottom};
+ };
+ const placeTools = (x,y,bounds=dragBounds()) => {
+  x=Math.max(bounds.left,Math.min(bounds.right,x));
+  y=Math.max(bounds.top,Math.min(bounds.bottom,y));
+  tools.style.setProperty('--tools-x',`${x}px`);
+  tools.style.setProperty('--tools-y',`${y}px`);
+  tools.classList.add('is-positioned');
+  tools.classList.toggle('is-left',x<(bounds.left+bounds.right)/2);
+  tools.classList.toggle('opens-down',y-bounds.top<144 && bounds.bottom-y>y-bounds.top);
+  return {x,y};
+ };
+ const rememberPosition = point => {
+  const bounds=dragBounds();
+  savedPosition={x:(point.x-bounds.left)/Math.max(1,bounds.right-bounds.left),y:(point.y-bounds.top)/Math.max(1,bounds.bottom-bounds.top)};
+  try {localStorage.setItem(positionKey,JSON.stringify(savedPosition));} catch {}
+ };
+ const restorePosition = () => {
+  if (drag) finishDrag({pointerId:drag.id},true);
+  if (!mobile.matches) {tools.classList.remove('is-positioned','is-left','opens-down');return;}
+  if (!savedPosition || dialog.open) return;
+  const bounds=dragBounds();
+  placeTools(bounds.left+savedPosition.x*(bounds.right-bounds.left),bounds.top+savedPosition.y*(bounds.bottom-bounds.top),bounds);
+ };
+ toggleButton.addEventListener('dragstart',e=>e.preventDefault());
+ toggleButton.addEventListener('pointerdown',e=>{
+  if (!mobile.matches || !e.isPrimary || e.button!==0) return;
+  e.preventDefault();
+  const rect=toggleButton.getBoundingClientRect();
+  drag={id:e.pointerId,startX:e.clientX,startY:e.clientY,x:rect.left,y:rect.top,bounds:dragBounds(),moved:false,point:null};
+  toggleButton.setPointerCapture(e.pointerId);
+ });
+ toggleButton.addEventListener('pointermove',e=>{
+  if (!drag || e.pointerId!==drag.id) return;
+  const dx=e.clientX-drag.startX,dy=e.clientY-drag.startY;
+  if (!drag.moved && Math.hypot(dx,dy)<8) return;
+  if (!drag.moved) {drag.moved=true;expandTools(false);tools.classList.add('is-dragging');}
+  e.preventDefault();
+  drag.point=placeTools(drag.x+dx,drag.y+dy,drag.bounds);
+ });
+ const finishDrag = (e,cancelled=false) => {
+  if (!drag || e.pointerId!==drag.id) return;
+  const finished=drag;drag=null;
+  tools.classList.remove('is-dragging');
+  if (finished.moved) {
+   suppressClickUntil=performance.now()+350;
+   if (cancelled) placeTools(finished.x,finished.y);
+   else rememberPosition(finished.point);
+  }
+  if (toggleButton.hasPointerCapture(e.pointerId)) toggleButton.releasePointerCapture(e.pointerId);
+ };
+ toggleButton.addEventListener('pointerup',e=>finishDrag(e));
+ toggleButton.addEventListener('pointercancel',e=>finishDrag(e,true));
+ toggleButton.addEventListener('lostpointercapture',e=>finishDrag(e,true));
+ // Keyboard users can reposition the optional control without affecting normal arrow keys.
+ toggleButton.addEventListener('keydown',e=>{
+  if (!mobile.matches || !e.shiftKey || !['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) return;
+  e.preventDefault();expandTools(false);
+  const rect=toggleButton.getBoundingClientRect();
+  const point=placeTools(rect.left+(e.key==='ArrowRight'?16:e.key==='ArrowLeft'?-16:0),rect.top+(e.key==='ArrowDown'?16:e.key==='ArrowUp'?-16:0));
+  rememberPosition(point);
+ });
+ window.addEventListener('resize',restorePosition);
+ window.visualViewport?.addEventListener('resize',restorePosition);
  document.addEventListener('pointerdown',e=>{if(!tools.contains(e.target))expandTools(false);});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&tools.classList.contains('is-expanded')){expandTools(false);toggleButton.focus({preventScroll:true});}});
  const panel = dialog.querySelector('.MobileSearch_Panel');
@@ -138,8 +223,8 @@
   if (!reduced.matches) {
    const field=dialog.querySelector('form').getBoundingClientRect();
    const width=field.width;
-   const startLeft=origin.right-width;
-   const horizontal=width-54;
+   const startLeft=Math.max(12,Math.min(origin.right-width,innerWidth-width-12));
+   const horizontal=Math.max(0,Math.min(width-54,origin.left-startLeft));
    const ease='cubic-bezier(.65,0,.25,1)';
    const duration=1000;
    // The field is an actual capsule. Its leading edge and lens travel together.
@@ -156,7 +241,7 @@
    copy.animate([{opacity:0},{opacity:0,offset:.48},{opacity:1,offset:.56},{opacity:1}],{duration,fill:'forwards'});
    iconAnimation?.cancel();
    const capsuleFrames=()=>[
-    {clipPath:`inset(0 0 0 ${horizontal}px round 27px)`,transform:'translateY(0)',opacity:1,backgroundColor:'#0a0c24',offset:0,easing:ease},
+    {clipPath:`inset(0 ${width-horizontal-54}px 0 ${horizontal}px round 27px)`,transform:'translateY(0)',opacity:1,backgroundColor:'#0a0c24',offset:0,easing:ease},
     {clipPath:'inset(0 round 27px)',transform:'translateY(0)',opacity:1,backgroundColor:'#f5f5f0',offset:.48,easing:ease},
     {clipPath:'inset(0 round 27px)',transform:`translate(${dialog.querySelector('form').getBoundingClientRect().left-startLeft}px,${dialog.querySelector('form').getBoundingClientRect().top-origin.top}px)`,opacity:1,backgroundColor:'#f5f5f0',offset:.85},
     {clipPath:'inset(0 round 27px)',transform:`translate(${dialog.querySelector('form').getBoundingClientRect().left-startLeft}px,${dialog.querySelector('form').getBoundingClientRect().top-origin.top}px)`,opacity:0,backgroundColor:'#f5f5f0',offset:1}
@@ -225,7 +310,7 @@
  closeButton.addEventListener('click',()=>close());
  dialog.addEventListener('cancel',e=>{e.preventDefault();close();});
  dialog.addEventListener('click',e=>{if(e.target===dialog)close();});
- dialog.addEventListener('close',()=>{unlockBackground();searchButton.setAttribute('aria-expanded','false');toggleButton.setAttribute('aria-expanded','false');});
+ dialog.addEventListener('close',()=>{unlockBackground();restorePosition();searchButton.setAttribute('aria-expanded','false');toggleButton.setAttribute('aria-expanded','false');});
  input.addEventListener('input',update);
  clear.addEventListener('click',()=>{input.value='';update();input.focus();});
  dialog.querySelector('form').addEventListener('submit',e=>{e.preventDefault();results.querySelector('a')?.click();});
@@ -240,6 +325,8 @@
  });
  const adaptTools = () => {
   expandTools(false);
+  restorePosition();
+  toggleButton.title=mobile.matches ? 'Toca para abrir. Arrastra para mover. Con teclado: Mayús + flechas.' : 'Buscar una receta';
   toggleButton.setAttribute('aria-controls', mobile.matches ? 'MobileToolsOptions' : 'MobileSearch');
   if (mobile.matches) toggleButton.removeAttribute('aria-haspopup');
   else toggleButton.setAttribute('aria-haspopup','dialog');
