@@ -31,7 +31,7 @@
  });
  // Store a fraction of the available area, so rotation keeps the control reachable.
  const positionKey = 'recetas-tools-position-v1';
- let savedPosition = null, drag = null;
+ let savedPosition = null, drag = null, dropAnimation = null;
  try {
   const value = JSON.parse(localStorage.getItem(positionKey));
   if (value && ['x','y'].every(k=>Number.isFinite(value[k]) && value[k]>=0 && value[k]<=1)) savedPosition=value;
@@ -44,8 +44,8 @@
   const area=safeArea.getBoundingClientRect(), viewport=window.visualViewport;
   const left=Math.max(area.left,(viewport?.offsetLeft || 0)+18);
   const top=Math.max(area.top,(viewport?.offsetTop || 0)+18);
-  const right=Math.max(left,Math.min(area.right,(viewport?.offsetLeft || 0)+(viewport?.width || innerWidth)-18)-54);
-  const bottom=Math.max(top,Math.min(area.bottom,(viewport?.offsetTop || 0)+(viewport?.height || innerHeight)-18)-54);
+  const right=Math.max(left,Math.min(area.right,(viewport?.offsetLeft || 0)+(viewport?.width || innerWidth)-18)-toggleButton.offsetWidth);
+  const bottom=Math.max(top,Math.min(area.bottom,(viewport?.offsetTop || 0)+(viewport?.height || innerHeight)-18)-toggleButton.offsetHeight);
   return {left,top,right,bottom};
  };
  const placeTools = (x,y,bounds=dragBounds()) => {
@@ -74,6 +74,7 @@
  toggleButton.addEventListener('pointerdown',e=>{
   if (!mobile.matches || !e.isPrimary || e.button!==0) return;
   e.preventDefault();
+  dropAnimation?.cancel();
   const rect=toggleButton.getBoundingClientRect();
   drag={id:e.pointerId,startX:e.clientX,startY:e.clientY,x:rect.left,y:rect.top,bounds:dragBounds(),moved:false,point:null};
   toggleButton.setPointerCapture(e.pointerId);
@@ -93,7 +94,14 @@
   if (finished.moved) {
    suppressClickUntil=performance.now()+350;
    if (cancelled) placeTools(finished.x,finished.y);
-   else rememberPosition(finished.point);
+   else {
+    rememberPosition(finished.point);
+    if (!reduced.matches) dropAnimation=tools.animate([
+     {scale:'1.055'},
+     {scale:'.985',offset:.65},
+     {scale:'1'}
+    ],{duration:280,easing:'cubic-bezier(.22,1,.36,1)'});
+   }
   }
   if (toggleButton.hasPointerCapture(e.pointerId)) toggleButton.releasePointerCapture(e.pointerId);
  };
