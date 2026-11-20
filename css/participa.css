@@ -50,3 +50,9 @@ body{background:#f5f5f0}
  .ParticipateScene .paper-elevation{position:relative;top:2px}
 }
 .participation-loading .ParticipateScene{visibility:hidden}
+
+.ParticipateYours>.TitleHoverWord{display:inline-block}
+.TitleHoverWord{transform-origin:center}
+@keyframes participateWordHover{0%{transform:scale(1)}55%{transform:scale(1.065)}100%{transform:scale(1.02)}}
+@media(hover:hover) and (pointer:fine){.ParticipateHeading:hover .TitleHoverWord{animation:participateWordHover .36s calc(var(--word)*.075s) both}}
+@media(prefers-reduced-motion:reduce){.ParticipateHeading:hover .TitleHoverWord{animation:none}}

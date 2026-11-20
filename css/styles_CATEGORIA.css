@@ -1436,3 +1436,37 @@ html{scrollbar-gutter:stable;}
 
 /* Navbar typography matches the home category labels. */
 .SiteHeader .MenuDesktop a:not(.MenuCuenta),.SiteHeader .MenuMobile_Nombre{color:#0a0c24;font-weight:900;}
+
+/* A short recipe must start at the same top edge as a long one. */
+.ModalReceta_Titulo{margin:0}
+@media(min-width:701px){
+ .ModalReceta_Desplazable{background:#8b0000}
+ .ModalReceta_Cuerpo{flex:1 0 auto}
+ .ModalReceta_Cuerpo>.ModalReceta_Pasos{flex:1 0 auto}
+}
+
+/* The cursor's manual popover has no panel, inset or hit target. */
+.CursorMorph[popover]{position:fixed;inset:auto;left:0;top:0;margin:0;padding:0;border:0;background:transparent;overflow:visible;pointer-events:none}
+.CursorMorph[popover]::backdrop{background:transparent;pointer-events:none}
+.cursor-dialog-native:has(dialog[open]) .CursorMorph{visibility:hidden}
+.cursor-dialog-native dialog[open],.cursor-dialog-native dialog[open] *{cursor:auto!important}
+.cursor-dialog-native dialog[open] :is(input,textarea){cursor:text!important}
+.cursor-dialog-native dialog[open] :is(button,select,a){cursor:pointer!important}
+
+.ModalReceta_Header{position:sticky;top:0;z-index:3;background-color:#f5f5f0}
+.ModalReceta_Cerrar{transform-origin:center;transition:scale .22s cubic-bezier(.22,.61,.36,1)}
+@media(hover:hover) and (pointer:fine){.ModalReceta_Cerrar:is(:hover,:focus-visible){scale:1.09}}
+@media(prefers-reduced-motion:reduce){.ModalReceta_Cerrar{transition:none}}
+
+/* Supplied outlined title artwork; the heading keeps the category's accessible name. */
+.SEC_Titulo > .Title.Title--artwork{width:clamp(280px,32vw,460px);max-width:82vw;scale:1;line-height:1;margin:0}
+.CategoryTitleArtwork{display:block;width:100%;height:auto;max-height:250px;object-fit:contain}
+@media(max-width:700px){.SEC_Titulo > .Title.Title--artwork{width:min(82vw,420px)}.CategoryTitleArtwork{max-height:240px}}
+
+/* Normalize by Pasta's height rather than by the varying SVG widths. */
+.SEC_Titulo > .Title.Title--artwork{width:auto;max-width:none;height:clamp(132px,15.091vw,216.93px)}
+.CategoryTitleArtwork{width:auto;height:100%;max-height:none;max-width:none;object-fit:contain}
+@media(max-width:700px){
+ .SEC_Titulo > .Title.Title--artwork{width:auto;height:min(38.67vw,calc((100vw - 32px)*.37128),198px)}
+ .CategoryTitleArtwork{max-height:none}
+}

@@ -514,3 +514,53 @@ html{scrollbar-gutter:stable;}
 }
 
 .CAT_Box .CAT_Arrow{stroke-width:2.4;}
+
+/* The cursor's manual popover has no panel, inset or hit target. */
+.CursorMorph[popover]{position:fixed;inset:auto;left:0;top:0;margin:0;padding:0;border:0;background:transparent;overflow:visible;pointer-events:none}
+.CursorMorph[popover]::backdrop{background:transparent;pointer-events:none}
+.cursor-dialog-native:has(dialog[open]) .CursorMorph{visibility:hidden}
+.cursor-dialog-native dialog[open],.cursor-dialog-native dialog[open] *{cursor:auto!important}
+.cursor-dialog-native dialog[open] :is(input,textarea){cursor:text!important}
+.cursor-dialog-native dialog[open] :is(button,select,a){cursor:pointer!important}
+
+/* Home lettering is drawn within its original text box; search and section geometry stay intact. */
+.SEC_Titulo--home .Title--composed{position:relative}
+.HomeTitleReserve{visibility:hidden}
+.HomeTitleArtwork{position:absolute;left:0;bottom:0;width:100%;height:auto;aspect-ratio:588/360;overflow:visible;fill:#8b0000}
+.HomeTitleScript{font-family:"Playfair Display",serif;font-weight:400;font-style:italic;letter-spacing:0}
+.HomeTitleBlock{font-family:"Barlow Condensed",sans-serif;font-weight:900;letter-spacing:-.02em}
+.HomeTitleScript--de{letter-spacing:-.09em}
+
+/* Search: equal optical spacing and an outline that builds without moving layout. */
+.SEC_Titulo--home .Buscador{column-gap:18px;border-color:transparent;box-shadow:none}
+.SEC_Titulo--home .Buscador::before{content:"";position:absolute;inset:-1px;border:1px solid #0a0c24;border-radius:inherit;pointer-events:none;transform-origin:left center;animation:homeSearchOutline .7s cubic-bezier(.22,1,.36,1) both}
+.SEC_Titulo--home .Buscador:focus-within::before{border-width:1.5px}
+.SEC_Titulo--home .Buscador input{padding:0;color:rgba(10,12,36,.72);animation:none}
+.SEC_Titulo--home .Buscador input::placeholder{color:transparent;opacity:1}
+.SEC_Titulo--home .search-icon{color:#8b0000;animation:homeSearchText .4s .08s cubic-bezier(.22,1,.36,1) both}
+@keyframes homeSearchOutline{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:1}}
+@keyframes homeSearchText{from{clip-path:inset(0 100% 0 0);opacity:0}to{clip-path:inset(0);opacity:1}}
+html.intro-pending .SEC_Titulo--home .Buscador::before,html.intro-pending .SEC_Titulo--home :is(.Buscador input,.search-icon),
+body.IntroPortada-activa .SEC_Titulo--home .Buscador::before,body.IntroPortada-activa .SEC_Titulo--home :is(.Buscador input,.search-icon){animation-play-state:paused}
+body.IntroPortada-saliente .SEC_Titulo--home .Buscador::before,body.IntroPortada-saliente .SEC_Titulo--home :is(.Buscador input,.search-icon){animation-play-state:running}
+@media(prefers-reduced-motion:reduce){.SEC_Titulo--home .Buscador::before,.SEC_Titulo--home .Buscador input,.SEC_Titulo--home .search-icon{animation:none}}
+
+.HomeSearchEntry{position:relative;display:flex;flex:1;min-width:0}
+.SEC_Titulo--home .HomeSearchEntry input{width:100%;min-width:0}
+.SEC_Titulo--home .HomeSearchPrompt{position:absolute;inset:0;display:flex;align-items:center;gap:.28em;color:rgba(10,12,36,.65);font:400 13.3333px Arial,sans-serif;pointer-events:none}
+.HomeSearchPrompt span{display:inline-block;animation:homeSearchWord .55s calc(.22s + var(--word)*.085s) cubic-bezier(.22,1,.36,1) both}
+.HomeSearchEntry input:not(:placeholder-shown)~.HomeSearchPrompt,.HomeSearchEntry:focus-within .HomeSearchPrompt{visibility:hidden}
+@keyframes homeSearchWord{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+html.intro-pending .HomeSearchPrompt span,body.IntroPortada-activa .HomeSearchPrompt span{animation-play-state:paused}
+body.IntroPortada-saliente .HomeSearchPrompt span{animation-play-state:running}
+@media(prefers-reduced-motion:reduce){.HomeSearchPrompt span{animation:none}}
+
+.SEC_Titulo--home .HomeSearchEntry input{font:400 16px "Barlow Condensed",sans-serif}
+
+/* Restore the original quiet search outline. */
+.SEC_Titulo--home .Buscador::before{border:1px solid rgba(30,30,30,.25)}
+.SEC_Titulo--home .Buscador:focus-within::before{border-width:1px}
+
+/* The animated outline reaches the outer border edge; results share that same edge. */
+.SEC_Titulo--home .Buscador--resultados-abiertos::before{border-bottom:0}
+.SEC_Titulo--home .BuscadorResultados{left:-1px;right:-1px;top:100%;border-color:rgba(30,30,30,.25)}

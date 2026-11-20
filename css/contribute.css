@@ -1,0 +1,127 @@
+/* Contribution prototype: the recipe modal's cream paper, burgundy panels and rules. */
+.Contribute{--ink:#0a0c24;--red:#8b0000;--paper:#f5f5f0;box-sizing:border-box;width:min(880px,calc(100% - 48px));max-height:90dvh;margin:auto;padding:0;border:1px solid var(--red);border-radius:24px;background:var(--paper);color:var(--ink);font:400 17px/1.4 'Barlow Condensed',sans-serif;overflow:auto;overscroll-behavior:contain;scrollbar-color:var(--red) var(--paper)}
+.Contribute[open]{animation:contribute-in .38s cubic-bezier(.22,1,.36,1)}
+.Contribute::backdrop{background:rgba(10,12,36,.6)}
+.Contribute *{box-sizing:border-box}
+.Contribute [hidden]{display:none!important}
+.Contribute_Masthead{position:relative;display:flex;align-items:center;justify-content:center;min-height:64px;padding:12px 56px;background-color:var(--paper);background-image:linear-gradient(#8b00001c 1px,transparent 1px),linear-gradient(90deg,#8b00001c 1px,transparent 1px);background-size:22px 22px;border-bottom:1px solid var(--red)}
+.Contribute_Masthead img{display:block;width:68px;height:40px;object-fit:contain}
+.Contribute_Close{position:absolute;right:22px;top:50%;translate:0 -50%;padding:8px;border:0;background:none;color:var(--red);font:900 28px/1 'Barlow Condensed',sans-serif;cursor:pointer}
+.Contribute_Heading{background:var(--red);color:var(--paper);padding:18px 28px}
+.Contribute_Heading h1{margin:0;font:900 clamp(28px,3.2vw,34px)/1 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0}
+.Contribute_Heading p{margin:8px 0 0;max-width:55ch;font-weight:400}
+.Contribute_Section{margin:0;padding:18px 28px;border:0;border-bottom:1px solid var(--red);min-width:0}
+.Contribute_Section h2{margin:0 0 12px;font:900 21px/1.1 'Barlow Condensed',sans-serif;text-transform:uppercase;color:var(--red)}
+.Contribute_Fields{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px}
+.Contribute label{display:block;font-size:15px;font-weight:600}
+.Contribute input,.Contribute select,.Contribute textarea{display:block;width:100%;min-width:0;min-height:42px;margin:5px 0 0;padding:8px 11px;border:1px solid var(--red);border-radius:8px;background:transparent;color:var(--ink);font:400 17px/1.35 'Barlow Condensed',sans-serif;letter-spacing:0;text-transform:none}
+.Contribute textarea{min-height:76px;resize:vertical}
+.Contribute input::placeholder,.Contribute textarea::placeholder{color:#55515a;opacity:1}
+.Contribute :focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.Contribute .Contribute_Full{grid-column:1/-1}
+.Contribute_Hint{font-weight:400;font-size:14px;margin:6px 0 0;max-width:65ch}
+.Contribute_Rows{display:grid;gap:10px;margin:0 0 12px;padding:0;list-style:none;counter-reset:rows}
+.Contribute_Row{display:grid;grid-template-columns:24px minmax(0,1fr) 44px;gap:10px;align-items:start;counter-increment:rows}
+.Contribute_Row::before{content:counter(rows,decimal-leading-zero);padding-top:14px;color:var(--red);font-weight:600}
+.Contribute_Remove{margin-top:4px;min-height:44px;border:0;background:none;color:var(--red);font:500 26px 'Barlow Condensed',sans-serif;cursor:pointer}
+.Contribute_Button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:8px 18px;border:1px solid var(--red);border-radius:999px;color:var(--red);background:none;font:700 16px/1.1 'Barlow Condensed',sans-serif;text-decoration:none;cursor:pointer}
+.Contribute_Button--primary{background:var(--red);color:var(--paper)}
+.Contribute_Button:disabled{cursor:default;border-style:dashed;opacity:.65}
+.Contribute_Actions{padding:18px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.Contribute_Save{font-size:14px;font-weight:400;margin:0;flex:1 1 220px}
+.Contribute_SearchResults{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:0}
+.Contribute_SearchResults button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:10px 0;border:0;border-bottom:1px solid #8b00004d;text-align:left;color:var(--ink);background:none;font:600 18px/1.25 'Barlow Condensed',sans-serif;cursor:pointer}
+.Contribute_SearchResults button span{display:block;font-size:14px;font-weight:400;margin-top:3px}
+.Contribute_SearchResults button::after{content:'↗';color:var(--red);font-size:24px}
+.Contribute_Selected{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;color:var(--red)}
+.Contribute_Selected strong{font:900 21px/1.1 'Barlow Condensed',sans-serif;text-transform:uppercase}
+.Contribute_Review{padding:20px 28px}
+.Contribute_Review h2{font:900 21px 'Barlow Condensed',sans-serif;text-transform:uppercase;color:var(--red);margin:20px 0 8px}
+.Contribute_Review h2:first-child{margin-top:0}
+.Contribute_Review p,.Contribute_Review li{white-space:pre-wrap;overflow-wrap:anywhere}
+.Contribute_Review ol,.Contribute_Review ul{padding-left:24px}
+.Contribute_Notice{border-top:1px dashed var(--red);padding-top:14px;margin-top:24px;font-weight:400}
+@keyframes contribute-in{from{transform:translateY(24px)}to{transform:translateY(0)}}
+@media(max-width:700px){.Contribute{width:100%;max-height:calc(100dvh - 24px);margin:24px 0 0;max-width:none;border-radius:22px 22px 0 0}.Contribute_Heading,.Contribute_Section,.Contribute_Review,.Contribute_Actions{padding:18px 20px}.Contribute_Fields{grid-template-columns:1fr;gap:14px}.Contribute_Heading h1{font-size:28px}.Contribute_Actions>.Contribute_Button{flex:1}.Contribute[open]{animation:contribute-sheet .5s cubic-bezier(.22,1,.36,1)}@keyframes contribute-sheet{from{transform:translateY(100%)}to{transform:translateY(0)}}}
+@media(prefers-reduced-motion:reduce){.Contribute[open]{animation:none}}
+
+.Contribute[open].is-closing{animation:contribute-out .28s cubic-bezier(.4,0,.8,.4) both;pointer-events:none}
+@keyframes contribute-out{to{transform:translateY(24px)}}
+@media(max-width:700px){.Contribute[open].is-closing{animation:contribute-sheet-out .45s cubic-bezier(.4,0,.8,.4) both}@keyframes contribute-sheet-out{to{transform:translateY(100%)}}}
+@media(prefers-reduced-motion:reduce){.Contribute[open].is-closing{animation:none}}
+
+/* The paper header remains reachable while the form scrolls underneath. */
+.Contribute_Masthead{position:sticky;top:0;z-index:3}
+.Contribute_Close{transform-origin:center;transition:scale .22s cubic-bezier(.22,.61,.36,1)}
+@media(hover:hover) and (pointer:fine){.Contribute_Close:is(:hover,:focus-visible){scale:1.09}}
+@media(prefers-reduced-motion:reduce){.Contribute_Close{transition:none}}
+
+/* One input scale across text fields and native selects. */
+.Contribute select option{font:400 17px/1.35 'Barlow Condensed',sans-serif;letter-spacing:0;text-transform:none}
+@media(max-width:700px){
+ .Contribute input,.Contribute select,.Contribute textarea{font-size:16px;min-height:44px}
+ .Contribute select option{font-size:16px}
+ .Contribute textarea{min-height:84px}
+ .Contribute_Button{min-height:44px}
+}
+@media(max-width:700px){
+ .Contribute_Actions{gap:12px}
+ .Contribute_Save{flex:1 0 100%}
+ .Contribute_Actions>.Contribute_Button{flex:1 1 calc(50% - 6px);padding-inline:12px;white-space:nowrap}
+}
+
+
+/* Approved cream form: one continuous paper surface, compact rounded fields. */
+.Contribute[data-mode="recipe"]{width:min(1120px,calc(100% - 64px))}
+.Contribute{caret-color:var(--red)}
+.Contribute::selection,.Contribute ::selection{background:var(--red);color:var(--paper)}
+.Contribute_Masthead{min-height:72px}
+.Contribute_Masthead img{width:84px;height:48px}
+.Contribute_Heading{padding:20px 32px 24px}
+.Contribute_Heading p{font-size:17px;font-weight:300;text-transform:uppercase;max-width:none}
+.Contribute_Section{padding:28px 32px 8px;border:0}
+.Contribute_Section:last-of-type{padding-bottom:36px}
+.Contribute_Section h2{font-size:28px;margin:0 0 20px}
+.Contribute_Fields{gap:22px 48px}
+.Contribute label{font-size:17px;font-weight:500;text-transform:uppercase;color:var(--red)}
+.Contribute label em{font-weight:400;text-transform:none;margin-left:5px}
+.Contribute input,.Contribute select,.Contribute textarea{min-height:44px;padding:10px 17px;margin-top:10px;border-radius:24px;font-size:17px;font-weight:400;color:var(--ink)}
+.Contribute textarea{height:44px;resize:vertical;overflow:hidden;min-height:44px;border-radius:22px}
+.Contribute select{appearance:none;padding-right:40px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='m1 1 5 5 5-5' fill='none' stroke='%230a0c24' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 18px center}
+.Contribute_Hint{font-size:16px;font-weight:300;color:var(--red);text-transform:uppercase;max-width:none;margin:0 0 16px}
+.Contribute_Section h2:has(+.Contribute_Hint){margin-bottom:6px}
+.Contribute_Rows{gap:12px;margin-bottom:18px}
+.Contribute_Row{grid-template-columns:22px minmax(0,1fr) 32px;gap:10px;align-items:start}
+.Contribute_Row input,.Contribute_Row textarea{margin:0}
+.Contribute_Row::before{font-weight:700;padding-top:11px}
+.Contribute_Remove{margin:0;min-width:32px;min-height:44px;font-weight:700}
+.Contribute [data-add]{background:var(--red);color:var(--paper);padding-inline:22px}
+.Contribute_Actions{margin-top:14px;padding:24px 32px;background:var(--red);color:var(--paper);gap:16px}
+.Contribute_Actions>.Contribute_Button{border-color:var(--paper);color:var(--paper);min-width:140px;text-transform:uppercase}
+.Contribute_Actions>.Contribute_Button--primary{background:var(--paper);color:var(--red)}
+.Contribute_Actions :focus-visible{outline-color:var(--paper)}
+.Contribute_Save{font-weight:300}
+.Contribute_Upload{position:relative;display:flex!important;align-items:center;justify-content:space-between;gap:12px;min-height:44px;border:1px solid var(--red);border-radius:24px;padding:10px 17px;margin-top:10px;text-transform:none!important;color:var(--ink)!important;font-weight:400!important;cursor:pointer}
+.Contribute_Upload span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.Contribute_Upload input[type="file"]{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;cursor:pointer}
+.Contribute_Upload:focus-within{outline:2px solid var(--ink);outline-offset:3px}
+.Contribute_ImagePreview{display:block;max-width:100%;max-height:160px;object-fit:contain;margin-top:12px;border-radius:12px}
+#ContributeImageStatus{font-size:14px;text-transform:none;margin:6px 0 0}
+@media(max-width:900px){.Contribute_Fields{column-gap:28px}}
+@media(max-width:700px){
+ .Contribute[data-mode="recipe"]{width:100%}
+ .Contribute_Heading{padding:18px 20px 22px}
+ .Contribute_Heading p{font-size:16px;font-weight:400;text-transform:none}
+ .Contribute_Section{padding:24px 20px 4px}
+ .Contribute_Section:last-of-type{padding-bottom:28px}
+ .Contribute_Section h2{font-size:25px;margin-bottom:18px}
+ .Contribute label{font-size:16px}
+ .Contribute_Fields{gap:18px}
+ .Contribute input,.Contribute select,.Contribute textarea{font-size:16px}
+ .Contribute_Hint{font-size:16px;font-weight:400;text-transform:none}
+ .Contribute_Actions{padding:20px;gap:12px}
+ .Contribute_Actions>.Contribute_Button{min-width:0}
+ .Contribute_Row{grid-template-columns:20px minmax(0,1fr) 32px;gap:7px}
+ .Contribute_Remove{min-width:44px;translate:-6px 0}
+ .Contribute_Save{font-weight:400}
+}

@@ -1,8 +1,8 @@
 ﻿id;titulo;autor;categoria;tiempo;preparacion_activa_min;dificultad;estado;razon;fuentes
-mayonesa;Mayonesa;;salsas;10 min;10;Fácil;provisional;Reunir ingredientes y emulsionar con batidora.;MAYO
-tomate-frito;Tomate Frito;;salsas;15 min;15;Fácil;estimado;"Picar cebolla, iniciar sofrito y ajustar la salsa; reducción desatendida excluida.";TOMATE
-bechamel;Bechamel;;salsas;20 min;20;Media;provisional;Preparar roux, añadir leche y remover continuamente mientras espesa.;BECHAMEL
-salsa-cesar;Salsa César;;salsas;10 min;10;Fácil;provisional;"Preparar ingredientes y batir; orientación provisional porque faltan los pasos.";CESAR
+mayonesa;Mayonesa;;otros;10 min;10;Fácil;provisional;Reunir ingredientes y emulsionar con batidora.;MAYO
+tomate-frito;Tomate Frito;;otros;15 min;15;Fácil;estimado;"Picar cebolla, iniciar sofrito y ajustar la salsa; reducción desatendida excluida.";TOMATE
+bechamel;Bechamel;;otros;20 min;20;Media;provisional;Preparar roux, añadir leche y remover continuamente mientras espesa.;BECHAMEL
+salsa-cesar;Salsa César;;otros;10 min;10;Fácil;provisional;"Preparar ingredientes y batir; orientación provisional porque faltan los pasos.";CESAR
 salmorejo-abuelo-mariano;Salmorejo;Abuelo Mariano;frios;30 min;30;Fácil;estimado;Escaldar, pelar, triturar, colar y preparar guarnición.;SALMOREJO
 ajo-blanco;Ajo Blanco;;frios;15 min;15;Fácil;estimado;Remojar y escurrir pan, preparar ingredientes y triturar.;AJOBLANCO
 ensaladilla-rusa;Ensaladilla Rusa;;frios;30 min;30;Fácil;estimado;Lavar patatas, poner olla, pelar, trocear, mezclar y decorar.;ENSALADILLA

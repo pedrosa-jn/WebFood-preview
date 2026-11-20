@@ -3,47 +3,66 @@ const CATEGORIAS = [
   {
     "id": "otros",
     "nombre": "PARA PICAR",
-    "descripcion": "Croquetas, empanadas y bocados"
+    "descripcion": "Bocados, salsas y acompañamientos",
+    "tituloSvg": "images/titles/otros.svg",
+    "tituloAncho": 289.88,
+    "tituloAlto": 132.52
   },
   {
     "id": "frios",
     "nombre": "FRÍOS",
-    "descripcion": "Ensaladas y platos para el calor"
+    "descripcion": "Ensaladas y platos para el calor",
+    "tituloSvg": "images/titles/frios.svg",
+    "tituloAncho": 242.99,
+    "tituloAlto": 135.43
   },
   {
     "id": "guisos",
     "nombre": "GUISOS",
-    "descripcion": "Sopas, potajes y arroces"
+    "descripcion": "Sopas, potajes y arroces",
+    "tituloSvg": "images/titles/guisos.svg",
+    "tituloAncho": 269.05,
+    "tituloAlto": 135.77
   },
   {
     "id": "pasta",
     "nombre": "PASTA",
-    "descripcion": "Espaguetis, lasañas y canelones"
+    "descripcion": "Espaguetis, lasañas y canelones",
+    "tituloSvg": "images/titles/pasta.svg",
+    "tituloAncho": 278.91,
+    "tituloAlto": 131.53
   },
   {
     "id": "carnes",
     "nombre": "CARNES",
-    "descripcion": "Carne, pollo y pavo"
+    "descripcion": "Carne, pollo y pavo",
+    "tituloSvg": "images/titles/carnes.svg",
+    "tituloAncho": 254.55,
+    "tituloAlto": 118.99
   },
   {
     "id": "pescado",
     "nombre": "PESCADO",
-    "descripcion": "Del mar al horno"
+    "descripcion": "Del mar al horno",
+    "tituloSvg": "images/titles/pescado.svg",
+    "tituloAncho": 365.6,
+    "tituloAlto": 135.74
   },
   {
     "id": "huevos",
     "nombre": "HUEVOS",
-    "descripcion": "Tortillas y huevos de mil formas"
-  },
-  {
-    "id": "salsas",
-    "nombre": "SALSAS",
-    "descripcion": "Bases y acompañamientos"
+    "descripcion": "Tortillas y huevos de mil formas",
+    "tituloSvg": "images/titles/huevos.svg",
+    "tituloAncho": 315.08,
+    "tituloAlto": 129.51
   },
   {
     "id": "postres",
     "nombre": "POSTRES",
-    "descripcion": "Dulces y repostería"
+    "descripcion": "Dulces y repostería",
+    "tituloSvg": "images/titles/postres.svg",
+    "tituloAncho": 343.48,
+    "tituloAlto": 132.42
   }
 ];
 
@@ -51,7 +70,7 @@ const CATEGORIAS = [
 const RECETAS = [
   {
     "id": "mayonesa",
-    "categoria": "salsas",
+    "categoria": "otros",
     "titulo": "Mayonesa",
     "autor": "",
     "tiempo": "10 min",
@@ -75,7 +94,7 @@ const RECETAS = [
   },
   {
     "id": "tomate-frito",
-    "categoria": "salsas",
+    "categoria": "otros",
     "titulo": "Tomate Frito",
     "autor": "",
     "tiempo": "15 min",
@@ -93,7 +112,7 @@ const RECETAS = [
   },
   {
     "id": "bechamel",
-    "categoria": "salsas",
+    "categoria": "otros",
     "titulo": "Bechamel",
     "autor": "",
     "tiempo": "20 min",
@@ -116,7 +135,7 @@ const RECETAS = [
   },
   {
     "id": "salsa-cesar",
-    "categoria": "salsas",
+    "categoria": "otros",
     "titulo": "Salsa César",
     "autor": "",
     "tiempo": "10 min",

@@ -120,7 +120,7 @@ function renderizarMenu(categoriaActiva) {
 
 	if (menuDesktop) {
 		menuDesktop.innerHTML = CATEGORIAS.map(categoria => `
-			<a href="${urlCategoria(categoria.id)}" data-categoria="${textoSeguro(categoria.id)}"${categoria.id === categoriaActiva ? ' class="activo" aria-current="page"' : ''}>${textoSeguro(categoria.nombre)}<span class="NavStroke" aria-hidden="true" style="--stroke:url('../images/navbar/stroke-${({salsas:0,frios:8,guisos:6,pasta:1,carnes:4,pescado:3,huevos:9,otros:2,postres:7})[categoria.id]??0}.svg?v=burgundy-20261118')"></span></a>`).join('');
+			<a href="${urlCategoria(categoria.id)}" data-categoria="${textoSeguro(categoria.id)}"${categoria.id === categoriaActiva ? ' class="activo" aria-current="page"' : ''}>${textoSeguro(categoria.nombre)}<span class="NavStroke" aria-hidden="true" style="--stroke:url('../images/navbar/stroke-${({frios:8,guisos:6,pasta:1,carnes:4,pescado:3,huevos:9,otros:2,postres:7})[categoria.id]??0}.svg?v=burgundy-20261118')"></span></a>`).join('');
 
 		menuDesktop.insertAdjacentHTML('beforeend', `<a class="MenuCuenta" href="./participa.html" aria-label="La Cuenta">${navbarCuentaArtwork(false)}</a>`);
 		const activo = menuDesktop.querySelector('.MenuDesktop a.activo');
@@ -486,7 +486,9 @@ function renderizarRecetas() {
 	if (!rejilla) return;
 
 	const params = new URLSearchParams(location.search);
-	const idSolicitado = params.get('c');
+	let idSolicitado = params.get('c');
+	// Keep bookmarked sauce recipes reachable after merging the category.
+	if(idSolicitado === 'salsas'){idSolicitado='otros';const destino=new URL(location.href);destino.searchParams.set('c','otros');history.replaceState(history.state,'',destino);}
 	const categoria = idSolicitado
 		? CATEGORIAS.find(item => item.id === idSolicitado)
 		: CATEGORIAS.find(item => item.id === 'pasta');
@@ -501,7 +503,9 @@ function renderizarRecetas() {
 
 	const titulo = document.getElementById('CatTitulo');
 	document.title = `${categoria.nombre} · Cuaderno de recetas`;
-	titulo.innerHTML = `<span>${textoSeguro(categoria.nombre.toLocaleLowerCase('es'))}</span>${textoSeguro(categoria.nombre)}<span>${textoSeguro(categoria.nombre.toLocaleLowerCase('es'))}</span>`;
+	titulo.classList.add('Title--artwork');
+	titulo.setAttribute('aria-label',categoria.nombre);
+	titulo.innerHTML = `<img class="CategoryTitleArtwork" width="${categoria.tituloAncho}" height="${categoria.tituloAlto}" src="./${textoSeguro(categoria.tituloSvg)}?v=titles-20261119" alt="" aria-hidden="true" fetchpriority="high">`;
 	const ordenRecetas = new Intl.Collator('es', { sensitivity: 'base', numeric: true });
 	const recetas = RECETAS.filter(receta => receta.categoria === categoria.id)
 		.sort((a, b) => ordenRecetas.compare(a.titulo, b.titulo) || ordenRecetas.compare(a.autor || '', b.autor || ''));
@@ -958,6 +962,13 @@ function iniciarCursorMorph() {
 	cursor.setAttribute('aria-hidden', 'true');
 	cursor.innerHTML = '<img class="CursorMorph_Flecha" src="./images/cursor-arrow.svg" alt=""><img class="CursorMorph_Mano" src="./images/cursor-hand.svg" alt="">';
 	document.body.append(cursor);
+ // Native dialogs live in the top layer. Keep the pointer in that same layer.
+ if(typeof cursor.showPopover==='function'){
+  cursor.setAttribute('popover','manual');
+  const raiseCursor=()=>{if(cursor.matches(':popover-open'))cursor.hidePopover();cursor.showPopover();};
+  raiseCursor();
+  new MutationObserver(records=>{if(records.some(r=>r.target instanceof HTMLDialogElement&&r.target.open))raiseCursor();}).observe(document.body,{subtree:true,attributes:true,attributeFilter:['open']});
+ }else document.documentElement.classList.add('cursor-dialog-native');
 	document.documentElement.classList.add('has-morph-cursor');
 	window.addEventListener('pointermove', evento => {
 		if (evento.pointerType === 'touch') return;

@@ -19,7 +19,7 @@
 	<link rel="preload" href="./fonts/BarlowCondensed-Regular-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="./fonts/BarlowCondensed-Black-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="preload" href="./fonts/PlayfairDisplay-Italic-latin.woff2" as="font" type="font/woff2" crossorigin>
-	<link rel="stylesheet" type="text/css" href="./css/styles.css?v=mobile-photo-center-20261114">
+	<link rel="stylesheet" type="text/css" href="./css/styles.css?v=release-20261120">
 	<style>
 		/* Critical intro styles prevent an unstyled first frame while the rest of the page loads. */
 		@font-face{
@@ -49,9 +49,9 @@
 	
 
 	<link rel="preload" href="./fonts/BarlowCondensed-Medium-latin.woff2" as="font" type="font/woff2" crossorigin>
-	<script src="./data/recetas.js?v=revision-textos-20261118" defer blocking="render"></script>
-	<script src="./js/app.js?v=shapes-20261118" defer blocking="render"></script>
-<link rel="stylesheet" href="css/menu-cuenta.css?v=menu-bold-numbers-20261118"></head>
+	<script src="./data/recetas.js?v=release-20261120" defer blocking="render"></script>
+	<script src="./js/app.js?v=release-20261120" defer blocking="render"></script>
+<link rel="stylesheet" href="css/menu-cuenta.css?v=release-20261120"></head>
 
 <body>
 	<div class="IntroPortada" aria-hidden="true">
@@ -84,10 +84,16 @@
 <!-- TITULO -->
 	<section class="SEC_Titulo SEC_Titulo--home">
 		<div class="TXT_Buscador">
-			<h1 class="Title">
+			<h1 class="Title Title--composed" aria-label="Nuestro cuaderno de recetas"><div class="HomeTitleReserve" aria-hidden="true">
 				<span >Nuestro</span>CUADERNO<br>
-				<span>de</span>RECETAS
-			</h1>
+				<span>de</span>RECETAS</div>
+                <svg class="HomeTitleArtwork" viewBox="10 0 588 360" preserveAspectRatio="xMinYMid meet" aria-hidden="true" focusable="false">
+                    <text class="HomeTitleScript" style="--word:0" x="18" y="108" font-size="118" textLength="397" lengthAdjust="spacingAndGlyphs">Nuestro</text>
+                    <text class="HomeTitleBlock" style="--word:1" x="10" y="232" font-size="150" textLength="588" lengthAdjust="spacingAndGlyphs">CUADERNO</text>
+                    <text class="HomeTitleScript HomeTitleScript--de" style="--word:2" x="18" y="346" font-size="110" textLength="88" lengthAdjust="spacingAndGlyphs">de</text>
+                    <text class="HomeTitleBlock" style="--word:3" x="118" y="348" font-size="150" textLength="480" lengthAdjust="spacingAndGlyphs">RECETAS</text>
+                </svg>
+            </h1>
 
 <!-- BUSCADOR -->
 			<div class="Buscador">
@@ -101,7 +107,7 @@
 		        <path d="m21 21-4.3-4.3"></path>
 		   		</svg>
 		   		<label class="visually-hidden" for="BuscadorInput">Buscar una receta</label>
-		   		<input id="BuscadorInput" type="search" placeholder="Buscar una receta..." autocomplete="off" aria-controls="BuscadorResultados" aria-expanded="false">
+		   		<div class="HomeSearchEntry"><input id="BuscadorInput" type="search" placeholder="Buscar una receta..." autocomplete="off" aria-controls="BuscadorResultados" aria-expanded="false"><span class="HomeSearchPrompt" aria-hidden="true"><span style="--word:0">Buscar</span> <span style="--word:1">una</span> <span style="--word:2">receta...</span></span></div>
 		   		<button class="Buscador_Borrar" type="button" aria-label="Borrar búsqueda" hidden>×</button>
 		   		<div class="BuscadorResultados" id="BuscadorResultados" aria-live="polite"></div>
 			</div>

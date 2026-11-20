@@ -77,3 +77,10 @@
  .SiteHeader .MenuMobile_Numero{color:#8b0000;font-variant-numeric:tabular-nums}
  .SiteHeader .MenuMobile_Nombre{color:#0a0c24}
 }
+
+/* Active and interactive category labels match their burgundy marks. */
+.SiteHeader .MenuDesktop a[data-categoria]:is(.activo,[aria-current="page"],:hover,:focus-visible){color:#8b0000}
+
+/* Para picar: extend the existing brush mark and level its upward slope. */
+.SiteHeader .MenuDesktop a[data-categoria="otros"] .NavStroke{left:-5%;width:110%;height:7px;transform:rotate(2deg);transform-origin:center}
+.SiteHeader .MenuDesktop a[data-categoria="otros"] .NavStroke{left:0;width:100%;height:7px;transform:none;background-image:url('../images/navbar/stroke-0.svg?v=burgundy-20261118')}
