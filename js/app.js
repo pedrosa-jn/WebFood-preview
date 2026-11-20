@@ -534,8 +534,10 @@ function renderizarRecetas() {
 	titulo.setAttribute('aria-label',categoria.nombre);
 	titulo.innerHTML = `<img class="CategoryTitleArtwork" width="${categoria.tituloAncho}" height="${categoria.tituloAlto}" src="./${textoSeguro(categoria.tituloSvg)}?v=titles-20261119" alt="" aria-hidden="true" fetchpriority="high">`;
 	const ordenRecetas = new Intl.Collator('es', { sensitivity: 'base', numeric: true });
+	const salsas = new Set(['mayonesa', 'tomate-frito', 'bechamel', 'salsa-cesar', 'salsa-de-vino']);
 	const recetas = RECETAS.filter(receta => receta.categoria === categoria.id)
-		.sort((a, b) => ordenRecetas.compare(a.titulo, b.titulo) || ordenRecetas.compare(a.autor || '', b.autor || ''));
+		.sort((a, b) => (categoria.id === 'otros' ? Number(salsas.has(a.id)) - Number(salsas.has(b.id)) : 0)
+			|| ordenRecetas.compare(a.titulo, b.titulo) || ordenRecetas.compare(a.autor || '', b.autor || ''));
 	rejilla.dataset.categoria = categoria.id;
 	rejilla.classList.toggle('Recetas--compactas', recetas.length < 8);
 	if (!recetas.length) {
