@@ -13,3 +13,7 @@ Recipe entries are maintained in `data/recetas.js`. Recipe images can be added u
 ## GitHub Pages
 
 The preview site is served from the repository root on the `main` branch.
+
+## Derechos de reutilización
+
+Este proyecto no se ofrece bajo una licencia general de código abierto. Consulta [COPYRIGHT.md](COPYRIGHT.md) para conocer el alcance del aviso, las excepciones y las condiciones de los recursos de terceros. La visibilidad pública del repositorio no implica una autorización general de reutilización.
