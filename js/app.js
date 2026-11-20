@@ -3,6 +3,7 @@ const FLECHA = '<svg class="CAT_Arrow" aria-hidden="true" width="18" height="18"
 const dosDigitos = numero => String(numero).padStart(2, '0');
 const urlCategoria = id => `./categoria.html?c=${encodeURIComponent(id)}&rev=mobile-photo-center-20261114`;
 const IMAGENES_RECETA = {
+	'salsa-de-vino': 'Recetas_IMG/Salsas_Vino_Blanco.jpg?rev=wine-20261120',
 	'mayonesa': 'Recetas_IMG/Salsas_Mayonesa_Casera.jpg?rev=photos-20261120',
 	'tomate-frito': 'Recetas_IMG/Salsas_Tomate_Frito.jpg?rev=photos-20261120',
 	'bechamel': 'Recetas_IMG/Salsas_Bechamel_Casera.jpg?rev=photos-20261120',

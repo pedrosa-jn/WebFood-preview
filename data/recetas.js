@@ -69,6 +69,26 @@ const CATEGORIAS = [
 // Tiempo de preparación activa estimado; excluye esperas y cocción sin intervención. Ver tiempoNota.
 const RECETAS = [
   {
+    "id": "salsa-de-vino",
+    "categoria": "otros",
+    "titulo": "Salsa de Vino",
+    "autor": "",
+    "tiempo": "",
+    "dificultad": "",
+    "imagen": "",
+    "ingredientes": [
+      "½ vaso de vino blanco",
+      "Ajo picado",
+      "Aceite suficiente para cubrir el fondo de la sartén",
+      "Perejil (opcional)"
+    ],
+    "pasos": [
+      "Se cubre el fondo de una sartén con aceite y se dora ligeramente el ajo picado, con cuidado de que no se queme.",
+      "Se echa el vino y se deja reducir, mezclando hasta que se forme una emulsión.",
+      "Si hay perejil, se añade al final."
+    ]
+  },
+  {
     "id": "mayonesa",
     "categoria": "otros",
     "titulo": "Mayonesa",
