@@ -53,9 +53,9 @@ body{background:#f5f5f0}
 }
 .participation-loading .ParticipateIntro,
 .participation-loading .paper-elevation{visibility:hidden}
+.participation-loading.participation-type-ready .ParticipateIntro{visibility:visible}
 @media(max-width:700px){
  .ParticipateScene{min-height:calc(100svh - 63px)}
- .participation-loading.participation-type-ready .ParticipateIntro{visibility:visible}
  .participation-loading .paper-elevation{overflow:hidden}
 }
 

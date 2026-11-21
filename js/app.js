@@ -363,6 +363,25 @@ function iniciarReveladoFilas(rejilla, claseRevelado = 'Recetas--revelado-listo'
 	});
 }
 
+function cargarFotosCercanas(rejilla) {
+	const fotos = rejilla.querySelectorAll('[data-foto-receta]');
+	const cargar = foto => {
+		foto.style.backgroundImage = `url("${foto.dataset.fotoReceta}")`;
+		delete foto.dataset.fotoReceta;
+	};
+	if (!('IntersectionObserver' in window)) {
+		fotos.forEach(cargar);
+		return;
+	}
+	const observer = new IntersectionObserver(entradas => {
+		for (const {target, isIntersecting} of entradas) {
+			if (!isIntersecting) continue;
+			cargar(target);
+			observer.unobserve(target);
+		}
+	}, {rootMargin:'640px 0px'});
+	fotos.forEach(foto => observer.observe(foto));
+}
 
 function iniciarReveladoCategorias() {
 	const lista = document.getElementById('Categorias');
@@ -550,13 +569,14 @@ function renderizarRecetas() {
 		return `
 		<a href="#${encodeURIComponent(receta.id)}" data-id="${textoSeguro(receta.id)}" aria-label="Ver receta: ${textoSeguro([receta.titulo, receta.autor].filter(Boolean).join(' '))}">
 			<div class="Tarjeta">
-				<div class="bck-image${foto ? '' : ' bck-image--placeholder'}"${foto ? ` style="background-image:url('${foto}')"` : ''} aria-hidden="true"></div>
+				<div class="bck-image${foto ? '' : ' bck-image--placeholder'}"${foto ? ` data-foto-receta="${textoSeguro(foto)}"` : ''} aria-hidden="true"></div>
 				<div class="Tarjeta_TXT"><div class="TarjetaTitle" style="--i:${(indice % 12) + 1}"><span class="TarjetaNombre${receta.tituloCorto ? ' TarjetaNombre--completo' : ''}">${textoSeguro(receta.titulo)}</span>${receta.tituloCorto ? `<span class="TarjetaNombre TarjetaNombre--corto">${textoSeguro(receta.tituloCorto)}</span>` : ''}${receta.autor ? ` <span class="TarjetaAutor">${textoSeguro(receta.autor)}</span>` : ''}</div></div>
 				<div class="TarjetaDescripcion" title="${textoSeguro(receta.tiempoNota || '')}">${textoSeguro([receta.tiempo || 'Por estimar', receta.dificultad || 'Por valorar'].join(' · '))}</div>
 			</div>
 		</a>`;
 	}).join('');
 
+	cargarFotosCercanas(rejilla);
 	iniciarReveladoFilas(rejilla);
 	iniciarModal(recetas, categoria.id, rejilla);
 }

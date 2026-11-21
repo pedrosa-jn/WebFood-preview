@@ -18,9 +18,9 @@ async function prepareParticipation(){
  const assets = Promise.all([...document.querySelectorAll('.ParticipateScene .paper-elevation img')].map(img=>img.decode().catch(()=>{})));
  try{
   await document.fonts.ready;
+  fitParticipationPaper();
   root.classList.add('participation-type-ready');
   await assets;
-  fitParticipationPaper();
   if(typeof play==='function')play();
  }finally{
   root.classList.remove('participation-loading','participation-type-ready');
