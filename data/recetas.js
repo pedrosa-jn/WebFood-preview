@@ -552,6 +552,7 @@ const RECETAS = [
     "id": "gazpachuelo-o-sopa-de-mayonesa-de-la-abuela-carmen",
     "categoria": "guisos",
     "titulo": "Gazpachuelo o Sopa de Mayonesa",
+    "tituloCorto": "Gazpachuelo",
     "autor": "de la Abuela Carmen",
     "tiempo": "20 min",
     "dificultad": "Media",

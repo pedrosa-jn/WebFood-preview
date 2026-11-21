@@ -548,10 +548,10 @@ function renderizarRecetas() {
 	rejilla.innerHTML = recetas.map((receta, indice) => {
 		const foto = rutaImagen(receta.imagen || IMAGENES_RECETA[receta.id]);
 		return `
-		<a href="#${encodeURIComponent(receta.id)}" data-id="${textoSeguro(receta.id)}" aria-label="Ver receta: ${textoSeguro(receta.titulo)}">
+		<a href="#${encodeURIComponent(receta.id)}" data-id="${textoSeguro(receta.id)}" aria-label="Ver receta: ${textoSeguro([receta.titulo, receta.autor].filter(Boolean).join(' '))}">
 			<div class="Tarjeta">
 				<div class="bck-image${foto ? '' : ' bck-image--placeholder'}"${foto ? ` style="background-image:url('${foto}')"` : ''} aria-hidden="true"></div>
-				<div class="Tarjeta_TXT"><div class="TarjetaTitle" style="--i:${(indice % 12) + 1}"><span class="TarjetaNombre">${textoSeguro(receta.titulo)}</span>${receta.autor ? ` <span class="TarjetaAutor">${textoSeguro(receta.autor)}</span>` : ''}</div></div>
+				<div class="Tarjeta_TXT"><div class="TarjetaTitle" style="--i:${(indice % 12) + 1}"><span class="TarjetaNombre${receta.tituloCorto ? ' TarjetaNombre--completo' : ''}">${textoSeguro(receta.titulo)}</span>${receta.tituloCorto ? `<span class="TarjetaNombre TarjetaNombre--corto">${textoSeguro(receta.tituloCorto)}</span>` : ''}${receta.autor ? ` <span class="TarjetaAutor">${textoSeguro(receta.autor)}</span>` : ''}</div></div>
 				<div class="TarjetaDescripcion" title="${textoSeguro(receta.tiempoNota || '')}">${textoSeguro([receta.tiempo || 'Por estimar', receta.dificultad || 'Por valorar'].join(' · '))}</div>
 			</div>
 		</a>`;

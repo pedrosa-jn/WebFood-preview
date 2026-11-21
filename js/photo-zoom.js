@@ -16,10 +16,12 @@
  viewer.id = 'RecipePhotoZoom';
  viewer.className = 'RecipePhotoZoom';
  viewer.setAttribute('aria-labelledby','RecipePhotoZoomTitle');
- viewer.innerHTML = '<header class="RecipePhotoZoom_Header"><h2 id="RecipePhotoZoomTitle"></h2><button type="button" aria-label="Cerrar imagen ampliada">×</button></header>';
+ viewer.innerHTML = '<div class="RecipePhotoZoom_Frame"><header class="RecipePhotoZoom_Header"><h2 id="RecipePhotoZoomTitle"></h2><button type="button" aria-label="Cerrar imagen ampliada">×</button></header></div>';
  document.body.append(viewer);
  const enlarged = document.createElement('img');
  enlarged.className = 'RecipePhotoZoom_Image';
+ const frame = viewer.querySelector('.RecipePhotoZoom_Frame');
+ const motionTarget = () => matchMedia('(max-width:700px)').matches ? frame : enlarged;
  const closeButton = viewer.querySelector('button');
  let opening = false, closing = false, motion = null;
  const close = async (animate = true) => {
@@ -28,7 +30,7 @@
   motion?.cancel();
   if (animate && !reduced.matches) {
    viewer.classList.add('is-closing');
-   motion = enlarged.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateY(6px) scale(.985)'}],{duration:190,easing:'cubic-bezier(.4,0,1,1)',fill:'forwards'});
+   motion = motionTarget().animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateY(6px) scale(.985)'}],{duration:190,easing:'cubic-bezier(.4,0,1,1)',fill:'forwards'});
    await motion.finished.catch(()=>{});
   }
   viewer.close();
@@ -50,10 +52,10 @@
   Object.assign(viewer.querySelector('h2').style, {font:titleStyle.font,letterSpacing:titleStyle.letterSpacing,textTransform:titleStyle.textTransform});
   const closeStyle = getComputedStyle(recipe.querySelector('.ModalReceta_Cerrar'));
   Object.assign(closeButton.style, {font:closeStyle.font,letterSpacing:closeStyle.letterSpacing});
-  viewer.append(enlarged);
+  frame.append(enlarged);
   viewer.showModal();
   viewer.focus({preventScroll:true});
-  if (!reduced.matches) motion = enlarged.animate([{opacity:0,transform:'translateY(8px) scale(.985)'},{opacity:1,transform:'none'}],{duration:360,easing:'cubic-bezier(.22,1,.36,1)'});
+  if (!reduced.matches) motion = motionTarget().animate([{opacity:0,transform:'translateY(8px) scale(.985)'},{opacity:1,transform:'none'}],{duration:360,easing:'cubic-bezier(.22,1,.36,1)'});
  });
  closeButton.addEventListener('click',()=>close());
  viewer.addEventListener('click',event=>{if(event.target===viewer)close();});
