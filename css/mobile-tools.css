@@ -23,7 +23,7 @@
 .MobileTools_Options>button:nth-child(1){--satellite-y:calc(var(--tools-direction,-1) * 144px);transition-delay:45ms,0ms}
 .MobileTools_Options>button:nth-child(2){--satellite-y:calc(var(--tools-direction,-1) * 72px)}
 .MobileTools.is-expanded .MobileTools_Options>button{opacity:1;pointer-events:auto;transform:translateY(var(--satellite-y)) scale(1)}
-.MobileTools_Label{position:absolute;right:calc(100% + 12px);padding:6px 9px;white-space:nowrap;background:#f5f5f0;color:#0a0c24;border-radius:4px;font:400 16px/1 'Barlow Condensed',sans-serif;opacity:0;transition:opacity 140ms ease}
+.MobileTools_Label{position:absolute;right:calc(100% + 12px);padding:6px 9px;white-space:nowrap;background:#f5f5f0;color:#0a0c24;border-radius:4px;font:500 16px/1 'Barlow Condensed',sans-serif;opacity:0;transition:opacity 140ms ease}
 .MobileTools.is-expanded .MobileTools_Label{opacity:1;transition-delay:340ms}
 .MobileTools_Grid rect{transition:x 420ms cubic-bezier(.22,1,.36,1),width 420ms cubic-bezier(.22,1,.36,1),opacity 300ms ease}
 .is-one-column .MobileTools_Grid rect:nth-child(even){opacity:0}
@@ -77,11 +77,23 @@ body.ModalReceta-open .MobileTools,body.MobileSearch-open .MobileTools,body:has(
  .MobileSearch::backdrop,.MobileSearch.is-closing::backdrop{animation:none}
 }
 
-@media(max-width:700px){.MobileTools_Toggle{outline:2px solid #f5f5f0;outline-offset:-2px}.MobileTools_Options>button{outline:1px solid #f5f5f0;outline-offset:-1px}}
 @media(max-width:700px){
  .MobileTools.is-positioned{left:0;top:0;right:auto;bottom:auto;translate:var(--tools-x) var(--tools-y)}
  .MobileTools .MobileTools_Toggle{width:60px;height:60px;touch-action:none;cursor:grab;-webkit-user-select:none;user-select:none}
  .MobileTools_Toggle>svg{width:27px;height:27px}
+ .MobileTools [data-tools-search],
+ .MobileTools [data-tools-plus],
+ .MobileTools [data-search-open] svg,
+ .MobileSearch [data-search-close] svg{stroke-width:2.4}
+ /* Match the opening paths of the ink shapes and their buttons.
+    The collapsed-state transitions above still govern the return. */
+ .MobileTools.is-expanded .MobileTools_Blob i:nth-child(n+2),
+ .MobileTools.is-expanded .MobileTools_Options>button{
+  transition:transform 420ms cubic-bezier(.36,.04,.24,1),opacity 160ms ease 125ms;
+ }
+ .MobileTools.is-expanded .MobileTools_Label{transition-delay:275ms}
+ .MobileTools.is-expanded [data-layout-toggle] .MobileTools_Label{transition-delay:315ms}
+
  .MobileTools_Blob i:not(:first-child){inset:3px}
  .MobileTools_Options>button{margin-inline:auto}
  .MobileTools.is-dragging{transition:none}
