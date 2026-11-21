@@ -1168,10 +1168,14 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 		transition:opacity 600ms cubic-bezier(.4,0,.2,1),visibility 0s;
 	}
 	.ModalReceta_Contenedor{
+		--recipe-sheet-height:calc(100dvh - env(safe-area-inset-top,0px) - max(44px,6dvh));
+		--recipe-header-height:68px;
+		--recipe-frame-border:1px;
 		width:100%;
 		height:auto;
 		min-height:min(56dvh,520px);
-		max-height:calc(100dvh - env(safe-area-inset-top,0px) - max(44px,6dvh));
+		max-height:var(--recipe-sheet-height);
+		border-width:var(--recipe-frame-border);
 		border-radius:22px 22px 0 0;
 		overflow-x:hidden;
 		overflow-y:auto;
@@ -1194,8 +1198,8 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	}
 	.ModalReceta_Header{
 		position:relative;
-		flex:0 0 68px;
-		min-height:68px;
+		flex:0 0 var(--recipe-header-height);
+		min-height:var(--recipe-header-height);
 	}
 	.ModalReceta_Cerrar{
 		width:44px;

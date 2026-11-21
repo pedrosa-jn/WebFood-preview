@@ -139,11 +139,10 @@ a {
 					background: transparent;
 					padding: 0;
 					margin-left: 8px;
-					font-family: inherit;
-					font-size: 24px;
-					line-height: 1;
+					font: 900 2rem/1 "Barlow Condensed", sans-serif;
 					color: rgb(139, 0, 0);
 					cursor: pointer;
+					transition: scale .22s cubic-bezier(.22,.61,.36,1);
 				}
 				.BuscadorResultados{
 					position: absolute;
@@ -465,6 +464,8 @@ input:focus-visible{
 }
 .Buscador_Borrar{ width:36px; height:36px; flex:0 0 36px; border-radius:50%; display:none; place-items:center; }
 .Buscador_Borrar:not([hidden]){ display:grid; }
+@media(hover:hover) and (pointer:fine){.Buscador_Borrar:is(:hover,:focus-visible){scale:1.09}}
+@media(prefers-reduced-motion:reduce){.Buscador_Borrar{transition:none}}
 .Buscador.Buscador--resultados-abiertos{
 	z-index:25;
 	border-radius:999px 999px 0 0;
@@ -537,7 +538,7 @@ html{scrollbar-gutter:stable;}
 .SEC_Titulo--home .Buscador:focus-within::before{border-width:1.5px}
 .SEC_Titulo--home .Buscador input{padding:0;color:rgba(10,12,36,.72);animation:none}
 .SEC_Titulo--home .Buscador input::placeholder{color:transparent;opacity:1}
-.SEC_Titulo--home .search-icon{color:#8b0000;animation:homeSearchText .4s .08s cubic-bezier(.22,1,.36,1) both}
+.SEC_Titulo--home .search-icon{width:20px;height:20px;color:#8b0000;animation:homeSearchText .4s .08s cubic-bezier(.22,1,.36,1) both}
 @keyframes homeSearchOutline{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:1}}
 @keyframes homeSearchText{from{clip-path:inset(0 100% 0 0);opacity:0}to{clip-path:inset(0);opacity:1}}
 html.intro-pending .SEC_Titulo--home .Buscador::before,html.intro-pending .SEC_Titulo--home :is(.Buscador input,.search-icon),
@@ -547,7 +548,7 @@ body.IntroPortada-saliente .SEC_Titulo--home .Buscador::before,body.IntroPortada
 
 .HomeSearchEntry{position:relative;display:flex;flex:1;min-width:0}
 .SEC_Titulo--home .HomeSearchEntry input{width:100%;min-width:0}
-.SEC_Titulo--home .HomeSearchPrompt{position:absolute;inset:0;display:flex;align-items:center;gap:.28em;color:rgba(10,12,36,.65);font:400 13.3333px Arial,sans-serif;pointer-events:none}
+.SEC_Titulo--home .HomeSearchPrompt{position:absolute;inset:0;display:flex;align-items:center;gap:.28em;color:rgba(10,12,36,.65);font:400 16px Arial,sans-serif;pointer-events:none}
 .HomeSearchPrompt span{display:inline-block;animation:homeSearchWord .55s calc(.22s + var(--word)*.085s) cubic-bezier(.22,1,.36,1) both}
 .HomeSearchEntry input:not(:placeholder-shown)~.HomeSearchPrompt,.HomeSearchEntry:focus-within .HomeSearchPrompt{visibility:hidden}
 @keyframes homeSearchWord{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
@@ -555,7 +556,18 @@ html.intro-pending .HomeSearchPrompt span,body.IntroPortada-activa .HomeSearchPr
 body.IntroPortada-saliente .HomeSearchPrompt span{animation-play-state:running}
 @media(prefers-reduced-motion:reduce){.HomeSearchPrompt span{animation:none}}
 
-.SEC_Titulo--home .HomeSearchEntry input{font:400 16px "Barlow Condensed",sans-serif}
+.SEC_Titulo--home .HomeSearchEntry input{font:400 18px "Barlow Condensed",sans-serif}
+.SEC_Titulo--home .BuscadorResultado{gap:2px}
+.SEC_Titulo--home .BuscadorResultado_Nombre{font-size:1.3125rem;line-height:1.14}
+.SEC_Titulo--home .BuscadorResultado_Categoria{font-size:.875rem;line-height:1.2}
+@media(max-width:700px){
+ .SEC_Titulo--home .HomeSearchPrompt{font-size:20px}
+ .SEC_Titulo--home .HomeSearchEntry input{font-size:23px}
+ .SEC_Titulo--home .search-icon{width:24px;height:24px}
+ .SEC_Titulo--home .Buscador_Borrar{font-size:2.25rem}
+ .SEC_Titulo--home .BuscadorResultado_Nombre{font-size:1.625rem}
+ .SEC_Titulo--home .BuscadorResultado_Categoria{font-size:1rem}
+}
 
 /* Restore the original quiet search outline. */
 .SEC_Titulo--home .Buscador::before{border:1px solid rgba(30,30,30,.25)}

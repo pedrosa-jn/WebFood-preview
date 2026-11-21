@@ -37,17 +37,15 @@
   if (value && ['x','y'].every(k=>Number.isFinite(value[k]) && value[k]>=0 && value[k]<=1)) savedPosition=value;
  } catch {}
  const safeArea = document.createElement('div');
+ safeArea.className='MobileTools_SafeArea';
  safeArea.setAttribute('aria-hidden','true');
- safeArea.style.cssText='position:fixed;visibility:hidden;pointer-events:none;left:max(18px,env(safe-area-inset-left));right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));bottom:calc(18px + env(safe-area-inset-bottom))';
  document.body.append(safeArea);
  const dragBounds = () => {
-  const area=safeArea.getBoundingClientRect(), viewport=window.visualViewport;
-  const left=Math.max(area.left,(viewport?.offsetLeft || 0)+18);
-  const top=Math.max(area.top,(viewport?.offsetTop || 0)+18);
-  const right=Math.max(left,Math.min(area.right,(viewport?.offsetLeft || 0)+(viewport?.width || innerWidth)-18)-toggleButton.offsetWidth);
-  const bottom=Math.max(top,Math.min(area.bottom,(viewport?.offsetTop || 0)+(viewport?.height || innerHeight)-18)-toggleButton.offsetHeight);
-  const lowerHalf = (viewport?.offsetTop || 0) + (viewport?.height || innerHeight)/2;
-  const minY = Math.min(bottom,Math.max(top,lowerHalf));
+  const area=safeArea.getBoundingClientRect();
+  const {left,top}=area;
+  const right=Math.max(left,area.right-toggleButton.offsetWidth);
+  const bottom=Math.max(top,area.bottom-toggleButton.offsetHeight);
+  const minY=Math.min(bottom,top+area.height/2);
   return {left,top,right,bottom,minY};
  };
  const placeTools = (x,y,bounds=dragBounds()) => {
@@ -66,12 +64,23 @@
   savedPosition={x:(point.x-bounds.left)/Math.max(1,bounds.right-bounds.left),y:(point.y-bounds.top)/Math.max(1,bounds.bottom-bounds.top)};
   try {localStorage.setItem(positionKey,JSON.stringify(savedPosition));} catch {}
  };
+ let previousBounds;
  const restorePosition = () => {
+  if (!mobile.matches) {
+   previousBounds=null;
+   if (drag) finishDrag({pointerId:drag.id},true);
+   dropAnimation?.cancel();
+   tools.classList.remove('is-positioned','is-left','opens-down');
+   return;
+  }
+  if (dialog.open) return;
+  const bounds=dragBounds();
+  const unchanged=previousBounds && Object.keys(bounds).every(key=>bounds[key]===previousBounds[key]);
+  previousBounds=bounds;
+  if (unchanged) return;
   if (drag) finishDrag({pointerId:drag.id},true);
   dropAnimation?.cancel();
-  if (!mobile.matches) {tools.classList.remove('is-positioned','is-left','opens-down');return;}
-  if (!savedPosition || dialog.open) return;
-  const bounds=dragBounds();
+  if (!savedPosition) return;
   placeTools(savedPosition.x<.5 ? bounds.left : bounds.right,bounds.top+savedPosition.y*(bounds.bottom-bounds.top),bounds);
  };
  toggleButton.addEventListener('dragstart',e=>e.preventDefault());
@@ -125,9 +134,10 @@
   rememberPosition(point);
  });
  window.addEventListener('resize',restorePosition);
- window.visualViewport?.addEventListener('resize',restorePosition);
  document.addEventListener('pointerdown',e=>{if(!tools.contains(e.target))expandTools(false);});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&tools.classList.contains('is-expanded')){expandTools(false);toggleButton.focus({preventScroll:true});}});
+ const stage = dialog.querySelector('.MobileSearch_Stage');
+ const shade = dialog.querySelector('.MobileSearch_Shade');
  const panel = dialog.querySelector('.MobileSearch_Panel');
  const surface = dialog.querySelector('.MobileSearch_Surface');
  const content = dialog.querySelector('.MobileSearch_Content');
@@ -136,8 +146,10 @@
  const status = dialog.querySelector('[role="status"]');
  const clear = dialog.querySelector('[data-search-clear]');
  const closeButton = dialog.querySelector('[data-search-close]');
+ const field = dialog.querySelector('form');
  let columns = 1, moving = [], shellAnimation = null, contentAnimation = null;
- let closing = false, lock = null, origin = null, resultsAnimation = null, resultsVisible = false;
+ let openingDetails = [];
+ let closing = false, lock = null, resultsAnimation = null, resultsVisible = false;
  const normalize = value => String(value || '').toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
  const catalog = RECETAS.map(r => ({...r, match:normalize([r.titulo,r.autor].filter(Boolean).join(' '))}));
  const setColumns = value => {
@@ -197,35 +209,106 @@
   document.body.classList.remove('MobileSearch-open');
  };
  // Reveal the surface through a moving aperture. Text never stretches with it.
- const panelClip = (rect,element=surface) => {
-  const bounds=element.getBoundingClientRect();
-  return `inset(${rect.top-bounds.top}px ${bounds.right-rect.right}px ${bounds.bottom-rect.bottom}px ${rect.left-bounds.left}px round ${rect.width<=56?'27':'24'}px)`;
+ const panelClip = (rect,radius=rect.width<=60 ? rect.width/2 : 24) => {
+  const bounds=surface.getBoundingClientRect();
+  return `inset(${rect.top-bounds.top}px ${bounds.right-rect.right}px ${bounds.bottom-rect.bottom}px ${rect.left-bounds.left}px round ${radius}px)`;
  };
- const openingIcon=document.createElement('div');openingIcon.className='MobileSearch_OpeningIcon';openingIcon.setAttribute('aria-hidden','true');openingIcon.innerHTML=toggleButton.querySelector('[data-tools-search]').outerHTML+'<span>¿Qué te apetece cocinar?</span>';openingIcon.hidden=true;dialog.append(openingIcon);
- let iconAnimation=null,retargetOpening=null;
+ let retargetOpening=null;
  const destinationClip = () => panelClip(panel.getBoundingClientRect());
  const controlColor = () => getComputedStyle(tools).getPropertyValue('--tool-bg').trim() || 'rgb(139,0,0)';
+ const revealSearchCopy = delay => {
+  openingDetails.push(...[dialog.querySelector('.MobileSearch_Top'),input,clear,status].map((element,index)=>element.animate([
+   {opacity:0,translate:'0 8px'},
+   {opacity:1,translate:'0 0'}
+  ],{delay:delay+[0,55,55,135][index],duration:300,easing:'cubic-bezier(.22,1,.36,1)',fill:'backwards'})));
+ };
+ const openDesktop = origin => {
+  const target = field.getBoundingClientRect();
+  const lens = field.querySelector('svg');
+  const lensBounds = lens.getBoundingClientRect();
+  const shiftX = origin.right - target.right;
+  const shiftY = origin.top - target.top;
+  const lensShift = origin.left + origin.width / 2 - lensBounds.left - lensBounds.width / 2 - shiftX;
+  const start = `translate(${shiftX}px,${shiftY}px)`;
+  const centered = `translateY(${shiftY}px)`;
+  const capsule = panelClip({top:origin.top,right:target.right,bottom:origin.top+target.height,left:target.left},target.height/2);
+  const build = 'cubic-bezier(.65,0,.25,1)';
+  const rise = 'cubic-bezier(.22,.72,.28,1)';
+  const timing = {duration:860};
+  const phase = .48;
+  const ink = controlColor();
+  const paper = getComputedStyle(surface).backgroundColor;
+  const border = getComputedStyle(field).borderColor;
+  const lensColor = getComputedStyle(lens).color;
+
+  // The actual field moves away from the button and stays centered for the rise.
+  openingDetails = [
+   field.animate([
+    {transform:start,clipPath:`inset(0 0 0 ${target.width-origin.width}px round 30px)`,backgroundColor:ink,borderColor:ink,offset:0,easing:build},
+    {transform:centered,clipPath:'inset(0 round 30px)',backgroundColor:paper,borderColor:border,offset:phase,easing:rise},
+    {transform:'translateY(0)',clipPath:'inset(0 round 30px)',backgroundColor:paper,borderColor:border}
+   ],timing),
+   lens.animate([
+    {transform:`translateX(${lensShift}px) scale(${27/lensBounds.width})`,color:paper,offset:0,easing:build},
+    {transform:'none',color:lensColor,offset:phase},
+    {transform:'none',color:lensColor}
+   ],timing)
+  ];
+  openingDetails.push(results.animate([{opacity:0},{opacity:1}],{
+   delay:timing.duration,duration:200,fill:'backwards'
+  }));
+  revealSearchCopy(timing.duration);
+  shellAnimation=surface.animate([
+   {clipPath:capsule,opacity:0,offset:0},
+   {clipPath:capsule,opacity:0,offset:phase-.01},
+   {clipPath:capsule,opacity:1,offset:phase,easing:rise},
+   {clipPath:destinationClip(),opacity:1}
+  ],timing);
+  const openingMotion=shellAnimation;
+  retargetOpening=()=>{
+   openingDetails.forEach(animation=>{
+    if (animation.effect.getTiming().delay===0) animation.finish();
+   });
+   openingMotion.finish();
+   surface.style.clipPath=destinationClip();
+  };
+  openingMotion.finished.then(()=>{
+   if(shellAnimation===openingMotion)retargetOpening=null;
+  }).catch(()=>{});
+ };
+ const openMobile = origin => {
+  const {left,top}=surface.getBoundingClientRect();
+  const size=Math.min(origin.width,origin.height);
+  const duration=440;
+  dialog.style.setProperty('--search-origin-x',`${origin.left-left}px`);
+  dialog.style.setProperty('--search-origin-y',`${origin.top-top}px`);
+  dialog.style.setProperty('--search-origin-size',`${size}px`);
+  const source='inset(var(--search-source-y) calc(100% - var(--search-origin-x) - var(--search-origin-size)) calc(100% - var(--search-source-y) - var(--search-origin-size)) var(--search-origin-x) round calc(var(--search-origin-size) / 2))';
+  const destination='inset(var(--search-panel-top) var(--search-panel-right) calc(100% - var(--search-panel-top) - var(--search-panel-height)) var(--search-panel-left) round 24px)';
+  // The clip's endpoints follow the visible viewport, even while the keyboard rises.
+  shellAnimation=surface.animate([
+   {clipPath:source,backgroundColor:controlColor()},
+   {clipPath:destination,backgroundColor:getComputedStyle(surface).backgroundColor}
+  ],{duration,easing:'cubic-bezier(.22,.8,.28,1)'});
+  contentAnimation=content.animate([{opacity:0},{opacity:1}],{
+   delay:duration-90,duration:140,easing:'ease-out',fill:'backwards'
+  });
+  revealSearchCopy(duration);
+ };
  const sizeDialog = () => {
   dialog.style.setProperty('--search-height',`${window.visualViewport?.height || innerHeight}px`);
   dialog.style.setProperty('--search-top',`${window.visualViewport?.offsetTop || 0}px`);
   if(!dialog.open || closing)return;
   const target=destinationClip();
-  if(shellAnimation?.playState==='running'){
-   if(retargetOpening){retargetOpening();return;}
-   iconAnimation?.cancel();openingIcon.hidden=true;
-   const current=getComputedStyle(surface).clipPath;
-   const color=getComputedStyle(surface).backgroundColor;
-   shellAnimation.cancel();
-   surface.style.clipPath=target;
-   shellAnimation=surface.animate([{clipPath:current,backgroundColor:color},{clipPath:target,backgroundColor:'rgb(245,245,240)'}],{duration:280,easing:'cubic-bezier(.22,1,.36,1)'});
-  }else surface.style.clipPath=target;
+  surface.style.clipPath=target;
+  if(shellAnimation?.playState==='running') retargetOpening?.();
  };
  window.visualViewport?.addEventListener('resize',sizeDialog);
  window.visualViewport?.addEventListener('scroll',sizeDialog);
  window.addEventListener('resize',sizeDialog);
  const open = () => {
   if (dialog.open) return;
-  origin=(mobile.matches ? searchButton : toggleButton).getBoundingClientRect();
+  const origin=(mobile.matches ? searchButton : toggleButton).getBoundingClientRect();
   expandTools(false);
   lockBackground();
   closing=false;
@@ -236,67 +319,38 @@
   if (!mobile.matches) toggleButton.setAttribute('aria-expanded','true');
   shellAnimation?.cancel();contentAnimation?.cancel();
   surface.style.clipPath=destinationClip();
-  if (!reduced.matches) {
-   const field=dialog.querySelector('form').getBoundingClientRect();
-   const width=field.width;
-   const startLeft=Math.max(12,Math.min(origin.right-width,innerWidth-width-12));
-   const horizontal=Math.max(0,Math.min(width-54,origin.left-startLeft));
-   const ease='cubic-bezier(.65,0,.25,1)';
-   const duration=1000;
-   // The field is an actual capsule. Its leading edge and lens travel together.
-   Object.assign(openingIcon.style,{left:startLeft+'px',top:origin.top+'px',width:width+'px'});
-   openingIcon.hidden=false;
-   const lens=openingIcon.querySelector('svg');
-   const copy=openingIcon.querySelector('span');
-   lens.getAnimations().forEach(a=>a.cancel());copy.getAnimations().forEach(a=>a.cancel());
-   lens.animate([
-    {transform:`translateX(${horizontal}px)`,color:'#f5f5f0',offset:0,easing:ease},
-    {transform:'translateX(0)',color:'#0a0c24',offset:.48},
-    {transform:'translateX(0)',color:'#0a0c24',offset:1}
-   ],{duration,fill:'forwards',easing:'linear'});
-   copy.animate([{opacity:0},{opacity:0,offset:.48},{opacity:1,offset:.56},{opacity:1}],{duration,fill:'forwards'});
-   iconAnimation?.cancel();
-   const capsuleFrames=()=>[
-    {clipPath:`inset(0 ${width-horizontal-54}px 0 ${horizontal}px round 27px)`,transform:'translateY(0)',opacity:1,backgroundColor:'#0a0c24',offset:0,easing:ease},
-    {clipPath:'inset(0 round 27px)',transform:'translateY(0)',opacity:1,backgroundColor:'#f5f5f0',offset:.48,easing:ease},
-    {clipPath:'inset(0 round 27px)',transform:`translate(${dialog.querySelector('form').getBoundingClientRect().left-startLeft}px,${dialog.querySelector('form').getBoundingClientRect().top-origin.top}px)`,opacity:1,backgroundColor:'#f5f5f0',offset:.85},
-    {clipPath:'inset(0 round 27px)',transform:`translate(${dialog.querySelector('form').getBoundingClientRect().left-startLeft}px,${dialog.querySelector('form').getBoundingClientRect().top-origin.top}px)`,opacity:0,backgroundColor:'#f5f5f0',offset:1}
-   ];
-   iconAnimation=openingIcon.animate(capsuleFrames(),{duration,easing:'linear',fill:'forwards'});
-   const frames=()=>[
-    {clipPath:panelClip(dialog.querySelector('form').getBoundingClientRect()),opacity:0,offset:0},
-    {clipPath:panelClip(dialog.querySelector('form').getBoundingClientRect()),opacity:0,offset:.84},
-    {clipPath:destinationClip(),opacity:1,offset:1}
-   ];
-   shellAnimation=surface.animate(frames(),{duration,easing:'linear'});
-   const openingMotion=shellAnimation;
-   retargetOpening=()=>{openingMotion.effect.setKeyframes(frames());iconAnimation?.effect.setKeyframes(capsuleFrames());};
-   openingMotion.finished.then(()=>{if(shellAnimation===openingMotion){retargetOpening=null;surface.style.clipPath=destinationClip();openingIcon.hidden=true;}}).catch(()=>{});
-   contentAnimation=content.animate([{opacity:0},{opacity:0,offset:.84},{opacity:1}],{duration,easing:'linear'});
-  }
+  if (!reduced.matches) (mobile.matches ? openMobile : openDesktop)(origin);
+  // Keep focus in the tap handler so mobile browsers can show their keyboard.
   input.focus({preventScroll:true});
  };
  const close = async (animate=true) => {
   if (!dialog.open || closing) return;
   closing=true;
   retargetOpening=null;
-  iconAnimation?.cancel();openingIcon.hidden=true;
-  origin=toggleButton.getBoundingClientRect();
+  const shadeOpacity=getComputedStyle(shade).opacity;
   dialog.classList.add('is-closing');
-  const currentClip=getComputedStyle(surface).clipPath;
-  const currentColor=getComputedStyle(surface).backgroundColor;
-  shellAnimation?.cancel();contentAnimation?.cancel();
+  let fold, fadeShade;
   if (animate && !reduced.matches) {
-   contentAnimation=content.animate([{opacity:getComputedStyle(content).opacity},{opacity:0}],{duration:120,fill:'forwards'});
-   shellAnimation=surface.animate([
-    {clipPath:currentClip,backgroundColor:currentColor},
-    {clipPath:panelClip(origin),backgroundColor:controlColor()}
-   ],{duration:420,easing:'cubic-bezier(.65,0,.35,1)',fill:'forwards'});
-   await shellAnimation.finished.catch(()=>{});
+   const stillOpening=shellAnimation?.playState==='running';
+   [shellAnimation,contentAnimation,...openingDetails].forEach(animation=>{
+    if (animation?.playState==='running') animation.pause();
+   });
+   const bounds=panel.getBoundingClientRect();
+   const timing={duration:360,easing:'cubic-bezier(.65,0,.35,1)',fill:'forwards'};
+   fold=stage.animate([
+    {opacity:1,clipPath:stillOpening ? 'inset(0 round 24px)' : panelClip(bounds)},
+    {opacity:0,clipPath:panelClip({top:bounds.top,right:bounds.right,bottom:bounds.top,left:bounds.left})}
+   ],timing);
+   fadeShade=shade.animate([{opacity:shadeOpacity},{opacity:0}],timing);
+   await Promise.allSettled([fold.finished,fadeShade.finished]);
   }
   input.blur();
   dialog.close();
+  fold?.cancel();
+  fadeShade?.cancel();
   shellAnimation?.cancel();contentAnimation?.cancel();
+  openingDetails.forEach(animation=>animation.cancel());
+  openingDetails=[];
   unlockBackground();
   searchButton.setAttribute('aria-expanded','false');
   toggleButton.setAttribute('aria-expanded','false');

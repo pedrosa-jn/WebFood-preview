@@ -567,6 +567,14 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 
 	const imagen = document.getElementById('ModalImg');
 	const titulo = document.getElementById('ModalTitulo');
+	const contenedor = modal.querySelector('.ModalReceta_Contenedor');
+	const cabeceraReceta = titulo.closest('.ModalReceta_Titulo');
+	const vistaMovil = window.matchMedia('(max-width:700px)');
+	const encuadrarPortada = () => {
+		if (!vistaMovil.matches || !modal.classList.contains('activo')) return;
+		contenedor.style.setProperty('--recipe-title-height', `${cabeceraReceta.getBoundingClientRect().height}px`);
+	};
+	new ResizeObserver(encuadrarPortada).observe(cabeceraReceta);
 	const datos = document.getElementById('ModalDatos');
 	const listaIngredientes = document.getElementById('ModalIng');
 	const listaPasos = document.getElementById('ModalPasos');
@@ -602,7 +610,7 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 		const receta = recetas.find(item => item.id === id);
 		if (!receta) return;
 		window.clearTimeout(temporizadorCierre);
-		modal.querySelector('.ModalReceta_Contenedor').scrollTop = 0;
+		contenedor.scrollTop = 0;
 		const zonaDesplazable = modal.querySelector('.ModalReceta_Desplazable');
 		if (zonaDesplazable) zonaDesplazable.scrollTop = 0;
 		elementoDisparador = disparador;
@@ -643,6 +651,8 @@ function iniciarModal(recetas, categoriaId, rejilla) {
 		modal.setAttribute('aria-hidden', 'false');
 		bloquearScrollFondo();
 		document.body.classList.add('ModalReceta-open');
+		encuadrarPortada();
+		contenedor.scrollTop = 0;
 		modal.focus({preventScroll:true});
 	};
 

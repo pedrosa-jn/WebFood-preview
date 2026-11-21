@@ -1,13 +1,15 @@
 /* Shared search and mobile view controls. The accent is a local trial token. */
+.MobileTools,.MobileTools_SafeArea{--tools-size:60px}
 .MobileTools{--tool-bg:#0a0c24;--tool-ink:#f5f5f0;position:fixed;right:max(18px,env(safe-area-inset-right));bottom:calc(18px + env(safe-area-inset-bottom));z-index:900;transition:opacity 160ms ease,transform 200ms ease}
 .MobileTools[hidden]{display:none}
+.MobileTools_SafeArea{display:none}
 .MobileTools button{position:relative;display:grid;place-items:center;width:54px;height:54px;padding:0;border:0;border-radius:50%;color:var(--tool-ink);background:transparent;cursor:pointer;touch-action:manipulation}
 .MobileTools svg{width:24px;height:24px;overflow:visible}
 .MobileTools>svg{position:absolute;width:0;height:0;pointer-events:none}
 .MobileTools button:focus-visible,.MobileSearch button:focus-visible,.MobileSearch a:focus-visible{outline:2px solid #0a0c24;outline-offset:4px}
 .MobileTools button:active>svg{scale:.94}
-.MobileTools_Toggle{z-index:2}
-.MobileTools_Toggle>svg{pointer-events:none;position:absolute;transition:opacity 180ms ease,scale 300ms cubic-bezier(.22,1,.36,1)}
+.MobileTools .MobileTools_Toggle{z-index:2;width:var(--tools-size);height:var(--tools-size)}
+.MobileTools_Toggle>svg{pointer-events:none;position:absolute;top:50%;left:50%;translate:-50% -50%;width:27px;height:27px;stroke-width:2.4;transition:opacity 180ms ease,scale 300ms cubic-bezier(.22,1,.36,1)}
 .MobileTools_Toggle [data-tools-search]{opacity:1;scale:1}
 .MobileTools_Toggle [data-tools-plus]{opacity:0;scale:.6}
 .MobileTools.is-expanded [data-tools-search]{opacity:0;scale:.6}
@@ -23,7 +25,7 @@
 .MobileTools_Options>button:nth-child(1){--satellite-y:calc(var(--tools-direction,-1) * 144px);transition-delay:45ms,0ms}
 .MobileTools_Options>button:nth-child(2){--satellite-y:calc(var(--tools-direction,-1) * 72px)}
 .MobileTools.is-expanded .MobileTools_Options>button{opacity:1;pointer-events:auto;transform:translateY(var(--satellite-y)) scale(1)}
-.MobileTools_Label{position:absolute;right:calc(100% + 12px);padding:6px 9px;white-space:nowrap;background:#8b0000;color:#f5f5f0;border-radius:4px;font:500 16px/1 'Barlow Condensed',sans-serif;opacity:0;transition:opacity 140ms ease}
+.MobileTools_Label{position:absolute;right:calc(100% + 12px);padding:6px 9px;white-space:nowrap;background:#8b0000;color:#f5f5f0;border:1px solid #000;border-radius:4px;font:500 16px/1 'Barlow Condensed',sans-serif;opacity:0;transition:opacity 140ms ease}
 .MobileTools.is-expanded .MobileTools_Label{opacity:1;transition-delay:340ms}
 .MobileTools_Grid rect{transition:x 420ms cubic-bezier(.22,1,.36,1),width 420ms cubic-bezier(.22,1,.36,1),opacity 300ms ease}
 .is-one-column .MobileTools_Grid rect:nth-child(even){opacity:0}
@@ -44,15 +46,31 @@ body.ModalReceta-open .MobileTools,body.MobileSearch-open .MobileTools,body:has(
  .Recetas{overflow-anchor:none;}
 }
  .MobileSearch[open]{display:block;}
- .MobileSearch{position:fixed;inset:0;margin:0;padding:0;border:0;width:100%;height:100dvh;max-width:none;max-height:none;background:transparent;color:rgb(10,12,36);overflow:hidden;}
- .MobileSearch::backdrop{animation:mobileSearchBackdropIn 300ms ease both;background:rgba(10,12,36,.56);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);}
- .MobileSearch_Panel{position:absolute;left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right));top:calc(var(--search-top,0px) + max(14px,env(safe-area-inset-top)));height:calc(var(--search-height,100dvh) - max(14px,env(safe-area-inset-top)) - 14px);isolation:isolate;}
- .MobileSearch_Surface{position:fixed;inset:0;background:rgb(245,245,240);border:0;z-index:-1;pointer-events:none;}
+ .MobileSearch{
+  --search-panel-left:max(12px,env(safe-area-inset-left));
+  --search-panel-right:max(12px,env(safe-area-inset-right));
+  --search-panel-gap:max(14px,env(safe-area-inset-top));
+  --search-panel-top:calc(var(--search-top,0px) + var(--search-panel-gap));
+  --search-panel-height:max(0px,calc(var(--search-height,100dvh) - var(--search-panel-gap) - 14px));
+  --search-source-y:clamp(var(--search-top,0px),var(--search-origin-y),calc(var(--search-top,0px) + var(--search-height,100dvh) - var(--search-origin-size) - 10px));
+  position:fixed;inset:0;margin:0;padding:0;border:0;width:100%;height:100dvh;max-width:none;max-height:none;background:transparent;color:rgb(10,12,36);overflow:hidden;
+ }
+ .MobileSearch_Stage{position:absolute;inset:0;pointer-events:none}
+ .MobileSearch::backdrop{background:transparent}
+ .MobileSearch_Shade{position:absolute;inset:0;pointer-events:none;background:rgba(10,12,36,.56);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+ .MobileSearch[open]:not(.is-closing) .MobileSearch_Shade{animation:mobileSearchBackdropIn 300ms ease both}
+ .MobileSearch_Panel{position:absolute;left:var(--search-panel-left);right:var(--search-panel-right);top:var(--search-panel-top);height:var(--search-panel-height);isolation:isolate;pointer-events:auto;}
+ .MobileSearch_Surface{position:fixed;inset:0;background:rgb(245,245,240);border:0;pointer-events:none;}
  .MobileSearch_Content{height:100%;display:flex;flex-direction:column;padding:20px;min-height:0;}
  .MobileSearch_Top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px;}
  .MobileSearch_Top h2{font:900 1.8rem/1 "Barlow Condensed",sans-serif;color:rgb(139,0,0);margin:0;}
  .MobileSearch button{font:500 1.2rem/1 "Barlow Condensed",sans-serif;color:rgb(139,0,0);background:transparent;border:0;min-width:44px;min-height:44px;cursor:pointer;border-radius:50%;}
  .MobileSearch button[hidden]{display:none;}
+ .MobileSearch [data-search-close]{
+  font:900 2rem/1 "Barlow Condensed",sans-serif;
+  transition:scale .22s cubic-bezier(.22,.61,.36,1);
+ }
+ .MobileSearch [data-search-clear]{font:700 1.875rem/1 "Barlow Condensed",sans-serif}
  .MobileSearch form{display:flex;align-items:center;gap:10px;min-height:52px;padding:0 10px 0 15px;border:1px solid rgb(139,0,0);border-radius:28px;background:rgb(245,245,240);}
  .MobileSearch form>svg{width:22px;height:22px;flex:none;stroke-width:2;color:rgb(10,12,36);}
  .MobileSearch input{font:500 20px/1.2 "Barlow Condensed",sans-serif;color:rgb(10,12,36);background:transparent;border:0;outline:0;box-shadow:none;width:100%;min-width:0;padding:10px 0;appearance:none;-webkit-appearance:none;caret-color:rgb(139,0,0);}
@@ -65,31 +83,45 @@ body.ModalReceta-open .MobileTools,body.MobileSearch-open .MobileTools,body:has(
  .MobileSearch ::selection{color:rgb(245,245,240);background:rgb(139,0,0);}
 
 @keyframes mobileSearchBackdropIn{from{opacity:0}to{opacity:1}}
-@keyframes mobileSearchBackdropOut{from{opacity:1}to{opacity:0}}
-.MobileSearch.is-closing::backdrop{animation:mobileSearchBackdropOut 420ms ease both}
 @media(min-width:701px){
- .MobileTools{right:28px;bottom:28px;--tool-bg:#0a0c24;--tool-ink:#f5f5f0}
- .MobileTools_Toggle{background:var(--tool-bg)!important;outline:1px solid #0a0c24;outline-offset:4px;border:1px solid #f5f5f0!important}
- .MobileTools_Blob,.MobileTools_Options{display:none}
+ .MobileTools{right:28px;bottom:28px}
+ .MobileTools_Blob i:not(:first-child),.MobileTools_Options{display:none}
  .MobileTools_Toggle [data-tools-plus]{display:none}
  .MobileSearch_Panel{left:50%;right:auto;width:min(620px,calc(100% - 48px));top:calc(var(--search-top,0px) + 24px);height:calc(var(--search-height,100dvh) - 48px);max-height:680px;transform:translateX(-50%)}
  .MobileSearch_Content{padding:28px}
+ .MobileSearch form{min-height:60px;border-radius:30px}
 }
+@media(hover:hover) and (pointer:fine){.MobileSearch [data-search-close]:is(:hover,:focus-visible){scale:1.09}}
 @media(prefers-reduced-motion:reduce){
  .MobileTools,.MobileTools *,.MobileSearch *{transition:none!important;scroll-behavior:auto!important}
  .MobileTools_Blob{filter:none}
- .MobileSearch::backdrop,.MobileSearch.is-closing::backdrop{animation:none}
+ .MobileSearch[open]:not(.is-closing) .MobileSearch_Shade{animation:none}
 }
 
 @media(max-width:700px){
+ .MobileSearch_Content{padding-block:clamp(10px,calc(var(--search-height,100dvh) * .045),20px)}
+ .MobileSearch_Top{margin-bottom:clamp(6px,calc(var(--search-height,100dvh) * .035),18px)}
+ .MobileSearch [data-search-close]{font-size:2.25rem}
+ .MobileSearch [data-search-clear]{font-size:2.125rem}
+ /* Use the small viewport so the browser toolbar cannot shift the dock. */
+ .MobileTools,.MobileTools_SafeArea{
+  --tools-height:100vh;
+  --tools-bottom:calc(18px + env(safe-area-max-inset-bottom, env(safe-area-inset-bottom)));
+ }
+ @supports(height:100svh){
+  .MobileTools,.MobileTools_SafeArea{--tools-height:100svh}
+ }
+ .MobileTools{top:calc(var(--tools-height) - var(--tools-bottom) - var(--tools-size));bottom:auto}
+ .MobileTools_SafeArea{
+  display:block;position:fixed;visibility:hidden;pointer-events:none;
+  left:max(18px,env(safe-area-inset-left));right:max(18px,env(safe-area-inset-right));
+  top:max(18px,env(safe-area-inset-top));
+  height:max(0px,calc(var(--tools-height) - max(18px,env(safe-area-inset-top)) - var(--tools-bottom)));
+ }
  .MobileTools.is-positioned{left:0;top:0;right:auto;bottom:auto;translate:var(--tools-x) var(--tools-y)}
- .MobileTools .MobileTools_Toggle{width:60px;height:60px;touch-action:none;cursor:grab;-webkit-user-select:none;user-select:none}
- .MobileTools button>svg{position:absolute;top:50%;left:50%;translate:-50% -50%}
- .MobileTools_Toggle>svg{width:27px;height:27px}
- .MobileTools [data-tools-search],
- .MobileTools [data-tools-plus],
- .MobileTools [data-search-open] svg,
- .MobileSearch [data-search-close] svg{stroke-width:2.4}
+ .MobileTools .MobileTools_Toggle{touch-action:none;cursor:grab;-webkit-user-select:none;user-select:none}
+ .MobileTools_Options>button>svg{position:absolute;top:50%;left:50%;translate:-50% -50%}
+ .MobileTools [data-search-open] svg{stroke-width:2.4}
  /* Match the opening paths of the ink shapes and their buttons.
     The collapsed-state transitions above still govern the return. */
  .MobileTools.is-expanded .MobileTools_Blob i:nth-child(n+2),
@@ -109,14 +141,5 @@ body.ModalReceta-open .MobileTools,body.MobileSearch-open .MobileTools,body:has(
 @media(max-width:700px) and (prefers-reduced-motion:no-preference){
  .MobileTools.is-dragging{scale:1.09;filter:drop-shadow(0 5px 6px rgba(10,12,36,.18))}
 }
-
-.MobileSearch_OpeningIcon{position:fixed;z-index:2;display:grid;place-items:center;width:54px;height:54px;color:#f5f5f0;pointer-events:none}.MobileSearch_OpeningIcon svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
-
-.MobileSearch_OpeningIcon[hidden]{display:none}
-
-.MobileSearch_OpeningIcon{height:54px;display:block;overflow:hidden;border:1px solid #0a0c24;border-radius:27px;background:#f5f5f0;color:#0a0c24}
-.MobileSearch_OpeningIcon svg{position:absolute;left:15px;top:15px;width:24px;height:24px}
-.MobileSearch_OpeningIcon span{position:absolute;left:50px;right:10px;top:0;height:52px;display:flex;align-items:center;white-space:nowrap;font:500 20px/1.2 'Barlow Condensed',sans-serif;color:#0a0c24}
-.MobileSearch_OpeningIcon[hidden]{display:none}
 
 @media(min-width:701px){.TarjetaNombre--corto{display:none}}
