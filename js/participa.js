@@ -13,4 +13,5 @@ function fitParticipationPaper(){
  }
 }
 fitParticipationPaper();
+play();
 window.addEventListener('resize',fitParticipationPaper);
