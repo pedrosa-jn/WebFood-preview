@@ -46,11 +46,13 @@
   const top=Math.max(area.top,(viewport?.offsetTop || 0)+18);
   const right=Math.max(left,Math.min(area.right,(viewport?.offsetLeft || 0)+(viewport?.width || innerWidth)-18)-toggleButton.offsetWidth);
   const bottom=Math.max(top,Math.min(area.bottom,(viewport?.offsetTop || 0)+(viewport?.height || innerHeight)-18)-toggleButton.offsetHeight);
-  return {left,top,right,bottom};
+  const lowerHalf = (viewport?.offsetTop || 0) + (viewport?.height || innerHeight)/2;
+  const minY = Math.min(bottom,Math.max(top,lowerHalf));
+  return {left,top,right,bottom,minY};
  };
  const placeTools = (x,y,bounds=dragBounds()) => {
   x=Math.max(bounds.left,Math.min(bounds.right,x));
-  y=Math.max(bounds.top,Math.min(bounds.bottom,y));
+  y=Math.max(bounds.minY,Math.min(bounds.bottom,y));
   tools.style.setProperty('--tools-x',`${x}px`);
   tools.style.setProperty('--tools-y',`${y}px`);
   tools.classList.add('is-positioned');
@@ -58,6 +60,7 @@
   tools.classList.toggle('opens-down',y-bounds.top<144 && bounds.bottom-y>y-bounds.top);
   return {x,y};
  };
+ const dockX = (x,bounds) => x < (bounds.left+bounds.right)/2 ? bounds.left : bounds.right;
  const rememberPosition = point => {
   const bounds=dragBounds();
   savedPosition={x:(point.x-bounds.left)/Math.max(1,bounds.right-bounds.left),y:(point.y-bounds.top)/Math.max(1,bounds.bottom-bounds.top)};
@@ -65,10 +68,11 @@
  };
  const restorePosition = () => {
   if (drag) finishDrag({pointerId:drag.id},true);
+  dropAnimation?.cancel();
   if (!mobile.matches) {tools.classList.remove('is-positioned','is-left','opens-down');return;}
   if (!savedPosition || dialog.open) return;
   const bounds=dragBounds();
-  placeTools(bounds.left+savedPosition.x*(bounds.right-bounds.left),bounds.top+savedPosition.y*(bounds.bottom-bounds.top),bounds);
+  placeTools(savedPosition.x<.5 ? bounds.left : bounds.right,bounds.top+savedPosition.y*(bounds.bottom-bounds.top),bounds);
  };
  toggleButton.addEventListener('dragstart',e=>e.preventDefault());
  toggleButton.addEventListener('pointerdown',e=>{
@@ -95,12 +99,14 @@
    suppressClickUntil=performance.now()+350;
    if (cancelled) placeTools(finished.x,finished.y);
    else {
-    rememberPosition(finished.point);
+    const {point,bounds}=finished;
+    const docked=placeTools(dockX(point.x,bounds),point.y,bounds);
+    rememberPosition(docked);
     if (!reduced.matches) dropAnimation=tools.animate([
-     {scale:'1.055'},
-     {scale:'.985',offset:.65},
-     {scale:'1'}
-    ],{duration:280,easing:'cubic-bezier(.22,1,.36,1)'});
+     {translate:`${point.x}px ${docked.y}px`,scale:'1.09'},
+     {translate:`${docked.x}px ${docked.y}px`,scale:'.975',offset:.72},
+     {translate:`${docked.x}px ${docked.y}px`,scale:'1'}
+    ],{duration:340,easing:'cubic-bezier(.22,1,.36,1)'});
    }
   }
   if (toggleButton.hasPointerCapture(e.pointerId)) toggleButton.releasePointerCapture(e.pointerId);
@@ -113,7 +119,9 @@
   if (!mobile.matches || !e.shiftKey || !['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) return;
   e.preventDefault();expandTools(false);
   const rect=toggleButton.getBoundingClientRect();
-  const point=placeTools(rect.left+(e.key==='ArrowRight'?16:e.key==='ArrowLeft'?-16:0),rect.top+(e.key==='ArrowDown'?16:e.key==='ArrowUp'?-16:0));
+  const bounds=dragBounds();
+  const x=e.key==='ArrowLeft'?bounds.left:e.key==='ArrowRight'?bounds.right:dockX(rect.left,bounds);
+  const point=placeTools(x,rect.top+(e.key==='ArrowDown'?16:e.key==='ArrowUp'?-16:0),bounds);
   rememberPosition(point);
  });
  window.addEventListener('resize',restorePosition);
@@ -340,7 +348,7 @@
   else toggleButton.setAttribute('aria-haspopup','dialog');
  };
  mobile.addEventListener('change',()=>{close(false);adaptTools();});
+ tools.hidden=false;
  adaptTools();
  update();
- tools.hidden=false;
 })();
