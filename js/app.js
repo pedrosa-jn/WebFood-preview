@@ -1041,6 +1041,7 @@ function iniciarCursorMorph() {
 
 renderizarCategorias();
 renderizarRecetas();
+if (document.querySelector('.ParticipateScene')) renderizarMenu(null);
 iniciarMenuMovil();
 iniciarBuscador();
 iniciarIntroPortada();

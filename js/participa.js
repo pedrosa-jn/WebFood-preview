@@ -1,4 +1,3 @@
-if(typeof renderizarMenu==='function')renderizarMenu(null);
 // Fit the original paper as a single unit: no reflow or changes to print timing.
 const paper=document.querySelector('.ParticipateScene .paper-elevation');
 function fitParticipationPaper(){
@@ -13,18 +12,5 @@ function fitParticipationPaper(){
   paper.style.removeProperty('zoom');
  }
 }
-async function prepareParticipation(){
- const root = document.documentElement;
- const assets = Promise.all([...document.querySelectorAll('.ParticipateScene .paper-elevation img')].map(img=>img.decode().catch(()=>{})));
- try{
-  await document.fonts.ready;
-  fitParticipationPaper();
-  root.classList.add('participation-type-ready');
-  await assets;
-  if(typeof play==='function')play();
- }finally{
-  root.classList.remove('participation-loading','participation-type-ready');
- }
-}
-prepareParticipation();
+fitParticipationPaper();
 window.addEventListener('resize',fitParticipationPaper);
