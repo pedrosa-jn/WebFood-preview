@@ -975,6 +975,68 @@ function iniciarIntroPortada() {
 	void ejecutarIntro();
 }
 
+function cargarArteFooter() {
+	const arte = document.querySelector('[data-footer-artwork]');
+	if (!arte) return;
+	const enlace = arte.closest('a');
+	const cargar = () => {
+		observador?.disconnect();
+		for (const pieza of arte.querySelectorAll('[data-part]')) {
+			pieza.setAttribute('href', `${arte.dataset.footerArtwork}#${pieza.dataset.part}`);
+		}
+		enlace.removeEventListener('focus', cargar);
+	};
+	const observador = 'IntersectionObserver' in window
+		? new IntersectionObserver(entradas => {
+			if (entradas.some(entrada => entrada.isIntersecting)) cargar();
+		}, {rootMargin: '640px 0px'})
+		: null;
+	if (observador) {
+		observador.observe(enlace);
+		enlace.addEventListener('focus', cargar);
+	} else cargar();
+}
+
+function animarEnlaceFooter() {
+	const enlace = document.querySelector('.FooterInvitation a');
+	if (!enlace || !('IntersectionObserver' in window)) return;
+	const reducido = matchMedia('(prefers-reduced-motion:reduce)');
+	const piezas = [...enlace.querySelectorAll('[data-reveal-word]')];
+	let visible = false, presentado = false, temporizador = 0, movimientos = [];
+	const cancelar = () => {
+		clearTimeout(temporizador);
+		movimientos.forEach(movimiento => movimiento.cancel());
+		movimientos = [];
+	};
+	const programar = (espera = 10000) => {
+		clearTimeout(temporizador);
+		if (!visible || document.hidden || reducido.matches) return;
+		temporizador = window.setTimeout(() => {
+			const interactuando = enlace.matches(':focus-within')
+				|| matchMedia('(hover:hover)').matches && enlace.matches(':hover');
+			if (!interactuando) {
+				presentado = true;
+				movimientos = piezas.map((pieza, indice) => pieza.animate([
+					{transform:'scale(1)',offset:0},
+					{transform:'scale(1.065)',offset:.55},
+					{transform:'scale(1.02)',offset:1}
+				], {duration:400,delay:indice*75,easing:'ease'}));
+			}
+			programar();
+		}, espera);
+	};
+	new IntersectionObserver(entradas => {
+		visible = entradas[0].isIntersecting;
+		cancelar();
+		programar(presentado ? 10000 : 1200);
+	}, {threshold:.6}).observe(enlace);
+	const actualizar = () => {cancelar();programar();};
+	document.addEventListener('visibilitychange', actualizar);
+	reducido.addEventListener('change', actualizar);
+	enlace.addEventListener('pointerenter', actualizar);
+	enlace.addEventListener('focusin', actualizar);
+}
+
 function iniciarReboteFooter() {
 	const piezas = [...document.querySelectorAll('footer > .FooterBrand, footer > div:not(.FooterBrand)')];
 	if (!piezas.length || typeof piezas[0].animate !== 'function') return;
@@ -1050,5 +1112,7 @@ iniciarParallaxCuadricula();
 iniciarIndicadorScroll();
 iniciarTransicionPaginas();
 iniciarLogoAnimado();
+cargarArteFooter();
+animarEnlaceFooter();
 iniciarReboteFooter();
 iniciarCursorMorph();

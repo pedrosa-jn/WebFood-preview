@@ -77,15 +77,14 @@ const RECETAS = [
     "dificultad": "",
     "imagen": "",
     "ingredientes": [
-      "½ vaso de vino blanco",
-      "Ajo picado",
-      "Aceite suficiente para cubrir el fondo de la sartén",
-      "Perejil (opcional)"
+      "½ vaso de vino",
+      "Ajo picado (opción 1)",
+      "Aceite suficiente para cubrir el fondo de la sartén (opción 1)",
+      "Perejil, si hay (opción 1)"
     ],
     "pasos": [
-      "Se cubre el fondo de una sartén con aceite y se dora ligeramente el ajo picado, con cuidado de que no se queme.",
-      "Se echa el vino y se deja reducir, mezclando hasta que se forme una emulsión.",
-      "Si hay perejil, se añade al final."
+      "Opción 1 · Con ajo y perejil. Se cubre el fondo de una sartén con aceite y se dora ligeramente el ajo picado, con cuidado de que no se queme. Se echa el vino y se deja reducir, mezclando hasta que se forme una emulsión. Si hay perejil, se añade al final.",
+      "Opción 2 · Para acompañar filetes. Después de haber frito los filetes en la sartén, añadimos el vino y lo dejamos reducir un par de minutos. Añadir a la fuente de los filetes y servir."
     ]
   },
   {
@@ -100,15 +99,11 @@ const RECETAS = [
       "Uno o dos huevos",
       "Una cucharada de vinagre",
       "Sal",
-      "Un vaso de aceite suave",
-      "½ vaso de vino blanco"
+      "Un vaso de aceite suave"
     ],
     "pasos": [
       "En el vaso de la batidora poner dos huevos o uno según la cantidad de mayonesa que queramos hacer, el vinagre, la sal y añadimos un poco de aceite.",
-      "Batimos con la minipimer sin moverla y cuando haya emulsionado echar el resto del aceite poco a poco y mover la batidora de forma ascendente y descendente.",
-      "SALSA DE VINO (para acompañar unos filetes)",
-      "Después de haber frito los filetes en la sartén añadimos el vino y lo dejamos reducir un par de minutos.",
-      "Añadir a la fuente de los filetes y servir."
+      "Batimos con la minipimer sin moverla y cuando haya emulsionado echar el resto del aceite poco a poco y mover la batidora de forma ascendente y descendente."
     ],
     "tiempoNota": "Preparación activa estimada: 10 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Reunir ingredientes y emulsionar con batidora."
   },
@@ -139,17 +134,21 @@ const RECETAS = [
     "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
-      "2 cucharadas soperas de aceite",
-      "50 gramos de mantequilla",
-      "2 cucharadas soperas de aceite fino",
-      "¼ leche fría",
-      "Media cebolla picada (opcional)"
+      "4 cucharadas grandes de harina",
+      "750 ml de leche",
+      "Un poquito de aceite o 1 cucharada de mantequilla",
+      "Sal y pimienta al gusto",
+      "Una pizca de nuez moscada"
     ],
     "pasos": [
-      "En una sartén se pone la mantequilla a derretir con el aceite. Una vez derretida se añade la harina y la cebolla rehogada no dorada.",
-      "Se remueve bien todo con una cuchara de madera y se va añadiendo la leche poco a poco sin dejar que se formen grumos. (Si se forman se puede pasar por la minipimer)",
-      "Se tiene hirviendo unos 8 minutos y está lista para usar",
-      "Si se quiere más líquida se añade más leche."
+      "Derrite la mantequilla en un cazo a fuego medio.",
+      "Añade la harina y remueve constantemente durante 1-2 minutos para cocinarla sin que llegue a dorarse demasiado.",
+      "Incorpora la leche poco a poco, sin dejar de batir para evitar grumos.",
+      "Cocina la mezcla a fuego medio durante unos 8-10 minutos, removiendo continuamente hasta que espese.",
+      "Salpimienta al gusto y añade una pizca de nuez moscada.",
+      "Retira del fuego cuando tenga una textura cremosa y homogénea.",
+      "Si aparecen grumos, bate la salsa con unas varillas o una batidora de mano.",
+      "Para una bechamel más espesa (croquetas), reduce la leche a unos 350-400 ml. Para gratinados o lasañas, la proporción indicada suele ser ideal."
     ],
     "tiempoNota": "Preparación activa estimada: 20 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Preparar roux, añadir leche y remover continuamente mientras espesa."
   },
@@ -162,10 +161,24 @@ const RECETAS = [
     "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
-      "120 gramos de parmesano\n5 Cucharadas de aceite de oliva\n1 huevo\n4 anchoas\n2 Cucharadas de Salsa Perrins\n1 Cucharada de mostaza en grano\n1 ajo pequeño\nSal\nPimienta\nUnas gotas de vinagre"
+      "1 yema de huevo (o 2 cucharadas de mayonesa)",
+      "1 cucharadita de mostaza de Dijon",
+      "1 cucharada de zumo de limón",
+      "2 filetes de anchoa",
+      "1 diente de ajo pequeño",
+      "30 g de queso parmesano rallado",
+      "60 ml de aceite de oliva suave",
+      "Pimienta negra al gusto",
+      "Sal (solo si es necesaria)"
     ],
-    "pasos": [],
-    "tiempoNota": "Preparación activa estimada: 10 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Preparar ingredientes y batir; orientación provisional porque faltan los pasos."
+    "pasos": [
+      "Machaca el ajo y las anchoas hasta obtener una pasta.",
+      "Mezcla la yema, la mostaza y el zumo de limón en un bol.",
+      "Añade la pasta de ajo y anchoas y remueve bien.",
+      "Incorpora el aceite poco a poco mientras bates para emulsionar la salsa.",
+      "Agrega el parmesano rallado y mezcla hasta conseguir una textura cremosa.",
+      "Ajusta de pimienta y sal al gusto."
+    ]
   },
   {
     "id": "salmorejo-abuelo-mariano",
@@ -511,20 +524,6 @@ const RECETAS = [
     "tiempoNota": "Preparación activa estimada: 25 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Poner huevos a cocer, pelar, preparar relleno, rellenar y decorar."
   },
   {
-    "id": "sopa-al-cuarto-de-hora",
-    "categoria": "guisos",
-    "titulo": "Sopa al Cuarto de Hora",
-    "autor": "",
-    "tiempo": "30 min",
-    "dificultad": "Media",
-    "imagen": "",
-    "ingredientes": [],
-    "pasos": [
-      "Cuando hayan cogido color apartaremos los picatostes sobre papel de cocina para que escurran.\n3. Pelar las gambas, reservar los cuerpos al frío y comenzar a dorar las cáscaras en la cacerola anterior. Una vez que estén bien fritas las apartaremos y las desecharemos. Esta parte es opcional)\n4. En ese mismo aceite rehogamos la cebolla y el jamón picados. Dejaremos rehogar 5 minutos.\n5. Limpiar el rape, retirar la espina y cortar los lomos en trozos más pequeños.\n6. Cubrir entonces con agua y añadir 3 cucharadas de tomate frito.\n7. Mientras el caldo comienza a hervir haremos un “majao” en el mortero con la sal, los ajos, el azafrán, las yemas de los huevos cocidos y el vino blanco. Lo echaremos sobre la sopa junto con el arroz y los guisantes. Cocinaremos a fuego medio durante 10 minutos; desespumando si fuera preciso.\n8. Pasado este tiempo incorporar las almejas bien lavadas, el rape troceado y los cuerpos de las gambas. Mantener a fuego medio-alto durante 5 minutos.\n9. Como guarnición picaremos las claras de los huevos y las mezclaremos con el perejil picado y los dados de pan frito."
-    ],
-    "tiempoNota": "Preparación activa estimada: 30 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Limpiar pescado y gambas, preparar sofrito, majado y guarnición; inicio incompleto."
-  },
-  {
     "id": "crema-de-calabacin",
     "categoria": "guisos",
     "titulo": "Crema de Calabacín",
@@ -626,6 +625,38 @@ const RECETAS = [
       "Añadimos todos los ingredientes y los tenemos en la olla a presión unos 20’. También se pueden cocinar en la cacerola una hora más o menos moviéndolas con frecuencia para que no se agarren."
     ],
     "tiempoNota": "Preparación activa estimada: 20 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Lavar legumbres, preparar verduras, dar hervor, reunir ingredientes y poner olla."
+  },
+  {
+    "id": "lentejas-de-manolo",
+    "categoria": "guisos",
+    "titulo": "Lentejas",
+    "autor": "Manolo",
+    "tiempo": "",
+    "dificultad": "",
+    "imagen": "Recetas_IMG/Guisos_Lentejas_Manolo.png",
+    "ingredientes": [
+      "Lentejas",
+      "Agua",
+      "Ajos",
+      "Cebolla (media para dos personas)",
+      "Pimiento (medio para dos personas)",
+      "Tomate (medio para dos personas)",
+      "Berenjena y calabacín (opcionales)",
+      "Menos de medio vaso de aceite",
+      "Pimentón",
+      "Laurel",
+      "½ pastilla de Avecrem",
+      "Chorizo, sepia, morcilla u otro acompañamiento al gusto",
+      "Una punta de jamón, si las haces solo de verdura"
+    ],
+    "pasos": [
+      "No hace falta remojo. Se echan las lentejas en la olla con agua y se calientan hasta que hierven.",
+      "Se desespuman y se añaden los ajos, la cebolla, el pimiento y el tomate. Para dos personas, medio de cada. Si quieres, se añaden también berenjena y calabacín. Todo en crudo.",
+      "Se añade menos de medio vaso de aceite, pimentón, laurel, media pastilla de Avecrem y lo que le vayas a poner de chicha: chorizo, sepia, morcilla, etc.",
+      "Si las haces solo de verdura, ponles una punta de jamón.",
+      "Se dejan cocer a fuego no muy fuerte para que no se peguen. En una hora o así están listas. Si las haces en la olla exprés, sigue el tiempo que marque la tuya; Manolo indica unos 4 o 5 minutos.",
+      "Luego se saca toda la verdura menos los ajos, se tritura y se vuelve a echar a la olla. Y a comer."
+    ]
   },
   {
     "id": "alubias",
@@ -1551,9 +1582,9 @@ const RECETAS = [
       "Se añade un vaso de vino blanco y se deja evaporar.",
       "Pasamos a la olla con agua y una pastilla de avecrem y se cierra.",
       "Se tiene a fuego una vez que suba la pesa unos 15 minutos.",
-      "Cuando estén doradas se sacan y se apartan en un plato.",
-      "Se pica la cebolla y se dora en la cacerola, cuando esté dorada se añade medio vaso de vino y se deja cocer un poco, añadimos agua y echamos las albóndigas.",
-      "Añadimos una pastilla de avecrem desleída y colorante y dejamos hervir un rato hasta que las albóndigas estén tiernas y sin dejar que se consuma el líquido."
+      "Se saca la carne de la olla y se deja enfriar completamente. Una vez templada, se envuelve en papel de aluminio y se reserva en la nevera.",
+      "Cuando esté bien fría, se corta en rodajas. Mientras tanto, se pasa la salsa por un chino o se tritura con la batidora hasta obtener una textura fina y homogénea.",
+      "Se sirve la carne acompañada de puré de patatas y napada con la salsa caliente."
     ],
     "tiempoNota": "Preparación activa estimada: 35 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Mezclar y formar pieza, enharinar, dorar cebolla y carne y montar olla; solo pasos principales."
   },
@@ -1750,13 +1781,12 @@ const RECETAS = [
     ],
     "pasos": [
       "Se salpimenta la carne y se dora en una sartén con un chorreón de aceite.",
-      "Batir y untar el cordero.",
       "Lo mareamos todo bien y se añade el vino.",
       "Después de unos 5 minutos añadimos la cucharada de caramelo líquido, el zumo de naranja y agua y se mete en la olla unos 15 minutos.",
       "Se prepara una crema de champiñón aparte y se añade a la olla cuando la carne ya esté blanda.",
       "Se corta la carne y se sirve con patatas fritas, puré…"
     ],
-    "tiempoNota": "Preparación activa estimada: 30 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Preparar y sellar carne, base y salsa, preparar crema y cortar; paso ajeno pendiente."
+    "tiempoNota": "Preparación activa estimada: 30 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Preparar y sellar carne, base y salsa, preparar crema y cortar."
   },
   {
     "id": "filetes-rusos",
@@ -1896,7 +1926,26 @@ const RECETAS = [
       "Dos clavos",
       "Tocino de jamón o salado",
       "Salsa: 2 cebollas, pimiento, ajo, un tomate y ajo asado opcional",
-      "Aceite",
+      "Aceite"
+    ],
+    "pasos": [
+      "Se pican 4 o 5 dientes de ajo picado, pimienta, perejil, los dos clavos y el tocino troceado y se mete dentro de la carne a puñaditos.",
+      "Una vez rellena, untar sal por fuera y se sella.",
+      "Se pasa a la olla y en ese aceite se hace el sofrito con la verdura a fuego lento.",
+      "Se añade a la olla, agua medio cubierta y dos pastillas de avecrem, en la olla a presión media hora más o menos.",
+      "Una vez hecha se pasa toda la salsa y se corta la carne en filetes."
+    ],
+    "tiempoNota": "Preparación activa estimada: 40 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Preparar mechado, rellenar y sellar carne, hacer sofrito, montar olla, triturar y cortar; sin carrillada."
+  },
+  {
+    "id": "carrillada",
+    "categoria": "carnes",
+    "titulo": "Carrillada",
+    "autor": "",
+    "tiempo": "",
+    "dificultad": "",
+    "imagen": "",
+    "ingredientes": [
       "Tres cebollas",
       "Cinco dientes de ajo",
       "1 kg de carrillada",
@@ -1905,12 +1954,6 @@ const RECETAS = [
       "Laurel"
     ],
     "pasos": [
-      "Se pican 4 o 5 dientes de ajo picado, pimienta, perejil, los dos clavos y el tocino troceado y se mete dentro de la carne a puñaditos.",
-      "Una vez rellena, untar sal por fuera y se sella.",
-      "Se pasa a la olla y en ese aceite se hace el sofrito con la verdura a fuego lento.",
-      "Se añade a la olla, agua medio cubierta y dos pastillas de avecrem, en la olla a presión media hora más o menos.",
-      "Una vez hecha se pasa toda la salsa y se corta la carne en filetes.",
-      "CARRIlLADA",
       "Se pelan los ajos y la cebolla y se doran en la sartén.",
       "Se salpimenta la carne.",
       "Una vez dorada la cebolla, se añade la carne y se sofríe todo.",
@@ -1918,8 +1961,7 @@ const RECETAS = [
       "Se pasa todo a la olla express cubierto con agua y se tiene una media hora.",
       "Pasado este tiempo se deja enfriar la olla y se abre.",
       "Se puede servir con una guarnición de patatas fritas, arroz, puré de patatas…"
-    ],
-    "tiempoNota": "Preparación activa estimada: 40 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Preparar mechado, rellenar y sellar carne, hacer sofrito, montar olla, triturar y cortar; sin carrillada."
+    ]
   },
   {
     "id": "cinta-de-lomo-con-ciruelas-orejones-e-higos",
@@ -2389,7 +2431,6 @@ const RECETAS = [
     "dificultad": "Fácil",
     "imagen": "",
     "ingredientes": [
-      "45min 3 raciones",
       "3 Lubinas hermosas",
       "1 Patata",
       "1 Cebolla",
@@ -2402,22 +2443,44 @@ const RECETAS = [
       "1 vaso vino blanco",
       "1 vaso agua",
       "1/2 vaso de aceite",
-      "Dos lomos de lubina sin raspas",
-      "Huevos",
-      "Limón",
-      "Sal y aceite"
+      "Dos lomos de lubina sin raspas"
     ],
     "pasos": [
-      "Precalentar el horno a 180º\n2. Partimos la cebolla en juliana y formamos una cama esparciéndola por la bandeja.\n3. Hacemos lo mismo con el pimiento la patata y el tomate, éstos últimos en rodajitas.\n4. En un frasco mezclamos y agitamos, el aceite, el agua, la sal (al gusto), el orégano y el vino. Lo vertemos por la bandeja regando las verduras.\n5. Ponemos la bandeja al horno unos 10 minutos.\n6. Una vez metida la bandeja de las verduras en el horno nos disponemos a \"arreglar\" las lubinas así que cuando las compremos le decimos al pescadero que nos las arregle para horno, esto es, escamarlas y quitarles el interior.\n7. Les hacemos dos hendiduras transversales (hasta la raspa) y en oblicuo (se ve mejor presentado el limón) y salpimentamos con el molinillo.\n8. Transcurridos los 10 minutos abrimos el horno y extraemos la bandeja hacia fuera colocando las lubinas en ella.\n9. Cerramos el horno y lo dejamos unos 20 minutos o hasta que está a nuestro gusto (hay gente que les gusta más tostada). Y a disfrutar con un buen vino blanco. Buen provecho.",
-      "Lubina al champán",
-      "Se cuece el pescado al vapor 5 minutos",
-      "Salsa (textura mayonesa)",
-      "Un huevo entero y una yema, medio limón, sal, champán poco a poco, chorrito de aceite muy poco a poco alternando mientras se bate con varilla",
-      "Se saca el pescado y se le quita la piel",
-      "Se pone el pescado en una fuente",
-      "Se pone por encima la salsa y se gratina fuerte hasta que tenga un ligero tono dorado."
+      "Precalentar el horno a 180º",
+      "Partimos la cebolla en juliana y formamos una cama esparciéndola por la bandeja.",
+      "Hacemos lo mismo con el pimiento la patata y el tomate, éstos últimos en rodajitas.",
+      "En un frasco mezclamos y agitamos, el aceite, el agua, la sal (al gusto), el orégano y el vino. Lo vertemos por la bandeja regando las verduras.",
+      "Ponemos la bandeja al horno unos 10 minutos.",
+      "Una vez metida la bandeja de las verduras en el horno nos disponemos a \"arreglar\" las lubinas así que cuando las compremos le decimos al pescadero que nos las arregle para horno, esto es, escamarlas y quitarles el interior.",
+      "Les hacemos dos hendiduras transversales (hasta la raspa) y en oblicuo (se ve mejor presentado el limón) y salpimentamos con el molinillo.",
+      "Transcurridos los 10 minutos abrimos el horno y extraemos la bandeja hacia fuera colocando las lubinas en ella.",
+      "Cerramos el horno y lo dejamos unos 20 minutos o hasta que está a nuestro gusto (hay gente que les gusta más tostada). Y a disfrutar con un buen vino blanco. Buen provecho."
     ],
     "tiempoNota": "Preparación activa estimada: 20 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Cortar verduras, preparar aderezo y lubinas y montar bandeja; sin la receta al champán."
+  },
+  {
+    "id": "lubina-al-champan",
+    "categoria": "pescado",
+    "titulo": "Lubina al Champán",
+    "autor": "",
+    "tiempo": "",
+    "dificultad": "",
+    "imagen": "Recetas_IMG/Pescado_Lubina_Champan.png",
+    "ingredientes": [
+      "Dos lomos de lubina sin raspas",
+      "1 huevo entero y 1 yema",
+      "Medio limón",
+      "Sal",
+      "Champán",
+      "Aceite"
+    ],
+    "pasos": [
+      "Se cuece el pescado al vapor 5 minutos.",
+      "Se prepara una salsa de textura de mayonesa con un huevo entero y una yema, medio limón, sal y champán poco a poco, alternando con un chorrito de aceite muy poco a poco mientras se bate con varilla.",
+      "Se saca el pescado y se le quita la piel.",
+      "Se pone el pescado en una fuente.",
+      "Se pone por encima la salsa y se gratina fuerte hasta que tenga un ligero tono dorado."
+    ]
   },
   {
     "id": "chirlas",
@@ -2648,12 +2711,12 @@ const RECETAS = [
       "Se unta la pechuga con un par de cucharaditas de ras al hanut y aceite previamente mezclados.",
       "Se deja macerando un par de horas",
       "Se precalienta el horno unos 20 minutos y se mete la pechuga unos 15 minutos a 250 grados arriba y abajo.",
-      "Una vez pasado ese tiempo se apaga el horno y se deja dentro unas tres horas o toda la noche.",
+      "Opcional, según la receta original: una vez pasado ese tiempo, se apaga el horno y se deja dentro unas tres horas o toda la noche. Nota de conservación: para reposos largos, guardar el pollo en el frigorífico antes de que pasen dos horas desde la cocción; el horno apagado no mantiene una temperatura segura durante la noche.",
       "Se trincha en filetes muy finos y se trocea.",
       "Se pone en una sartén y se dora un poco. Añadimos el jugo que ha soltado el pollo en el horno.",
       "Se abre el pan de pita y se añade una base de salsa de yogur, lechuga, tomate, cebolla y el pollo. Se envuelve todo bien y a comer."
     ],
-    "tiempoNota": "Preparación activa estimada: 25 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Preparar adobo, trocear pollo cocinado, saltear, cortar guarniciones y montar pitas; conservación pendiente."
+    "tiempoNota": "Preparación activa estimada: 25 minutos. Incluye las tareas que requieren intervención; no incluye remojo, maceración, enfriado, reposo ni cocción sin atención continua. Preparar adobo, trocear pollo cocinado, saltear, cortar guarniciones y montar pitas."
   },
   {
     "id": "quiche-de-jamon-y-queso",
@@ -2712,7 +2775,7 @@ const RECETAS = [
     "dificultad": "Media",
     "imagen": "",
     "ingredientes": [
-      "1 yema de huevo",
+      "3 huevos",
       "½ litro de leche",
       "12 cucharadas de azúcar",
       "Cáscara de limón",

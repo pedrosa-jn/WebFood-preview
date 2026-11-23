@@ -905,6 +905,14 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	background-color:rgb(139,0,0);
 	transition:transform .5s ease-in-out;
 }
+.Recetas:is([data-categoria="pescado"],[data-categoria="guisos"]) .bck-image:not(.bck-image--placeholder){
+	background-size:100% auto;
+	background-position:center;
+	overflow:hidden;
+}
+@media(min-width:701px) and (max-width:1023px){
+ .Recetas:is([data-categoria="pescado"],[data-categoria="guisos"]) .bck-image:not(.bck-image--placeholder){bottom:28%}
+}
 .Tarjeta_TXT{ transition:transform .5s ease-in-out; }
 @media (min-width:1024px) and (hover:hover) and (pointer:fine){
 	.Recetas > a:hover .Tarjeta,
@@ -926,6 +934,8 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	.Recetas[data-categoria="carnes"] > a:focus-visible .bck-image{
 		transform:none;
 	}
+	.Recetas:is([data-categoria="pescado"],[data-categoria="guisos"]) .bck-image:not(.bck-image--placeholder){bottom:35%}
+	.Recetas:is([data-categoria="pescado"],[data-categoria="guisos"]) > a:is(:hover,:focus-visible) .bck-image{transform:none}
 }
 
 /* Pre-AI recipe modal layout, retaining the current rounded outer frame. */
@@ -1141,6 +1151,10 @@ footer .FooterBrand .FooterLogo{ margin:0; }
 	}
 	.bck-image:not(.bck-image--placeholder){
 		background-position:center calc(50% - 18vw);
+	}
+	.Recetas:is([data-categoria="pescado"],[data-categoria="guisos"]) .bck-image:not(.bck-image--placeholder){
+		bottom:44%;
+		background-position:center;
 	}
 	.TarjetaDescripcion{
 		left:13px;

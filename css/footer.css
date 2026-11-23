@@ -15,7 +15,6 @@ body>.SiteFooter .FooterLogo{display:block;position:static;width:100%;height:aut
 body>.SiteFooter>.FooterInvitation{grid-column:3;grid-row:1;width:clamp(112px,calc(3.214vw + 99.46px),155px);max-width:100%;z-index:1}
 .FooterInvitation a{position:relative;display:block;color:#8b0000;text-decoration:none}
 .FooterInvitation svg{display:block;width:100%;height:auto;overflow:visible}
-.FooterInvitation .FooterInvitation_Texture{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
 .FooterInvitation a:focus-visible{outline:2px solid #8b0000;outline-offset:8px}
 body>.SiteFooter>.FooterLandscape{grid-column:2/4;grid-row:2;width:clamp(240px,calc(13.303vw + 254.1px),484px);max-width:95vw;margin-top:calc(-1 * clamp(88px,calc(3.513vw + 74.3px),135px));pointer-events:none}
 body>.SiteFooter .FooterLandscape img{display:block;position:static;width:100%;height:auto;max-width:100%;max-height:none;aspect-ratio:1100/724;object-fit:contain;margin:0;padding:0;transform:none;translate:none;mix-blend-mode:darken;mask-image:linear-gradient(to bottom,transparent,#000 35%)}
@@ -23,12 +22,12 @@ body>.SiteFooter>.FooterCopyright{grid-column:1/-1;grid-row:3;display:flex;justi
 @media(max-width:700px){body>.SiteFooter>.FooterBrand{max-width:59vw}body>.SiteFooter>.FooterCopyright{padding-inline:60px}}
 @media(max-width:360px){body>.SiteFooter>.FooterBrand{width:210px}body>.SiteFooter>.FooterInvitation{width:100px}}
 
-@media(hover:hover) and (pointer:fine){
- .FooterInvitation svg{transform-origin:center;transition:transform .4s cubic-bezier(.22,.61,.36,1)}
- .FooterInvitation a:is(:hover,:focus-visible) svg{transform:none}
- .FooterInvitation a:is(:hover,:focus-visible) [data-reveal-word]{animation:footer-word-reveal .4s calc(var(--word)*.075s) both}
+@media(prefers-reduced-motion:no-preference){
+ .FooterInvitation a:focus-visible [data-reveal-word]{animation:footer-word-reveal .4s calc(var(--word)*.075s) both}
+ @media(hover:hover) and (pointer:fine){
+  .FooterInvitation a:hover [data-reveal-word]{animation:footer-word-reveal .4s calc(var(--word)*.075s) both}
+ }
 }
 @keyframes footer-word-reveal{0%{transform:scale(1)}55%{transform:scale(1.065)}100%{transform:scale(1.02)}}
-@media(prefers-reduced-motion:reduce){.FooterInvitation svg{transition:none!important}.FooterInvitation [data-reveal-word]{animation:none!important}.FooterInvitation a:is(:hover,:focus-visible) svg{transform:none}}
 
-.FooterInvitation [data-reveal-word]{transform-box:fill-box;transform-origin:center;opacity:1}
+.FooterInvitation [data-reveal-word]{transform-box:fill-box;transform-origin:center}
