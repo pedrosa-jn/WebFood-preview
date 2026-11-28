@@ -1008,7 +1008,7 @@ function animarEnlaceFooter() {
 		movimientos.forEach(movimiento => movimiento.cancel());
 		movimientos = [];
 	};
-	const programar = (espera = 10000) => {
+	const programar = (espera = 4000) => {
 		clearTimeout(temporizador);
 		if (!visible || document.hidden || reducido.matches) return;
 		temporizador = window.setTimeout(() => {
@@ -1028,7 +1028,7 @@ function animarEnlaceFooter() {
 	new IntersectionObserver(entradas => {
 		visible = entradas[0].isIntersecting;
 		cancelar();
-		programar(presentado ? 10000 : 1200);
+		programar(presentado ? 4000 : 1200);
 	}, {threshold:.6}).observe(enlace);
 	const actualizar = () => {cancelar();programar();};
 	document.addEventListener('visibilitychange', actualizar);

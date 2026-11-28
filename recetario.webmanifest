@@ -1,0 +1,15 @@
+{
+  "id": "./",
+  "name": "Cuaderno de recetas",
+  "short_name": "Recetario",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f5f0",
+  "theme_color": "#f5f5f0",
+  "icons": [
+    {"src": "./images/recetario-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "./images/recetario-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}
